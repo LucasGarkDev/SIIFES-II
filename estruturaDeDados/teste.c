@@ -6,18 +6,26 @@
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
 
+void maiorMenor(int vetor[], int* maximo, int* minimo){
+    int i;
+    for (i = 0; i < 12; i++){
+        if (vetor[i] > *maximo){
+            *maximo = vetor[i]; 
+        }
+        if (vetor[i] < *minimo){
+            *minimo = vetor[i];
+        }
+    }
+}
+
 int main(){
-    int x, y, *p; y = 1;
-    p = &y;
-    x = *p;
-    x = 4;
-    (*p)++;
-    --x;
-    (*p) += x;
-    printf("\n\n%s\n", RESULTADO);
-    printf("O valor de X e: %d\n", x);
-    printf("O valor de Y e: %d\n", y);
-    printf("O valor de P e: %d\n", *p);
-    printf("%s\n\n", CORTE);
+    int maior = 0;
+    int menor = 999;
+    int vetor[12] = {3,5,12,675,2323,656,234,753,2,6,1,4};
+    maiorMenor(vetor,&maior,&menor);
+    printf("\n%s\n", RESULTADO);
+    printf("O maior elemento desse vetor e: %d\n", maior);
+    printf("O menor elemento desse vetor e: %d\n", menor);
+    printf("%s\n", CORTE);
     return 0;
 }
