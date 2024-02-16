@@ -6,24 +6,18 @@
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
 
-void func(int *n1, int *n2){
-    if (*n1 > *n2){
-        printf("\n\n%s\n\n",RESULTADO);
-        printf("%d \n", *n1);
-        printf("%s\n",CORTE);
-    }else{
-        printf("\n\n%s\n\n",RESULTADO);
-        printf("%d \n", *n2);
-        printf("%s\n",CORTE);
-    }
-}
-
 int main(){
-    int *p1, *p2, a ,b;
-    a = 2;
-    b = 5;
-    p2 = &a;
-    p1 = &b;
-    func(p1,p2);
+    int x, y, *p; y = 1;
+    p = &y;
+    x = *p;
+    x = 4;
+    (*p)++;
+    --x;
+    (*p) += x;
+    printf("\n\n%s\n", RESULTADO);
+    printf("O valor de X e: %d\n", x);
+    printf("O valor de Y e: %d\n", y);
+    printf("O valor de P e: %d\n", *p);
+    printf("%s\n\n", CORTE);
     return 0;
 }
