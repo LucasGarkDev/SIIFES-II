@@ -6,7 +6,7 @@
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
 
-void maiorMenor(int vetor[], int* maximo, int* minimo){
+void maiorMenor(int vetor[], int *maximo, int *minimo){
     int i;
     for (i = 0; i < 12; i++){
         if (vetor[i] > *maximo){
