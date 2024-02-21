@@ -26,32 +26,60 @@ void inicializa(Tlista *lista){
 }
 
 void inserir(Tlista *lista, int valor){
+    int inseriu = 0;
     TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     novo->valor = valor;
     novo->prox = NULL;
     if (lista->inicio == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
         lista->inicio = novo;
         lista->fim = novo;
         lista->total = 1;
+        inseriu = 1;
     }else{
+        //Lista ja possui pelo menos 1 elemento
         TElemento *atual = lista->inicio;
         TElemento *anterior = NULL;
         while (atual != NULL){
             if (atual->valor >= novo->valor){
                 if (anterior == NULL){
+                    //Inserir novo antes do primeiro da lista
                     novo->prox = atual;
                     lista->inicio = novo;
                 }else{
+                    //Inserir no meio da lista
                     novo->prox = atual;
                     anterior->prox = novo;
                 }
+                inseriu = 1;
+                lista->total++;
                 break;
             }
             anterior = atual;
-            atual = atual->prox;
+            atual = atual->prox; //move para o próximo elemento
         }
+    }
+    if (!inseriu){
+        //Inserir elemento no fim da lista
+        lista->fim->prox = novo;
+        lista->fim = novo;
         lista->total++;
     }
+    
+}
+
+void exibeLista(Tlista lista){
+    TElemento *atual = lista.inicio;
+    int cont = 0;
+    printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
+    while (atual != NULL){
+        printf("\n%s\n", RESULTADO);
+        printf("Numero do %d da lista e: (%d)\n", ++cont, atual->valor);
+        atual = atual->prox;
+    }
+    printf("%s\n", CORTE);
+
 }
 
 int pedirOpcao(){
@@ -59,11 +87,12 @@ int pedirOpcao(){
     printf("\n%s\n", INICIO);
     do{
         printf("1 - Inserir na Lista\n");
-        printf("2 - Sair\n");
+        printf("2 - Exibe Lista\n");
+        printf("3 - Sair\n");
         printf("Digite a opção: ");
         scanf("%d", &op);
         printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 2));
+    } while ((op < 1)||(op > 3));
     return op;
 }
 
@@ -81,20 +110,25 @@ Tlista lista; //variavel global
 //=================================================
 int main(){
     int op, numInseri;
+    int repete = 0;
     inicializa(&lista);
-    op = pedirOpcao();
-    switch (op){
-    case 1:
-        numInseri = pedirNum();
-        inserir(&lista,numInseri);
-        break;
-    case 2:
-        return 0;
-        break;
-
-    default:
-        break;
-    }
+    do{
+        op = pedirOpcao();
+        switch (op){
+        case 1:
+            numInseri = pedirNum();
+            inserir(&lista,numInseri);
+            break;
+        case 2:
+            exibeLista(lista);
+            break;
+        case 3:
+            repete = 1;
+            break;
+        default:
+            break;
+        }
+    } while (repete == 0);
     return 0;
 }
 
