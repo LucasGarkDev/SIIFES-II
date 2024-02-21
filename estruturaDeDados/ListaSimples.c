@@ -10,7 +10,7 @@
 //19/02/2024
 struct TipoElemento{
     int valor;
-    Telemento *prox;
+    struct TipoElemento *prox;
 };
 typedef struct TipoElemento Telemento;
 
