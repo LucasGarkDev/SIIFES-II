@@ -82,17 +82,58 @@ void exibeLista(Tlista lista){
 
 }
 
+void excluirLista(Tlista *lista, int valor){
+    TElemento *atual = lista->inicio;
+    int cont = 0;
+    TElemento *anterior = NULL;
+    while (atual != NULL){
+        if (cont == 0){
+            printf("\n\n\tA lista esta vazia\n");
+            printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+            cont++;
+        }
+        if (atual->valor == valor){
+            //Encontra o elemento a ser excluido
+            if (lista->inicio == lista->fim){
+                //Exclusao do unico elemento da lista
+                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                lista->inicio = NULL;
+                lista->fim = NULL;
+            }else if (atual == lista->inicio){
+                //Esclui o primeiro elemento da lista
+                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                lista->inicio = atual->prox; //lista->inicio = lista->inicio->prox;
+            }else if (atual == lista->fim){
+                //Excluindo o ultimo cara da lista
+                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                lista->fim = anterior;
+                lista->fim->prox = NULL;
+            }else if ((atual != lista->inicio)&&(atual != lista->fim)){
+                //Excluindo alguem que nao esta nem no fim e nem no inicio
+                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+                anterior->prox = atual->prox;
+            }
+            free(atual);
+            lista->total--;
+            break;
+        }
+        anterior = atual;
+        atual = atual->prox;// move para o proximo elemento
+    }
+}
+
 int pedirOpcao(){
     int op;
     printf("\n%s\n", INICIO);
     do{
         printf("1 - Inserir na Lista\n");
         printf("2 - Exibe Lista\n");
-        printf("3 - Sair\n");
+        printf("3 - Excluir da Lista\n");
+        printf("4 - Sair\n");
         printf("Digite a opção: ");
         scanf("%d", &op);
         printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 3));
+    } while ((op < 1)||(op > 4));
     return op;
 }
 
@@ -100,6 +141,15 @@ int pedirNum(){
     int num;
     do{
         printf("Digite um numero para ser inserido: ");
+        scanf("%d", &num);
+    } while (num < 0);
+    return num;
+}
+
+int pedirNum2(){
+    int num;
+    do{
+        printf("Digite um numero para ser excluido: ");
         scanf("%d", &num);
     } while (num < 0);
     return num;
@@ -123,6 +173,10 @@ int main(){
             exibeLista(lista);
             break;
         case 3:
+            numInseri = pedirNum2();
+            excluirLista(&lista,numInseri);
+            break;
+        case 4:
             repete = 1;
             break;
         default:
