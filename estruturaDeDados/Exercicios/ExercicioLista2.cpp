@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 #define INICIO "------------INICIO------------" 
 #define RESULTADO "------------RESULTADO------------"
@@ -26,53 +27,86 @@ typedef struct tipoLista {
     int k;
 }Tlista;
 
-void escolheNomeAleatorio(Tlista *lista, int *centroides) {
-    // Implementação básica: escolhe aleatoriamente um nome existente na lista
+void inicializarCentroides(Tlista *lista) {
     TElemento *atual = lista->inicio;
-    int randomIndex = rand() % lista->total;
-
-    for (int i = 0; i < randomIndex; i++) {
-        atual = atual->prox;
-    }
-
-    *centroides = atual->grupo; // Atribui o grupo do elemento escolhido como centróide
-}
-
-float calcularDistancia(TElemento a, TElemento b) {
-    float distancia = 0.5*(((a.idade - b.idade)*(a.idade - b.idade)) + ((a.altura - b.altura)*(a.altura - b.altura)) + (a.peso - b.peso)*(a.peso - b.peso));
-    return distancia;
-}
-
-void agrupaElemento(TElemento centroides[], TElemento *atual, int tam) {
-    // Implementação básica: atribui o grupo com base na menor distância euclidiana
-    float menorDistancia = -1;
-    int grupoAtribuido = -1;
-
-    for (int i = 0; i < tam; i++) {
-        float distancia = calcularDistancia(centroides[i], *atual);
-        if (menorDistancia == -1 || distancia < menorDistancia) {
-            menorDistancia = distancia;
-            grupoAtribuido = i;
-        }
-    }
-
-    atual->grupo = grupoAtribuido;
-}
-
-void algoritmo(Tlista *lista) {
-    int tamList = lista->k;
-    TElemento *atual = lista->inicio;
-    TElemento centroides[lista->k];
-
-    for (int i = 0; i < lista->k; i++) {
-        escolheNomeAleatorio(lista, &centroides[i].grupo);
-    }
+    int grupo = 0;
 
     while (atual != NULL) {
-        agrupaElemento(centroides, atual, tamList);
+        atual->grupo = grupo;
+        grupo = (grupo + 1) % lista->k;
         atual = atual->prox;
     }
 }
+
+float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
+    return sqrt(pow(elemento1->idade - elemento2->idade, 2) + pow(elemento1->altura - elemento2->altura, 2) + pow(elemento1->peso - elemento2->peso, 2));
+}
+
+void kmeans(Tlista *lista) {
+    // Inicializa os centroides
+    inicializarCentroides(lista);
+
+    int convergiu = 0;
+    while (!convergiu) {
+        convergiu = 1;
+        
+        // Atribui cada elemento ao grupo do centroide mais próximo
+        TElemento *atual = lista->inicio;
+        while (atual != NULL) {
+            float menorDistancia = 999.99;
+            int grupoAtual = atual->grupo;
+
+            TElemento *centroide = lista->inicio;
+            while (centroide != NULL) {
+                float distancia = calcularDistancia(atual, centroide);
+                if (distancia <= menorDistancia) {
+                    menorDistancia = distancia;
+                    atual->grupo = centroide->grupo;
+                }
+
+                centroide = centroide->prox;
+            }
+
+            if (grupoAtual != atual->grupo) {
+                convergiu = 0; // Indica que houve mudança de grupos
+            }
+
+            atual = atual->prox;
+        }   
+
+
+        // Recalcula os centroides
+        for (int i = 0; i < lista->k; i++) {
+            float somaIdade = 0, somaAltura = 0, somaPeso = 0, somaImc = 0;
+            int count = 0;
+
+            TElemento *elemento = lista->inicio;
+            while (elemento != NULL) {
+                if (elemento->grupo == i) {
+                    somaIdade += elemento->idade;
+                    somaAltura += elemento->altura;
+                    somaPeso += elemento->peso;
+                    somaImc += elemento->imc;
+                    count++;
+                }
+                elemento = elemento->prox;
+            }
+
+            if (count > 0) {
+                TElemento *centroide = lista->inicio;
+                while (centroide != NULL && centroide->grupo != i) {
+                    centroide = centroide->prox;
+                }
+
+                centroide->idade = somaIdade / count;
+                centroide->altura = somaAltura / count;
+                centroide->peso = somaPeso / count;
+                centroide->imc = somaImc / count;
+            }
+        }
+    }
+}
+
 
 void digitarDados(TElemento *elementoNovo){
     printf("Digite o nome da pessoa: ");
@@ -150,18 +184,16 @@ void inserir(Tlista *lista){
     }
 }
 
-void exibeLista(Tlista lista){
+void exibeLista(Tlista lista) {
     TElemento *atual = lista.inicio;
     int cont = 0;
-    algoritmo(&lista);
     printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
-    while (atual != NULL){
+    while (atual != NULL) {
         printf("\n%s\n", RESULTADO);
-        printf("Numero do %d da lista e: (%s) (%.2f)\n", ++cont, atual->nome,atual->imc);
+        printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
         atual = atual->prox;
     }
     printf("%s\n", CORTE);
-
 }
 
 void excluirLista(Tlista *lista, string nome){
@@ -254,6 +286,7 @@ int main(){
         case 1:
             // numInseri = pedirNum();
             inserir(&lista);
+            kmeans(&lista);
             break;
         case 2:
             exibeLista(lista);
