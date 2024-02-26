@@ -7,7 +7,7 @@
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
 
-// typedef string char[40];
+typedef string char[40];
 
 typedef struct tipoElemento {
 	float altura;
