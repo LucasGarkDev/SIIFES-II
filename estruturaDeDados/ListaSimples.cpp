@@ -88,8 +88,8 @@ void excluirLista(Tlista *lista, int valor){
     TElemento *anterior = NULL;
     while (atual != NULL){
         if (cont == 0){
-            printf("\n\n\tA lista esta vazia\n");
-            printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
+            // printf("\n\n\tA lista esta vazia\n");
+            // printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
             cont++;
         }else if (atual->valor == valor){
             //Encontra o elemento a ser excluido
