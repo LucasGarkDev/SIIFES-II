@@ -7,18 +7,20 @@
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
 
-struct TElemento{
-    int valor;
-    struct TElemento *prox; 
-};
-typedef struct TElemento TElemento;
+// typedef string char[40];
 
-struct TLista{
-    TElemento *inicio;
-    TElemento *fim;
-    int total;    
-};
-typedef struct TLista Tlista;
+typedef struct tipoElemento {
+	float altura;
+	float peso;
+	float imc;
+	string nome;	
+}TElemento;
+
+typedef struct tipoLista {
+	TElemento *inicio;
+	TElemento *fim;
+	int total;
+}Tlista;
 
 void inicializa(Tlista *lista){
     lista->inicio = NULL;
