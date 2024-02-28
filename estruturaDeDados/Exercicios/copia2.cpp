@@ -29,89 +29,51 @@ typedef struct tipoLista {
     int k;
 }Tlista;
 
-void inicializarCentroides(Tlista *lista) {
-    TElemento *atual = lista->inicio;
-    int grupo = 0;
+void digitarDados(TElemento *elementoNovo){
+    printf("Digite o nome da pessoa: ");
+    scanf(" %39[^\n]s", elementoNovo->nome);
+    printf("Digite a idade do individuo: ");
+    scanf("%f", &elementoNovo->idade);
+    printf("Digite a altura do individuo: ");
+    scanf("%f", &elementoNovo->altura);
+    printf("Digite o peso do individuo: ");
+    scanf("%f", &elementoNovo->peso);
+    elementoNovo->imc = (elementoNovo->peso/(elementoNovo->altura*elementoNovo->altura));
 
-    while (atual != NULL) {
-        atual->grupo = grupo;
-        grupo = (grupo + 1) % lista->k;
-        atual = atual->prox;
-    }
 }
 
-void recolheEnderecos(TElemento** enderecoVetor, Tlista *lista){
-    TElemento *atual = lista->inicio;
-    int i = 0;
-    while (atual != NULL){
-        enderecoVetor[i] = atual;
-        i++;
-        atual = atual->prox;
-    }  
+void pedirNome(char *nome){
+    printf("Digite o nome do individuo para excluir: ");
+    scanf(" %39[^\n]s", nome);
 }
 
-
-float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
-    return sqrt(pow(elemento1->idade - elemento2->idade, 2) + pow(elemento1->altura - elemento2->altura, 2) + pow(elemento1->peso - elemento2->peso, 2));
+void inicializa(Tlista *lista){
+    lista->inicio = NULL;
+    lista->fim = NULL;
+    lista->total = 0;
+    printf("\n\n\tInforme quantidade de Grupos: ");
+    scanf("%d", &lista->k);
+    // inserir(lista,1.80,23,81,"Pedro");
+    // inserir(lista,1.76,21,67,"Anna");
+    // inserir(lista,1.72,21,61,"Cinthia");
+    // inserir(lista,1.72,17,72,"Jose");
+    // inserir(lista,1.77,35,96,"Silvano");
+    // inserir(lista,1.68,28,69,"Evelyn");
+    // inserir(lista,1.77,56,94,"Asdrubal");
+    // inserir(lista,1.75,35,85,"Jambira");
+    // inserir(lista,1.65,20,100,"Desiderio");
+    // inserir(lista,1.82,46,102,"Ramiro");
+    // inserir(lista,1.70,38,69,"Paula");
+    // inserir(lista,1.65,39,68,"Claudia");
+    // inserir(lista,1.66,18,65,"Sofia");
+    // inserir(lista,1.86,58,99,"Astolfo");
+    // inserir(lista,1.80,52,120,"Demostenes");
+    // inserir(lista,1.70,38,69,"Josefino");
 }
 
-void procuraMenorDistancia(float *distanciasDeJ, Tlista *lista, int tamDistancia, int indi){
-    int i, indiceLista = 0;
-    float menor = 999;
-    TElemento *atual = lista->inicio;
-    for (i = 0; i < tamDistancia; i++){
-        if (distanciasDeJ[i] < menor){
-            menor = distanciasDeJ[i];
-            indiceLista = i;
-        }
-    }
-    int aux = 0;
-    while (atual->prox != NULL){
-        if (aux == indiceLista){
-            atual->grupo = indi;
-        }
-        aux++;
-        atual = atual->prox;  
-    }
+void escolheCentroides(TLista *lista){
+   TElemento *atual = lista->inicio;
 }
-
-void escolheCentroides(TElemento** enderecoVetor, int* flags, int tam) {
-    srand((unsigned int)time(NULL));
-    size_t escolhido = rand() % tam;
-    flags[escolhido] = 1;    
-    printf("Centro escolhido. Dado: %p\n", (void*)enderecoVetor[escolhido]);
-}
-
-void kmeans(Tlista *lista){
-    int tamList = lista->total;
-    int numCentros = lista->k;
-    int *flags = (int *)calloc(tamList, sizeof(int));
-    TElemento** enderecoVetor = (TElemento**)malloc(tamList * sizeof(TElemento*));
-    recolheEnderecos(enderecoVetor, lista);
-    inicializarCentroides(lista);
-   
-    for (int j = 0; j < numCentros; j++) {  
-        escolheCentroides(enderecoVetor, flags, tamList);
-        float *distancia = (float *)calloc(tamList - 1, sizeof(float));
-        int i = 0; 
-        int k = 0;
-
-        while (i != tamList) {
-            if (flags[i] == 1 && j != i) {
-                distancia[k] = calcularDistancia(enderecoVetor[j], enderecoVetor[i]);
-                k++;
-            }
-            i++;
-        }
-
-        procuraMenorDistancia(distancia, lista, tamList - 1, j);
-        free(distancia);  
-    }
-
-    free(flags);
-    free(enderecoVetor);
-}
-
 
 void digitarDados(TElemento *elementoNovo){
     printf("Digite o nome da pessoa: ");
@@ -155,11 +117,46 @@ void inicializa(Tlista *lista){
     // inserir(lista,1.70,38,69,"Josefino");
 }
 
+int pedirOpcao(){
+    int op;
+    printf("\n%s\n", INICIO);
+    do{
+        printf("1 - Inserir na Lista\n");
+        printf("2 - Exibe Lista\n");
+        printf("3 - Excluir da Lista\n");
+        printf("4 - Sair\n");
+        printf("Digite a opção: ");
+        scanf("%d", &op);
+        printf("%s\n", CORTE);
+    } while ((op < 1)||(op > 4));
+    return op;
+}
+
+int pedirNum(){
+    int num;
+    do{
+        printf("Digite um numero para ser inserido: ");
+        scanf("%d", &num);
+    } while (num < 0);
+    return num;
+}
+
+int pedirNum2(){
+    int num;
+    do{
+        printf("Digite um numero para ser excluido: ");
+        scanf("%d", &num);
+    } while (num < 0);
+    return num;
+}
+
+
 void inserir(Tlista *lista){
     int inseriu = 0;
     TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     digitarDados(novo);
     novo->prox = NULL;
+    novo->centroide;
     if (lista->inicio == NULL){
         //Lista encontra-se vazia.
         //Inserir o primeiro e unico elemento da lista ate agora
@@ -309,10 +306,6 @@ int main(){
             inserir(&lista);
             break;
         case 2:
-            if (primeiraVez == 1){
-                kmeans(&lista);
-                primeiraVez = 0;
-            }
             exibeLista(lista);
             break;
         case 3:
