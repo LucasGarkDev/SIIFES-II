@@ -70,19 +70,14 @@ void procuraMenorDistancia(float *distanciasDeJ, Tlista *lista, int tamDistancia
             atual->grupo = indi;
         }
         aux++;
-        atual = atual->prox;  // Adicione esta linha para avançar para o próximo elemento
+        atual = atual->prox;  
     }
 }
 
 void escolheCentroides(TElemento** enderecoVetor, int* flags, int tam) {
     srand((unsigned int)time(NULL));
-
     size_t escolhido = rand() % tam;
-
-    // Marcar o centro escolhido
-    flags[escolhido] = 1;
-
-    // Utilizar o endereço do elemento escolhido (enderecoVetor[escolhido]) conforme necessário
+    flags[escolhido] = 1;    
     printf("Centro escolhido. Dado: %p\n", (void*)enderecoVetor[escolhido]);
 }
 
@@ -93,11 +88,11 @@ void kmeans(Tlista *lista){
     TElemento** enderecoVetor = (TElemento**)malloc(tamList * sizeof(TElemento*));
     recolheEnderecos(enderecoVetor, lista);
     inicializarCentroides(lista);
-    
-    for (int j = 0; j < numCentros; j++) {  // Ajuste aqui
+   
+    for (int j = 0; j < numCentros; j++) {  
         escolheCentroides(enderecoVetor, flags, tamList);
         float *distancia = (float *)calloc(tamList - 1, sizeof(float));
-        int i = 0;  // Adicione essa linha para redefinir i antes do loop interno
+        int i = 0; 
         int k = 0;
 
         while (i != tamList) {
@@ -109,7 +104,7 @@ void kmeans(Tlista *lista){
         }
 
         procuraMenorDistancia(distancia, lista, tamList - 1, j);
-        free(distancia);  // Libera a memória alocada para distancia
+        free(distancia);  
     }
 
     free(flags);
