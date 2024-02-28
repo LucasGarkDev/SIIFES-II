@@ -18,6 +18,7 @@ typedef struct tipoElemento {
 	float imc;
 	string nome;
     int grupo;
+    int centroide;
     struct tipoElemento *prox;	
 }TElemento;
 
@@ -203,8 +204,13 @@ void exibeLista(Tlista lista) {
     int cont = 0;
     printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
     while (atual != NULL) {
-        printf("\n%s\n", RESULTADO);
+        if (atual->grupo == -1){
+            printf("\n%s\n", RESULTADO);
+            printf("Numero do %d da lista e: (%s) (%.2f) Sem Grupo\n", ++cont, atual->nome, atual->imc);
+        }else{
+            printf("\n%s\n", RESULTADO);
         printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
+        }
         atual = atual->prox;
     }
     printf("%s\n", CORTE);
@@ -220,7 +226,7 @@ void excluirLista(Tlista *lista, string nome){
             cont++;
         }else if (strcmp(atual->nome,nome) == 0){
             //Encontra o elemento a ser excluido
-            if (lista->inicio == lista->fim){
+            if(lista->inicio == lista->fim){
                 //Exclusao do unico elemento da lista
                 printf("\n\n\tExcluindo o PESSOA %s ...\n", atual->nome);
                 printf("\n\n\tExcluindo o ELEMENTO %.2f ...\n", atual->imc);
@@ -248,7 +254,7 @@ void excluirLista(Tlista *lista, string nome){
             break;
         }
         anterior = atual;
-        atual = atual->prox;// move para o proximo elemento
+        atual = atual->prox;
     }
 }
 
