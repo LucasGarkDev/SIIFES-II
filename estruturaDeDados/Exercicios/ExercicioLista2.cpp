@@ -142,6 +142,14 @@ void inicializa(Tlista *lista){
     // inserir(lista,1.72,17,72,"Jose");
     // inserir(lista,1.77,35,96,"Silvano");
     // inserir(lista,1.68,28,69,"Evelyn");
+    // inserir(lista,1.77,56,94,"Asdrubal");
+    // inserir(lista,1.75,35,85,"Jambira");
+    // inserir(lista,1.65,20,100,"Desiderio");
+    // inserir(lista,1.82,46,102,"Ramiro");
+    // inserir(lista,1.70,38,69,"Paula");
+    // inserir(lista,1.65,39,68,"Claudia");
+    // inserir(lista,1.66,18,65,"Sofia");
+    // inserir(lista,1.86,58,99,"Astolfo");
 }
 
 void inserir(Tlista *lista){
@@ -283,6 +291,7 @@ int main(){
     char nome[40];
     int op;
     int repete = 0;
+    int primeiraVez = 1;
     inicializa(&lista);
     do{
         op = pedirOpcao();
@@ -292,7 +301,10 @@ int main(){
             inserir(&lista);
             break;
         case 2:
-            kmeans(&lista);
+            if (primeiraVez == 1){
+                kmeans(&lista);
+                primeiraVez = 0;
+            }
             exibeLista(lista);
             break;
         case 3:
