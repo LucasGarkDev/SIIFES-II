@@ -292,6 +292,8 @@ int pedirOpcao(){
     return op;
 }
 
+//abs(rand()%lista->total);
+
 // int pedirNum(){
 //     int num;
 //     do{
