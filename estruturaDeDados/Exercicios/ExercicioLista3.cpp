@@ -340,36 +340,40 @@ float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
     return sqrt(pow(elemento1->idade - elemento2->idade, 2) + pow(elemento1->altura - elemento2->altura, 2) + pow(elemento1->peso - elemento2->peso, 2));
 }
 
-void distribuiElementos(Tlista *lista){
-	//Esta função percorre a Lista com todos os TElementos.
-	//Cada TElemento encontrado que NÃO seja um CENTRÓIDE deve ter a sua distância euclidiana
-	//calculada em relação a todos os CENTRÓIDES existentes.
-	//Esse TElemento deverá pertecer ao mesmo GRUPO do CENTRóIDE menos distante dele.
-	
+void distribuiElementos(Tlista *lista) {
     TElemento centroides[lista->k];
     int i = 0;
-	TElemento *atual = lista->inicio;
-    while (atual->prox != NULL){
-        if (atual->centroide != 0){
+    TElemento *atual = lista->inicio;
+
+    while (atual->prox != NULL) {
+        if (atual->centroide != 0) {
             centroides[i] = *atual;
             i++;
         }
         atual = atual->prox;
     }
+
     atual = lista->inicio;
-    TElemento *recebe = lista->inicio;
-    for (i = 0; i < lista->total; i++){
-        int j = 0;
-        while (j < lista->k){
-            recebe = atual;
-            atual->distancia = calcularDistancia(atual,&centroides[i+j]);
-            if (recebe->distancia > atual->distancia){
-                atual->grupo = centroides[i].grupo;
+
+    while (atual != NULL) {
+        if (atual->centroide == 0) {
+            TElemento *recebe = lista->inicio;
+            recebe->distancia = calcularDistancia(atual, &centroides[0]);
+            atual->grupo = centroides[0].grupo;
+
+            for (int j = 1; j < lista->k; j++) {
+                recebe = recebe->prox;
+                float novaDistancia = calcularDistancia(atual, &centroides[j]);
+                if (novaDistancia < recebe->distancia) {
+                    recebe->distancia = novaDistancia;
+                    atual->grupo = centroides[j].grupo;
+                }
             }
-            j++;
         }
+        atual = atual->prox;
     }
 }
+
 
 // void ordenaPorGrupo(Tlista *lista){
 // //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
