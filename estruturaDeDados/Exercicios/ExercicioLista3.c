@@ -19,6 +19,7 @@ typedef struct tipoElemento {
 	string nome;
     int grupo;
     int centroide;
+    float distancia;
     struct tipoElemento *prox;	
 }TElemento;
 
@@ -64,24 +65,24 @@ int jaEscolhidoComoCentroide(const int *centroides, int tamanho, int indice) {
     return 0; 
 }
 
-void escolheCentroides(Tlista *lista) {
-    int centroidesEscolhidos[lista->k];
-    int i, j;
-    int jaFoiEscolhido;
-    TElemento *atual = lista->inicio;
-    for (i = 0; i < lista->k; ++i) {
-        int indice;
-        do {
-            indice = rand() % lista->total;
-            jaFoiEscolhido = jaEscolhidoComoCentroide(centroidesEscolhidos,i,indice);
-        } while (jaFoiEscolhido != 0);
-        centroidesEscolhidos[i] = indice;
-        for (j = 0; j < indice; ++j) {
-            atual = atual->prox;
-        }
-        atual->centroide = i + 1;
-    }
-}
+// void escolheCentroides(Tlista *lista) {
+//     int centroidesEscolhidos[lista->k];
+//     int i, j;
+//     int jaFoiEscolhido;
+//     TElemento *atual = lista->inicio;
+//     for (i = 0; i < lista->k; ++i) {
+//         int indice;
+//         do {
+//             indice = rand() % lista->total;
+//             jaFoiEscolhido = jaEscolhidoComoCentroide(centroidesEscolhidos,i,indice);
+//         } while (jaFoiEscolhido != 0);
+//         centroidesEscolhidos[i] = indice;
+//         for (j = 0; j < indice; ++j) {
+//             atual = atual->prox;
+//         }
+//         atual->centroide = i + 1;
+//     }
+// }
 
 void insere(Tlista *lista, float altura, float idade, float peso, char *nome){
     int inseriu = 0;
@@ -292,28 +293,97 @@ void excluirLista(Tlista *lista, string nome){
     }
 }
 
+void escolheCentroides(Tlista *lista){
+    //Função que escolhe randomicamente um centroide para cada grupo.
+    //O usuário-final define a quantidade de grupos existentes (k) durante a execução
+    //do programa.
+    //Esta função sorteia um TElemento para Centróide de cada grupo   
 
-// int pedirNum(){
-//     int num;
-//     do{
-//         printf("Digite um numero para ser inserido: ");
-//         scanf("%d", &num);
-//     } while (num < 0);
-//     return num;
-// }
-
-// int pedirNum2(){
-//     int num;
-//     do{
-//         printf("Digite um numero para ser excluido: ");
-//         scanf("%d", &num);
-//     } while (num < 0);
-//     return num;
-// }
-
-//Usa isrand()
-
+    srand((unsigned int)time(NULL));
+    int grupo = lista->k;
+    int posicao = 0;
+    int pos;
+  
+    TElemento *atual;
+  
+    while(grupo > 0){
+	    posicao = rand() % 20;
+	    atual = lista->inicio;
+	    pos = 0;
+	    while(atual != NULL){
+		    if(pos == posicao){
+			    //Encontrado TElemento a ser Transformado em Centróide	...
+			    if(atual->centroide == 0){
+			        atual->centroide = 1;
+			        atual->grupo = grupo;
+		           	printf("\n\n\tEscolhido CENTROIDE do GRUPO %d: %s ...",grupo, atual->nome);
+		    	    break;
+	    	    } else {
+				    pos--;
+    		    }//if
+		    }//if
+		    if(atual == lista->fim){
+			atual = lista->inicio;
+		    } else {
+			    atual = atual->prox;
+		    }//if
+		    pos++;
+	    }//while
+	    grupo--;  			
+    }//while
+  
+    printf("\n\n Processo de escolha dos CENTROIDES concluido!\n\n");
+}
 Tlista lista; //variavel global
+
+float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
+    return sqrt(pow(elemento1->idade - elemento2->idade, 2) + pow(elemento1->altura - elemento2->altura, 2) + pow(elemento1->peso - elemento2->peso, 2));
+}
+
+void distribuiElementos(Tlista *lista){
+	//Esta função percorre a Lista com todos os TElementos.
+	//Cada TElemento encontrado que NÃO seja um CENTRÓIDE deve ter a sua distância euclidiana
+	//calculada em relação a todos os CENTRÓIDES existentes.
+	//Esse TElemento deverá pertecer ao mesmo GRUPO do CENTRóIDE menos distante dele.
+	
+    TElemento centroides[lista->k];
+    int i = 0;
+	TElemento *atual = lista->inicio;
+    while (atual->prox != NULL){
+        if (atual->centroide != 0){
+            centroides[i] = *atual;
+            i++;
+        }
+        atual = atual->prox;
+    }
+    atual = lista->inicio;
+    TElemento *recebe = lista->inicio;
+    for (i = 0; i < lista->total; i++){
+        int j = 0;
+        while (j < lista->k){
+            recebe = atual;
+            atual->distancia = calcularDistancia(atual,&centroides[i+j]);
+            if (recebe->distancia > atual->distancia){
+                atual->grupo = centroides[i].grupo;
+            }
+            j++;
+        }
+    }
+}
+
+// void ordenaPorGrupo(Tlista *lista){
+// //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
+// //que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
+// 	TElemento grupos[lista->k];
+// 	int i;
+//     TElemento *atual = lista->inicio;
+//     for (i = 0; i < lista->k; i++){
+        
+
+//     }
+    
+// }
+
 
 //=================================================
 int main(){
@@ -346,6 +416,7 @@ int main(){
             insere(&lista,1.80,52,120,"Demostenes");
             insere(&lista,1.70,38,69,"Josefino");
             escolheCentroides(&lista);
+            distribuiElementos(&lista);
             break;
         case 2:
             exibeLista(lista);
