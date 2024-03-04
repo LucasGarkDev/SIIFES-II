@@ -29,8 +29,6 @@ typedef struct tipoLista {
     int k;
 }Tlista;
 
-
-
 void digitarDados(TElemento *elementoNovo){
     printf("Digite o nome da pessoa: ");
     scanf(" %39[^\n]s", elementoNovo->nome);
@@ -57,20 +55,34 @@ void inicializa(Tlista *lista){
     scanf("%d", &lista->k);
 }
 
-void escolheCentroides(Tlista *lista){
-    int j = 1;
-    do{
-        int centroideEscolhido = 0;
+int jaEscolhidoComoCentroide(const int *centroides, int tamanho, int indice) {
+    for (int i = 0; i < tamanho; ++i) {
+        if (centroides[i] == indice) {
+            return 1; // já escolhido como centroide
+        }
+    }
+    return 0; // não escolhido ainda
+}
+
+void escolheCentroides(Tlista *lista) {
+    int centroidesEscolhidos[lista->k];
+    int i, j;
+    int jaFoiEscolhido;
+    for (i = 0; i < lista->k; ++i) {
+        int indice;
+        do {
+            indice = rand() % lista->total;
+            jaFoiEscolhido = jaEscolhidoComoCentroide(centroidesEscolhidos,i,indice);
+        } while (jaFoiEscolhido != 0);
+        centroidesEscolhidos[i] = indice;
+
+        // Marcando o elemento na lista como centroide
         TElemento *atual = lista->inicio;
-        float escolhe = rand() % lista->total;
-        while (atual->prox != NULL){
-            if ((atual->altura <= escolhe)&&(centroideEscolhido != 1)){
-                atual->centroide = j;
-                centroideEscolhido = 1;
-            }
+        for (j = 0; j < indice; ++j) {
             atual = atual->prox;
         }
-    } while (j < lista->k);
+        atual->centroide = i + 1;
+    }
 }
 
 void insere(Tlista *lista, float altura, float idade, float peso, char *nome){
@@ -82,6 +94,7 @@ void insere(Tlista *lista, float altura, float idade, float peso, char *nome){
     strcpy(novo->nome,nome);
     novo->prox = NULL;
     novo->centroide = 0;
+    novo->imc = (peso/(altura*altura));
     if (lista->inicio == NULL){
         //Lista encontra-se vazia.
         //Inserir o primeiro e unico elemento da lista ate agora
@@ -228,7 +241,11 @@ void exibeLista(Tlista lista) {
             printf("Numero do %d da lista e: (%s) (%.2f) Sem Grupo\n", ++cont, atual->nome, atual->imc);
         }else{
             printf("\n%s\n", RESULTADO);
-        printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
+            if (atual->centroide != 0){
+                printf("Numero do %d da lista e: (%s) (%.2f) E o centroid do grupo: %d\n", ++cont, atual->nome, atual->imc, atual->centroide);
+            }else{
+                printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
+            }
         }
         atual = atual->prox;
     }
@@ -277,22 +294,6 @@ void excluirLista(Tlista *lista, string nome){
     }
 }
 
-int pedirOpcao(){
-    int op;
-    printf("\n%s\n", INICIO);
-    do{
-        printf("1 - Inserir na Lista\n");
-        printf("2 - Exibe Lista\n");
-        printf("3 - Excluir da Lista\n");
-        printf("4 - Sair\n");
-        printf("Digite a opção: ");
-        scanf("%d", &op);
-        printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 4));
-    return op;
-}
-
-//abs(rand()%lista->total);
 
 // int pedirNum(){
 //     int num;
@@ -322,7 +323,7 @@ int main(){
     char nome[40];
     int op;
     int repete = 0;
-    int primeiraVez = 1;
+    // int primeiraVez = 1;
     inicializa(&lista);
     do{
         op = pedirOpcao();
@@ -346,6 +347,7 @@ int main(){
             insere(&lista,1.86,58,99,"Astolfo");
             insere(&lista,1.80,52,120,"Demostenes");
             insere(&lista,1.70,38,69,"Josefino");
+            escolheCentroides(&lista);
             break;
         case 2:
             exibeLista(lista);
