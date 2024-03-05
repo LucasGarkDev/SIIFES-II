@@ -56,14 +56,14 @@ void inicializa(Tlista *lista){
     scanf("%d", &lista->k);
 }
 
-int jaEscolhidoComoCentroide(const int *centroides, int tamanho, int indice) {
-    for (int i = 0; i < tamanho; ++i) {
-        if (centroides[i] == indice) {
-            return 1; 
-        }
-    }
-    return 0; 
-}
+// int jaEscolhidoComoCentroide(const int *centroides, int tamanho, int indice) {
+//     for (int i = 0; i < tamanho; ++i) {
+//         if (centroides[i] == indice) {
+//             return 1; 
+//         }
+//     }
+//     return 0; 
+// }
 
 // void escolheCentroides(Tlista *lista) {
 //     int centroidesEscolhidos[lista->k];
@@ -340,12 +340,44 @@ float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
     return sqrt(pow(elemento1->idade - elemento2->idade, 2) + pow(elemento1->altura - elemento2->altura, 2) + pow(elemento1->peso - elemento2->peso, 2));
 }
 
+int pesquisar(TElemento *distancias, int tam){
+    int i;
+    float menor = 999.99;
+    int resp;
+    for (i = 0; i < tam; i++){
+        if (distancias[i].distancia < menor){
+            menor = distancias[i].distancia;
+            resp = i;
+        }
+    }
+    return resp;
+}
+
+void ordenaPorGrupo(Tlista *lista, TElemento *centroides){
+//Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
+//que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
+    int i;
+    TElemento *atual = lista->inicio;
+	for (i = 0; i < lista->k; i++){
+        atual = lista->inicio;
+        printf("\n|-----------------Grupo numero %d----------------|\n", i+1);
+        printf("\n O centroid do grupo e: %s - %.2f - %d\n", centroides[i].nome, centroides[i].imc, centroides[i].grupo);
+        while (atual != NULL){
+            if (atual->grupo == centroides[i].grupo){
+                printf("O individuo %s faz parte do grupo %d\n", atual->nome, atual->grupo);
+            }
+            atual = atual->prox;
+        }
+    }  
+}
+
 void distribuiElementos(Tlista *lista) {
     TElemento centroides[lista->k];
     int i = 0;
     TElemento *atual = lista->inicio;
 
-    while (atual->prox != NULL) {
+    // Encontrar os centroides
+    while (atual != NULL) {
         if (atual->centroide != 0) {
             centroides[i] = *atual;
             i++;
@@ -353,40 +385,23 @@ void distribuiElementos(Tlista *lista) {
         atual = atual->prox;
     }
 
+    // Calcular distâncias e atribuir grupos
+    TElemento distancias[lista->k];
     atual = lista->inicio;
-
     while (atual != NULL) {
         if (atual->centroide == 0) {
-            TElemento *recebe = lista->inicio;
-            recebe->distancia = calcularDistancia(atual, &centroides[0]);
-            atual->grupo = centroides[0].grupo;
-
-            for (int j = 1; j < lista->k; j++) {
-                recebe = recebe->prox;
-                float novaDistancia = calcularDistancia(atual, &centroides[j]);
-                if (novaDistancia < recebe->distancia) {
-                    recebe->distancia = novaDistancia;
-                    atual->grupo = centroides[j].grupo;
-                }
+            for (i = 0; i < lista->k; i++) {
+                distancias[i].distancia = calcularDistancia(&centroides[i], atual);
+                distancias[i].grupo = centroides[i].grupo;
             }
+            int indiceMenorDist = pesquisar(distancias, lista->k);
+            atual->grupo = distancias[indiceMenorDist].grupo;
         }
         atual = atual->prox;
     }
+
+    ordenaPorGrupo(lista,centroides);   
 }
-
-
-// void ordenaPorGrupo(Tlista *lista){
-// //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
-// //que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
-// 	TElemento grupos[lista->k];
-// 	int i;
-//     TElemento *atual = lista->inicio;
-//     for (i = 0; i < lista->k; i++){
-        
-
-//     }
-    
-// }
 
 
 //=================================================
