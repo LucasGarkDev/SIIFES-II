@@ -327,11 +327,6 @@ void escolheCentroides(Tlista *lista){
     printf("\n\n Processo de escolha dos CENTROIDES concluido!\n\n");
 }
 
-void kmeans(Tlista *lista){
-    escolheCentroides(lista);
-    distribuiElementos(lista);
-}
-
 Tlista lista; //variavel global
 
 float calcularDistancia(TElemento *elemento1, TElemento *elemento2) {
@@ -401,8 +396,6 @@ void distribuiElementos(Tlista *lista) {
         }
         atual = atual->prox;
     }
-
-    int i;
     TElemento distancias[lista->k];
     atual = lista->inicio;
     while (atual != NULL) {
@@ -416,10 +409,14 @@ void distribuiElementos(Tlista *lista) {
         }
         atual = atual->prox;
     }
-    ordenaPorGrupo(lista); 
+    // ordenaPorGrupo(lista); 
     exibeLista(lista,centroides);  
 }
 
+void kmeans(Tlista *lista){
+    escolheCentroides(lista);
+    distribuiElementos(lista);
+}
 
 //=================================================
 int main(){
@@ -452,7 +449,7 @@ int main(){
             insere(&lista,1.70,38,69,"Josefino");
             break;
         case 2:
-            
+            kmeans(&lista);
             break;
         case 3:
             // numInseri = pedirNum2();
