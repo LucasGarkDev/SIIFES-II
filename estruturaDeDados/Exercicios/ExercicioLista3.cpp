@@ -133,24 +133,6 @@ void insere(Tlista *lista, float altura, float idade, float peso, char *nome){
     }
 }
 
-// void digitarDados(TElemento *elementoNovo){
-//     printf("Digite o nome da pessoa: ");
-//     scanf(" %39[^\n]s", elementoNovo->nome);
-//     printf("Digite a idade do individuo: ");
-//     scanf("%f", &elementoNovo->idade);
-//     printf("Digite a altura do individuo: ");
-//     scanf("%f", &elementoNovo->altura);
-//     printf("Digite o peso do individuo: ");
-//     scanf("%f", &elementoNovo->peso);
-//     elementoNovo->imc = (elementoNovo->peso/(elementoNovo->altura*elementoNovo->altura));
-
-// }
-
-// void pedirNome(char *nome){
-//     printf("Digite o nome do individuo para excluir: ");
-//     scanf(" %39[^\n]s", nome);
-// }
-
 int pedirOpcao(){
     int op;
     printf("\n%s\n", INICIO);
@@ -406,9 +388,8 @@ void distribuiElementos(Tlista *lista) {
 
 //=================================================
 int main(){
-    // int op, numInseri;
-    char nome[40];
     int op;
+    char nome[40];
     int repete = 0;
     // int primeiraVez = 1;
     inicializa(&lista);
@@ -417,27 +398,27 @@ int main(){
         switch (op){
         case 1:
             // numInseri = pedirNum();
-            // inserir(&lista);
-            insere(&lista,1.80,23,81,"Pedro");
-            insere(&lista,1.76,21,67,"Anna");
-            insere(&lista,1.72,21,61,"Cinthia");
-            insere(&lista,1.72,17,72,"Jose");
-            insere(&lista,1.77,35,96,"Silvano");
-            insere(&lista,1.68,28,69,"Evelyn");
-            insere(&lista,1.77,56,94,"Asdrubal");
-            insere(&lista,1.75,35,85,"Jambira");
-            insere(&lista,1.65,20,100,"Desiderio");
-            insere(&lista,1.82,46,102,"Ramiro");
-            insere(&lista,1.70,38,69,"Paula");
-            insere(&lista,1.65,39,68,"Claudia");
-            insere(&lista,1.66,18,65,"Sofia");
-            insere(&lista,1.86,58,99,"Astolfo");
-            insere(&lista,1.80,52,120,"Demostenes");
-            insere(&lista,1.70,38,69,"Josefino");
-            escolheCentroides(&lista);
-            distribuiElementos(&lista);
+            inserir(&lista);
+            // insere(&lista,1.80,23,81,"Pedro");
+            // insere(&lista,1.76,21,67,"Anna");
+            // insere(&lista,1.72,21,61,"Cinthia");
+            // insere(&lista,1.72,17,72,"Jose");
+            // insere(&lista,1.77,35,96,"Silvano");
+            // insere(&lista,1.68,28,69,"Evelyn");
+            // insere(&lista,1.77,56,94,"Asdrubal");
+            // insere(&lista,1.75,35,85,"Jambira");
+            // insere(&lista,1.65,20,100,"Desiderio");
+            // insere(&lista,1.82,46,102,"Ramiro");
+            // insere(&lista,1.70,38,69,"Paula");
+            // insere(&lista,1.65,39,68,"Claudia");
+            // insere(&lista,1.66,18,65,"Sofia");
+            // insere(&lista,1.86,58,99,"Astolfo");
+            // insere(&lista,1.80,52,120,"Demostenes");
+            // insere(&lista,1.70,38,69,"Josefino");
             break;
         case 2:
+            escolheCentroides(&lista);
+            distribuiElementos(&lista);
             exibeLista(lista);
             break;
         case 3:
