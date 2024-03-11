@@ -25,10 +25,17 @@ typedef struct tipoLista{
 
 Tlista lista; //variavel global
 
+void inicializa(Tlista *lista){
+    lista->primeiro = NULL;
+    lista->ultimo = NULL;
+    lista->total = 0;
+}
+
+
 
 //=================================================
 int main(){
-    
+    inicializa(&lista);    
     return 0;
 }
 
