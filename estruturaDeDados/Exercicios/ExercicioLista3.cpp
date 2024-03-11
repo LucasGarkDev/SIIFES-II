@@ -212,38 +212,38 @@ void inserir(Tlista *lista){
     }
 }
 
-void exibeLista(Tlista *lista, TElemento *centroides) {
-    int i;
-    TElemento *atual = lista->inicio;
-	for (i = 0; i < lista->k; i++){
-        atual = lista->inicio;
-        printf("\n|-----------------Grupo numero %d----------------|\n", i+1);
-        printf("\n O centroid do grupo e: %s - %.2f - %d\n", centroides[i].nome, centroides[i].imc, centroides[i].grupo);
-        while (atual != NULL){
-            if (atual->grupo == centroides[i].grupo){
-                printf("O individuo %s faz parte do grupo %d\n", atual->nome, atual->grupo);
-            }
-            atual = atual->prox;
-        }
-    } 
-    // TElemento *atual = lista.inicio;
-    // int cont = 0;
-    // printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
-    // while (atual != NULL) {
-    //     if (atual->grupo == -1){
-    //         printf("\n%s\n", RESULTADO);
-    //         printf("Numero do %d da lista e: (%s) (%.2f) Sem Grupo\n", ++cont, atual->nome, atual->imc);
-    //     }else{
-    //         printf("\n%s\n", RESULTADO);
-    //         if (atual->centroide != 0){
-    //             printf("Numero do %d da lista e: (%s) (%.2f) E o centroid do grupo: %d\n", ++cont, atual->nome, atual->imc, atual->centroide);
-    //         }else{
-    //             printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
+void exibeLista(Tlista lista) {
+    // int i;
+    // TElemento *atual = lista->inicio;
+	// for (i = 0; i < lista->k; i++){
+    //     atual = lista->inicio;
+    //     printf("\n|-----------------Grupo numero %d----------------|\n", i+1);
+    //     printf("\n O centroid do grupo e: %s - %.2f - %d\n", centroides[i].nome, centroides[i].imc, centroides[i].grupo);
+    //     while (atual != NULL){
+    //         if (atual->grupo == centroides[i].grupo){
+    //             printf("O individuo %s faz parte do grupo %d\n", atual->nome, atual->grupo);
     //         }
+    //         atual = atual->prox;
     //     }
-    //     atual = atual->prox;
-    // }
-    // printf("%s\n", CORTE);
+    // } 
+    TElemento *atual = lista.inicio;
+    int cont = 0;
+    printf("\n\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
+    while (atual != NULL) {
+        if (atual->grupo == -1){
+            printf("\n%s\n", RESULTADO);
+            printf("Numero do %d da lista e: (%s) (%.2f) Sem Grupo\n", ++cont, atual->nome, atual->imc);
+        }else{
+            printf("\n%s\n", RESULTADO);
+            if (atual->centroide != 0){
+                printf("Numero do %d da lista e: (%s) (%.2f) E o centroid do grupo: %d\n", ++cont, atual->nome, atual->imc, atual->centroide);
+            }else{
+                printf("Numero do %d da lista e: (%s) (%.2f) Grupo: %d\n", ++cont, atual->nome, atual->imc, atual->grupo);
+            }
+        }
+        atual = atual->prox;
+    }
+    printf("%s\n", CORTE);
 }
 
 void excluirLista(Tlista *lista, string nome){
@@ -358,80 +358,43 @@ void trocaDados(TElemento *atual, TElemento *substitui) {
     // atual->prox = substitui->prox;
 }
 
-// void ordenaPorGrupo(Tlista *lista) {
-//     TElemento *atual = lista->inicio;
-    
-//     while (atual != NULL) {
-//         if (atual->centroide != 0 && atual->grupo == 1) {
-//             // Se o elemento atual pertence ao grupo 1 e é um centroide
-//             // Trocar o elemento atual com o primeiro elemento da lista
-//             trocaDados(atual, lista->inicio);
-//             printf("\nenderoço: %p e elemento centroide: %d\n",&atual,atual->grupo);
-            
-//             // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
-//             TElemento *percorre = lista->inicio->prox;
-//             while (percorre != NULL) {
-//                 if (percorre->grupo == atual->grupo) {
-//                     trocaDados(atual->prox, percorre);
-//                     printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
-//                 }
-//                 percorre = percorre->prox;
-//             }
-//         } else if (atual->centroide != 0 && atual->grupo != 1) {
-//             // Se o elemento atual não pertence ao grupo 1
-//             int grupoAtual = atual->grupo;
-//             printf("\nenderoço: %p e elemento centroide: %d\n",&atual,grupoAtual);
-//             // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
-//             TElemento *percorre = lista->inicio->prox;
-//             while (percorre != NULL) {
-//                 if (percorre->grupo == grupoAtual) {
-//                     trocaDados(atual->prox, percorre);
-//                     printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
-//                 }
-//                 percorre = percorre->prox;
-//             } 
-//         }
-        
-//         // Avançar para o próximo elemento
-//         atual = atual->prox;
-//     }
-// }
-
 void ordenaPorGrupo(Tlista *lista) {
     TElemento *atual = lista->inicio;
-    Tlista *listaAux = lista; // uma lista auxiliar para armazenar as copias da lista original
-    TElemento *marcaFim = atual;
-    int cont  = 2;
-    while (atual->prox != NULL){
-        if (atual->grupo == 1){
-            if (atual->centroide != 0){
-                lista->inicio = atual;
-                atual = listaAux->inicio;
-            }else{
-                TElemento *percorre = atual;
-                while (percorre != NULL) {
-                    if (percorre->grupo == atual->grupo) {
-                        insere(listaAux,percorre->altura,percorre->idade,percorre->peso,percorre->nome);
-                        printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
-                    }
-                    percorre = percorre->prox;
-                }
-                marcaFim = percorre;
-                atual = listaAux->inicio;
-            }   
-        }else{
-            if (atual->grupo == cont){
-                if (atual->centroide != 0){
-                    
-                }
-                
-            }
+    
+    while (atual != NULL) {
+        if (atual->centroide != 0 && atual->grupo == 1) {
+            // Se o elemento atual pertence ao grupo 1 e é um centroide
+            // Trocar o elemento atual com o primeiro elemento da lista
+            trocaDados(atual, lista->inicio);
+            printf("\nenderoço: %p e elemento centroide: %d\n",&atual,atual->grupo);
             
+            // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
+            TElemento *percorre = lista->inicio->prox;
+            while (percorre != NULL) {
+                if (percorre->grupo == atual->grupo) {
+                    trocaDados(atual->prox, percorre);
+                    printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
+                }
+                percorre = percorre->prox;
+            }
+        } else if (atual->centroide != 0 && atual->grupo != 1) {
+            // Se o elemento atual não pertence ao grupo 1
+            int grupoAtual = atual->grupo;
+            printf("\nenderoço: %p e elemento centroide: %d\n",&atual,grupoAtual);
+            // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
+            TElemento *percorre = lista->inicio->prox;
+            while (percorre != NULL) {
+                if (percorre->grupo == grupoAtual) {
+                    trocaDados(atual->prox, percorre);
+                    printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
+                }
+                percorre = percorre->prox;
+            } 
         }
         
-        
+        // Avançar para o próximo elemento
+        atual = atual->prox;
     }
-    
 }
 
 void distribuiElementos(Tlista *lista) {
@@ -457,14 +420,13 @@ void distribuiElementos(Tlista *lista) {
             atual->grupo = distancias[indiceMenorDist].grupo;
         }
         atual = atual->prox;
-    }
-    ordenaPorGrupo(lista); 
-    exibeLista(lista,centroides);  
+    }  
 }
 
 void kmeans(Tlista *lista){
     escolheCentroides(lista);
     distribuiElementos(lista);
+    ordenaPorGrupo(lista);
 }
 
 //=================================================
@@ -499,6 +461,7 @@ int main(){
             break;
         case 2:
             kmeans(&lista);
+            exibeLista(lista); 
             break;
         case 3:
             // numInseri = pedirNum2();
