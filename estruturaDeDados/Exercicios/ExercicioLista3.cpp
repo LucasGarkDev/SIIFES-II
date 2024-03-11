@@ -346,40 +346,89 @@ int pesquisar(TElemento *distancias, int tam){
     return resp;
 }
 
-void trocaDados(TElemento *atual, TElemento *subistitui){
-    atual->altura = subistitui->altura;
-    atual->centroide = subistitui->centroide;
-    atual->distancia = subistitui->distancia;
-    atual->grupo = subistitui->grupo;
-    atual->idade = subistitui->idade;
-    atual->imc = subistitui->imc;
-    strcpy(atual->nome,subistitui->nome);
-    atual->peso = subistitui->peso;
-    // atual->prox = subistitui->prox;
+void trocaDados(TElemento *atual, TElemento *substitui) {
+    atual->altura = substitui->altura;
+    atual->centroide = substitui->centroide;
+    atual->distancia = substitui->distancia;
+    atual->grupo = substitui->grupo;
+    atual->idade = substitui->idade;
+    atual->imc = substitui->imc;
+    strcpy(atual->nome, substitui->nome);
+    atual->peso = substitui->peso;
+    // atual->prox = substitui->prox;
 }
 
-void ordenaPorGrupo(Tlista *lista){
-    //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
-    //que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
-    TElemento *aux;
-    TElemento *subistiui = lista->inicio;
-    TElemento *reserva;
-    while (subistiui->prox != NULL){
-        if ((subistiui->centroide != 0)&&(subistiui->grupo == 1)){
-            //inserir o centroid 1 no inicio da lista
-            trocaDados(aux,lista->inicio);
-            trocaDados(lista->inicio,subistiui);
-            trocaDados(subistiui,aux);
-            TElemento *percorre = subistiui;
-            while (percorre->prox != NULL){
-                if (percorre->grupo == subistiui->grupo){
-                    trocaDados(subistiui->prox,percorre);
+// void ordenaPorGrupo(Tlista *lista) {
+//     TElemento *atual = lista->inicio;
+    
+//     while (atual != NULL) {
+//         if (atual->centroide != 0 && atual->grupo == 1) {
+//             // Se o elemento atual pertence ao grupo 1 e é um centroide
+//             // Trocar o elemento atual com o primeiro elemento da lista
+//             trocaDados(atual, lista->inicio);
+//             printf("\nenderoço: %p e elemento centroide: %d\n",&atual,atual->grupo);
+            
+//             // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
+//             TElemento *percorre = lista->inicio->prox;
+//             while (percorre != NULL) {
+//                 if (percorre->grupo == atual->grupo) {
+//                     trocaDados(atual->prox, percorre);
+//                     printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
+//                 }
+//                 percorre = percorre->prox;
+//             }
+//         } else if (atual->centroide != 0 && atual->grupo != 1) {
+//             // Se o elemento atual não pertence ao grupo 1
+//             int grupoAtual = atual->grupo;
+//             printf("\nenderoço: %p e elemento centroide: %d\n",&atual,grupoAtual);
+//             // Percorrer a lista e agrupar os elementos do mesmo grupo contíguos
+//             TElemento *percorre = lista->inicio->prox;
+//             while (percorre != NULL) {
+//                 if (percorre->grupo == grupoAtual) {
+//                     trocaDados(atual->prox, percorre);
+//                     printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
+//                 }
+//                 percorre = percorre->prox;
+//             } 
+//         }
+        
+//         // Avançar para o próximo elemento
+//         atual = atual->prox;
+//     }
+// }
+
+void ordenaPorGrupo(Tlista *lista) {
+    TElemento *atual = lista->inicio;
+    Tlista *listaAux = lista; // uma lista auxiliar para armazenar as copias da lista original
+    TElemento *marcaFim = atual;
+    int cont  = 2;
+    while (atual->prox != NULL){
+        if (atual->grupo == 1){
+            if (atual->centroide != 0){
+                lista->inicio = atual;
+                atual = listaAux->inicio;
+            }else{
+                TElemento *percorre = atual;
+                while (percorre != NULL) {
+                    if (percorre->grupo == atual->grupo) {
+                        insere(listaAux,percorre->altura,percorre->idade,percorre->peso,percorre->nome);
+                        printf("\nenderoço: %p e elemento do grupo: %d\n",&atual,atual->grupo);
+                    }
+                    percorre = percorre->prox;
+                }
+                marcaFim = percorre;
+                atual = listaAux->inicio;
+            }   
+        }else{
+            if (atual->grupo == cont){
+                if (atual->centroide != 0){
+                    
                 }
                 
             }
             
         }
-
+        
         
     }
     
@@ -409,7 +458,7 @@ void distribuiElementos(Tlista *lista) {
         }
         atual = atual->prox;
     }
-    // ordenaPorGrupo(lista); 
+    ordenaPorGrupo(lista); 
     exibeLista(lista,centroides);  
 }
 
