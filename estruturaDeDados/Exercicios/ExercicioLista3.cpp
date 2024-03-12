@@ -366,53 +366,57 @@ int pesquisar(TElemento *distancias, int tam){
 //     aux->peso = substitui->peso;
 // }
 
-void ordenaPorGrupo(Tlista *L){
-//Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
-//que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
-	TElemento *fixo, *movel, *aux;
-	int cont = 1;
-	
-	aux = (TElemento *)malloc(sizeof(TElemento));
-
-	fixo = L->inicio;
-	while(cont < L->total){
-		
-		movel = fixo->prox;
-		
-		while(movel != NULL){
-			if(fixo->grupo > movel->grupo){
-				aux->idade = movel->idade;
-				aux->peso = movel->peso;
-				aux->altura = movel->altura;
-				aux->imc = movel->imc;
-				strcpy(aux->nome, movel->nome);
-				aux->grupo = movel->grupo;
-				aux->centroide = movel->centroide;
+void ordenaPorGrupo(Tlista *L) {
+    //Reordena os elementos da Lista por GRUPO. Ao final do processo os ELementos da Lista
+    //que pertencerem ao mesmo grupo deverão estar agrupados de maneira contigua.
+    TElemento *fixo, *movel, *aux;
+    int cont = 1;
+    aux = (TElemento *)malloc(sizeof(TElemento));
+    while (cont < L->total) {
+        int trocou = 0;  // Adicionado flag para verificar se houve trocas
+        fixo = L->inicio;
+        while (fixo != NULL && fixo->prox != NULL) {
+            movel = fixo->prox;
+            while (movel != NULL) {
+                if (fixo->grupo > movel->grupo) {
+                    aux->idade = movel->idade;
+                    aux->peso = movel->peso;
+                    aux->altura = movel->altura;
+                    aux->imc = movel->imc;
+                    strcpy(aux->nome, movel->nome);
+                    aux->grupo = movel->grupo;
+                    aux->centroide = movel->centroide;
+                    
+                    movel->idade = fixo->idade;
+                    movel->peso = fixo->peso;
+                    movel->altura = fixo->altura;
+                    movel->imc = fixo->imc;
+                    strcpy(movel->nome, fixo->nome);
+                    movel->grupo = fixo->grupo;
+                    movel->centroide = fixo->centroide;
 				
-				movel->idade = fixo->idade;
-				movel->peso = fixo->peso;
-				movel->altura = fixo->altura;
-				movel->imc = fixo->imc;
-				strcpy(movel->nome, fixo->nome);
-				movel->grupo = fixo->grupo;
-				movel->centroide = fixo->centroide;
-				
-				fixo->idade = aux->idade;
-				fixo->peso = aux->peso;
-				fixo->altura = aux->altura;
-				fixo->imc = aux->imc;
-				strcpy(fixo->nome, aux->nome);
-				fixo->grupo = aux->grupo;
-				fixo->centroide = aux->centroide;
-
-			}//if
-			movel = movel->prox;
-		}//while
-		fixo = fixo->prox;
-		cont++;
-	}//while
-	printf("\n\nProcesso de ORDENAMENTO de Elementos Finalizado!\n\n");
+                    fixo->idade = aux->idade;
+                    fixo->peso = aux->peso;
+                    fixo->altura = aux->altura;
+                    fixo->imc = aux->imc;
+                    strcpy(fixo->nome, aux->nome);
+                    fixo->grupo = aux->grupo;
+                    fixo->centroide = aux->centroide;
+                    trocou = 1;  // Ativa o flag indicando que houve troca
+                }
+                movel = movel->prox;
+            }
+            fixo = fixo->prox;
+        }
+        if (!trocou) {
+            break;  // Sai do loop externo se não houve trocas
+        }
+        cont++;
+    }
+    free(aux);
+    printf("\n\nProcesso de ORDENAMENTO de Elementos Finalizado!\n\n");
 }
+
 
 void distribuiElementos(Tlista *L){
 	//Esta função percorre a Lista com todos os TElementos.
@@ -423,7 +427,6 @@ void distribuiElementos(Tlista *L){
 	TElemento *atual, *centroide, *menorDist;
 	int flag;
 	float menor, temp;
-	
 	atual = L->inicio;
 	while(atual != NULL){
 		if(!atual->centroide){
