@@ -34,8 +34,10 @@ void inicializa(Tlista *lista){
 
 void digitarDados(Tfilme *elementoNovo){
     printf("Digite o titulo do filme: ");
+    fflush(stdin);
     scanf(" %39[^\n]s", elementoNovo->titulo);
     printf("Digite o ano de produção do final: ");
+    fflush(stdin);
     scanf("%d", &elementoNovo->anoProducao);
 }
 
@@ -150,6 +152,18 @@ int pedirOpcao(){
     return op;
 }
 
+void exibe(Tlista lista){
+    Tfilme *atual = lista.primeiro;
+    int cont = 0;
+    printf("\n\n\t\t========| EXIBE TODOS OS FILMES |========\n\n");
+    while (atual != NULL){
+        printf("\t(%d) - %s [%d].\n",++cont,atual->titulo,atual->anoProducao);
+        cont++;
+        atual = atual->prox;
+    }
+    printf("\n\n");
+}
+
 //=================================================
 int main(){
     int op;
@@ -160,11 +174,10 @@ int main(){
         op = pedirOpcao();
         switch (op){
         case 1:
-            // numInseri = pedirNum();
             insere(&lista);
             break;
         case 2:
-            // exibeLista(lista); 
+            exibe(lista); 
             break;
         case 3:
             // numInseri = pedirNum2();
