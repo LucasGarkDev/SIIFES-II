@@ -180,7 +180,6 @@ int pesquisarNaLista(Tlista *lista,string nome){
 
 void exclui(Tlista *lista, string titulo){
     Tfilme *atual = lista->primeiro;
-    Tfilme *anterior = NULL;
     while (atual != NULL){
         if (strcmp(atual->titulo,titulo) == 0){
             printf("\nEncontrou para excluir\n");
@@ -207,14 +206,13 @@ void exclui(Tlista *lista, string titulo){
                 printf("\nEstava no meio da lista\n");
                 //Excluindo alguem que nao esta nem no fim e nem no inicio
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
-                anterior->prox = atual->prox;
-                atual->prox->ante = anterior; // atual->prox->ante = atual->ante
+                atual->ante->prox = atual->prox;
+                atual->prox->ante = atual->ante; // atual->prox->ante = atual->ante
             }
             free(atual);
             lista->total--;
             break;
         }
-        anterior = atual;
         atual = atual->prox;
     }
 }
