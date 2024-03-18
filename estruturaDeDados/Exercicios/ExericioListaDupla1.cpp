@@ -166,8 +166,11 @@ void exibe(Tlista lista){
 
 int pesquisarNaLista(Tlista *lista,string nome){
     Tfilme *atual = lista->primeiro;
-    while (atual->prox != NULL){
+    printf("\nEntrou na funçao\n");
+    while (atual != NULL){
+        printf("\npercorre loop\n");
         if (strcmp(atual->titulo,nome) == 0){
+            printf("\nnome existe\n");
             return 1;
         }
         atual = atual->prox;
@@ -205,12 +208,13 @@ void exclui(Tlista *lista, string titulo){
                 //Excluindo alguem que nao esta nem no fim e nem no inicio
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 anterior->prox = atual->prox;
-                atual->prox->ante = anterior;
+                atual->prox->ante = anterior; // atual->prox->ante = atual->ante
             }
             free(atual);
             lista->total--;
             break;
         }
+        anterior = atual;
         atual = atual->prox;
     }
 }
@@ -219,7 +223,8 @@ void selecionaFilmeExclusao(Tlista *lista){
 	string tituloSelecionado;
     do{
         printf("Digite o titulo do filme que deseja excluir: ");
-        scanf(" %s",tituloSelecionado);
+        fflush(stdin);
+        scanf(" %39[^\n]s",tituloSelecionado);
         printf("\n%s\n",tituloSelecionado);
     } while (pesquisarNaLista(lista,tituloSelecionado) != 1);
     exclui(lista,tituloSelecionado);
