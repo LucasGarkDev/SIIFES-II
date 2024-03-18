@@ -207,7 +207,7 @@ void exclui(Tlista *lista, string titulo){
                 //Excluindo alguem que nao esta nem no fim e nem no inicio
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 atual->ante->prox = atual->prox;
-                atual->prox->ante = atual->ante; // atual->prox->ante = atual->ante
+                atual->prox->ante = atual->ante; 
             }
             free(atual);
             lista->total--;
