@@ -166,9 +166,7 @@ void exibe(Tlista lista){
 
 int pesquisarNaLista(Tlista *lista,string nome){
     Tfilme *atual = lista->primeiro;
-    printf("\nEntrou na funçao\n");
     while (atual != NULL){
-        printf("\npercorre loop\n");
         if (strcmp(atual->titulo,nome) == 0){
             printf("\nnome existe\n");
             return 1;
@@ -182,28 +180,23 @@ void exclui(Tlista *lista, string titulo){
     Tfilme *atual = lista->primeiro;
     while (atual != NULL){
         if (strcmp(atual->titulo,titulo) == 0){
-            printf("\nEncontrou para excluir\n");
             //Encontra o elemento a ser excluido
             if(lista->primeiro == lista->ultimo){
-                printf("\nEra o unico da lista\n");
                 //Exclusao do unico elemento da lista
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 lista->primeiro = NULL;
                 lista->ultimo = NULL;
             }else if (atual == lista->primeiro){
-                printf("\nEra o primeiro da Lista\n");
                 //Exclui o primeiro elemento da lista
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 lista->primeiro = atual->prox; //lista->inicio = lista->inicio->prox;
                 lista->primeiro->ante = NULL;
             }else if (atual == lista->ultimo){
-                printf("\nEra o ultimo da lista\n");
                 //Excluindo o ultimo cara da lista
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 lista->ultimo = atual->ante;
                 lista->ultimo->prox = NULL;
             }else if ((atual != lista->primeiro)&&(atual != lista->ultimo)){
-                printf("\nEstava no meio da lista\n");
                 //Excluindo alguem que nao esta nem no fim e nem no inicio
                 printf("\n\n\tExcluindo o FILME %s ...\n", atual->titulo);
                 atual->ante->prox = atual->prox;
@@ -223,7 +216,6 @@ void selecionaFilmeExclusao(Tlista *lista){
         printf("Digite o titulo do filme que deseja excluir: ");
         fflush(stdin);
         scanf(" %39[^\n]s",tituloSelecionado);
-        printf("\n%s\n",tituloSelecionado);
     } while (pesquisarNaLista(lista,tituloSelecionado) != 1);
     exclui(lista,tituloSelecionado);
 }
