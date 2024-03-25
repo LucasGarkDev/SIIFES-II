@@ -221,10 +221,19 @@ int menu(){
 
 void exibe(Tlista lista){
     Tfilme *atual = lista.inicioF;
+    Telenco *cursor;
     int cont = 0;
     printf("\n\n\t\t========| EXIBE TODOS OS FILMES |========\n\n");
     while (atual != NULL){
         printf("\t(%d) - %s [%d].\n",cont+1,atual->titulo,atual->anoProducao);
+        if (atual->elenco != NULL){
+            printf("\n");
+            cursor = atual->elenco;
+            while (cursor != NULL){
+                printf("\t\t%s\n", cursor->atorFilme->nome);
+                cursor->atorFilme = cursor->atorFilme->prox;
+            }
+        }
         cont++;
         atual = atual->prox;
     }
