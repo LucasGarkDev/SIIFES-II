@@ -39,30 +39,6 @@ typedef struct tipoLista{
 
 Tlista lista; //variavel global
 
-void inicializa(Tlista *lista){
-    lista->inicioF = NULL;
-    lista->inicioA = NULL;
-    lista->fimF = NULL;
-    lista->fimA = NULL;
-    lista->total = 0;
-    insereAtor(lista,"Tobey Maguire");
-    insereAtor(lista,"Cristen Dusten");
-    insereAtor(lista,"Charlton Heston");
-    insereAtor(lista,"Sofia Loren");
-    insereAtor(lista,"Kirk Douglas");
-    insereAtor(lista,"Michael Douglas");
-    insereAtor(lista,"Mira Sorvino");
-}
-
-void digitarDados(Tfilme *elementoNovo){
-    printf("Digite o titulo do filme: ");
-    fflush(stdin);
-    scanf(" %39[^\n]s", elementoNovo->titulo);
-    printf("Digite o ano de produção do final: ");
-    fflush(stdin);
-    scanf("%d", &elementoNovo->anoProducao);
-}
-
 void insereAtor(Tlista *lista, string nome){
     Tator *novo = (Tator *)malloc(sizeof(Tator));
     novo->prox = NULL;
@@ -88,6 +64,7 @@ void insereAtor(Tlista *lista, string nome){
                     novo->prox = anterior->prox;
                     anterior->prox = novo;
                 }
+                break; // Importante adicionar o break aqui para evitar que continue percorrendo a lista desnecessariamente
             }
             anterior = atual;
             atual = atual->prox;
@@ -100,12 +77,68 @@ void insereAtor(Tlista *lista, string nome){
     }
 }
 
-void cadastraAtor(Tlista *lista){
-    string nome;
-    printf("\n\n\t\t=====| INSERE ATOR |=====\n\n");
-    printf("\nInforme NOME de novo ator: ");
+
+void inicializa(Tlista *lista){
+    lista->inicioF = NULL;
+    lista->inicioA = NULL;
+    lista->fimF = NULL;
+    lista->fimA = NULL;
+    lista->total = 0;
+    insereAtor(lista,"Tobey Maguire");
+	insereAtor(lista,"Christen Dusten");
+	insereAtor(lista,"Charlton Heston");
+	insereAtor(lista,"Sofia Loren");
+	insereAtor(lista,"Kirk Douglas");
+	insereAtor(lista,"Michael Douglas");
+	insereAtor(lista,"Mira Sorvino");
+	insereAtor(lista,"Tom Cruise");
+	insereAtor(lista,"Jennifer Connelly");
+	insereAtor(lista,"Kelly McGillis");
+	insereAtor(lista,"Kathleen Turner");
+	insereAtor(lista,"Danny DeVito");
+	insereAtor(lista,"Sylvester Stallone");
+	insereAtor(lista,"Talia Shire");
+	insereAtor(lista,"Hayley Atwell");
+	insereAtor(lista,"Chris Evans");
+	insereAtor(lista,"Sebastian Stan");
+	insereAtor(lista,"Sidney Potier");
+	insereAtor(lista,"Charlie Chaplin");
+	insereAtor(lista,"Paulette Goddard");
+	insereAtor(lista,"Bruce Willis");
+	insereAtor(lista,"Cybill Shepherd");
+}
+
+void digitarDados(Tfilme *elementoNovo){
+    printf("Digite o titulo do filme: ");
     fflush(stdin);
-    
+    scanf(" %39[^\n]s", elementoNovo->titulo);
+    printf("Digite o ano de produção do final: ");
+    fflush(stdin);
+    scanf("%d", &elementoNovo->anoProducao);
+}
+
+void cadastraAtor(Tlista *lista){
+	string nome;
+	
+	printf("\n\n\t\t=====| INSERE ATOR |=====\n\n");
+	printf("\tInforme NOME de novo ATOR: ");
+	fflush(stdin);
+	scanf(" %39[^\n]s",nome);
+	
+	insereAtor(lista, nome);
+}
+
+void exibeAtores(Tlista *L){
+	Tator *atual = L->inicioA;
+	int cont = 0;
+	printf("\n\n");
+	printf("+----------------------------------------------------+\n");
+	while (atual != NULL)	{
+		printf("\t(%d) - %s.\n", cont+1, atual->nome);
+        cont++;
+		atual = atual->prox;
+	}//while
+	printf("+----------------------------------------------------+\n\n\n");
 }
 
 void insere(Tlista *lista){
@@ -175,7 +208,7 @@ void exibe(Tlista lista){
     int cont = 0;
     printf("\n\n\t\t========| EXIBE TODOS OS FILMES |========\n\n");
     while (atual != NULL){
-        printf("\t(%d) - %s [%d].\n",++cont,atual->titulo,atual->anoProducao);
+        printf("\t(%d) - %s [%d].\n",cont+1,atual->titulo,atual->anoProducao);
         cont++;
         atual = atual->prox;
     }
@@ -248,13 +281,14 @@ int main(){
         op = pedirOpcao();
         switch (op){
         case 1:
-            insere(&lista);
+            // insere(&lista);
             break;
         case 2:
-            exibe(lista); 
+            // exibe(lista); 
+            exibeAtores(&lista);
             break;
         case 3:
-            selecionaFilmeExclusao(&lista);
+            // selecionaFilmeExclusao(&lista);
             break;
         case 4:
             repete = 1;
