@@ -108,7 +108,7 @@ void inicializa(Tlista *lista){
 	insereAtor(lista,"Cybill Shepherd");
 }
 
-void digitarDados(Tfilme *elementoNovo){
+void cadastraFilme(Tfilme *elementoNovo){
     printf("Digite o titulo do filme: ");
     fflush(stdin);
     scanf(" %39[^\n]s", elementoNovo->titulo);
@@ -145,7 +145,7 @@ void insere(Tlista *lista){
     Tfilme *novo = (Tfilme *)malloc(sizeof(Tfilme));
     Tfilme *atual;
     int flag = 0;
-    digitarDados(novo);
+    cadastraFilme(novo);
     novo->prox = NULL;
     novo->ante = NULL;
     if (lista->inicioF == NULL){
@@ -192,14 +192,29 @@ int pedirOpcao(){
     int op;
     printf("\n%s\n", INICIO);
     do{
-        printf("1 - Inserir na Lista\n");
-        printf("2 - Exibe Lista\n");
-        printf("3 - Excluir da Lista\n");
-        printf("4 - Sair\n");
+        printf("1 - Inserir Filme na lista\n");
+        printf("2 - Exibe Lista de Filmes\n");
+        printf("3 - Excluir da Filme da lista\n");
+        printf("4 - Ativar menu dos atores\n");
+        printf("5 - Sair\n");
         printf("Digite a opção: ");
         scanf("%d", &op);
         printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 4));
+    } while ((op < 1)||(op > 5));
+    return op;
+}
+
+int menu(){
+    int op;
+    printf("\n|----------------MENU LISTA DE ATORES----------------|\n");
+    do{
+        printf("1 - Cadastrar Ator\n");
+        printf("2 - Exibe Lista de Atores\n");
+        printf("3 - Sair\n");
+        printf("Digite a opção: ");
+        scanf("%d", &op);
+        printf("%s\n", CORTE);
+    } while ((op < 1)||(op > 3));
     return op;
 }
 
@@ -271,6 +286,28 @@ void selecionaFilmeExclusao(Tlista *lista){
     exclui(lista,tituloSelecionado);
 }
 
+int atoresSelect(Tlista *lista){
+    int op;
+    int repete = 0;
+    do{
+        op = menu();
+        switch (op){
+        case 1:
+            cadastraAtor(lista);
+            break;
+        case 2: 
+            exibeAtores(lista);
+            break;
+        case 3:
+            repete = 1;
+            break;
+        default:
+            break;
+        }
+    } while (repete == 0); 
+    return 0;
+}
+
 //=================================================
 int main(){
     int op;
@@ -281,16 +318,18 @@ int main(){
         op = pedirOpcao();
         switch (op){
         case 1:
-            // insere(&lista);
+            insere(&lista);
             break;
         case 2:
-            // exibe(lista); 
-            exibeAtores(&lista);
+            exibe(lista); 
             break;
         case 3:
-            // selecionaFilmeExclusao(&lista);
+            selecionaFilmeExclusao(&lista);
             break;
         case 4:
+            atoresSelect(&lista);
+            break;
+        case 5:
             repete = 1;
             break;
         default:
