@@ -148,6 +148,7 @@ void insere(Tlista *lista){
     cadastraFilme(novo);
     novo->prox = NULL;
     novo->ante = NULL;
+    novo->elenco = NULL;
     if (lista->inicioF == NULL){
         //Lista encontra-se vazia.
         //Inserir o primeiro e unico elemento da lista ate agora
@@ -162,7 +163,7 @@ void insere(Tlista *lista){
                 //encontrada a posiçao para a inserçao do novo Tfilme
                 flag = 1;
                 
-                if (atual == lista->inicioF){
+                if (atual->ante == NULL){
                     //Inserir novo no inicio da lista
                     novo->prox = atual;
                     atual->ante = novo;
@@ -206,7 +207,7 @@ int pedirOpcao(){
 
 int menu(){
     int op;
-    printf("\n|----------------MENU LISTA DE ATORES----------------|\n");
+    printf("\n|---------------|MENU LISTA DE ATORES|---------------|\n");
     do{
         printf("1 - Cadastrar Ator\n");
         printf("2 - Exibe Lista de Atores\n");
