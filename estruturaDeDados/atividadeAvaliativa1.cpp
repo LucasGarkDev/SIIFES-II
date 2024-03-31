@@ -41,13 +41,26 @@ typedef struct tipoLista {
 	TCurso *fimC;
 	TDisciplina *inicioD;
 	TDisciplina *fimD;
+    int total;
 }TLista;
 
 TLista listas;
 
-
 int main(){
-	
+    inicializa(&listas);
+    int op;
+    int sair = 0;
+    do{
+        op = menu();
+        if (op == 0){
+            sair = 1;
+        }else if ((op < 0)||(op > 10)){
+            printf("\nERRO: Opção invalida, tente novamente\n");
+        }else{
+            realizaOpcaoDesejada(&listas, op);
+        }
+    } while (sair != 1);
+    return 0;
 }
 //===================================================================
 int menu(){
@@ -67,4 +80,63 @@ int menu(){
 	printf("Digite a opçao: ");
     scanf("%d", &op);
     return op;
+}
+
+void inicializa(TLista *lista){
+    lista->inicioC = NULL;
+    lista->inicioD = NULL;
+    lista->fimC = NULL;
+    lista->fimD = NULL;
+    lista->total = 0;        
+}
+
+void insereDisciplina(TLista *lista){
+
+}
+
+void realizaOpcaoDesejada(TLista *listas, int op){
+    switch (op){
+    case 1:
+        insereDisciplina(listas);
+        break;
+    
+    case 2:
+        insereDisciplina(listas);
+        break;
+    
+    case 3:
+        insereDisciplina(listas);
+        break;
+    
+    case 4:
+        insereDisciplina(listas);
+        break;
+    
+    case 5:
+        insereDisciplina(listas);
+        break;
+    
+    case 6:
+        insereDisciplina(listas);
+        break;
+    
+    case 7:
+        insereDisciplina(listas);
+        break;
+    
+    case 8:
+        insereDisciplina(listas);
+        break;
+    
+    case 9:
+        insereDisciplina(listas);
+        break;
+    
+    case 10:
+        insereDisciplina(listas);
+        break;
+    
+    default:
+        break;
+    }
 }
