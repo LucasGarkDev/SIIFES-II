@@ -138,6 +138,101 @@ void exibeDisciplina(TLista *L){
 	printf("\n\n");
 }
 
+void insereAluno(string curso, string nomeAluno, char sexo){
+    TAluno *novo = (TAluno *)malloc(sizeof(TAluno));
+    TAluno *atual;
+    int flag = 0;
+
+    novo->prox = NULL;
+    novo->ante = NULL;
+    if (lista->primeiro == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->primeiro = novo;
+        lista->ultimo = novo;
+        flag = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        atual = lista->primeiro;
+        while (atual != NULL){
+            if (strcmp(atual->nome,novo->nome) > 0){
+                //encontrada a posiçao para a inserçao do novo Tfilme
+                flag = 1;
+                
+                if (atual == lista->primeiro){
+                    //Inserir novo no inicio da lista
+                    novo->prox = atual;
+                    atual->ante = novo;
+                    lista->primeiro = novo;
+                }else{
+                    //Inserir novo no meio da lista
+                    novo->prox = atual;
+                    novo->ante = atual->ante;
+                    atual->ante->prox = novo;
+                    atual->ante = novo;
+                }
+                break;
+            }
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (flag == 0){
+            //inserir o novo como o ultimo Tfilme da lista
+            lista->ultimo->prox = novo;
+            novo->ante = lista->ultimo;
+            lista->ultimo = novo;
+        }
+    }
+    lista->total++;
+}
+
+void insereCurso(TLista *lista, string nome){
+    TCurso *novo = (TCurso *)malloc(sizeof(TCurso));
+    TCurso *atual;
+    int flag = 0;
+    ////inserir dados
+    // insereAlunosNoCurso();
+    novo->prox = NULL;
+    novo->ante = NULL;
+    if (lista->inicioC == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->inicioC = novo;
+        lista->fimC = novo;
+        flag = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        atual = lista->inicioC;
+        while (atual != NULL){
+            if (strcmp(atual->nome,novo->nome) > 0){
+                //encontrada a posiçao para a inserçao do novo Tfilme
+                flag = 1;
+                
+                if (atual == lista->inicioC){
+                    //Inserir novo no inicio da lista
+                    novo->prox = atual;
+                    atual->ante = novo;
+                    lista->inicioC = novo;
+                }else{
+                    //Inserir novo no meio da lista
+                    novo->prox = atual;
+                    novo->ante = atual->ante;
+                    atual->ante->prox = novo;
+                    atual->ante = novo;
+                }
+                break;
+            }
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (flag == 0){
+            //inserir o novo como o ultimo Tfilme da lista
+            lista->fimC->prox = novo;
+            novo->ante = lista->fimC;
+            lista->fimC = novo;
+        }
+    }
+    lista->total++;
+}
+
 void realizaOpcaoDesejada(TLista *listas, int op){
     switch (op){
     case 1:
