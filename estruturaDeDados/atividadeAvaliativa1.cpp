@@ -46,23 +46,6 @@ typedef struct tipoLista {
 
 TLista listas;
 
-int main(){
-    inicializa(&listas);
-    int op;
-    int sair = 0;
-    do{
-        op = menu();
-        if (op == 0){
-            sair = 1;
-        }else if ((op < 0)||(op > 10)){
-            printf("\nERRO: Opção invalida, tente novamente\n");
-        }else{
-            realizaOpcaoDesejada(&listas, op);
-        }
-    } while (sair != 1);
-    return 0;
-}
-//===================================================================
 int menu(){
     int op;
 	printf("\n\n\t\t====| MENU |=====\n\n");
@@ -90,8 +73,55 @@ void inicializa(TLista *lista){
     lista->total = 0;        
 }
 
-void insereDisciplina(TLista *lista){
+void cadastraDisciplina(TDisciplina *novo){
+    printf("Digite o nome da Disciplina: ");
+    scanf(" 39%[^\n]s", novo->nome);
+    printf("Digite qual e a carga horaria: ");
+    scanf("%d", novo->cargaHoraria);
+}
 
+void insereDisciplina(TLista *lista){
+    int inseriu = 0;
+    TDisciplina *novo = (TDisciplina *)malloc(sizeof(TDisciplina));
+    cadastraDisciplina(novo);
+    novo->prox = NULL;
+    if (lista->inicioD == NULL){
+        //Lista encontra-se vazia.
+        //Inserir o primeiro e unico elemento da lista ate agora
+        lista->inicioD = novo;
+        lista->fimD = novo;
+        lista->total = 1;
+        inseriu = 1;
+    }else{
+        //Lista ja possui pelo menos 1 elemento
+        TDisciplina *atual = lista->inicioD;
+        TDisciplina *anterior = NULL;
+        while (atual != NULL){
+            if (strcmp(atual->nome,novo->nome) == 1){
+                if (atual == lista->inicioD){
+                    //Inserir novo no inicio da lista
+                    novo->prox = atual;
+                    lista->inicioD = novo;
+                }else{
+                    //Inserir novo no meio da lista
+                    novo->prox = atual;
+                    anterior->prox = novo;
+                }
+                inseriu = 1;
+                lista->total++;
+                break;
+            }
+            anterior = atual;
+            atual = atual->prox; //move para o próximo elemento
+        }
+        if (!inseriu){
+            //Inserir elemento no fim da lista
+            lista->fimD->prox = novo;
+            lista->fimD = novo;
+            lista->total++;
+        }
+        lista->total++;
+    }
 }
 
 void realizaOpcaoDesejada(TLista *listas, int op){
@@ -139,4 +169,21 @@ void realizaOpcaoDesejada(TLista *listas, int op){
     default:
         break;
     }
+}
+//===================================================================
+int main(){
+    inicializa(&listas);
+    int op;
+    int sair = 0;
+    do{
+        op = menu();
+        if (op == 0){
+            sair = 1;
+        }else if ((op < 0)||(op > 10)){
+            printf("\nERRO: Opção invalida, tente novamente\n");
+        }else{
+            realizaOpcaoDesejada(&listas, op);
+        }
+    } while (sair != 1);
+    return 0;
 }
