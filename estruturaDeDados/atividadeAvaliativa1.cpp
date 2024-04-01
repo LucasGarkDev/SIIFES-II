@@ -47,7 +47,7 @@ typedef struct tipoLista {
 TLista listas;
 
 int menu(){
-    int op;
+	int op;
 	printf("\n\n\t\t====| MENU |=====\n\n");
 	printf("\t0 - Sair (Encerrar a Aplicacao).\n\n");
 	printf("\t1 - Inserir DISCIPLINA.\n");
@@ -60,9 +60,11 @@ int menu(){
 	printf("\t8 - Inserir HISTORICO para ALUNO.\n");
 	printf("\t9 - Exibir HISTORICO de ALUNO.\n");
 	printf("\t10 - Excluir HISTORICO de ALUNO.\n\n");
-	printf("Digite a opçao: ");
-    scanf("%d", &op);
-    return op;
+	do {
+		printf("Escolha sua opção: ");
+		scanf(" %d", &op);
+	} while(op < 0 || op > 10);
+	return op;
 }
 
 void inicializa(TLista *lista){
@@ -75,9 +77,9 @@ void inicializa(TLista *lista){
 
 void cadastraDisciplina(TDisciplina *novo){
     printf("Digite o nome da Disciplina: ");
-    scanf(" 39%[^\n]s", novo->nome);
+    scanf(" %39[^\n]s", novo->nome);
     printf("Digite qual e a carga horaria: ");
-    scanf("%d", novo->cargaHoraria);
+    scanf("%d", &novo->cargaHoraria);
 }
 
 void insereDisciplina(TLista *lista){
@@ -124,6 +126,18 @@ void insereDisciplina(TLista *lista){
     }
 }
 
+void exibeDisciplina(TLista *L){
+	TDisciplina *atual = L->inicioD;
+	int cont = 0;
+	printf("\n\n\t\t===| EXIBE LISTA COMPLETA |===\n\n");
+	while (atual != NULL){
+		printf("(%d) - %s - %dH.\n",cont+1, atual->nome, atual->cargaHoraria);
+		atual = atual->prox;
+        cont++;
+	}
+	printf("\n\n");
+}
+
 void realizaOpcaoDesejada(TLista *listas, int op){
     switch (op){
     case 1:
@@ -131,7 +145,7 @@ void realizaOpcaoDesejada(TLista *listas, int op){
         break;
     
     case 2:
-        insereDisciplina(listas);
+        exibeDisciplina(listas);
         break;
     
     case 3:
