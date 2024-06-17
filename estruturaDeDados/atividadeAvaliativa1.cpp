@@ -138,52 +138,52 @@ void exibeDisciplina(TLista *L){
 	printf("\n\n");
 }
 
-void insereAluno(string curso, string nomeAluno, char sexo){
-    TAluno *novo = (TAluno *)malloc(sizeof(TAluno));
-    TAluno *atual;
-    int flag = 0;
+// void insereAluno(TLista *lista, string nomeAluno, char sexo){
+//     TAluno *novo = (TAluno *)malloc(sizeof(TAluno));
+//     TAluno *atual;
+//     int flag = 0;
 
-    novo->prox = NULL;
-    novo->ante = NULL;
-    if (lista->primeiro == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
-        lista->primeiro = novo;
-        lista->ultimo = novo;
-        flag = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        atual = lista->primeiro;
-        while (atual != NULL){
-            if (strcmp(atual->nome,novo->nome) > 0){
-                //encontrada a posiçao para a inserçao do novo Tfilme
-                flag = 1;
+//     novo->prox = NULL;
+//     novo->ante = NULL;
+//     if (lista->inicioC == NULL){
+//         //Lista encontra-se vazia.
+//         //Inserir o primeiro e unico elemento da lista ate agora
+//         lista->primeiro = novo;
+//         lista->ultimo = novo;
+//         flag = 1;
+//     }else{
+//         //Lista ja possui pelo menos 1 elemento
+//         atual = lista->primeiro;
+//         while (atual != NULL){
+//             if (strcmp(atual->nome,novo->nome) > 0){
+//                 //encontrada a posiçao para a inserçao do novo Tfilme
+//                 flag = 1;
                 
-                if (atual == lista->primeiro){
-                    //Inserir novo no inicio da lista
-                    novo->prox = atual;
-                    atual->ante = novo;
-                    lista->primeiro = novo;
-                }else{
-                    //Inserir novo no meio da lista
-                    novo->prox = atual;
-                    novo->ante = atual->ante;
-                    atual->ante->prox = novo;
-                    atual->ante = novo;
-                }
-                break;
-            }
-            atual = atual->prox; //move para o próximo elemento
-        }
-        if (flag == 0){
-            //inserir o novo como o ultimo Tfilme da lista
-            lista->ultimo->prox = novo;
-            novo->ante = lista->ultimo;
-            lista->ultimo = novo;
-        }
-    }
-    lista->total++;
-}
+//                 if (atual == lista->primeiro){
+//                     //Inserir novo no inicio da lista
+//                     novo->prox = atual;
+//                     atual->ante = novo;
+//                     lista->primeiro = novo;
+//                 }else{
+//                     //Inserir novo no meio da lista
+//                     novo->prox = atual;
+//                     novo->ante = atual->ante;
+//                     atual->ante->prox = novo;
+//                     atual->ante = novo;
+//                 }
+//                 break;
+//             }
+//             atual = atual->prox; //move para o próximo elemento
+//         }
+//         if (flag == 0){
+//             //inserir o novo como o ultimo Tfilme da lista
+//             lista->ultimo->prox = novo;
+//             novo->ante = lista->ultimo;
+//             lista->ultimo = novo;
+//         }
+//     }
+//     lista->total++;
+// }
 
 void insereCurso(TLista *lista, string nome){
     TCurso *novo = (TCurso *)malloc(sizeof(TCurso));
@@ -191,6 +191,7 @@ void insereCurso(TLista *lista, string nome){
     int flag = 0;
     ////inserir dados
     // insereAlunosNoCurso();
+    strcpy(novo->nome,nome);
     novo->prox = NULL;
     novo->ante = NULL;
     if (lista->inicioC == NULL){
