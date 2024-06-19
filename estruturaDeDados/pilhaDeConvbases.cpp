@@ -17,64 +17,74 @@ typedef struct TPilha{
     TElemento *base;   
 }Tpilha;
 
-void inicializa(Tpilha *pilha){
-    pilha->base = NULL;
-    pilha->topo = NULL;
-}
-void empilhar(Tpilha *pilha, int valor){
-    TElemento *novo = (TElemento*)malloc(sizeof(TElemento));
-    novo->ante = NULL;
-    novo->prox = NULL;
-    novo->digito = valor;
-
-    if (pilha->topo == NULL){
-        //pilha vazia
-        pilha->base = novo;
-        pilha->topo = novo;
-    }else{
-        pilha->topo->prox = novo;
-        novo->ante = pilha->topo;
-        pilha->topo = novo;
-    }
-    
+void inicializa(TPilha *P){
+	P->base = NULL;
+	P->topo = NULL;	
 }
 
-void desmembra(Tpilha *pilha, int numero){ 
-    int quociente = numero;
-    do{
-        empilhar(pilha,(quociente % 10));
-        quociente = quociente / 10;
-    } while (quociente > 0);
-    
+void empilhar(TPilha *P, int valor){
+	TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
+	
+	novo->ante = NULL;
+	novo->prox = NULL;
+	novo->digito = valor;
+	
+	if(P->topo == NULL){
+		//Pilha VAZIA...
+		P->base = novo;
+		P->topo = novo;
+	} else {
+		P->topo->prox = novo;
+		novo->ante = P->topo;
+		P->topo = novo;
+	}//if
 }
 
-int desempilhar(Tpilha *pilha){
-    TElemento *atual;
-    int resultado;
-    if (pilha->topo != NULL){
-        atual = pilha->topo;
-        pilha->topo = pilha->topo->ante;
-        if (pilha->topo != NULL){
-            pilha->topo->prox = NULL;
-            pilha->base = NULL;   
-        }
-        resultado = pilha->topo->digito;
-        free(atual);
-    }else{
-        resultado = -646;
-    }
-    
-    return resultado;    
+void desmembrar(TPilha *P, int numero){
+	int quoc = numero;
+	
+	do{
+		printf("\n>>> %d em %d\n", quoc%10, quoc);
+		
+		empilhar(P, (quoc % 10));
+		quoc = quoc / 10;			
+	}while(quoc > 0);
+	
 }
 
-int remontar(Tpilha *pilha){
-    int valor = 0;
-    int fator = 1;
-    while (pilha->topo != NULL){
-        valor = valor + (desempilhar(pilha)*fator);
-        fator = fator * 10;
-    }
-    return valor;
+int desempilhar(TPilha *P){
+	TElemento *atual;
+	int resultado;
+	
+	if(P->topo != NULL){
+		atual = P->topo;
+		P->topo = P->topo->ante;
+		if(P->topo != NULL) {
+			P->topo->prox = NULL;
+			P->base = NULL;
+		}
+		resultado = atual->digito;
+		free(atual);
+	} else {
+		resultado = -666;
+	}//if
+	
+	return resultado;
+	
+}
+
+int remontar(TPilha *P){
+	int valor = 0;
+	int fator = 1;
+	
+	while(P->topo != NULL){
+		valor = valor + (desempilhar(P) * fator);
+		fator = fator * 10;
+		
+		printf("\n\n valor= %d    fator= %d",valor, fator);
+	}//while
+	
+	return valor;
 }
 
 Tpilha pilha; //variavel global
@@ -83,7 +93,7 @@ Tpilha pilha; //variavel global
 int main(){
     int num = 1991, reverso;
     inicializa(&pilha);
-    desmembra(&pilha,num);
+    desmembrar(&pilha,num);
     reverso = remontar(&pilha);
     printf("Comparando o numero %d com %d\n",num,reverso);
     if (num == reverso){
