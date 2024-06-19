@@ -1,6 +1,7 @@
 //pilha....17/06/2024
 #include <stdio.h>
 #include <stdlib.h>
+
 #define INICIO "------------INICIO------------" 
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
@@ -38,8 +39,8 @@ void empilhar(Tpilha *pilha, int valor){
     
 }
 
-void desmembra(Tpilha *pilha, int numero){
-    int resto, quociente;
+void desmembra(Tpilha *pilha, int numero){ 
+    int quociente = numero;
     do{
         empilhar(pilha,(quociente % 10));
         quociente = quociente / 10;
@@ -53,7 +54,10 @@ int desempilhar(Tpilha *pilha){
     if (pilha->topo != NULL){
         atual = pilha->topo;
         pilha->topo = pilha->topo->ante;
-        pilha->topo->prox = NULL;
+        if (pilha->topo != NULL){
+            pilha->topo->prox = NULL;
+            pilha->base = NULL;   
+        }
         resultado = pilha->topo->digito;
         free(atual);
     }else{
@@ -70,7 +74,7 @@ int remontar(Tpilha *pilha){
         valor = valor + (desempilhar(pilha)*fator);
         fator = fator * 10;
     }
-    
+    return valor;
 }
 
 Tpilha pilha; //variavel global
