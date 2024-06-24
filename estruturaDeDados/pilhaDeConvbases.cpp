@@ -68,7 +68,7 @@ int desempilhar(TPilha *P){
 	} else {
 		resultado = -666;
 	}//if
-	
+
 	return resultado;
 	
 }
