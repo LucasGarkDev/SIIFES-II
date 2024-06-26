@@ -72,7 +72,20 @@ void caminhamentoPosOrdem(TNo *raiz){
     }
 } 
 //===============================================================
-
+TNo *busca(TNo *raiz, int argumento){
+    if(raiz == NULL){
+       return NULL;
+    }else if (argumento == raiz->valor){
+        //No encontrado
+        return raiz;
+    }else if (argumento > raiz->valor){
+        printf("Visitando %d e descendo na direita\n", raiz->valor);
+        return busca(raiz->dir,argumento);
+    }else{
+        printf("Visitando %d e descendo na esquerda\n", raiz->valor);
+        return busca(raiz->esq,argumento);
+    }
+}
 //===============================================================
 
 //===============================================================
@@ -85,17 +98,24 @@ void caminhamentoPosOrdem(TNo *raiz){
 int main(){
     inicializa(&raiz);
     insere(&raiz,56);
-    insere(&raiz,41);
     insere(&raiz,99);
+    insere(&raiz,86);
+    insere(&raiz,92);
+    insere(&raiz,41);
     insere(&raiz,32);
     insere(&raiz,35);
-    insere(&raiz,92);
-    insere(&raiz,86);
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem \t\n");
     caminhamentoPreOrdem(raiz);
     printf("\t\t caminhamento pre ordem \t\n");
     caminhamentoPosOrdem(raiz);
     printf("\t\t caminhamento pos ordem \t\n");
+    printf("\n\n\t Buscando No com o valor 92\t\n\n");
+    TNo*atual = busca(raiz,92);
+    if (atual != NULL){
+        printf("Encontrado: %d \n", atual->valor);
+    }else{
+        printf("Valor nao encontrado: \n");
+    }
     return 0;
 }
