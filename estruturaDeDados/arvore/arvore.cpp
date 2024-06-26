@@ -7,7 +7,7 @@ typedef struct tipoNo{
     struct tipoNo *dir;
 }TNo;
 
-TNo *raiz; // raiz inicial da arvore
+TNo raiz; // raiz inicial da arvore
 
 //===============================================================
 void inicializa(TNo *raiz){
@@ -25,22 +25,35 @@ TNo *criaNo(int valor){
 void insere(TNo *raiz, int valor){
     if(raiz == NULL){
         // arvore vazia
+        printf("Primeiro no da arvore\n");
         raiz = criaNo(valor);
     }else if (valor >= raiz->valor){
         // insere na direita
         if (raiz->dir == NULL){
             raiz->dir = criaNo(valor);
+            printf("Foi inserido na direita\n");
         }else{
+            printf("chama a funçao para a direita\n");
             insere(raiz->dir,valor);
         }   
     }else{
         // insere na esquerda
         if (raiz->esq == NULL){
+            printf("Foi inserido na esquerda\n");
             raiz->esq = criaNo(valor);
         }else{
+            printf("chama a funçao para a esquerda\n");
             insere(raiz->esq,valor);
         }
     }   
+}
+//===============================================================
+void caminhamentoEmOrdem(TNo *raiz){
+    if(raiz != NULL){
+        caminhamentoEmOrdem(raiz->esq);
+        printf("%d, ",raiz->valor);
+        caminhamentoEmOrdem(raiz->dir);
+    }    
 }
 //===============================================================
 
@@ -49,9 +62,15 @@ void insere(TNo *raiz, int valor){
 //===============================================================
 
 //===============================================================
-
-//===============================================================
 int main(){
-    inicializa(raiz);
+    inicializa(&raiz);
+    insere(&raiz,56);
+    insere(&raiz,41);
+    insere(&raiz,99);
+    insere(&raiz,32);
+    insere(&raiz,35);
+    insere(&raiz,92);
+    insere(&raiz,86);
+    caminhamentoEmOrdem(&raiz);
     return 0;
 }
