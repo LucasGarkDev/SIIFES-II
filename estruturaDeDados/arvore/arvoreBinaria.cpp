@@ -59,15 +59,15 @@ void caminhamentoEmOrdem(TNo *raiz){
 void caminhamentoPreOrdem(TNo *raiz){
     if(raiz != NULL){
         printf("%d, ",raiz->valor);
-        caminhamentoEmOrdem(raiz->esq);
-        caminhamentoEmOrdem(raiz->dir);
-    }    
+        caminhamentoPreOrdem(raiz->esq);
+        caminhamentoPreOrdem(raiz->dir);
+    }   
 }
 //===============================================================
 void caminhamentoPosOrdem(TNo *raiz){
     if(raiz != NULL){
-        caminhamentoEmOrdem(raiz->esq);
-        caminhamentoEmOrdem(raiz->dir);
+        caminhamentoPosOrdem(raiz->esq);
+        caminhamentoPosOrdem(raiz->dir);
         printf("%d, ",raiz->valor);
     }
 } 
