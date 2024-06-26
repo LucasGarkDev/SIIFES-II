@@ -7,11 +7,11 @@ typedef struct tipoNo{
     struct tipoNo *dir;
 }TNo;
 
-TNo *raiz; 
+TNo *raiz; // raiz inicial da arvore
 
 //===============================================================
-void inicializa(TNo *r){
-    r = NULL;
+void inicializa(TNo *raiz){
+    raiz = NULL;
 }
 //===============================================================
 TNo *criaNo(int valor){
@@ -22,7 +22,26 @@ TNo *criaNo(int valor){
     return novo;
 }
 //===============================================================
-
+void insere(TNo *raiz, int valor){
+    if(raiz == NULL){
+        // arvore vazia
+        raiz = criaNo(valor);
+    }else if (valor >= raiz->valor){
+        // insere na direita
+        if (raiz->dir == NULL){
+            raiz->dir = criaNo(valor);
+        }else{
+            insere(raiz->dir,valor);
+        }   
+    }else{
+        // insere na esquerda
+        if (raiz->esq == NULL){
+            raiz->esq = criaNo(valor);
+        }else{
+            insere(raiz->esq,valor);
+        }
+    }   
+}
 //===============================================================
 
 //===============================================================
