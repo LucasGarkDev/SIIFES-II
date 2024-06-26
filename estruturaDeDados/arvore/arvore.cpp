@@ -7,11 +7,11 @@ typedef struct tipoNo{
     struct tipoNo *dir;
 }TNo;
 
-TNo raiz; // raiz inicial da arvore
+TNo *raiz; // raiz inicial da arvore
 
 //===============================================================
-void inicializa(TNo *raiz){
-    raiz = NULL;
+void inicializa(TNo **raiz){
+    *raiz = NULL;
 }
 //===============================================================
 TNo *criaNo(int valor){
@@ -22,28 +22,28 @@ TNo *criaNo(int valor){
     return novo;
 }
 //===============================================================
-void insere(TNo *raiz, int valor){
-    if(raiz == NULL){
+void insere(TNo **raiz, int valor){
+    if(*raiz == NULL){
         // arvore vazia
-        printf("Primeiro no da arvore\n");
-        raiz = criaNo(valor);
-    }else if (valor >= raiz->valor){
+        // printf("Primeiro no da arvore\n");
+        *raiz = criaNo(valor);
+    }else if (valor >= (*raiz)->valor){
         // insere na direita
-        if (raiz->dir == NULL){
-            raiz->dir = criaNo(valor);
-            printf("Foi inserido na direita\n");
+        if ((*raiz)->dir == NULL){
+            (*raiz)->dir = criaNo(valor);
+            // printf("Foi inserido na direita\n");
         }else{
-            printf("chama a funçao para a direita\n");
-            insere(raiz->dir,valor);
+            // printf("chama a funçao para a direita\n");
+            insere(&(*raiz)->dir,valor);
         }   
     }else{
         // insere na esquerda
-        if (raiz->esq == NULL){
-            printf("Foi inserido na esquerda\n");
-            raiz->esq = criaNo(valor);
+        if ((*raiz)->esq == NULL){
+            // printf("Foi inserido na esquerda\n");
+            (*raiz)->esq = criaNo(valor);
         }else{
-            printf("chama a funçao para a esquerda\n");
-            insere(raiz->esq,valor);
+            // printf("chama a funçao para a esquerda\n");
+            insere(&(*raiz)->esq,valor);
         }
     }   
 }
@@ -56,7 +56,13 @@ void caminhamentoEmOrdem(TNo *raiz){
     }    
 }
 //===============================================================
-
+void caminhamentoPreOrdem(TNo *raiz){
+    if(raiz != NULL){
+        printf("%d, ",raiz->valor);
+        caminhamentoEmOrdem(raiz->esq);
+        caminhamentoEmOrdem(raiz->dir);
+    }    
+}
 //===============================================================
 
 //===============================================================
@@ -71,6 +77,9 @@ int main(){
     insere(&raiz,35);
     insere(&raiz,92);
     insere(&raiz,86);
-    caminhamentoEmOrdem(&raiz);
+    caminhamentoEmOrdem(raiz);
+    printf("\t\t caminhamento em ordem \t\n");
+    caminhamentoPreOrdem(raiz);
+    printf("\t\t caminhamento pre ordem \t\n");
     return 0;
 }
