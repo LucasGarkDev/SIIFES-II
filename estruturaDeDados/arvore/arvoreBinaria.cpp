@@ -87,8 +87,36 @@ TNo *busca(TNo *raiz, int argumento){
     }
 }
 //===============================================================
-TNo *exclui(TNo **raiz, int argumento){
-   
+TNo* minValueNode(TNo* node) {
+    TNo* current = node;
+    while (current && current->esq != NULL)
+        current = current->esq;
+    return current;
+}
+
+TNo* exclui(TNo **raiz, int argumento) {
+    if (*raiz == NULL) return *raiz;
+
+    if (argumento < (*raiz)->valor)
+        (*raiz)->esq = exclui(&(*raiz)->esq, argumento);
+    else if (argumento > (*raiz)->valor)
+        (*raiz)->dir = exclui(&(*raiz)->dir, argumento);
+    else {
+        if ((*raiz)->esq == NULL) {
+            TNo *temp = (*raiz)->dir;
+            free(*raiz);
+            return temp;
+        } else if ((*raiz)->dir == NULL) {
+            TNo *temp = (*raiz)->esq;
+            free(*raiz);
+            return temp;
+        }
+
+        TNo* temp = minValueNode((*raiz)->dir);
+        (*raiz)->valor = temp->valor;
+        (*raiz)->dir = exclui(&(*raiz)->dir, temp->valor);
+    }
+    return *raiz;
 }
 //===============================================================
 
@@ -119,5 +147,8 @@ int main(){
     }else{
         printf("Valor nao encontrado: \n");
     }
+    printf("\n\n\t Excluindo o valor 35\t\n\n");
+    atual = exclui(&raiz,35);
+    
     return 0;
 }
