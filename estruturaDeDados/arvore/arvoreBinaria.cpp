@@ -87,21 +87,22 @@ TNo *busca(TNo *raiz, int argumento){
     }
 }
 //===============================================================
-TNo* minValueNode(TNo* node) {
-    TNo* current = node;
-    while (current && current->esq != NULL)
-        current = current->esq;
-    return current;
+TNo* minValueNode(TNo* no) {
+    TNo* atual = no;
+    while (atual->esq != NULL){
+        atual = atual->esq;
+    }    
+    return atual;
 }
-
+//===============================================================
 TNo* exclui(TNo **raiz, int argumento) {
-    if (*raiz == NULL) return *raiz;
-
-    if (argumento < (*raiz)->valor)
+    if (*raiz == NULL){
+        return *raiz;
+    }else if (argumento < (*raiz)->valor){
         (*raiz)->esq = exclui(&(*raiz)->esq, argumento);
-    else if (argumento > (*raiz)->valor)
+    }else if (argumento > (*raiz)->valor){
         (*raiz)->dir = exclui(&(*raiz)->dir, argumento);
-    else {
+    }else {
         if ((*raiz)->esq == NULL) {
             TNo *temp = (*raiz)->dir;
             free(*raiz);
@@ -111,15 +112,12 @@ TNo* exclui(TNo **raiz, int argumento) {
             free(*raiz);
             return temp;
         }
-
         TNo* temp = minValueNode((*raiz)->dir);
         (*raiz)->valor = temp->valor;
         (*raiz)->dir = exclui(&(*raiz)->dir, temp->valor);
     }
     return *raiz;
 }
-//===============================================================
-
 //===============================================================
 
 //===============================================================
@@ -136,19 +134,22 @@ int main(){
     insere(&raiz,35);
     caminhamentoEmOrdem(raiz);
     printf("\t\t caminhamento em ordem \t\n");
-    caminhamentoPreOrdem(raiz);
-    printf("\t\t caminhamento pre ordem \t\n");
-    caminhamentoPosOrdem(raiz);
-    printf("\t\t caminhamento pos ordem \t\n");
-    printf("\n\n\t Buscando No com o valor 92\t\n\n");
+    // caminhamentoPreOrdem(raiz);
+    // printf("\t\t caminhamento pre ordem \t\n");
+    // caminhamentoPosOrdem(raiz);
+    // printf("\t\t caminhamento pos ordem \t\n");
+    // printf("\n\n\t Buscando No com o valor 92\t\n\n");
     TNo*atual = busca(raiz,92);
-    if (atual != NULL){
-        printf("Encontrado: %d \n", atual->valor);
-    }else{
-        printf("Valor nao encontrado: \n");
-    }
-    printf("\n\n\t Excluindo o valor 35\t\n\n");
-    atual = exclui(&raiz,35);
-    
+    // if (atual != NULL){
+    //     printf("Encontrado: %d \n", atual->valor);
+    // }else{
+    //     printf("Valor nao encontrado: \n");
+    // }
+    printf("\n\n\t Excluindo o valor 41\t\n\n");
+    atual = exclui(&raiz,41);
+    caminhamentoEmOrdem(raiz);
+    printf("\n\n\t Excluindo o valor 32 \t\n\n");
+    atual = exclui(&raiz,32);
+    caminhamentoEmOrdem(raiz);
     return 0;
 }
