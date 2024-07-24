@@ -14,8 +14,9 @@ typedef struct tipoNo {
 TNo *raiz; // raiz inicial da arvore
 //======================================================================
 int altura(TNo *N) {
-    if (N == NULL)
+    if (N == NULL){
         return 0;
+    } 
     return N->nivelProfundidade;
 }
 //======================================================================
@@ -44,9 +45,9 @@ TNo *rotacaoDireita(TNo *y) {
     x->dir = y;
     y->esq = T2;
 
-    if (T2 != NULL)
+    if (T2 != NULL){
         T2->raiz = y;
-
+    }
     x->raiz = y->raiz;
     y->raiz = x;
 
@@ -63,9 +64,9 @@ TNo *rotacaoEsquerda(TNo *x) {
     y->esq = x;
     x->dir = T2;
 
-    if (T2 != NULL)
+    if (T2 != NULL){
         T2->raiz = x;
-
+    }
     y->raiz = x->raiz;
     x->raiz = y;
 
@@ -76,16 +77,16 @@ TNo *rotacaoEsquerda(TNo *x) {
 }
 //======================================================================
 int getBalanco(TNo *N) {
-    if (N == NULL)
+    if (N == NULL){
         return 0;
+    }    
     return altura(N->esq) - altura(N->dir);
 }
 //======================================================================
 TNo *insere(TNo *no, char *nome) {
-    if (no == NULL)
+    if (no == NULL){
         return criaNo(nome, no);
-
-    if (strcmp(nome, no->nome) < 0) {
+    } else if (strcmp(nome, no->nome) < 0) {
         no->esq = insere(no->esq, nome);
         no->esq->raiz = no;
     } else if (strcmp(nome, no->nome) > 0) {
@@ -99,13 +100,13 @@ TNo *insere(TNo *no, char *nome) {
 
     int balanco = getBalanco(no);
 
-    if (balanco > 1 && strcmp(nome, no->esq->nome) < 0)
+    if (balanco > 1 && strcmp(nome, no->esq->nome) < 0){
         return rotacaoDireita(no);
 
-    if (balanco < -1 && strcmp(nome, no->dir->nome) > 0)
+    }else if (balanco < -1 && strcmp(nome, no->dir->nome) > 0){
         return rotacaoEsquerda(no);
 
-    if (balanco > 1 && strcmp(nome, no->esq->nome) > 0) {
+    }else if (balanco > 1 && strcmp(nome, no->esq->nome) > 0) {
         no->esq = rotacaoEsquerda(no->esq);
         return rotacaoDireita(no);
     }
@@ -120,16 +121,16 @@ TNo *insere(TNo *no, char *nome) {
 //======================================================================
 TNo *minValueNode(TNo *no) {
     TNo *atual = no;
-    while (atual->esq != NULL)
+    while (atual->esq != NULL){
         atual = atual->esq;
+    }
     return atual;
 }
 //======================================================================
 TNo *exclui(TNo *no, char *nome) {
-    if (no == NULL)
+    if (no == NULL){
         return no;
-
-    if (strcmp(nome, no->nome) < 0) {
+    }else if (strcmp(nome, no->nome) < 0) {
         no->esq = exclui(no->esq, nome);
     } else if (strcmp(nome, no->nome) > 0) {
         no->dir = exclui(no->dir, nome);
@@ -151,25 +152,24 @@ TNo *exclui(TNo *no, char *nome) {
         }
     }
 
-    if (no == NULL)
+    if (no == NULL){
         return no;
-
+    }
     no->nivelProfundidade = 1 + max(altura(no->esq), altura(no->dir));
 
     int balanco = getBalanco(no);
 
-    if (balanco > 1 && getBalanco(no->esq) >= 0)
+    if (balanco > 1 && getBalanco(no->esq) >= 0){
         return rotacaoDireita(no);
-
-    if (balanco > 1 && getBalanco(no->esq) < 0) {
+    }else if (balanco > 1 && getBalanco(no->esq) < 0) {
         no->esq = rotacaoEsquerda(no->esq);
         return rotacaoDireita(no);
     }
 
-    if (balanco < -1 && getBalanco(no->dir) <= 0)
+    if (balanco < -1 && getBalanco(no->dir) <= 0){
         return rotacaoEsquerda(no);
 
-    if (balanco < -1 && getBalanco(no->dir) > 0) {
+    }else if (balanco < -1 && getBalanco(no->dir) > 0) {
         no->dir = rotacaoDireita(no->dir);
         return rotacaoEsquerda(no);
     }
