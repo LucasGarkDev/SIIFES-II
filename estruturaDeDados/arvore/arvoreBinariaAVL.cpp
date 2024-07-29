@@ -31,9 +31,8 @@ int max(int a, int b) {
 int getBalanco(TNo *N) {
     if (N == NULL) {
         return 0;
-    } else {
-        return altura(N->esq) - altura(N->dir);
     }
+    return altura(N->esq) - altura(N->dir);
 }
 //=============================================================================
 TNo *criaNo(char *nome, TNo *raiz) {

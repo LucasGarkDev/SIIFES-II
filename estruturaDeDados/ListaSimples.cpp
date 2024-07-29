@@ -66,7 +66,6 @@ void inserir(Tlista *lista, int valor){
         lista->fim = novo;
         lista->total++;
     }
-    
 }
 
 void exibeLista(Tlista lista){
