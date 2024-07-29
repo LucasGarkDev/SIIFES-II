@@ -30,7 +30,11 @@ void inserirTarefa(TLista *lista, int id, char *descricao, int prioridade){
         TNoLista *atual = (TNoLista *)malloc(sizeof(TNoLista));
         atual = lista->inicio;
         while (atual->prox != NULL){
-            /* code */
+            if (atual->prioridade < novo->prioridade){
+                lista->inicio = novo;
+                
+            }
+            
         }
         
     }
