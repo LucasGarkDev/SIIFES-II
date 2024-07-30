@@ -1,27 +1,27 @@
 #include <stdio.h>
 #include "lista_encadeada.c"
-// #include "pilha.h"
+#include "pilha.c"
 // #include "avl.h"
 
 int main() {
     // Inicializa a lista encadeada
-    TLista *lista;
-    inicializaLista(&lista);
+    // TLista *lista;
+    // inicializaLista(&lista);
    
 
-    // Testando a Lista Encadeada
-    inserirTarefa(lista, 1, "Implementar a interface", 2);
-    inserirTarefa(lista, 2, "Corrigir bugs", 1);
-    inserirTarefa(lista, 3, "Escrever documentação", 3);
-    printf("Lista de Tarefas:\n");
-    exibirTarefas(lista);
-    excluirTarefa(lista, 2);
-    printf("Lista de Tarefas após excluir a tarefa com ID 2:\n");
-    exibirTarefas(lista);
-    buscarTarefa(lista, 3);
+    // // Testando a Lista Encadeada
+    // inserirTarefa(lista, 1, "Implementar a interface", 2);
+    // inserirTarefa(lista, 2, "Corrigir bugs", 1);
+    // inserirTarefa(lista, 3, "Escrever documentação", 3);
+    // printf("Lista de Tarefas:\n");
+    // exibirTarefas(lista);
+    // excluirTarefa(lista, 2);
+    // printf("Lista de Tarefas após excluir a tarefa com ID 2:\n");
+    // exibirTarefas(lista);
+    // buscarTarefa(lista, 3);
 
     // Testando a Pilha (Histórico de Operações)
-    // TPilha pilha;
+    TPilha pilha;
     // inicializaPilha(&pilha);
     // empilhaOperacao(&pilha, "Inseriu tarefa com ID 1");
     // empilhaOperacao(&pilha, "Inseriu tarefa com ID 2");
