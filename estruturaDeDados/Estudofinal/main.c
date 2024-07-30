@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "lista_encadeada.c"
 #include "pilha.c"
-// #include "avl.h"
+#include "avl.c"
 
 int main() {
     // Inicializa a lista encadeada
