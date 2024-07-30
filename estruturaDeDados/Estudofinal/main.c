@@ -15,10 +15,10 @@ int main() {
     inserirTarefa(lista, 3, "Escrever documentação", 3);
     printf("Lista de Tarefas:\n");
     exibirTarefas(lista);
-    // excluirTarefa(lista, 2);
-    // printf("Lista de Tarefas após excluir a tarefa com ID 2:\n");
-    // exibirTarefas(lista);
-    // buscarTarefa(lista, 3);
+    excluirTarefa(lista, 2);
+    printf("Lista de Tarefas após excluir a tarefa com ID 2:\n");
+    exibirTarefas(lista);
+    buscarTarefa(lista, 3);
 
     // Testando a Pilha (Histórico de Operações)
     // TPilha pilha;

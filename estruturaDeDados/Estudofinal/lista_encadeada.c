@@ -43,17 +43,21 @@ void inserirTarefa(TLista *lista, int id, char *descricao, int prioridade){
     TNoLista *novo = (TNoLista *)malloc(sizeof(TNoLista));
     criaTarefa(novo,id,descricao,prioridade);
     if (lista->inicio == NULL) {
+        // Caso 1: Lista vazia
         lista->inicio = novo;
         lista->fim = novo;
     } else {
         TNoLista *atual = lista->inicio;
         while (atual != NULL) {
             if (atual->prioridade >= novo->prioridade) {
+                // Caso 2: Inserção no início ou no meio
                 novo->prox = atual;
                 novo->ante = atual->ante;
                 if (atual->ante != NULL) {
+                    // Inserção no meio
                     atual->ante->prox = novo;
                 } else {
+                    // Inserção no início
                     lista->inicio = novo;
                 }
                 atual->ante = novo;
@@ -61,6 +65,7 @@ void inserirTarefa(TLista *lista, int id, char *descricao, int prioridade){
                 return;
             }
             if (atual->prox == NULL) {
+                // Caso 3: Inserção no fim
                 break;
             }
             atual = atual->prox;
@@ -73,10 +78,40 @@ void inserirTarefa(TLista *lista, int id, char *descricao, int prioridade){
 }
 
 // Função para excluir uma tarefa da lista
-
+void excluirTarefa(TLista *lista, int id){
+    TNoLista *atual = lista->inicio;
+    while (atual->prox != NULL){
+        if (atual->id == id){
+            if (atual->ante == NULL){
+                atual->prox->ante = NULL;
+                lista->inicio = atual->prox;
+            }else{
+                atual->prox->ante = atual->ante;
+                atual->ante->prox = atual->prox;
+            }
+            free(atual);
+            return;    
+        }
+        atual = atual->prox;
+    }
+    if (atual == NULL) {
+        printf("Tarefa com ID %d não encontrada.\n", id);
+    }
+}
 
 // Função para buscar uma tarefa na lista
-
+int buscarTarefa(TLista *lista, int id){
+    TNoLista *atual = lista->inicio;
+    while (atual != NULL) {
+        if (atual->id == id) {
+            printf("Tarefa encontrada: ID=%d, Descrição=%s, Prioridade=%d\n", atual->id, atual->descricao, atual->prioridade);
+            return 1;
+        }
+        atual = atual->prox;
+    }
+    printf("Tarefa com ID %d não encontrada.\n", id);
+    return 0;
+}
 
 // Função para exibir a lista de tarefas
 void exibirTarefas(TLista *lista) {
