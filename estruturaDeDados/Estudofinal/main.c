@@ -5,11 +5,11 @@
 
 int main() {
     // Inicializa a lista encadeada
-    // TLista *lista;
+    //TLista *lista;
     // inicializaLista(&lista);
    
 
-    // // Testando a Lista Encadeada
+    // Testando a Lista Encadeada
     // inserirTarefa(lista, 1, "Implementar a interface", 2);
     // inserirTarefa(lista, 2, "Corrigir bugs", 1);
     // inserirTarefa(lista, 3, "Escrever documentação", 3);
@@ -21,7 +21,7 @@ int main() {
     // buscarTarefa(lista, 3);
 
     // Testando a Pilha (Histórico de Operações)
-    TPilha pilha;
+    //TPilha pilha;
     // inicializaPilha(&pilha);
     // empilhaOperacao(&pilha, "Inseriu tarefa com ID 1");
     // empilhaOperacao(&pilha, "Inseriu tarefa com ID 2");
@@ -33,12 +33,12 @@ int main() {
     // exibirHistorico(&pilha);
 
     // Testando a Árvore AVL
-    // TNoAVL *raiz = NULL;
-    // raiz = insereAVL(raiz, 1, "Implementar a interface", 2);
-    // raiz = insereAVL(raiz, 2, "Corrigir bugs", 1);
-    // raiz = insereAVL(raiz, 3, "Escrever documentação", 3);
-    // printf("Árvore AVL de Tarefas (Em Ordem):\n");
-    // caminhamentoEmOrdemAVL(raiz);
+    TNoAVL *raiz = NULL;
+    raiz = insereAVL(raiz, 1, "Implementar a interface", 2);
+    raiz = insereAVL(raiz, 2, "Corrigir bugs", 1);
+    raiz = insereAVL(raiz, 3, "Escrever documentação", 3);
+    printf("Árvore AVL de Tarefas (Em Ordem):\n");
+    caminhamentoEmOrdemAVL(raiz);
     // buscaAVL(raiz, 2);
 
     return 0;
