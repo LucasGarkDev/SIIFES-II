@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/POO.iml" filepath="$PROJECT_DIR$/.idea/POO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/conteudo1/conteudo1.iml" filepath="$PROJECT_DIR$/conteudo1/conteudo1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/desafiosDiarios/desafiosDiarios.iml" filepath="$PROJECT_DIR$/desafiosDiarios/desafiosDiarios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/desafiosDiarios/sistemadeataquerpg/sistemadeataquerpg.iml" filepath="$PROJECT_DIR$/desafiosDiarios/sistemadeataquerpg/sistemadeataquerpg.iml" />
+    </modules>
+  </component>
+</project>
