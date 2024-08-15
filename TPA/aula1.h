@@ -8,3 +8,4 @@ typedef struct estrutura{
 }TEstr;
 
 void insere(TEstr *e, int i);
+TNo *remova(TEstr *e);

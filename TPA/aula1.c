@@ -47,6 +47,19 @@ void insere(TEstr *e, int i){
         e->prim = n;
     }
 }
+
+TNo *remova(TEstr *e){
+    TNo *n = NULL;
+    if (e->prim != NULL){
+        n = e->prim;
+        e->prim = e->prim->prox;
+        if (e->prim == NULL){
+            e->ult = NULL;
+        }
+        return n;
+    }
+   
+}
 //============================================
 int main(){
     TEstr *lista;
