@@ -34,7 +34,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "aula1.h"
+#include "TabLista.h"
 
 void insere(TEstr *e, int i){
     TNo *n = (TNo*)malloc(sizeof(TNo));
