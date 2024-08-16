@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/lucas/Documentos/ifes-2ano/estruturaDeDados",
-      "program": "/home/lucas/Documentos/ifes-2ano/estruturaDeDados/build/Debug/outDebug",
+      "cwd": "/home/lucas/Documentos/ifes-2ano/SIIFES-II/TPA",
+      "program": "/home/lucas/Documentos/ifes-2ano/SIIFES-II/TPA/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
