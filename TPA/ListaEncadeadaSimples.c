@@ -157,10 +157,9 @@ void menuPrincipal(TLista *listaEncadeada){
     } while (repete == 0);
 }
 
-TLista listaEncadeada;
-
 //=================================================
 int principal(){
+    TLista listaEncadeada;
     inicializa(&listaEncadeada);
     menuPrincipal(&listaEncadeada);
     return 0;
