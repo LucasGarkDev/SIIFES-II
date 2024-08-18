@@ -14,7 +14,7 @@ typedef struct tipoLista{
     int total;    
 }TLista;
 
-void inicializa(TLista *lista);
+void inicializa(TLista *lista, FILE *arquivoLista);
 void inserir(TLista *lista, int valor);
 void exibeLista(TLista lista);
 void excluirLista(TLista *lista, int valor);

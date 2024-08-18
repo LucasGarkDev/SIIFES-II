@@ -3,12 +3,50 @@
 #include "ListaEncadeadaSimples.h"
 
 //Feito por: Lucas Garcia de Souza
-//=================================================
-void inicializa(TLista *lista){
+
+
+FILE * abrirArquivo(char * nomeArq, char * modo) {
+    FILE * arq;
+    arq = fopen( nomeArq, modo );
+    if ( arq == NULL) {
+        printf("ERRO ao abrir o arquivo.");
+        exit(-1);
+    }
+    return arq;
+}
+
+void construirListaDoZero(TLista *lista){
     lista->inicio = NULL;
     lista->fim = NULL;
     lista->total = 0;
 }
+
+
+void lerArquivo(TLista *lista, FILE *arquivoLista) {
+    int matricula;
+    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
+        inserir(lista, matricula);
+    }
+}
+
+void inicializa(TLista *lista, FILE *arquivoLista) {
+    construirListaDoZero(lista);
+    
+    // Movendo o ponteiro do arquivo para o final
+    fseek(arquivoLista, 0, SEEK_END);
+    
+    // Obtendo a posição atual do ponteiro, que é o tamanho do arquivo
+    long tamanho = ftell(arquivoLista);
+    
+    // Reposicionando o ponteiro para o início do arquivo
+    if (tamanho != 0) {
+        fseek(arquivoLista, 0, SEEK_SET);  // Reposiciona para o início
+        lerArquivo(lista, arquivoLista);
+    }
+}
+
+//=================================================
+
 //=================================================
 int solicitarNumero(int caminhoASerEscolhido){
     int num;
@@ -170,11 +208,12 @@ void menuPrincipal(TLista *listaEncadeada){
         }
     } while (repete == 0);
 }
-
 //=================================================
 int main(){
+    FILE *arquivoLista = abrirArquivo("lista_matricula.txt","r");
     TLista listaEncadeada;
-    inicializa(&listaEncadeada);
+    inicializa(&listaEncadeada,&arquivoLista);
     menuPrincipal(&listaEncadeada);
+    fclose(arquivoLista);
     return 0;
 }
