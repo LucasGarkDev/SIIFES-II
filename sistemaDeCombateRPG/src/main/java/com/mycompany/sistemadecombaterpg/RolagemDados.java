@@ -27,8 +27,7 @@ public class RolagemDados {
             resultadoRolagem = dado.nextInt(4) + 1;
         }else {
             resultadoRolagem = 10;
-        }
-                
+        }  
         return resultadoRolagem;
     }
 }
