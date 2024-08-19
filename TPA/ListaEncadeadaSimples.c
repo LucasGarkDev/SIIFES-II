@@ -4,7 +4,7 @@
 
 //Feito por: Lucas Garcia de Souza
 
-
+//=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     FILE * arq;
     arq = fopen( nomeArq, modo );
@@ -14,21 +14,20 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
     }
     return arq;
 }
-
+//=================================================
 void construirListaDoZero(TLista *lista){
     lista->inicio = NULL;
     lista->fim = NULL;
     lista->total = 0;
 }
-
-
+//=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     int matricula;
     while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
         inserir(lista, matricula);
     }
 }
-
+//=================================================
 void inicializa(TLista *lista, FILE *arquivoLista) {
     construirListaDoZero(lista);
     
@@ -44,22 +43,36 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
         lerArquivo(lista, arquivoLista);
     }
 }
+//=================================================
+void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
+    arquivoLista = abrirArquivo("lista_matricula.txt", "w");
+    TElemento *atual = lista->inicio;
+    while (atual != NULL) {
+        fprintf(arquivoLista, "%d\n", atual->valor);
+        atual = atual->prox;
+    }
+    fclose(arquivoLista);
+}
 
 //=================================================
-
-//=================================================
-int solicitarNumero(int caminhoASerEscolhido){
-    int num;
-    do{
-        if (caminhoASerEscolhido == 0){
-            printf("Digite um numero para ser inserido: ");
-            scanf("%d", &num);
-        }else{
-            printf("Digite um numero para ser excluido: ");
-            scanf("%d", &num);
+int pesquisarMatricula(TLista *lista) {
+    int matriculaBusca;
+    
+    // Solicita ao usuário a matrícula a ser buscada
+    printf("Digite a matrícula que deseja buscar: ");
+    scanf("%d", &matriculaBusca);
+    
+    // Percorrendo a lista para encontrar a matrícula
+    TElemento *atual = lista->inicio;
+    while (atual != NULL) {
+        if (atual->valor == matriculaBusca) {
+            return matriculaBusca;
         }
-    } while ((num < 1)||(num > 4));
-    return num;
+        atual = atual->prox;
+    }
+    
+    // Se chegar aqui, a matrícula não foi encontrada
+    printf("Matrícula %d não encontrada na lista.\n", matriculaBusca);
 }
 //=================================================
 void inserir(TLista *lista, int valor){
@@ -163,11 +176,13 @@ int pedirOpcao(){
         printf("1 - Inserir na Lista\n");
         printf("2 - Exibe Lista\n");
         printf("3 - Excluir da Lista\n");
-        printf("4 - Sair\n");
+        printf("4 - Pesquisar Matricula\n");
+        printf("5 - Total de Matriculas\n");
+        printf("6 - Sair\n");
         printf("Digite a opção: ");
         scanf("%d", &op);
         printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 4));
+    } while ((op < 1)||(op > 6));
     return op;
 }
 //=================================================
@@ -201,6 +216,13 @@ void menuPrincipal(TLista *listaEncadeada){
             excluirLista(listaEncadeada,numInseri);
             break;
         case 4:
+            int matriculaBusca = pesquisarMatricula(listaEncadeada);
+            printf("Matrícula %d encontrada na lista.\n", matriculaBusca);
+            break;
+        case 5:
+            printf("O total de matriculas presente na lista e: %d\n", listaEncadeada->total);
+            break;
+        case 6:
             repete = 1;
             break;
         default:
@@ -212,8 +234,9 @@ void menuPrincipal(TLista *listaEncadeada){
 int main(){
     FILE *arquivoLista = abrirArquivo("lista_matricula.txt","r");
     TLista listaEncadeada;
-    inicializa(&listaEncadeada,&arquivoLista);
+    inicializa(&listaEncadeada,arquivoLista);
     menuPrincipal(&listaEncadeada);
+    gravarListaEmArquivo(&listaEncadeada,arquivoLista);
     fclose(arquivoLista);
     return 0;
 }
