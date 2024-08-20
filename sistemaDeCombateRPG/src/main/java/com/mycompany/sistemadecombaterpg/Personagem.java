@@ -111,4 +111,8 @@ public class Personagem implements Modificadores{
         }
     }
 
+    private int rolagem(String dadoDeVida) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
