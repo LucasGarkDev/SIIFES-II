@@ -14,7 +14,12 @@ typedef struct tipoLista{
     int total;    
 }TLista;
 
+FILE * abrirArquivo(char * nomeArq, char * modo);
+void construirListaDoZero(TLista *lista);
+void lerArquivo(TLista *lista, FILE *arquivoLista);
 void inicializa(TLista *lista, FILE *arquivoLista);
+void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista);
+int pesquisarMatricula(TLista *lista);
 void inserir(TLista *lista, int valor);
 void exibeLista(TLista lista);
 void excluirLista(TLista *lista, int valor);

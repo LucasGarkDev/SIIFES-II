@@ -30,16 +30,10 @@ void lerArquivo(TLista *lista, FILE *arquivoLista) {
 //=================================================
 void inicializa(TLista *lista, FILE *arquivoLista) {
     construirListaDoZero(lista);
-    
-    // Movendo o ponteiro do arquivo para o final
     fseek(arquivoLista, 0, SEEK_END);
-    
-    // Obtendo a posição atual do ponteiro, que é o tamanho do arquivo
     long tamanho = ftell(arquivoLista);
-    
-    // Reposicionando o ponteiro para o início do arquivo
     if (tamanho != 0) {
-        fseek(arquivoLista, 0, SEEK_SET);  // Reposiciona para o início
+        fseek(arquivoLista, 0, SEEK_SET);  
         lerArquivo(lista, arquivoLista);
     }
 }
@@ -57,12 +51,8 @@ void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
 //=================================================
 int pesquisarMatricula(TLista *lista) {
     int matriculaBusca;
-    
-    // Solicita ao usuário a matrícula a ser buscada
     printf("Digite a matrícula que deseja buscar: ");
     scanf("%d", &matriculaBusca);
-    
-    // Percorrendo a lista para encontrar a matrícula
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
         if (atual->valor == matriculaBusca) {
@@ -70,8 +60,6 @@ int pesquisarMatricula(TLista *lista) {
         }
         atual = atual->prox;
     }
-    
-    // Se chegar aqui, a matrícula não foi encontrada
     printf("Matrícula %d não encontrada na lista.\n", matriculaBusca);
 }
 //=================================================
@@ -197,7 +185,7 @@ int pedirNum(int caminhoASerEscolhido){
     }
     return num;
 }
-//=================================================
+//================================================
 void menuPrincipal(TLista *listaEncadeada){
     int op, numInseri;
     int repete = 0;
@@ -230,7 +218,7 @@ void menuPrincipal(TLista *listaEncadeada){
         }
     } while (repete == 0);
 }
-//=================================================
+//================================================
 int main(){
     FILE *arquivoLista = abrirArquivo("lista_matricula.txt","r");
     TLista listaEncadeada;
