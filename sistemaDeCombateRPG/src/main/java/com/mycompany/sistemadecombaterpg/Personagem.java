@@ -7,7 +7,7 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public class Personagem implements Modificadores,Iniciativa{
+public class Personagem implements Modificadores,Iniciativa,Acoes{
     public String nome;
     public int forca;
     public int destresa;

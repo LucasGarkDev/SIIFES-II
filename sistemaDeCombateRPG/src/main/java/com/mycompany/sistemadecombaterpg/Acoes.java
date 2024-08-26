@@ -11,6 +11,7 @@ package com.mycompany.sistemadecombaterpg;
 public interface Acoes {
     public int atacar(String dado, int modificador, Personagem alvo);
     public int magia(Magia magiaEscolhida, int modificador, Personagem alvo);
+    public void usarHabilidade(Personagem personagem);
     public int defender(Personagem alvo);
     public int esquivar(Personagem personagem);
     public void guardarAcao(Personagem personagem);
