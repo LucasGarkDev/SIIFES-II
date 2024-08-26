@@ -12,9 +12,47 @@ import java.util.Random;
  */
 public class Magia {
     private int nivel;
-    private Random dadoDano;
+    private int dadoDano;
     private int numeroAlvosMaximo;
     public String nome;
     public String descricao;
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setDadoDano(String dadoEscolhido) {
+        RolagemDados rolagemDados = new RolagemDados();
+        this.dadoDano = rolagemDados.rolagem(dadoEscolhido); 
+    }
+
+    public int getDadoDano() {
+        return dadoDano;
+    }
+    
+    public int getNumeroAlvosMaximo() {
+        return numeroAlvosMaximo;
+    }
+
+    public void setNumeroAlvosMaximo(int numeroAlvosMaximo) {
+        this.numeroAlvosMaximo = numeroAlvosMaximo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
     
 }

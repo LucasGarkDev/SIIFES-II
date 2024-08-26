@@ -4,6 +4,8 @@
 
 package com.mycompany.sistemadecombaterpg;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author lucas
@@ -11,6 +13,14 @@ package com.mycompany.sistemadecombaterpg;
 public class SistemaDeCombateRPG {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Combate campoDebatalha = new Combate();
+        campoDebatalha.listaDeIniciativa.add(new Personagem("Herói"));
+        campoDebatalha.listaDeIniciativa.add(new Monstro("Orc", 100));
+        campoDebatalha.listaDeIniciativa.add(new Personagem("Mago"));
+        campoDebatalha.listaDeIniciativa.add(new Monstro("Dragão", 200));
+        
+        
+        campoDebatalha.iniciarCombate(campoDebatalha.listaDeIniciativa);
+        
     }
 }

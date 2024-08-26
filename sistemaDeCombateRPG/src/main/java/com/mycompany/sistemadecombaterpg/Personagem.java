@@ -7,7 +7,7 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public class Personagem implements Modificadores{
+public class Personagem implements Modificadores,Iniciativa{
     public String nome;
     public int forca;
     public int destresa;
@@ -19,6 +19,11 @@ public class Personagem implements Modificadores{
     public int pontosDeVida;
     private int pontosDeVidaMaximo;
     public int nivel;
+
+    public Personagem(String nome) {
+        this.nome = nome;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -81,7 +86,8 @@ public class Personagem implements Modificadores{
     }
 
     public void setPontosDeVidaMaximo(int atributoPrincipal, String dadoDeVida){
-        this.pontosDeVidaMaximo = (atributoPrincipal + rolagem(dadoDeVida)) * this.nivel;
+        RolagemDados rolagem = new RolagemDados();
+        this.pontosDeVidaMaximo = (atributoPrincipal + rolagem.rolagem(dadoDeVida)) * this.nivel;
     }
 
     @Override
@@ -111,8 +117,14 @@ public class Personagem implements Modificadores{
         }
     }
 
-    private int rolagem(String dadoDeVida) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    public int rolarIniciativa(String dado, int modificador){
+        int valorIniciativa = 0;
+        RolagemDados rolagemDados = new RolagemDados();
+        valorIniciativa = rolagemDados.rolagem("d20") + modificador;
+        return valorIniciativa;
     }
+    
+    
 
 }
