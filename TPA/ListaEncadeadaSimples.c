@@ -47,6 +47,19 @@ void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
     }
     fclose(arquivoLista);
 }
+//=================================================
+int pesquisarMatricula2(TLista *lista, int matriculaBusca) {
+    TElemento *atual = lista->inicio;
+    while (atual != NULL) {
+        if (atual->valor == matriculaBusca) {
+            printf("Matrícula %d encontrada na lista.\n", matriculaBusca);
+            return 1; // Retorna 1 se encontrar a matrícula
+        }
+        atual = atual->prox;
+    }
+    printf("Matrícula %d não encontrada na lista.\n", matriculaBusca);
+    return 0; // Retorna 0 se não encontrar a matrícula
+}
 
 //=================================================
 int pesquisarMatricula(TLista *lista) {
@@ -64,42 +77,48 @@ int pesquisarMatricula(TLista *lista) {
 }
 //=================================================
 void inserir(TLista *lista, int valor){
-    int inseriu = 0;
+    TElemento *atual = lista->inicio;
+    while (atual != NULL) {
+        if (atual->valor == valor) {
+            printf("Matrícula %d já existe na lista e será descartada.\n", valor);
+            return; // Se já existir, a função termina sem inserir
+        }
+        atual = atual->prox;
+    }
+
+    // Se a matrícula não existir, procede com a inserção
     TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     novo->valor = valor;
     novo->prox = NULL;
-    if (lista->inicio == NULL){
-        //Lista encontra-se vazia.
-        //Inserir o primeiro e unico elemento da lista ate agora
+
+    if (lista->inicio == NULL) {
+        // Lista encontra-se vazia.
+        // Inserir o primeiro e único elemento da lista até agora
         lista->inicio = novo;
         lista->fim = novo;
         lista->total = 1;
-        inseriu = 1;
-    }else{
-        //Lista ja possui pelo menos 1 elemento
-        TElemento *atual = lista->inicio;
+    } else {
+        // Lista já possui pelo menos 1 elemento
         TElemento *anterior = NULL;
-        while (atual != NULL){
-            if (atual->valor >= novo->valor){
-                if (anterior == NULL){
-                    //Inserir novo antes do primeiro da lista
+        atual = lista->inicio;
+        while (atual != NULL) {
+            if (atual->valor >= novo->valor) {
+                if (anterior == NULL) {
+                    // Inserir novo antes do primeiro da lista
                     novo->prox = atual;
                     lista->inicio = novo;
-                }else{
-                    //Inserir no meio da lista
+                } else {
+                    // Inserir no meio da lista
                     novo->prox = atual;
                     anterior->prox = novo;
                 }
-                inseriu = 1;
                 lista->total++;
-                break;
+                return; // Insere e termina a função
             }
             anterior = atual;
-            atual = atual->prox; //move para o próximo elemento
+            atual = atual->prox; // move para o próximo elemento
         }
-    }
-    if (!inseriu){
-        //Inserir elemento no fim da lista
+        // Inserir elemento no fim da lista
         lista->fim->prox = novo;
         lista->fim = novo;
         lista->total++;
