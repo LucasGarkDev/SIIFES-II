@@ -80,12 +80,10 @@ void inserir(TLista *lista, int valor){
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
         if (atual->valor == valor) {
-            printf("Matrícula %d já existe na lista e será descartada.\n", valor);
             return; // Se já existir, a função termina sem inserir
         }
         atual = atual->prox;
     }
-
     // Se a matrícula não existir, procede com a inserção
     TElemento *novo = (TElemento *)malloc(sizeof(TElemento));
     novo->valor = valor;
@@ -138,42 +136,39 @@ void exibeLista(TLista lista){
 
 }
 //=================================================
+//=================================================
 void excluirLista(TLista *lista, int valor){
     TElemento *atual = lista->inicio;
-    int cont = 0;
     TElemento *anterior = NULL;
-    while (atual != NULL){
-        if (cont == 0){
-            // printf("\n\n\tA lista esta vazia\n");
-            cont++;
-        }else if (atual->valor == valor){
-            //Encontra o elemento a ser excluido
-            if (lista->inicio == lista->fim){
-                //Exclusao do unico elemento da lista
+    while (atual != NULL) {
+        if (atual->valor == valor) {
+            // Encontra o elemento a ser excluído
+            if (atual == lista->inicio) {
+                // Exclusão do primeiro elemento da lista
                 printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
-                lista->inicio = NULL;
-                lista->fim = NULL;
-            }else if (atual == lista->inicio){
-                //Esclui o primeiro elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
-                lista->inicio = atual->prox; //lista->inicio = lista->inicio->prox;
-            }else if (atual == lista->fim){
-                //Excluindo o ultimo cara da lista
+                lista->inicio = atual->prox;
+                if (lista->inicio == NULL) {
+                    // A lista tinha apenas um elemento
+                    lista->fim = NULL;
+                }
+            } else if (atual == lista->fim) {
+                // Exclusão do último elemento da lista
                 printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
                 lista->fim = anterior;
                 lista->fim->prox = NULL;
-            }else if ((atual != lista->inicio)&&(atual != lista->fim)){
-                //Excluindo alguem que nao esta nem no fim e nem no inicio
+            } else {
+                // Exclusão de um elemento do meio da lista
                 printf("\n\n\tExcluindo o ELEMENTO %d ...\n", atual->valor);
                 anterior->prox = atual->prox;
             }
             free(atual);
             lista->total--;
-            break;
+            return; // Sai da função após excluir o elemento
         }
         anterior = atual;
-        atual = atual->prox;// move para o proximo elemento
+        atual = atual->prox; // move para o próximo elemento
     }
+    printf("Elemento %d não encontrado na lista.\n", valor);
 }
 //=================================================
 int pedirOpcao(){
