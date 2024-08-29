@@ -19,6 +19,8 @@ public class Personagem implements Modificadores,Iniciativa,Acoes{
     public int pontosDeVida;
     private int pontosDeVidaMaximo;
     public int nivel;
+    public int iniciativa;
+    public Armas armaPropria;
 
     public Personagem(String nome) {
         this.nome = nome;
@@ -117,13 +119,29 @@ public class Personagem implements Modificadores,Iniciativa,Acoes{
         }
     }
 
-    @Override
-    public int rolarIniciativa(String dado, int modificador){
-        int valorIniciativa = 0;
+     // Método para rolar e definir a iniciativa
+    public void definirIniciativa(String dado, int modificador) {
         RolagemDados rolagemDados = new RolagemDados();
-        valorIniciativa = rolagemDados.rolagem("d20") + modificador;
-        return valorIniciativa;
+        this.iniciativa = rolagemDados.rolagem(dado) + modificador;
     }
+
+    // Método para obter a iniciativa
+    public int getIniciativa() {
+        return iniciativa;
+    }
+
+    // Implementação do método rolarIniciativa, caso ainda queira usá-lo diretamente
+    @Override
+    public int rolarIniciativa(String dado, int modificador) {
+        RolagemDados rolagemDados = new RolagemDados();
+        return rolagemDados.rolagem(dado) + modificador;
+    }
+    
+    public int compareTo(Personagem outro) {
+        return Integer.compare(outro.getIniciativa(), this.getIniciativa());
+        // Ou this.getIniciativa() - outro.getIniciativa() para ordem crescente
+    }
+
     
     
 

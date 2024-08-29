@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *
  * @author lucas
  */
-public class SistemaDeCombateRPG {
+public class principal {
 
     public static void main(String[] args) {
         Combate campoDebatalha = new Combate();

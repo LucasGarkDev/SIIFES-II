@@ -1,0 +1,22 @@
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'/home/lucas/Documentos/ifes-2ano/SIIFES-II/POO/desafiosPOOdiarios/sistemaDeCombateRPG/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/lucas/Documentos/ifes-2ano/SIIFES-II/POO/desafiosPOOdiarios/sistemaDeCombateRPG/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'sistemaDeCombateRPG 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'sistemaDeCombateRPG 1.0-SNAPSHOT API'
