@@ -136,7 +136,6 @@ void exibeLista(TLista lista){
 
 }
 //=================================================
-//=================================================
 void excluirLista(TLista *lista, int valor){
     TElemento *atual = lista->inicio;
     TElemento *anterior = NULL;
