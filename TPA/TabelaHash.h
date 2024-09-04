@@ -14,6 +14,12 @@ typedef struct tipoLista{
     int total;    
 }TLista;
 
+typedef struct tipoTabelaHash {
+    TLista *vetorListas;  // Vetor de listas encadeadas
+    int tamanho;          // Tamanho da tabela (número de posições no vetor)
+}TabelaHash;
+
+
 FILE * abrirArquivo(char * nomeArq, char * modo);
 void construirListaDoZero(TLista *lista);
 void lerArquivo(TLista *lista, FILE *arquivoLista);
