@@ -19,6 +19,15 @@ int contarMatriculas(FILE *arquivoLista) {
     return totalMatriculas;
 }
 
+int contarTotalMatriculas(TabelaHash *tabela) {
+    int total = 0;
+    for (int i = 0; i < tabela->tamanho; i++) {
+        total += tabela->vetorListas[i].total;  // Somar o total de cada lista encadeada
+    }
+    return total;
+}
+
+
 // Função auxiliar para verificar se um número é primo
 int ehPrimo(int num) {
     if (num <= 1) return 0; // Números menores ou iguais a 1 não são primos
@@ -101,7 +110,7 @@ int pesquisarTabelaHash(TabelaHash *tabela, int matricula) {
 void inserirTabelaHash(TabelaHash *tabela, int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
     // Verifica se a matrícula já existe na lista do índice
-    if (pesquisarTabelaHash(tabela, matricula)) {
+    if (pesquisarLista(&tabela->vetorListas[indice], matricula)) {
         printf("Erro: A matrícula %d já está presente na tabela.\n", matricula);
         return;
     }
@@ -109,6 +118,7 @@ void inserirTabelaHash(TabelaHash *tabela, int matricula) {
     inserir(&tabela->vetorListas[indice], matricula);
     printf("Matrícula %d inserida com sucesso na tabela hash.\n", matricula);
 }
+
 
 void excluirTabelaHash(TabelaHash *tabela, int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
@@ -352,35 +362,42 @@ int pedirNum(int caminhoASerEscolhido){
     return num;
 }
 //================================================
-void menuPrincipal(TLista *listaEncadeada){
+void menuPrincipal(TabelaHash *tabelaHash) {
     int op, numInseri;
     int repete = 0;
-    do{
-        op = pedirOpcao();
-        switch (op){
-        case 1:
-            numInseri = pedirNum(0);
-            inserir(listaEncadeada,numInseri);
-            break;
-        case 2:
-            exibeLista(*listaEncadeada);
-            break;
-        case 3:
-            numInseri = pedirNum(1);
-            excluirLista(listaEncadeada,numInseri);
-            break;
-        case 4:
-            int matriculaBusca = pesquisarMatricula(listaEncadeada);
-            printf("Matrícula %d encontrada na lista.\n", matriculaBusca);
-            break;
-        case 5:
-            printf("O total de matriculas presente na lista e: %d\n", listaEncadeada->total);
-            break;
-        case 6:
-            repete = 1;
-            break;
-        default:
-            break;
+    do {
+        op = pedirOpcao();  // Opções adaptadas para a tabela hash
+        switch (op) {
+            case 1:
+                // Inserir na Tabela Hash
+                numInseri = pedirNum(0);  // Pedir matrícula para inserir
+                inserirTabelaHash(tabelaHash, numInseri);
+                break;
+            case 2:
+                // Exibir a Tabela Hash
+                exibeTabelaHash(tabelaHash);
+                break;
+            case 3:
+                // Excluir da Tabela Hash
+                numInseri = pedirNum(1);  // Pedir matrícula para excluir
+                excluirTabelaHash(tabelaHash, numInseri);
+                break;
+            case 4:
+                // Pesquisar uma matrícula na Tabela Hash
+                numInseri = pedirNum(0);  // Pedir matrícula para buscar
+                pesquisarTabelaHash(tabelaHash, numInseri);
+                break;
+            case 5:
+                // Exibir total de matrículas na Tabela Hash
+                printf("O total de matrículas na tabela é: %d\n", contarTotalMatriculas(tabelaHash));
+                break;
+            case 6:
+                // Sair
+                repete = 1;
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+                break;
         }
     } while (repete == 0);
 }
@@ -402,5 +419,6 @@ int main() {
     // Executar o menu de opções
     executarMenu(&tabelaHash);
 
+    liberarTabelaHash(&tabelaHash);
     return 0;
 }

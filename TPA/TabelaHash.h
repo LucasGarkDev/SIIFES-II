@@ -31,4 +31,4 @@ void exibeLista(TLista lista);
 void excluirLista(TLista *lista, int valor);
 int pedirOpcao();
 int pedirNum(int caminhoASerEscolhido);
-void menuPrincipal(TLista *listaEncadeada);
+void menuPrincipal(TabelaHash *tabelaHash);
