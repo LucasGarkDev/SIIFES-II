@@ -6,145 +6,6 @@
 
 //Feito por: Lucas Garcia de Souza
 
-int funcaoHash(int matricula, int tamanho) {
-    return matricula % tamanho;
-}
-
-int contarMatriculas(FILE *arquivoLista) {
-    int matricula;
-    int totalMatriculas = 0;
-    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
-        totalMatriculas++;
-    }
-    return totalMatriculas;
-}
-
-int contarTotalMatriculas(TabelaHash *tabela) {
-    int total = 0;
-    for (int i = 0; i < tabela->tamanho; i++) {
-        total += tabela->vetorListas[i].total;  // Somar o total de cada lista encadeada
-    }
-    return total;
-}
-
-
-// Função auxiliar para verificar se um número é primo
-int ehPrimo(int num) {
-    if (num <= 1) return 0; // Números menores ou iguais a 1 não são primos
-    if (num == 2) return 1; // 2 é primo
-    if (num % 2 == 0) return 0; // Números pares não são primos
-    // Verificar divisibilidade por números ímpares até a raiz quadrada de num
-    for (int i = 3; i <= sqrt(num); i += 2) {
-        if (num % i == 0) {
-            return 0; // Não é primo
-        }
-    }
-    return 1; // É primo
-}
-
-int acharProximoPrimo(int num) {
-    // Continuar incrementando até encontrar um número primo
-    while (!ehPrimo(num)) {
-        num++;
-    }
-    return num;
-}
-
-void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
-    tabela->tamanho = tamanho;
-    tabela->vetorListas = (TLista *)malloc(tamanho * sizeof(TLista));
-    // Inicializar todas as listas encadeadas em cada posição do vetor
-    for (int i = 0; i < tamanho; i++) {
-        construirListaDoZero(&tabela->vetorListas[i]);
-    }
-}
-
-void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
-    int totalMatriculas = contarMatriculas(arquivoLista);
-    int opcaoPorcentagem = pedirOpcao3();
-    int tamanhoTabela;
-    
-    switch (opcaoPorcentagem) {
-        case 1:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.0));
-            break;
-        case 2:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
-            break;
-        case 3:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
-            break;
-        default:
-            printf("Opção inválida\n");
-            exit(1);
-    }
-
-    inicializarTabelaHash(tabelaHash, tamanhoTabela);
-}
-
-void lerEInserirMatrículas(TabelaHash *tabelaHash, FILE *arquivoLista) {
-    rewind(arquivoLista);  // Reposicionar o ponteiro para o início do arquivo
-    int matricula;
-    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
-        inserirTabelaHash(tabelaHash, matricula);
-    }
-}
-
-void executarMenu(TabelaHash *tabelaHash) {
-    menuPrincipal(tabelaHash);
-}
-
-
-int pesquisarTabelaHash(TabelaHash *tabela, int matricula) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
-    // Pesquisa a matrícula na lista encadeada do índice
-    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        printf("Matrícula %d encontrada na tabela hash.\n", matricula);
-        return 1;  // Encontrado
-    } else {
-        printf("Erro: A matrícula %d não foi encontrada na tabela.\n", matricula);
-        return 0;  // Não encontrado
-    }
-}
-
-void inserirTabelaHash(TabelaHash *tabela, int matricula) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
-    // Verifica se a matrícula já existe na lista do índice
-    if (pesquisarLista(&tabela->vetorListas[indice], matricula)) {
-        printf("Erro: A matrícula %d já está presente na tabela.\n", matricula);
-        return;
-    }
-    // Insere a matrícula na lista encadeada do índice
-    inserir(&tabela->vetorListas[indice], matricula);
-    printf("Matrícula %d inserida com sucesso na tabela hash.\n", matricula);
-}
-
-
-void excluirTabelaHash(TabelaHash *tabela, int matricula) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
-    // Verifica se a matrícula está na lista antes de tentar removê-la
-    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        excluirLista(&tabela->vetorListas[indice], matricula);
-        printf("Matrícula %d removida com sucesso da tabela hash.\n", matricula);
-    } else {
-        printf("Erro: A matrícula %d não foi encontrada para remoção.\n", matricula);
-    }
-}
-
-void exibeTabelaHash(TabelaHash *tabela) {
-    for (int i = 0; i < tabela->tamanho; i++) {
-        printf("Índice %d: ", i);
-        exibeLista(tabela->vetorListas[i]);
-    }
-}
-
-void liberarTabelaHash(TabelaHash *tabela) {
-    for (int i = 0; i < tabela->tamanho; i++) {
-        liberarLista(&tabela->vetorListas[i]);  // Função que libera cada lista
-    }
-    free(tabela->vetorListas);
-}
-
 //=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     FILE * arq;
@@ -400,6 +261,141 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 break;
         }
     } while (repete == 0);
+}
+//================================================
+int funcaoHash(int matricula, int tamanho) {
+    return matricula % tamanho;
+}
+//================================================
+int contarMatriculas(FILE *arquivoLista) {
+    int matricula;
+    int totalMatriculas = 0;
+    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
+        totalMatriculas++;
+    }
+    return totalMatriculas;
+}
+//================================================
+int contarTotalMatriculas(TabelaHash *tabela) {
+    int total = 0;
+    for (int i = 0; i < tabela->tamanho; i++) {
+        total += tabela->vetorListas[i].total;  // Somar o total de cada lista encadeada
+    }
+    return total;
+}
+//================================================
+int ehPrimo(int num) {
+    if (num <= 1) return 0; // Números menores ou iguais a 1 não são primos
+    if (num == 2) return 1; // 2 é primo
+    if (num % 2 == 0) return 0; // Números pares não são primos
+    // Verificar divisibilidade por números ímpares até a raiz quadrada de num
+    for (int i = 3; i <= sqrt(num); i += 2) {
+        if (num % i == 0) {
+            return 0; // Não é primo
+        }
+    }
+    return 1; // É primo
+}
+//================================================
+int acharProximoPrimo(int num) {
+    // Continuar incrementando até encontrar um número primo
+    while (!ehPrimo(num)) {
+        num++;
+    }
+    return num;
+}
+//================================================
+void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
+    tabela->tamanho = tamanho;
+    tabela->vetorListas = (TLista *)malloc(tamanho*sizeof(TLista));
+    // Inicializar todas as listas encadeadas em cada posição do vetor
+    for (int i = 0; i < tamanho; i++) {
+        construirListaDoZero(&tabela->vetorListas[i]);
+    }
+}
+//================================================
+void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
+    int totalMatriculas = contarMatriculas(arquivoLista);
+    int opcaoPorcentagem = pedirOpcao3();
+    int tamanhoTabela;
+    
+    switch (opcaoPorcentagem) {
+        case 1:
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.0));
+            break;
+        case 2:
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
+            break;
+        case 3:
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
+            break;
+        default:
+            printf("Opção inválida\n");
+            exit(1);
+    }
+
+    inicializarTabelaHash(tabelaHash, tamanhoTabela);
+}
+//================================================
+void lerEInserirMatrículas(TabelaHash *tabelaHash, FILE *arquivoLista) {
+    rewind(arquivoLista);  // Reposicionar o ponteiro para o início do arquivo
+    int matricula;
+    while (fscanf(arquivoLista, "%d", &matricula) != EOF) {
+        inserirTabelaHash(tabelaHash, matricula);
+    }
+}
+//================================================
+void executarMenu(TabelaHash *tabelaHash) {
+    menuPrincipal(tabelaHash);
+}
+//================================================
+int pesquisarTabelaHash(TabelaHash *tabela, int matricula) {
+    int indice = funcaoHash(matricula, tabela->tamanho);
+    // Pesquisa a matrícula na lista encadeada do índice
+    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
+        printf("Matrícula %d encontrada na tabela hash.\n", matricula);
+        return 1;  // Encontrado
+    } else {
+        printf("Erro: A matrícula %d não foi encontrada na tabela.\n", matricula);
+        return 0;  // Não encontrado
+    }
+}
+//================================================
+void inserirTabelaHash(TabelaHash *tabela, int matricula) {
+    int indice = funcaoHash(matricula, tabela->tamanho);
+    // Verifica se a matrícula já existe na lista do índice
+    if (pesquisarLista(&tabela->vetorListas[indice], matricula)) {
+        printf("Erro: A matrícula %d já está presente na tabela.\n", matricula);
+        return;
+    }
+    // Insere a matrícula na lista encadeada do índice
+    inserir(&tabela->vetorListas[indice], matricula);
+    printf("Matrícula %d inserida com sucesso na tabela hash.\n", matricula);
+}
+//================================================
+void excluirTabelaHash(TabelaHash *tabela, int matricula) {
+    int indice = funcaoHash(matricula, tabela->tamanho);
+    // Verifica se a matrícula está na lista antes de tentar removê-la
+    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
+        excluirLista(&tabela->vetorListas[indice], matricula);
+        printf("Matrícula %d removida com sucesso da tabela hash.\n", matricula);
+    } else {
+        printf("Erro: A matrícula %d não foi encontrada para remoção.\n", matricula);
+    }
+}
+//================================================
+void exibeTabelaHash(TabelaHash *tabela) {
+    for (int i = 0; i < tabela->tamanho; i++) {
+        printf("Índice %d: ", i);
+        exibeLista(tabela->vetorListas[i]);
+    }
+}
+//================================================
+void liberarTabelaHash(TabelaHash *tabela) {
+    for (int i = 0; i < tabela->tamanho; i++) {
+        liberarLista(&tabela->vetorListas[i]);  // Função que libera cada lista
+    }
+    free(tabela->vetorListas);
 }
 //================================================
 int main() {
