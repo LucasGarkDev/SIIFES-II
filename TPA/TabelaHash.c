@@ -306,7 +306,9 @@ void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
 }
 //================================================
 void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
+    printf("\n entrou na funcao\n");
     int totalMatriculas = contarMatriculas(arquivoLista);
+    printf("\n Executou o contaMatriculas()\n");
     int opcaoPorcentagem = pedirOpcao3();
     int tamanhoTabela;
     
