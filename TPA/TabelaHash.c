@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
 #include "TabelaHash.h"
 
@@ -76,6 +75,7 @@ int pesquisarMatricula(TLista *lista) {
         atual = atual->prox;
     }
     printf("Matrícula %d não encontrada na lista.\n", matriculaBusca);
+    return matriculaBusca;
 }
 //=================================================
 void inserir(TLista *lista, int valor){
@@ -289,7 +289,7 @@ int ehPrimo(int num) {
     if (num == 2) return 1; // 2 é primo
     if (num % 2 == 0) return 0; // Números pares não são primos
     // Verificar divisibilidade por números ímpares até a raiz quadrada de num
-    for (int i = 3; i <= sqrt(num); i += 2) {
+    for (int i = 3; i <= num*0.5; i += 2) {
         if (num % i == 0) {
             return 0; // Não é primo
         }
@@ -307,7 +307,7 @@ int acharProximoPrimo(int num) {
 //================================================
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
     tabela->tamanho = tamanho;
-    tabela->vetorListas = (TLista *)malloc(tamanho*sizeof(TLista));
+    tabela->vetorListas = (TLista *)malloc((size_t)tamanho * sizeof(TLista));
     // Inicializar todas as listas encadeadas em cada posição do vetor
     for (int i = 0; i < tamanho; i++) {
         construirListaDoZero(&tabela->vetorListas[i]);
@@ -364,7 +364,7 @@ int pesquisarTabelaHash(TabelaHash *tabela, int matricula) {
 void inserirTabelaHash(TabelaHash *tabela, int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
     // Verifica se a matrícula já existe na lista do índice
-    if (pesquisarLista(&tabela->vetorListas[indice], matricula)) {
+    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         printf("Erro: A matrícula %d já está presente na tabela.\n", matricula);
         return;
     }
@@ -389,6 +389,19 @@ void exibeTabelaHash(TabelaHash *tabela) {
         printf("Índice %d: ", i);
         exibeLista(tabela->vetorListas[i]);
     }
+}
+//================================================
+void liberarLista(TLista *lista) {
+    TElemento *atual = lista->inicio;
+    TElemento *prox;
+    while (atual != NULL) {
+        prox = atual->prox;  
+        free(atual);         
+        atual = prox;        
+    }
+    lista->inicio = NULL;
+    lista->fim = NULL;
+    lista->total = 0;
 }
 //================================================
 void liberarTabelaHash(TabelaHash *tabela) {
