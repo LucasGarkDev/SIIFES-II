@@ -4,10 +4,9 @@
 #include "TabelaHash.h"
 
 //Feito por: Lucas Garcia de Souza
-
 //=================================================
-FILE * abrirArquivo(char * nomeArq, char * modo) {
-    FILE * arq;
+FILE *abrirArquivo(char *nomeArq, char *modo) {
+    FILE *arq;
     arq = fopen(nomeArq, modo);
     if (arq == NULL) {
         printf("ERRO ao abrir o arquivo.\n");
@@ -38,6 +37,7 @@ void lerArquivo(TLista *lista, FILE *arquivoLista) {
         }
     }
 }
+
 //=================================================
 void inicializa(TLista *lista, FILE *arquivoLista) {
     construirListaDoZero(lista);
@@ -50,20 +50,24 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 }
 
 //=================================================
-void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    // Abrir o arquivo no modo de escrita para sobrescrever
-    arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
-    
+void gravarListaEmArquivo(TLista *lista, const char *nomeArquivo) {
+    // Abrir o arquivo no modo de escrita ("w") para sobrescrever
+    FILE *arquivoLista = fopen(nomeArquivo, "w");
+    if (arquivoLista == NULL) {
+        printf("Erro ao abrir o arquivo para gravação.\n");
+        return;
+    }
+
     // Percorrer a lista e gravar os dados
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
-        // Gravar a matrícula e o nome no formato correto
-        fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome);
+        // Gravar o nome e a matrícula no formato correto
+        fprintf(arquivoLista, "%s\n%ld\n", atual->nome, atual->valor);
         atual = atual->prox;
     }
-    
+
     fclose(arquivoLista);  // Fechar o arquivo após a gravação
-    printf("INFO: Lista gravada com sucesso no arquivo!\n");
+    printf("INFO: Lista gravada com sucesso no arquivo %s!\n", nomeArquivo);
 }
 
 //=================================================
@@ -134,9 +138,8 @@ void exibeLista(TLista lista) {
         atual = atual->prox;
     }
 }
-
 //=================================================
-void excluirLista(TLista *lista, long int valor){
+void excluirLista(TLista *lista, long int valor) {
     TElemento *atual = lista->inicio;
     TElemento *anterior = NULL;
     while (atual != NULL) {
@@ -144,7 +147,6 @@ void excluirLista(TLista *lista, long int valor){
             // Encontra o elemento a ser excluído
             if (atual == lista->inicio) {
                 // Exclusão do primeiro elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 lista->inicio = atual->prox;
                 if (lista->inicio == NULL) {
                     // A lista tinha apenas um elemento
@@ -152,20 +154,18 @@ void excluirLista(TLista *lista, long int valor){
                 }
             } else if (atual == lista->fim) {
                 // Exclusão do último elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 lista->fim = anterior;
                 lista->fim->prox = NULL;
             } else {
                 // Exclusão de um elemento do meio da lista
-                printf("\n\n\tExcluindo o ELEMENTO %ld ...\n", atual->valor);
                 anterior->prox = atual->prox;
             }
             free(atual);
             lista->total--;
-            return; // Sai da função após excluir o elemento
+            return;  // Sai da função após excluir o elemento
         }
         anterior = atual;
-        atual = atual->prox; // move para o próximo elemento
+        atual = atual->prox;  // Move para o próximo elemento
     }
     printf("Elemento %ld não encontrado na lista.\n", valor);
 }
@@ -244,19 +244,6 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 numInseri = pedirNum(1);  
                 excluirTabelaHash(tabelaHash, numInseri);
                 break;
-            case 4:
-                // Pesquisar uma matrícula na Tabela Hash
-                numInseri = pedirNum(0);  // Pedir matrícula para buscar
-                pesquisarTabelaHash(tabelaHash, numInseri);
-                break;
-            case 5:
-                // Exibir total de matrículas na Tabela Hash
-                printf("O total de matrículas na tabela é: %d\n", contarTotalMatriculas(tabelaHash));
-                break;
-            case 6:
-                // Imprimir toda a tabela hash
-                imprimirTabelaHash(tabelaHash);
-                break;
             case 7:
                 // Sair
                 repete = 1;
@@ -266,8 +253,11 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 break;
         }
     } while (repete == 0);
-}
 
+    // Gravar a tabela no arquivo ao sair
+    gravarTabelaHashEmArquivo(tabelaHash, "nomes_matriculas.txt");
+}
+// 202312277890
 //================================================
 int funcaoHash(long int matricula, int tamanho) {
     return (int)(matricula % tamanho);  // Função de hash simples
@@ -278,21 +268,11 @@ int contarMatriculas(FILE *arquivoLista) {
     char linha[100];
     int totalMatriculas = 0;
 
-    // Contar o número de matrículas no arquivo (cada matrícula ocupa duas linhas: nome e matrícula)
     while (fgets(linha, sizeof(linha), arquivoLista) != NULL) {
         totalMatriculas++;
     }
 
-    // Como cada matrícula ocupa duas linhas (nome e matrícula), dividimos por 2
-    return totalMatriculas / 2;
-}
-//================================================
-int contarTotalMatriculas(TabelaHash *tabela) {
-    int total = 0;
-    for (int i = 0; i < tabela->tamanho; i++) {
-        total += tabela->vetorListas[i].total;  // Somar o total de cada lista encadeada
-    }
-    return total;
+    return totalMatriculas / 2;  // Cada matrícula ocupa duas linhas
 }
 //================================================
 int ehPrimo(int num) {
@@ -389,8 +369,10 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome) {
     // Inserir a nova matrícula na lista correspondente no índice da tabela hash
     inserir(&tabela->vetorListas[indice], matricula, nome);
     printf("Matrícula %ld inserida com sucesso.\n", matricula);
-}
 
+    // Gravar a lista no arquivo após a inserção
+    gravarListaEmArquivo(&tabela->vetorListas[indice], "nomes_matriculas.txt");
+}
 //================================================
 void excluirTabelaHash(TabelaHash *tabela, long int matricula) {
     int indice = funcaoHash(matricula, tabela->tamanho);
@@ -398,10 +380,14 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula) {
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         excluirLista(&tabela->vetorListas[indice], matricula);
         printf("Matrícula %ld removida com sucesso da tabela hash.\n", matricula);
+
+        // Gravar a lista no arquivo após a exclusão
+        gravarListaEmArquivo(&tabela->vetorListas[indice], "nomes_matriculas.txt");
     } else {
         printf("Erro: A matrícula %ld não foi encontrada para remoção.\n", matricula);
     }
 }
+
 //================================================
 void exibeTabelaHash(TabelaHash *tabela) {
     for (int i = 0; i < tabela->tamanho; i++) {
@@ -429,27 +415,38 @@ void liberarTabelaHash(TabelaHash *tabela) {
     }
     free(tabela->vetorListas);
 }
-//================================================
+//===============================================
+void gravarTabelaHashEmArquivo(TabelaHash *tabela, const char *nomeArquivo) {
+    FILE *arquivo = fopen(nomeArquivo, "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para gravação.\n");
+        return;
+    }
+
+    for (int i = 0; i < tabela->tamanho; i++) {
+        TElemento *atual = tabela->vetorListas[i].inicio;
+        while (atual != NULL) {
+            fprintf(arquivo, "%s\n%ld\n", atual->nome, atual->valor);
+            atual = atual->prox;
+        }
+    }
+
+    fclose(arquivo);
+    printf("INFO: Tabela hash gravada no arquivo %s com sucesso!\n", nomeArquivo);
+}
 //=================================================
 int main() {
     // Abrir o arquivo
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
 
-    // Contar o número de matrículas no arquivo
-    int totalMatriculas = contarMatriculas(arquivoLista);
-    printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
-
-    // Reposicionar o ponteiro para o início do arquivo para leitura
-    rewind(arquivoLista);
-
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
-    inicializarTabela(&tabelaHash, arquivoLista);
+    inicializarTabelaHash(&tabelaHash, 20);  // Exemplo: tamanho inicial de 20
 
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
-    // Fechar o arquivo
+    // Fechar o arquivo de leitura
     fclose(arquivoLista);
 
     // Executar o menu de opções
