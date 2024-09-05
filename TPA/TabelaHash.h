@@ -46,4 +46,5 @@ void exibeLista(TLista lista);
 void excluirLista(TLista *lista, int valor);
 int pedirOpcao();
 int pedirNum(int caminhoASerEscolhido);
+void imprimirTabelaHash(TabelaHash *tabela);
 void menuPrincipal(TabelaHash *tabelaHash);
