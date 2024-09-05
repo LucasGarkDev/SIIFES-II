@@ -197,17 +197,18 @@ void excluirLista(TLista *lista, int valor){
 int pedirOpcao(){
     int op;
     printf("\n%s\n", INICIO);
-    do{
+    do {
         printf("1 - Inserir na Lista\n");
         printf("2 - Exibe Lista\n");
         printf("3 - Excluir da Lista\n");
         printf("4 - Pesquisar Matricula\n");
         printf("5 - Total de Matriculas\n");
-        printf("6 - Sair\n");
+        printf("6 - Imprimir toda a Tabela Hash\n");
+        printf("7 - Sair\n");
         printf("Digite a opção: ");
         scanf("%d", &op);
         printf("%s\n", CORTE);
-    } while ((op < 1)||(op > 6));
+    } while ((op < 1) || (op > 7));
     return op;
 }
 //=================================================
@@ -222,6 +223,27 @@ int pedirNum(int caminhoASerEscolhido){
     }
     return num;
 }
+//================================================
+void imprimirTabelaHash(TabelaHash *tabela) {
+    printf("\n\n===| Exibição Completa da Tabela Hash |===\n\n");
+    
+    for (int i = 0; i < tabela->tamanho; i++) {
+        printf("Índice %d:\n", i);
+        
+        TElemento *atual = tabela->vetorListas[i].inicio;
+        
+        if (atual == NULL) {
+            printf("  (vazio)\n");
+        } else {
+            while (atual != NULL) {
+                printf("  Matrícula: %d\n", atual->valor);
+                atual = atual->prox;
+            }
+        }
+    }
+    printf("\n========================================\n");
+}
+
 //================================================
 void menuPrincipal(TabelaHash *tabelaHash) {
     int op, numInseri;
@@ -253,6 +275,10 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 printf("O total de matrículas na tabela é: %d\n", contarTotalMatriculas(tabelaHash));
                 break;
             case 6:
+                // Imprimir toda a tabela hash
+                imprimirTabelaHash(tabelaHash);
+                break;
+            case 7:
                 // Sair
                 repete = 1;
                 break;
@@ -262,6 +288,7 @@ void menuPrincipal(TabelaHash *tabelaHash) {
         }
     } while (repete == 0);
 }
+
 //================================================
 int funcaoHash(int matricula, int tamanho) {
     return matricula % tamanho;
