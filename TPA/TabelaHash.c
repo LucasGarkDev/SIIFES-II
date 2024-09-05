@@ -24,10 +24,12 @@ void construirListaDoZero(TLista *lista){
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     int matricula;
-    char nome[100];  
-    while (fscanf(arquivoLista, "%d\n", &matricula) != EOF) {
+    char nome[100];
+      
+    while ( ! feof(arquivoLista)) {
         fgets(nome, sizeof(nome), arquivoLista);  
-        nome[strcspn(nome, "\n")] = 0;  
+        nome[strcspn(nome, "\n")] = 0;
+        fscanf(arquivoLista, "%d\n", &matricula); 
         inserir(lista, matricula, nome);  
     }
 }
