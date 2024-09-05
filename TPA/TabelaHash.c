@@ -8,6 +8,7 @@
 //=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
     FILE * arq;
+    string local; 
     arq = fopen( nomeArq, modo );
     if ( arq == NULL) {
         printf("ERRO ao abrir o arquivo.");

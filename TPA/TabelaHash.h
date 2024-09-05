@@ -1,9 +1,24 @@
-#include <stdio.h>
+// Desenvolvido por Lucas Garcia de Souza & LUIS AUGUSTO DE SOUZA 
+#include <windows.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <time.h>
 
 #define INICIO "------------INICIO------------" 
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
+// Defina constantes para as sequências de escape ANSI das cores
+#define RED "\x1b[31m"
+#define BLUE "\x1b[34m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
+#define RESET "\x1b[0m"
+
+#define SEPARETOR BLUE "\n================================================\n"  RESET
 typedef struct tipoElemento{
     long int valor;                     
     char nome[100];                
