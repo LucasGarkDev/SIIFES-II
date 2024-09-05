@@ -109,7 +109,6 @@ int pedirOpcao3() {
     return opcao;
     
 }
-
 //=================================================
 void exibeLista(TLista lista) {
     TElemento *atual = lista.inicio;
@@ -329,7 +328,7 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     inicializarTabelaHash(tabelaHash, tamanhoTabela);
 }
 //================================================
-void lerEInserirMatrículas(TabelaHash *tabelaHash, FILE *arquivoLista) {
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
     rewind(arquivoLista);  // Reposicionar para o início do arquivo
     int matricula;
     char nome[100];
@@ -406,14 +405,14 @@ void liberarTabelaHash(TabelaHash *tabela) {
 //================================================
 int main() {
     // Abrir o arquivo
-    FILE *arquivoLista = abrirArquivo("lista_matricula.txt", "r");
+    FILE *arquivoLista = abrirArquivo("../matriculas.txt", "r");
 
     // Inicializar a tabela hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
 
     // Ler e inserir as matrículas na tabela hash
-    lerEInserirMatrículas(&tabelaHash, arquivoLista);
+    lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
     // Fechar o arquivo
     fclose(arquivoLista);

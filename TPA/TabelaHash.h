@@ -27,7 +27,7 @@ int ehPrimo(int num);
 int acharProximoPrimo(int num);
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho);
 void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista);
-void lerEInserirMatrículas(TabelaHash *tabelaHash, FILE *arquivoLista);
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista);
 void executarMenu(TabelaHash *tabelaHash);
 int pesquisarTabelaHash(TabelaHash *tabela, int matricula);
 void inserirTabelaHash(TabelaHash *tabela, int matricula, char *nome);
