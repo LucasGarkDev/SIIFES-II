@@ -405,12 +405,22 @@ void liberarTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 int main() {
-    FILE *arquivoLista = abrirArquivo("matricula.txt", "r");
+    // Abrir o arquivo
+    FILE *arquivoLista = abrirArquivo("lista_matricula.txt", "r");
+
+    // Inicializar a tabela hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
+
+    // Ler e inserir as matrículas na tabela hash
     lerEInserirMatrículas(&tabelaHash, arquivoLista);
+
+    // Fechar o arquivo
     fclose(arquivoLista);
+
+    // Executar o menu de opções
     executarMenu(&tabelaHash);
+
     liberarTabelaHash(&tabelaHash);
     return 0;
 }
