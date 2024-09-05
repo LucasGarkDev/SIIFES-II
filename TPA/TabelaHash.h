@@ -44,7 +44,7 @@ FILE *abrirArquivo(char *nomeArq, char *modo);
 void construirListaDoZero(TLista *lista);
 void lerArquivo(TLista *lista, FILE *arquivoLista);
 void inicializa(TLista *lista, FILE *arquivoLista);
-void gravarListaEmArquivo(TLista *lista, const char *nomeArquivo);
+void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista);
 int pesquisarMatricula2(TLista *lista, long int matriculaBusca);
 int pesquisarMatricula(TLista *lista);
 void inserir(TLista *lista, long int valor, char *nome);
