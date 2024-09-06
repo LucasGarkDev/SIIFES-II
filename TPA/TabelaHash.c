@@ -216,7 +216,7 @@ void imprimirTabelaHash(TabelaHash *tabela) {
 
 //================================================
 void menuPrincipal(TabelaHash *tabelaHash) {
-    int op; 
+    long int op; 
     long int numInseri;
     char nomeInseri[100];  
     int repete = 0;
