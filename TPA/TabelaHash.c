@@ -23,7 +23,10 @@ void construirListaDoZero(TLista *lista) {
     lista->fim = NULL;
     lista->total = 0;
 }
-
+//=================================================
+float aleatorio(int n){
+    return (rand() % (n+1));
+}
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     char nome[100];
@@ -446,6 +449,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 //================================================
 //=================================================
 int main() {
+    float a;
     // Abrir o arquivo
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
 
@@ -470,6 +474,8 @@ int main() {
 
     printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
     // Executar o menu de opções
+    a = aleatorio(1);
+    printf("\n valor do a: %f\n", a);
     executarMenu(&tabelaHash);
 
     liberarTabelaHash(&tabelaHash);
