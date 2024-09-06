@@ -263,12 +263,21 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 break;
         }
     } while (repete == 0);
+    // for (int i = 0; i < tabelaHash->tamanho; i++){
+    //     salvarAqr(tabelaHash->vetorListas[i]);
+    // }
 }
 // 202312277890
 //================================================
 int funcaoHash(long int matricula, int tamanho) {
     return (int)(matricula % tamanho);  
 }
+
+// int funcaoHash(long int matricula, int tamanho, int a) {
+//     return (int) tamanho*(matricula * a % 1);  
+// }
+
+// criar uma função que escolhe a funcao hash usada.
 //================================================
 int contarMatriculas(FILE *arquivoLista) {
     char linha[100];
@@ -450,13 +459,16 @@ int main() {
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
-
+    clock_t inicio = clock();
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista);
 
     // Fechar o arquivo
     fclose(arquivoLista);
+    clock_t fim = clock();
+    double tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
+    printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
     // Executar o menu de opções
     executarMenu(&tabelaHash);
 
