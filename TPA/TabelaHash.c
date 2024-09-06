@@ -27,7 +27,7 @@ void construirListaDoZero(TLista *lista) {
 //=================================================
 void lerArquivo(TLista *lista, FILE *arquivoLista) {
     char nome[100];
-    char matriculaStr[20];  // Matrícula como string
+    char matriculaStr[20];  
     long int matricula;
 
     while (fgets(nome, sizeof(nome), arquivoLista) != NULL) {
@@ -51,18 +51,14 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 
 //=================================================
 void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    // Abrir o arquivo no modo de escrita para sobrescrever
     arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
-    
-    // Percorrer a lista e gravar os dados
     TElemento *atual = lista->inicio;
     while (atual != NULL) {
-        // Gravar a matrícula e o nome no formato correto
         fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome);
         atual = atual->prox;
     }
     
-    fclose(arquivoLista);  // Fechar o arquivo após a gravação
+    fclose(arquivoLista); 
     printf("INFO: Lista gravada com sucesso no arquivo!\n");
 }
 
@@ -270,19 +266,15 @@ void menuPrincipal(TabelaHash *tabelaHash) {
 // 202312277890
 //================================================
 int funcaoHash(long int matricula, int tamanho) {
-    return (int)(matricula % tamanho);  // Função de hash simples
+    return (int)(matricula % tamanho);  
 }
-
 //================================================
 int contarMatriculas(FILE *arquivoLista) {
     char linha[100];
     int totalMatriculas = 0;
-
-    // Contar o número de matrículas no arquivo (cada matrícula ocupa duas linhas: nome e matrícula)
     while (fgets(linha, sizeof(linha), arquivoLista) != NULL) {
         totalMatriculas++;
     }
-
     // Como cada matrícula ocupa duas linhas (nome e matrícula), dividimos por 2
     return totalMatriculas / 2;
 }
