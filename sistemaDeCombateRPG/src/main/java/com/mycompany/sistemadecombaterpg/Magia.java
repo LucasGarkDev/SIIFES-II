@@ -14,8 +14,8 @@ public class Magia {
     private int nivel;
     private int dadoDano;
     private int numeroAlvosMaximo;
-    public String nome;
-    public String descricao;
+    private String nome;
+    private String descricao;
 
     public int getNivel() {
         return nivel;

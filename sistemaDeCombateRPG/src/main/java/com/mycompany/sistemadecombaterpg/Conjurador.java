@@ -12,7 +12,7 @@ import java.util.List;
  * @author lucas
  */
 public class Conjurador extends Personagem{
-    public List<MagiaPreparada> listaDeMagias;
+    private List<MagiaPreparada> listaDeMagias;
     
     public listaDeMagias(){
         this.listaDeMagias = new ArrayList<>(); 

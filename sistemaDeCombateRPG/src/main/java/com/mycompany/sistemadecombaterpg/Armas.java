@@ -9,5 +9,5 @@ package com.mycompany.sistemadecombaterpg;
  * @author lucas
  */
 public class Armas {
-    
+    private 
 }

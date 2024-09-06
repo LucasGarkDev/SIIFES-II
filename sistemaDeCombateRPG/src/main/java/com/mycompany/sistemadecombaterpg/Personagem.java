@@ -8,19 +8,19 @@ package com.mycompany.sistemadecombaterpg;
  * @author lucas
  */
 public class Personagem implements Modificadores,Iniciativa,Acoes{
-    public String nome;
-    public int forca;
-    public int destresa;
-    public int constituicao;
-    public int inteligencia;
-    public int sabedoria;
-    public int carisma;
-    public int classeDeArmadura;
-    public int pontosDeVida;
+    private String nome;
+    private int forca;
+    private int destresa;
+    private int constituicao;
+    private int inteligencia;
+    private int sabedoria;
+    private int carisma;
+    private int classeDeArmadura;
+    private int pontosDeVida;
     private int pontosDeVidaMaximo;
-    public int nivel;
-    public int iniciativa;
-    public Armas armaPropria;
+    private int nivel;
+    private int iniciativa;
+    private Armas armaPropria;
 
     public Personagem(String nome) {
         this.nome = nome;

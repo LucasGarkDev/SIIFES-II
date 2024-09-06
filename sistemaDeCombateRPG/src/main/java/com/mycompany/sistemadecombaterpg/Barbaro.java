@@ -9,7 +9,7 @@ package com.mycompany.sistemadecombaterpg;
  * @author lucas
  */
 public class Barbaro extends Personagem {
-    public int valorFuria = 2;
+    private int valorFuria = 2;
     public int ativarFuria(Personagem personagem){
         return this.valorFuria;
     }
