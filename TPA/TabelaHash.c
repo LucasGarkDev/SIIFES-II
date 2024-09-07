@@ -218,22 +218,22 @@ void imprimirTabelaHash(TabelaHash *tabela) {
 }
 
 //================================================
-void menuPrincipal(TabelaHash *tabelaHash) {
-    long int op; 
+void menuPrincipal(TabelaHash *tabelaHash, int funcaoHashEscolhida) {
+    long int op;
     long int numInseri;
-    char nomeInseri[100];  
+    char nomeInseri[100];
     int repete = 0;
     do {
-        op = pedirOpcao();  
+        op = pedirOpcao();
         switch (op) {
             case 1:
                 // Inserir na Tabela Hash
-                numInseri = pedirNum(0);  
+                numInseri = pedirNum(0);
                 printf("Digite o nome associado à matrícula: ");
                 getchar();  // Para evitar problemas com a leitura do '\n' residual
                 fgets(nomeInseri, sizeof(nomeInseri), stdin);
                 nomeInseri[strcspn(nomeInseri, "\n")] = 0;  // Remover a quebra de linha
-                inserirTabelaHash(tabelaHash, numInseri, nomeInseri);
+                inserirTabelaHash(tabelaHash, numInseri, nomeInseri, funcaoHashEscolhida);
                 break;
             case 2:
                 // Exibir a Tabela Hash
@@ -241,13 +241,13 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 break;
             case 3:
                 // Excluir da Tabela Hash
-                numInseri = pedirNum(1);  
-                excluirTabelaHash(tabelaHash, numInseri);
+                numInseri = pedirNum(1);
+                excluirTabelaHash(tabelaHash, numInseri, funcaoHashEscolhida);
                 break;
             case 4:
                 // Pesquisar uma matrícula na Tabela Hash
-                numInseri = pedirNum(0);  // Pedir matrícula para buscar
-                pesquisarTabelaHash(tabelaHash, numInseri);
+                numInseri = pedirNum(0);
+                pesquisarTabelaHash(tabelaHash, numInseri, funcaoHashEscolhida);
                 break;
             case 5:
                 // Exibir total de matrículas na Tabela Hash
@@ -266,19 +266,26 @@ void menuPrincipal(TabelaHash *tabelaHash) {
                 break;
         }
     } while (repete == 0);
-    // for (int i = 0; i < tabelaHash->tamanho; i++){
-    //     salvarAqr(tabelaHash->vetorListas[i]);
-    // }
-}
-// 202312277890
-//================================================
-int funcaoHash(long int matricula, int tamanho) {
-    return (int)(matricula % tamanho);  
 }
 
-// int funcaoHash(long int matricula, int tamanho, int a) {
-//     return (int) tamanho*(matricula * a % 1);  
-// }
+//================================================
+int funcaoHashMultiplicacao(long int matricula, int tamanho, float A) {
+    return (int)(tamanho * (matricula * A - (int)(matricula * A)));
+}
+
+int funcaoHashRestoDivisao(long int matricula, int tamanho) {
+    return matricula % tamanho;
+}
+
+int escolherFuncaoHash() {
+    int opcao;
+    printf("Escolha a função hash:\n");
+    printf("1 - Resto da Divisão\n");
+    printf("2 - Método da Multiplicação\n");
+    printf("Digite sua opção: ");
+    scanf("%d", &opcao);
+    return opcao;
+}
 
 // criar uma função que escolhe a funcao hash usada.
 //================================================
@@ -353,7 +360,7 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     inicializarTabelaHash(tabelaHash, tamanhoTabela);
 }
 //================================================
-void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista, int funcaoHashEscolhida) {
     rewind(arquivoLista);  // Reposicionar para o início do arquivo
     long int matricula;
     char nome[100];
@@ -361,18 +368,25 @@ void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
     while (fgets(nome, sizeof(nome), arquivoLista) != NULL) {  // Ler o nome
         nome[strcspn(nome, "\n")] = 0;  // Remover o '\n' do nome
         if (fscanf(arquivoLista, "%ld\n", &matricula) != EOF) {  // Ler a matrícula como long int
-            inserirTabelaHash(tabelaHash, matricula, nome);  // Inserir na tabela hash
+            inserirTabelaHash(tabelaHash, matricula, nome, funcaoHashEscolhida);  // Inserir na tabela hash
         }
     }
 }
 
 //================================================
-void executarMenu(TabelaHash *tabelaHash) {
-    menuPrincipal(tabelaHash);
+void executarMenu(TabelaHash *tabelaHash, int funcaoHashEscolhida) {
+    menuPrincipal(tabelaHash, funcaoHashEscolhida);
 }
 //================================================
-int pesquisarTabelaHash(TabelaHash *tabela, long int matricula) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
+int pesquisarTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEscolhida) {
+    int indice;
+    if (funcaoHashEscolhida == 1) {
+        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
+    } else {
+        float A = ((5*0.5) - 1) / 2;
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+    }
+
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         printf("Matrícula %ld encontrada na tabela hash.\n", matricula);
         return 1;  // Encontrado
@@ -381,9 +395,16 @@ int pesquisarTabelaHash(TabelaHash *tabela, long int matricula) {
         return 0;  // Não encontrado
     }
 }
+
 //================================================
-void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
+void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome, int funcaoHashEscolhida) {
+    int indice;
+    if (funcaoHashEscolhida == 1) {
+        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
+    } else {
+        float A = ((5*0.5) - 1) / 2;  // Constante recomendada para o método da multiplicação
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+    }
 
     // Verificar se a matrícula já existe antes de inserir
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
@@ -394,14 +415,18 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome) {
     // Inserir a nova matrícula na lista correspondente no índice da tabela hash
     inserir(&tabela->vetorListas[indice], matricula, nome);
     printf("Matrícula %ld inserida com sucesso.\n", matricula);
-
-    // Adicione este printf para verificar se a inserção está sendo feita
-    printf("Inserido: Nome = %s, Matrícula = %ld no índice %d\n", nome, matricula, indice);
 }
 
 //================================================
-void excluirTabelaHash(TabelaHash *tabela, long int matricula) {
-    int indice = funcaoHash(matricula, tabela->tamanho);
+void excluirTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEscolhida) {
+    int indice;
+    if (funcaoHashEscolhida == 1) {
+        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
+    } else {
+        float A = ((5*0.5) - 1) / 2;
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+    }
+
     printf("Tentando remover matrícula %ld no índice %d...\n", matricula, indice);
 
     // Verifica se a matrícula está na lista antes de tentar removê-la
@@ -412,6 +437,7 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula) {
         printf("Erro: A matrícula %ld não foi encontrada para remoção.\n", matricula);
     }
 }
+
 
 //================================================
 void exibeTabelaHash(TabelaHash *tabela) {
@@ -447,9 +473,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
     free(tabela->vetorListas);
 }
 //================================================
-//=================================================
 int main() {
-    float a;
     // Abrir o arquivo
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
 
@@ -463,21 +487,18 @@ int main() {
     // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
-    clock_t inicio = clock();
+
+    // Escolher a função hash
+    int funcaoHashEscolhida = escolherFuncaoHash();
+
     // Ler e inserir as matrículas na tabela hash
-    lerEInserirMatriculas(&tabelaHash, arquivoLista);
+    lerEInserirMatriculas(&tabelaHash, arquivoLista, funcaoHashEscolhida);
 
-    // Fechar o arquivo
-    fclose(arquivoLista);
-    clock_t fim = clock();
-    double tempo_decorrido = (double)(fim - inicio) / CLOCKS_PER_SEC;
-
-    printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
-    // Executar o menu de opções
-    a = aleatorio(1);
-    printf("\n valor do a: %f\n", a);
-    executarMenu(&tabelaHash);
+    // Executar o menu de opções, passando a escolha da função hash
+    executarMenu(&tabelaHash, funcaoHashEscolhida);
 
     liberarTabelaHash(&tabelaHash);
     return 0;
-} 
+}
+
+
