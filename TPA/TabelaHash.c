@@ -53,6 +53,28 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 }
 
 //=================================================
+void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista) {
+    // Abrir o arquivo no modo de escrita para sobrescrever os dados
+    arquivoLista = fopen("nomes_matriculas.txt", "w");
+    if (arquivoLista == NULL) {
+        printf("ERRO ao abrir o arquivo para gravação.\n");
+        return;
+    }
+
+    // Iterar sobre a tabela hash e escrever cada entrada no arquivo
+    for (int i = 0; i < tabela->tamanho; i++) {
+        TElemento *atual = tabela->vetorListas[i].inicio;
+        while (atual != NULL) {
+            // Gravar o nome e a matrícula no arquivo
+            fprintf(arquivoLista, "%s\n%ld\n", atual->nome, atual->valor);
+            atual = atual->prox;
+        }
+    }
+
+    // Fechar o arquivo após a gravação
+    fclose(arquivoLista);
+    printf("INFO: Dados salvos com sucesso no arquivo.\n");
+}
 //=================================================
 int pesquisarMatricula2(TLista *lista, long int matriculaBusca) {
     TElemento *atual = lista->inicio;
@@ -495,9 +517,15 @@ int main() {
     // Executar o menu de opções, passando a escolha da função hash
     executarMenu(&tabelaHash, funcaoHashEscolhida);
 
+    // Salvar os dados no arquivo ao finalizar
+    salvarDadosNoArquivo(&tabelaHash, arquivoLista);
+
+    // Liberar a tabela hash
     liberarTabelaHash(&tabelaHash);
+    
     return 0;
 }
+
 
 
 

@@ -26,6 +26,7 @@ typedef struct tipoTabelaHash{
     int tamanho;
 } TabelaHash;
 
+void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista);
 int funcaoHash(long int matricula, int tamanho);
 int contarMatriculas(FILE *arquivoLista);
 int contarTotalMatriculas(TabelaHash *tabela);
