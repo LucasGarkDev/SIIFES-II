@@ -269,8 +269,20 @@ void menuPrincipal(TabelaHash *tabelaHash, int funcaoHashEscolhida) {
 }
 
 //================================================
-int funcaoHashMultiplicacao(long int matricula, int tamanho, float A) {
-    return (int)(tamanho * (matricula * A - (int)(matricula * A)));
+int funcaoHashMultiplicacao(long int matricula, int tamanho) {
+    double A = 0.6180339887 * 0.5;  // Usar double para maior precisão
+    double hashValue = matricula * A;
+    int indice = (int)(tamanho * (hashValue - (long int)hashValue));
+
+    // Depuração: imprimir o valor de A, a chave (matricula), e o índice
+    printf("Depuração - Valor de A: %f, Matricula: %ld, Índice Calculado: %d\n", A, matricula, indice);
+
+    // Garantir que o índice seja positivo e dentro dos limites da tabela
+    if (indice < 0) {
+        indice = -indice;
+    }
+    
+    return indice % tamanho;  // Retornar o índice dentro dos limites
 }
 
 int funcaoHashRestoDivisao(long int matricula, int tamanho) {
@@ -384,7 +396,7 @@ int pesquisarTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEs
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
         float A = ((5*0.5) - 1) / 2;
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
@@ -403,7 +415,7 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome, int f
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
         float A = ((5*0.5) - 1) / 2;  // Constante recomendada para o método da multiplicação
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
     // Verificar se a matrícula já existe antes de inserir
@@ -424,7 +436,7 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEsc
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
         float A = ((5*0.5) - 1) / 2;
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho, A);
+        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
     printf("Tentando remover matrícula %ld no índice %d...\n", matricula, indice);
@@ -490,6 +502,7 @@ int main() {
 
     // Escolher a função hash
     int funcaoHashEscolhida = escolherFuncaoHash();
+    printf("Função Hash escolhida: %d\n", funcaoHashEscolhida);  // Depuração
 
     // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista, funcaoHashEscolhida);
@@ -500,5 +513,6 @@ int main() {
     liberarTabelaHash(&tabelaHash);
     return 0;
 }
+
 
 
