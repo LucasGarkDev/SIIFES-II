@@ -395,7 +395,6 @@ int pesquisarTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEs
     if (funcaoHashEscolhida == 1) {
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
-        float A = ((5*0.5) - 1) / 2;
         indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
@@ -414,7 +413,6 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome, int f
     if (funcaoHashEscolhida == 1) {
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
-        float A = ((5*0.5) - 1) / 2;  // Constante recomendada para o método da multiplicação
         indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
@@ -435,7 +433,6 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEsc
     if (funcaoHashEscolhida == 1) {
         indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
     } else {
-        float A = ((5*0.5) - 1) / 2;
         indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
 
