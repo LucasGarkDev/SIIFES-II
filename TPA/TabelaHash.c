@@ -53,18 +53,6 @@ void inicializa(TLista *lista, FILE *arquivoLista) {
 }
 
 //=================================================
-void gravarListaEmArquivo(TLista *lista, FILE *arquivoLista) {
-    arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
-    TElemento *atual = lista->inicio;
-    while (atual != NULL) {
-        fprintf(arquivoLista, "%ld\n%s\n", atual->valor, atual->nome);
-        atual = atual->prox;
-    }
-    
-    fclose(arquivoLista); 
-    printf("INFO: Lista gravada com sucesso no arquivo!\n");
-}
-
 //=================================================
 int pesquisarMatricula2(TLista *lista, long int matriculaBusca) {
     TElemento *atual = lista->inicio;
