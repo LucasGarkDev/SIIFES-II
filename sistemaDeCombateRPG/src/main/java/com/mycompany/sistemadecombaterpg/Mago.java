@@ -8,11 +8,21 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public class Mago extends Conjurador{
-    public void recuperacaoArcana(){
-        for (Magia magia : listaDeMagias.getListaDeNos()) {
-            int novoValor = no.getValor() + 1; // Aumenta o valor em 1
-            no.setValor(novoValor); // Define o novo valor no nó
-        }
+public class Mago extends Personagem {
+
+    public Mago(int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma, int nivel) {
+        super(forca, destreza, constituicao, inteligencia, sabedoria, carisma, nivel);
+    }
+
+    @Override
+    public int calcularPontosDeVida() {
+        int dadoDeVida = 6; // Mago usa um d6 para o cálculo de pontos de vida
+        return dadoDeVida + calcularModificador(constituicao);
+    }
+
+    @Override
+    public void atacar(Personagem alvo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
+

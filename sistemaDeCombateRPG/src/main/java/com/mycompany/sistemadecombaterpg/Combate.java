@@ -4,170 +4,118 @@
  */
 package com.mycompany.sistemadecombaterpg;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-
 /**
  *
  * @author lucas
  */
-public class Combate implements Acoes{
-    LinkedList<Personagem> listaDeIniciativa = new LinkedList<>();
-    BufferedReader dado = new BufferedReader(new InputStreamReader(System.in));
-    String resposta = "";
-    public boolean combateAcabou(LinkedList<Personagem> listaDeIniciativa) {
-        for (Personagem inimigo : listaDeIniciativa) {
-            if (inimigo instanceof Monstro) {
-                return false; // Há pelo menos um inimigo, então o combate ainda não acabou
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Combate {
+    private List<Personagem> personagens;
+    private Scanner scanner = new Scanner(System.in);  // Para permitir a escolha de ações pelo usuário
+
+    public Combate(List<Personagem> personagens) {
+        this.personagens = personagens;
+    }
+
+    public void iniciarCombate() {
+        // Ordena os personagens pela iniciativa
+        Collections.sort(personagens, (a, b) -> b.getIniciativa() - a.getIniciativa());
+
+        // Loop principal do combate
+        while (!combateFinalizado()) {
+            for (int i = 0; i < personagens.size(); i++) {
+                Personagem personagem = personagens.get(i);
+                if (!personagem.estaVivo()) {
+                    continue;  // Ignora personagens mortos
+                }
+                // Exibe as opções de ação para o usuário
+                System.out.println("\nTurno de " + personagem.getClass().getSimpleName() + ". O que deseja fazer?");
+                int acao = escolherAcao();
+
+                switch (acao) {
+                    case 1 -> {
+                        // Atacar
+                        Personagem alvo = escolherAlvo(personagem);
+                        // Verifica se o alvo está esquivando e aplica a lógica de desvantagem
+                        if (alvo.isEsquivando()) {
+                            System.out.println(alvo.getClass().getSimpleName() + " está esquivando! O ataque será feito com desvantagem.");
+                            int resultado = Math.min(RolagemDados.rolarD20(), RolagemDados.rolarD20());  // Rolagem com desvantagem
+                            if (resultado + Modificadores.calcularModificador(personagem.getForca()) >= alvo.getClasseDeArmadura()) {
+                                personagem.atacar(alvo);  // Ataque é bem-sucedido
+                            } else {
+                                System.out.println(personagem.getClass().getSimpleName() + " errou o ataque.");
+                            }
+                        } else {
+                            personagem.atacar(alvo);  // Ataque normal
+                        }
+                        alvo.setEsquivando(false);  // Reset esquiva depois do ataque
+                    }
+                    case 2 -> {
+                        // Usar Habilidade
+                        System.out.println("Escolha o tipo de habilidade:");
+                        System.out.println("1. Usar em si mesmo\n2. Usar em um alvo");
+                        int escolhaHabilidade = scanner.nextInt();
+
+                        if (escolhaHabilidade == 1) {
+                            personagem.usarHabilidade();  // Habilidade usada em si mesmo
+                        } else if (escolhaHabilidade == 2) {
+                            Personagem alvoHabilidade = escolherAlvo(personagem);
+                            personagem.usarHabilidade(alvoHabilidade);  // Habilidade usada em outro alvo
+                        } else {
+                            System.out.println("Escolha inválida.");
+                        }
+                    }
+                    case 3 -> {
+                        // Esquivar
+                        personagem.setEsquivando(true);  // O personagem agora está esquivando
+                        System.out.println(personagem.getClass().getSimpleName() + " está esquivando e os ataques contra ele terão desvantagem até o próximo turno.");
+                    }
+                    case 4 -> {
+                        // Guardar Ação
+                        personagens.remove(personagem);
+                        personagens.add(personagem);  // Coloca o personagem no final da lista de turnos
+                        System.out.println(personagem.getClass().getSimpleName() + " guardou sua ação e moverá no final deste turno.");
+                    }
+                    default -> {
+                        System.out.println("Escolha inválida. Tente novamente.");
+                    }
+                }
             }
         }
-        return true; // Não há inimigos, o combate acabou
     }
 
-    // Método para ordenar a lista em ordem decrescente de iniciativa
-    public void ordenarLista(LinkedList<Personagem> listaDePersonagens) {
-        Collections.sort(listaDePersonagens, new Comparator<Personagem>() {
-            @Override
-            public int compare(Personagem p1, Personagem p2) {
-                return Integer.compare(p2.getIniciativa(), p1.getIniciativa());
-            }
-        });
-    }
-    
-    @Override
-    public int atacar(String dado, int modificador, Personagem alvo) {
-        // Implementação do ataque (depende de como você deseja que seja feita)
-        // Exemplo: Retornar o dano causado
-        int resultado = rolagem("d20") + modificador;
-        if(resultado >= alvo.classeDeArmadura){
-            return rolagem()
-        }
-                
-        return 0;
+    // Verifica se o combate foi finalizado (todos os oponentes mortos)
+    private boolean combateFinalizado() {
+        long vivos = personagens.stream().filter(Personagem::estaVivo).count();
+        return vivos <= 1;  // Combate acaba quando sobra 1 ou nenhum personagem vivo
     }
 
-    @Override
-    public int magia(Magia magiaEscolhida, int modificador, Personagem alvo) {
-        // Implementação do uso de magia (depende de como você deseja que seja feita)
-        // Exemplo: Retornar o dano causado ou efeito aplicado
-        return 0;
+    // Método para o usuário escolher a ação
+    private int escolherAcao() {
+        System.out.println("Escolha uma ação:");
+        System.out.println("1. Atacar");
+        System.out.println("2. Usar Habilidade");
+        System.out.println("3. Esquivar");
+        System.out.println("4. Guardar Ação");
+
+        return scanner.nextInt();
     }
 
-    @Override
-    public void usarHabilidade(Personagem personagem) {
-        // Implementação do uso de habilidade
-    }
-
-    @Override
-    public int defender(Personagem alvo) {
-        // Implementação da defesa
-        return 0;
-    }
-
-    @Override
-    public int esquivar(Personagem personagem) {
-        // Implementação da esquiva
-        return 0;
-    }
-
-    @Override
-    public void guardarAcao(Personagem personagem) {
-        // Implementação da ação de guardar
-    }
-
-    // Método para escolher a ação do personagem
-    public int escolherAcao(Personagem personagem) {
-        Scanner scanner = new Scanner(System.in);
-        int opcaoEscolhida = 0;
-
-        System.out.println("Turno de: " + personagem.getNome());
-        System.out.println("1 - Atacar");
-        System.out.println("2 - Magia");
-        System.out.println("3 - Usar Habilidade");
-        System.out.println("4 - Esquivar");
-        System.out.println("5 - Guardar Ação");
-        System.out.print("Escolha a ação: ");
-
-        opcaoEscolhida = scanner.nextInt();
-
-        return opcaoEscolhida;
-    }
-
-    // Método para realizar a ação escolhida
-    public void realizarAcoes(Personagem personagem, Personagem alvo) throws IOException {
-        int opcaoEscolhida = escolherAcao(personagem);
-        Scanner scanner = new Scanner(System.in);
-
-        switch (opcaoEscolhida) {
-            case 1:
-                System.out.println("Qual deve ser o alvo do ataque?:");
-                String nomeAlvoAtaque = scanner.nextLine();
-                // Supondo que você tenha uma maneira de encontrar o alvo pelo nome
-                Personagem alvoAtaque = encontrarPersonagemPeloNome(nomeAlvoAtaque);
-                personagem.atacar("d20", personagem.calcularModificador(personagem.getForca()), alvoAtaque);
-                break;
-
-            case 2:
-                System.out.println("Qual deve ser o alvo da magia?:");
-                String nomeAlvoMagia = scanner.nextLine();
-                Personagem alvoMagia = encontrarPersonagemPeloNome(nomeAlvoMagia);
-                Magia magiaEscolhida = escolherMagia(); // Supondo que você tenha um método para escolher a magia
-                personagem.magia(magiaEscolhida, personagem.calcularModificador(personagem.getInteligencia()), alvoMagia);
-                break;
-
-            case 3:
-                usarHabilidade(personagem);
-                break;
-
-            case 4:
-                esquivar(personagem);
-                break;
-
-            case 5:
-                guardarAcao(personagem);
-                break;
-
-            default:
-                System.out.println("Opção inválida.");
-                break;
-        }
-    }
-
-    // Método auxiliar para encontrar um personagem pelo nome na lista de iniciativa
-    private Personagem encontrarPersonagemPeloNome(String nome) {
-        for (Personagem p : listaDeIniciativa) {
-            if (p.getNome().equalsIgnoreCase(nome)) {
-                return p;
+    // Método para o usuário escolher o alvo do ataque
+    private Personagem escolherAlvo(Personagem atacante) {
+        System.out.println("Escolha o alvo:");
+        for (int i = 0; i < personagens.size(); i++) {
+            if (personagens.get(i).estaVivo() && personagens.get(i) != atacante) {
+                System.out.println((i + 1) + ". " + personagens.get(i).getClass().getSimpleName());
             }
         }
-        return null; // Ou pode lançar uma exceção se o personagem não for encontrado
+        int escolha = scanner.nextInt();
+        return personagens.get(escolha - 1);
     }
-
-    // Método auxiliar para escolher magia (deve ser implementado de acordo com sua lógica)
-    private Magia escolherMagia() {
-        // Implementação de seleção de magia
-        return null; // Substituir com a lógica apropriada
-    }
-
-    
-    public void iniciarCombate(LinkedList<Personagem> listaDeIniciativa) throws IOException{
-        ordenarLista(listaDeIniciativa);
-        boolean encerrarCombate = false;
-        String alvo;
-        do{
-            for (Personagem atual : listaDeIniciativa){
-                System.out.println("Qual personagem sera o alvo da açao?:");
-                resposta = dado.readLine();
-                alvo = pesquisarNaLista(listaDeIniciativa,resposta);
-                realizarAcoes(atual,alvo);
-            }
-            encerrarCombate = combateAcabou(listaDeIniciativa);
-        }while(encerrarCombate != true);
-    }
-
 }
+
+
+

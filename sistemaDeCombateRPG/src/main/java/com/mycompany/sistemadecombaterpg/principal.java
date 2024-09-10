@@ -10,17 +10,15 @@ import java.util.LinkedList;
  *
  * @author lucas
  */
-public class principal {
+import java.util.Arrays;
 
+public class principal {
     public static void main(String[] args) {
-        Combate campoDebatalha = new Combate();
-        campoDebatalha.listaDeIniciativa.add(new Personagem("Herói"));
-        campoDebatalha.listaDeIniciativa.add(new Monstro("Orc", 100));
-        campoDebatalha.listaDeIniciativa.add(new Personagem("Mago"));
-        campoDebatalha.listaDeIniciativa.add(new Monstro("Dragão", 200));
-        
-        
-        campoDebatalha.iniciarCombate(campoDebatalha.listaDeIniciativa);
-        
+        Guerreiro guerreiro = new Guerreiro(16, 14, 15, 10, 12, 8, 5);
+        Barbaro barbaro = new Barbaro(18, 12, 16, 8, 10, 10, 5);
+
+        Combate combate = new Combate(Arrays.asList(guerreiro, barbaro));
+        combate.iniciarCombate();
     }
 }
+

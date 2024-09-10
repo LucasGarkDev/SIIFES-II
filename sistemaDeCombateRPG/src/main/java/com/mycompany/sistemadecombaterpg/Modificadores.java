@@ -8,6 +8,21 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public interface Modificadores {
-    int calcularModificador(int valorDeAtributo);
+public class Modificadores {
+
+    // Método estático para calcular o modificador de atributos
+    public static int calcularModificador(int valorDeAtributo) {
+        return (valorDeAtributo - 10) / 2;
+    }
+
+    // Método estático para calcular o bônus de proficiência com base no nível
+    public static int calcularBonusProficiencia(int nivel) {
+        return (nivel - 1) / 4 + 2;
+    }
+
+    // Método estático para aplicar modificadores a rolagens de ataque
+    public static int aplicarModificadorAoAtaque(int rolagem, int modificador) {
+        return rolagem + modificador;
+    }
 }
+

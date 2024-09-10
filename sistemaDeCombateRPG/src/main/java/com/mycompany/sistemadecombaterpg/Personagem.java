@@ -7,142 +7,165 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public class Personagem implements Modificadores,Iniciativa,Acoes{
-    private String nome;
-    private int forca;
-    private int destresa;
-    private int constituicao;
-    private int inteligencia;
-    private int sabedoria;
-    private int carisma;
-    private int classeDeArmadura;
-    private int pontosDeVida;
-    private int pontosDeVidaMaximo;
-    private int nivel;
-    private int iniciativa;
-    private Armas armaPropria;
+public abstract class Personagem {
+    protected int forca, destreza, constituicao, inteligencia, sabedoria, carisma;
+    protected int classeDeArmadura, pontosDeVida, pontosDeVidaMaximos, nivel;
+    private boolean esquivando;  // Atributo para controlar o estado de esquiva
 
-    public Personagem(String nome) {
-        this.nome = nome;
+    // Construtor
+    public Personagem(int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma, int nivel) {
+        this.forca = forca;
+        this.destreza = destreza;
+        this.constituicao = constituicao;
+        this.inteligencia = inteligencia;
+        this.sabedoria = sabedoria;
+        this.carisma = carisma;
+        this.nivel = nivel;
+        this.classeDeArmadura = calcularClasseDeArmadura();
+        this.pontosDeVidaMaximos = calcularPontosDeVida();
+        this.pontosDeVida = pontosDeVidaMaximos;
+        this.esquivando = false;  // Inicialmente, o personagem não está esquivando
     }
-    
-    public String getNome() {
-        return nome;
+
+    // Método para calcular a Classe de Armadura (CA) - Modificável conforme o personagem usa armaduras
+    public int calcularClasseDeArmadura() {
+        return 10 + Modificadores.calcularModificador(destreza);  // Usando a classe utilitária Modificadores
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+
+    // Método abstrato para calcular os pontos de vida baseado na classe
+    public abstract int calcularPontosDeVida();
+
+    // Método para calcular a iniciativa: rolar um d20 + modificador de Destreza
+    public int getIniciativa() {
+        return RolagemDados.rolarD20() + Modificadores.calcularModificador(destreza);  // Usando a classe utilitária
     }
+
+    // Método abstrato para realizar a ação no turno (subclasses devem implementar)
+    public abstract void realizarAcao(Personagem alvo);
+
+    // Método abstrato para atacar um alvo (subclasses devem implementar)
+    public abstract void atacar(Personagem alvo);
+
+    // Método sobrecarregado para usar habilidades sem alvo (afeta a si mesmo)
+    public void usarHabilidade() {
+        System.out.println(this.getClass().getSimpleName() + " usou uma habilidade em si mesmo.");
+        // Implementação padrão ou personalizada nas subclasses
+    }
+
+    // Método sobrecarregado para usar habilidades com alvo (afeta outros personagens)
+    public void usarHabilidade(Personagem alvo) {
+        System.out.println(this.getClass().getSimpleName() + " usou uma habilidade em " + alvo.getClass().getSimpleName());
+        // Implementação personalizada nas subclasses
+    }
+
+    // Método para receber dano
+    public void receberDano(int dano) {
+        this.pontosDeVida -= dano;
+        if (this.pontosDeVida < 0) {
+            this.pontosDeVida = 0;
+        }
+    }
+
+    // Verifica se o personagem está vivo
+    public boolean estaVivo() {
+        return this.pontosDeVida > 0;
+    }
+
+    // Controle de esquiva: determina se o personagem está esquivando
+    public boolean isEsquivando() {
+        return esquivando;
+    }
+
+    public void setEsquivando(boolean esquivando) {
+        this.esquivando = esquivando;
+    }
+
+    // Getters e Setters para todos os atributos
     public int getForca() {
         return forca;
     }
+
     public void setForca(int forca) {
         this.forca = forca;
     }
-    public int getDestresa() {
-        return destresa;
+
+    public int getDestreza() {
+        return destreza;
     }
-    public void setDestresa(int destresa) {
-        this.destresa = destresa;
+
+    public void setDestreza(int destreza) {
+        this.destreza = destreza;
     }
+
     public int getConstituicao() {
         return constituicao;
     }
+
     public void setConstituicao(int constituicao) {
         this.constituicao = constituicao;
     }
+
     public int getInteligencia() {
         return inteligencia;
     }
+
     public void setInteligencia(int inteligencia) {
         this.inteligencia = inteligencia;
     }
+
     public int getSabedoria() {
         return sabedoria;
     }
+
     public void setSabedoria(int sabedoria) {
         this.sabedoria = sabedoria;
     }
+
     public int getCarisma() {
         return carisma;
     }
+
     public void setCarisma(int carisma) {
         this.carisma = carisma;
     }
+
     public int getClasseDeArmadura() {
         return classeDeArmadura;
     }
+
     public void setClasseDeArmadura(int classeDeArmadura) {
         this.classeDeArmadura = classeDeArmadura;
     }
+
     public int getPontosDeVida() {
         return pontosDeVida;
     }
+
     public void setPontosDeVida(int pontosDeVida) {
         this.pontosDeVida = pontosDeVida;
     }
+
+    public int getPontosDeVidaMaximos() {
+        return pontosDeVidaMaximos;
+    }
+
+    public void setPontosDeVidaMaximos(int pontosDeVidaMaximos) {
+        this.pontosDeVidaMaximos = pontosDeVidaMaximos;
+    }
+
     public int getNivel() {
         return nivel;
     }
+
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
 
-    public void setPontosDeVidaMaximo(int atributoPrincipal, String dadoDeVida){
-        RolagemDados rolagem = new RolagemDados();
-        this.pontosDeVidaMaximo = (atributoPrincipal + rolagem.rolagem(dadoDeVida)) * this.nivel;
+    // Método para calcular o bônus de proficiência baseado no nível
+    public int getBonusProficiencia() {
+        return Modificadores.calcularBonusProficiencia(nivel);  // Usando a classe utilitária
     }
-
-    @Override
-    public int calcularModificador(int valorDeAtributo){
-        if((valorDeAtributo == 15)||(valorDeAtributo == 14)){
-            return 2;
-        }else if((valorDeAtributo == 15)||(valorDeAtributo == 14)){
-            return 1;
-        }else if (valorDeAtributo == 10){
-            return 0;
-        }else {
-            return -1;
-        }
-    }
-
-    public int getBonusDeProficiencia(){
-        if ((this.nivel > 0) && (this.nivel < 4)){
-            return 2;
-        }else if ((this.nivel > 5) && (this.nivel < 8)){
-            return 3;
-        }else if ((this.nivel > 9) && (this.nivel < 12)){
-            return 4;
-        }else if ((this.nivel > 13) && (this.nivel < 16)){
-            return 5;
-        }else {
-            return 6;
-        }
-    }
-
-     // Método para rolar e definir a iniciativa
-    public void definirIniciativa(String dado, int modificador) {
-        RolagemDados rolagemDados = new RolagemDados();
-        this.iniciativa = rolagemDados.rolagem(dado) + modificador;
-    }
-
-    // Método para obter a iniciativa
-    public int getIniciativa() {
-        return iniciativa;
-    }
-
-    // Implementação do método rolarIniciativa, caso ainda queira usá-lo diretamente
-    @Override
-    public int rolarIniciativa(String dado, int modificador) {
-        RolagemDados rolagemDados = new RolagemDados();
-        return rolagemDados.rolagem(dado) + modificador;
-    }
-    
-    public int compareTo(Personagem outro) {
-        return Integer.compare(outro.getIniciativa(), this.getIniciativa());
-        // Ou this.getIniciativa() - outro.getIniciativa() para ordem crescente
-    }
-
-    
-    
-
 }
+
+
+

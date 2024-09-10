@@ -8,6 +8,9 @@ package com.mycompany.sistemadecombaterpg;
  *
  * @author lucas
  */
-public interface Iniciativa {
-    public int rolarIniciativa(String dado, int modificador);
+public class Iniciativa {
+    public static int rolarIniciativa(Personagem p) {
+        return RolagemDados.rolarD20() + p.calcularModificador(p.getDestreza());
+    }
 }
+
