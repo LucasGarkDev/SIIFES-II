@@ -283,22 +283,18 @@ int funcaoHashMultiplicacao(long int matricula, int tamanho) {
     double A = 0.6180339887 * 0.5;  // Usar double para maior precisão
     double hashValue = matricula * A;
     int indice = (int)(tamanho * (hashValue - (long int)hashValue));
-
-    // Depuração: imprimir o valor de A, a chave (matricula), e o índice
     printf("Depuração - Valor de A: %f, Matricula: %ld, Índice Calculado: %d\n", A, matricula, indice);
-
     // Garantir que o índice seja positivo e dentro dos limites da tabela
     if (indice < 0) {
         indice = -indice;
     }
-    
-    return indice % tamanho;  // Retornar o índice dentro dos limites
+    return indice % tamanho;  
 }
-
+//================================================
 int funcaoHashRestoDivisao(long int matricula, int tamanho) {
     return matricula % tamanho;
 }
-
+//================================================
 int escolherFuncaoHash() {
     int opcao;
     printf("Escolha a função hash:\n");
@@ -308,8 +304,6 @@ int escolherFuncaoHash() {
     scanf("%d", &opcao);
     return opcao;
 }
-
-// criar uma função que escolhe a funcao hash usada.
 //================================================
 int contarMatriculas(FILE *arquivoLista) {
     char linha[100];
@@ -425,8 +419,6 @@ void inserirTabelaHash(TabelaHash *tabela, long int matricula, char *nome, int f
     } else {
         indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
-
-    // Verificar se a matrícula já existe antes de inserir
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         printf("Erro: A matrícula %ld já está presente na tabela.\n", matricula);
         return;
@@ -445,10 +437,7 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEsc
     } else {
         indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
     }
-
     printf("Tentando remover matrícula %ld no índice %d...\n", matricula, indice);
-
-    // Verifica se a matrícula está na lista antes de tentar removê-la
     if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
         excluirLista(&tabela->vetorListas[indice], matricula);
         printf("Matrícula %ld removida com sucesso da tabela hash.\n", matricula);
@@ -456,8 +445,6 @@ void excluirTabelaHash(TabelaHash *tabela, long int matricula, int funcaoHashEsc
         printf("Erro: A matrícula %ld não foi encontrada para remoção.\n", matricula);
     }
 }
-
-
 //================================================
 void exibeTabelaHash(TabelaHash *tabela) {
     printf("\n\n===| Exibição Completa da Tabela Hash |===\n\n");    
@@ -487,40 +474,31 @@ void liberarLista(TLista *lista) {
 //================================================
 void liberarTabelaHash(TabelaHash *tabela) {
     for (int i = 0; i < tabela->tamanho; i++) {
-        liberarLista(&tabela->vetorListas[i]);  // Função que libera cada lista
+        liberarLista(&tabela->vetorListas[i]); 
     }
     free(tabela->vetorListas);
 }
 //================================================
 int main() {
-    // Abrir o arquivo
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
-
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
     printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
-
     // Reposicionar o ponteiro para o início do arquivo para leitura
     rewind(arquivoLista);
 
-    // Inicializar a tabela de hash
     TabelaHash tabelaHash;
     inicializarTabela(&tabelaHash, arquivoLista);
 
-    // Escolher a função hash
     int funcaoHashEscolhida = escolherFuncaoHash();
     printf("Função Hash escolhida: %d\n", funcaoHashEscolhida);  // Depuração
 
-    // Ler e inserir as matrículas na tabela hash
     lerEInserirMatriculas(&tabelaHash, arquivoLista, funcaoHashEscolhida);
 
-    // Executar o menu de opções, passando a escolha da função hash
     executarMenu(&tabelaHash, funcaoHashEscolhida);
 
-    // Salvar os dados no arquivo ao finalizar
     salvarDadosNoArquivo(&tabelaHash, arquivoLista);
 
-    // Liberar a tabela hash
     liberarTabelaHash(&tabelaHash);
     
     return 0;
