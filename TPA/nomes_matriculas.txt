@@ -16,28 +16,28 @@ Sr. Oliver Porto
 202312273558
 Elisa Pereira
 202312276752
-Benjamim Siqueira
-202312278205
 Anthony Gabriel Novaes
 202312274024
 Isabela Rios
 202312275998
+Benjamim Siqueira
+202312278205
 Davi Brito
 202312272050
-Yago Leao
-202312278438
 Henry Gabriel Jesus
 202312277451
 Liam da Cunha
 202312274257
+Yago Leao
+202312278438
 Henrique Mendes
 202312279658
 Maria Sophia Fernandes
 202312274490
-Brenda Novaes
-202312274723
 Sra. Ana Sophia Barros
 202312278904
+Brenda Novaes
+202312274723
 Eduarda Lopes
 202312277917
 Luigi Novais
@@ -68,14 +68,14 @@ Liz Cirino
 202312275312
 Ana Clara da Costa
 202312271131
-Hadassa Pastor
-202312278506
 Ravi Ferreira
 202312274325
-Dr. Joao Lima
-202312274558
+Hadassa Pastor
+202312278506
 Sr. Juan Fogaca
 202312279726
+Dr. Joao Lima
+202312274558
 Manuela Guerra
 202312277985
 Milena Andrade
@@ -86,28 +86,28 @@ Lavinia Azevedo
 202312276710
 Leticia Siqueira
 202312274969
-Erick Almeida
-202312272995
 Emilly Rocha
 202312278163
-Anthony Gabriel Costela
-202312272241
+Erick Almeida
+202312272995
 Lunna da Conceicao
 202312277409
+Anthony Gabriel Costela
+202312272241
 Eloa Pires
 202312278629
 Lorenzo Nogueira
 202312279095
 Mirella Almeida
 202312273927
-Ravy Lopes
-202312274626
 Isis Fernandes
 202312275613
-Ana Sophia Vasconcelos
-202312276833
+Ravy Lopes
+202312274626
 Liz Aragao
 202312273639
+Ana Sophia Vasconcelos
+202312276833
 Pedro Henrique Aparecida
 202312279040
 Felipe Lima
@@ -116,10 +116,10 @@ Zoe Viana
 202312275092
 Sr. Davi Luiz da Cunha
 202312277532
-Luan Sousa
-202312271377
 Anna Liz Ribeiro
 202312273584
+Luan Sousa
+202312271377
 Lucca Moraes
 202312273817
 Maria Liz da Cunha
@@ -136,20 +136,20 @@ Maria Eduarda Camargo
 202312276202
 Stephany da Luz
 202312279396
-Sr. Miguel Rodrigues
-202312271267
 Henry Gabriel Oliveira
 202312275448
+Sr. Miguel Rodrigues
+202312271267
 Aylla Casa Grande
 202312277655
-Gustavo da Paz
-202312274461
-Theodoro Sa
-202312279862
-Stella Fonseca
-202312278875
 Vitor Hugo Fonseca
 202312272487
+Gustavo da Paz
+202312274461
+Stella Fonseca
+202312278875
+Theodoro Sa
+202312279862
 Otto Pinto
 202312279108
 Rodrigo Nunes
@@ -164,56 +164,56 @@ Heloisa Cassiano
 202312276791
 Ravi Mendonca
 202312273830
-Dr. Paulo Cavalcanti
-202312273254
 Anthony Gabriel Macedo
 202312279409
-Dante Borges
-202312271280
+Dr. Paulo Cavalcanti
+202312273254
 Ana Vitoria Nunes
 202312279642
-Maite Souza
-202312279875
+Dante Borges
+202312271280
 Ana Livia Rocha
 202312277901
+Maite Souza
+202312279875
 Gustavo Henrique Pires
 202312276160
-Olivia Camargo
-202312273199
 Joao Guilherme Peixoto
 202312272212
 Francisco Farias
 202312276393
-Dr. Kaique Fernandes
-202312276626
+Olivia Camargo
+202312273199
 Stella da Cruz
 202312273432
-Isabel Silveira
-202312272445
 Dr. Ryan Moraes
 202312275639
+Isabel Silveira
+202312272445
+Dr. Kaique Fernandes
+202312276626
 Francisco da Cruz
 202312277846
-Ana Laura Pimenta
-202312272911
-Breno da Conceicao
-202312278079
 Kevin da Cunha
 202312279066
+Breno da Conceicao
+202312278079
+Ana Laura Pimenta
+202312272911
 Rhavi Aparecida
 202312279299
 Luana Sousa
 202312276105
-Lunna Vasconcelos
-202312278545
 Renan Cunha
 202312275351
+Lunna Vasconcelos
+202312278545
 Luara Cardoso
 202312279765
-Dra. Cecilia Guerra
-202312278024
 Antonio Guerra
 202312271869
+Dra. Cecilia Guerra
+202312278024
 Ana Julia da Cunha
 202312278257
 Felipe Macedo
@@ -228,28 +228,28 @@ Isabelly Machado
 202312272801
 Dra. Eduarda Leao
 202312279888
-Srta. Yasmin Aparecida
-202312274953
 Henry Vasconcelos
 202312276927
-Dr. Luiz Miguel Viana
-202312275940
 Srta. Rafaela Fernandes
 202312279134
-Sra. Evelyn Pinto
-202312273212
+Dr. Luiz Miguel Viana
+202312275940
+Srta. Yasmin Aparecida
+202312274953
 Dante Oliveira
 202312278380
+Sra. Evelyn Pinto
+202312273212
 Pietro Peixoto
 202312275652
 Alana da Mata
 202312274665
 Caue Guerra
 202312279079
-Isis Melo
-202312276351
 Daniela Jesus
 202312277338
+Isis Melo
+202312276351
 Carolina Araujo
 202312279024
 Arthur Miguel Guerra
@@ -270,16 +270,16 @@ Jade Azevedo
 202312279901
 Caue Goncalves
 202312276707
-Miguel Correia
-202312277927
 Agatha Souza
 202312276940
+Miguel Correia
+202312277927
 Luigi Ferreira
 202312271772
-Srta. Bianca Goncalves
-202312274212
 Rafael Martins
 202312279380
+Srta. Bianca Goncalves
+202312274212
 Theo Souza
 202312271251
 Dr. Joao Lucas Sousa
@@ -292,68 +292,68 @@ Sr. Vinicius Pastor
 202312271196
 Sr. Heitor Lima
 202312272416
-Lavinia Vieira
-202312274623
 Jose Pedro da Rocha
 202312271429
-Heloisa Cirino
-202312276830
+Lavinia Vieira
+202312274623
 Yago Pacheco
 202312275843
+Heloisa Cirino
+202312276830
 Gabriel da Costa
 202312272882
 Guilherme Freitas
 202312277296
 Luara Siqueira
 202312273348
-Vitor Gabriel Sousa
-202312272361
 Joana Machado
 202312277529
-Mateus Borges
-202312274568
+Vitor Gabriel Sousa
+202312272361
 Rael Viana
 202312279736
-Dr. Leandro Sa
-202312271607
 Heloisa Silva
 202312272594
-Elisa Pires
-202312277995
+Mateus Borges
+202312274568
+Dr. Leandro Sa
+202312271607
 Sra. Larissa Garcia
 202312273814
+Elisa Pires
+202312277995
 Ester Almeida
 202312272827
 Isabelly da Luz
 202312272073
 Arthur Gabriel Araujo
 202312275267
+Isaque Viana
+202312277474
 Stella Castro
 202312274280
 Dante Lima
 202312272306
-Isaque Viana
-202312277474
 Otto Cavalcante
 202312275733
 Eloah da Cruz
 202312277940
 Ana Carolina Correia
 202312278173
-Ana Vasconcelos
-202312274225
 Mathias Melo
 202312279393
-Joao Miguel Gomes
-202312279626
+Ana Vasconcelos
+202312274225
 Camila Melo
 202312275445
+Joao Miguel Gomes
+202312279626
 Valentim Jesus
 202312278639
-Matheus Camara
-202312274691
 Gabriela Silveira
 202312271497
+Matheus Camara
+202312274691
 Enrico Sampaio
 202312279105
 Lorena Aragao
@@ -364,34 +364,34 @@ Dr. Henrique Cavalcanti
 202312276377
 Caroline Moraes
 202312271442
-Natalia Almeida
-202312278063
+Emanuella Siqueira
+202312279050
 Alexia da Mota
 202312277076
 Lorena Rezende
 202312273882
-Emanuella Siqueira
-202312279050
+Natalia Almeida
+202312278063
 Lucas Souza
 202312273128
-Dr. Joao da Rosa
-202312279749
 Rhavi Rios
 202312272374
+Dr. Joao da Rosa
+202312279749
 Bella Alves
 202312279982
-Lavinia Leao
-202312275047
 Nina Melo
 202312279228
 Sr. Enzo Martins
 202312273073
+Lavinia Leao
+202312275047
 Dr. Liam Leao
 202312272086
-Bianca da Cruz
-202312272552
 Yan da Mota
 202312277720
+Bianca da Cruz
+202312272552
 Sra. Lorena Araujo
 202312277953
 Valentina Casa Grande
@@ -402,20 +402,20 @@ Hadassa Goncalves
 202312271743
 Rafael Machado
 202312274183
-Mirella Cunha
-202312276390
-Dra. Bruna da Cruz
-202312273196
 Gabrielly Cavalcanti
 202312278364
 Thales Martins
 202312279584
+Mirella Cunha
+202312276390
+Dra. Bruna da Cruz
+202312273196
 Sra. Sofia Azevedo
 202312274416
-Liam Rios
-202312276856
 Agatha Monteiro
 202312278830
+Liam Rios
+202312276856
 Dr. Andre da Costa
 202312272908
 Nathan Monteiro
@@ -438,10 +438,10 @@ Danilo Cirino
 202312272565
 Luan da Paz
 202312277966
-Dra. Hellena Garcia
-202312274772
 Isis Aparecida
 202312272798
+Dra. Hellena Garcia
+202312274772
 Kaique Moraes
 202312274018
 Dra. Antonella Cassiano
@@ -468,46 +468,46 @@ Dr. Andre Ramos
 202312272921
 Ana Liz da Costa
 202312277102
-Vicente Albuquerque
-202312278322
 Alice Rocha
 202312277335
-Gael Henrique Fonseca
-202312276581
+Vicente Albuquerque
+202312278322
 Maria Flor Silva
 202312278555
+Gael Henrique Fonseca
+202312276581
+Srta. Emilly Castro
+202312277801
 Hadassa Oliveira
 202312271646
 Livia Costa
 202312275827
 Amanda das Neves
 202312272633
-Srta. Emilly Castro
-202312277801
-Manuella Leao
-202312278034
 Joao Lucas Cirino
 202312274840
 Maria Clara Leao
 202312277047
-Antonio Sales
-202312271358
+Manuella Leao
+202312278034
 Enzo Gabriel Araujo
 202312273332
 Srta. Ana Vitoria Costela
 202312272345
+Antonio Sales
+202312271358
 Joao Pedro Campos
 202312272578
 Maria Vitoria Rocha
 202312276992
 Leonardo da Paz
 202312271824
-Thomas Jesus
-202312273044
-Eduarda Rios
-202312277225
 Daniela Nunes
 202312274031
+Eduarda Rios
+202312277225
+Thomas Jesus
+202312273044
 Vitor Gabriel Marques
 202312272523
 Maria Eduarda das Neves
@@ -518,12 +518,12 @@ Ian Camargo
 202312278157
 Arthur Gabriel Dias
 202312274963
-Dr. Ravi Aragao
-202312276183
 Thomas da Mota
 202312275196
 Leonardo Monteiro
 202312279377
+Dr. Ravi Aragao
+202312276183
 Dr. Heitor Andrade
 202312275429
 Luiza Lopes
@@ -534,20 +534,20 @@ Sra. Agatha da Conceicao
 202312278568
 Leandro Mendes
 202312278801
-Liam das Neves
-202312276306
 Benicio Viana
 202312274099
 Marcelo Leao
 202312279500
+Liam das Neves
+202312276306
 Nicolas Sousa
 202312277526
 Vitor Gabriel Pinto
 202312275264
-Davi Luiz Oliveira
-202312277471
 Ana Viana
 202312279445
+Davi Luiz Oliveira
+202312277471
 Yasmin Azevedo
 202312275730
 Mariane Cardoso
@@ -580,20 +580,20 @@ Lara Teixeira
 202312275099
 Enzo Gabriel Cavalcanti
 202312279280
-Dra. Sara Ferreira
-202312276319
 Gael Rezende
 202312275332
-Sra. Gabrielly da Costa
-202312273591
+Dra. Sara Ferreira
+202312276319
 Lucas Gabriel Rios
 202312278759
+Sra. Gabrielly da Costa
+202312273591
 Daniela Gomes
 202312272837
-Sr. Francisco Camargo
-202312273070
 Heloisa Machado
 202312274057
+Sr. Francisco Camargo
+202312273070
 Dr. Luiz Gustavo Vasconcelos
 202312271096
 Joana Vasconcelos
@@ -602,8 +602,6 @@ Dr. Samuel Macedo
 202312278937
 Vitor Hugo da Luz
 202312274989
-tubarao
-567
 Ester Silveira
 202312272028
 Antony da Luz
@@ -616,76 +614,76 @@ Calebe Alves
 202312275400
 Maria Araujo
 202312274413
-Dr. Renan Silva
-202312274646
-Miguel Lopes
-202312271452
 Joao Lucas Almeida
 202312276620
-Alexandre Cassiano
-202312276853
+Miguel Lopes
+202312271452
 Davi Lucas Rodrigues
 202312277840
-Dra. Yasmin Cassiano
-202312273138
+Dr. Renan Silva
+202312274646
+Alexandre Cassiano
+202312276853
 Breno Costela
 202312279293
 Otavio Castro
 202312276332
+Dra. Yasmin Cassiano
+202312273138
 Nathan Teixeira
 202312272384
 Melina Correia
 202312276798
-Srta. Jade Aragao
-202312275057
 Luiz Felipe Fogaca
 202312276044
+Srta. Jade Aragao
+202312275057
 Sra. Sophia Camara
 202312279704
 Otto Siqueira
 202312271575
-Sr. Miguel da Cunha
-202312273782
 Heloisa das Neves
 202312278950
+Sr. Miguel da Cunha
+202312273782
 Rhavi da Cruz
 202312277209
-Arthur Miguel Pimenta
-202312271287
 Pedro Miguel Teixeira
 202312274481
+Arthur Miguel Pimenta
+202312271287
 Zoe Martins
 202312271753
 Ana Julia da Conceicao
 202312278141
 Caleb Moura
 202312278374
-Jose Moraes
-202312279594
 Dr. Bryan Sousa
 202312273439
+Jose Moraes
+202312279594
 Dra. Maria Laura Caldeira
 202312272452
 Giovanna Cirino
 202312271465
-Dr. Liam Melo
-202312273151
 Bruno Dias
 202312275358
 Pedro Miguel Dias
 202312271177
-Caue Guerra
-202312272397
+Dr. Liam Melo
+202312273151
 Barbara Caldeira
 202312277565
+Caue Guerra
+202312272397
 Gabriela Ramos
 202312279772
+Dra. Pietra Fernandes
+202312272630
 Livia Sampaio
 202312276811
 Livia Pinto
 202312275824
-Dra. Pietra Fernandes
-202312272630
 Natalia Lopes
 202312272863
 Gabriela Mendes
@@ -710,18 +708,18 @@ Maria Flor da Conceicao
 202312271999
 Isis Moraes
 202312279374
-Maria Sophia Leao
-202312273219
-Sra. Carolina Ribeiro
-202312276413
 Eloah Aragao
 202312275426
+Sra. Carolina Ribeiro
+202312276413
+Maria Sophia Leao
+202312273219
 Maria Helena Albuquerque
 202312274439
-Bruna Correia
-202312274905
 Sra. Isadora Abreu
 202312279086
+Bruna Correia
+202312274905
 Alicia Cirino
 202312271944
 Isis Rocha
@@ -730,22 +728,22 @@ Nicole da Mata
 202312279552
 Eloah Alves
 202312272410
-Camila Cavalcanti
-202312274850
-Manuela Silveira
-202312279031
 Isabel Jesus
 202312275837
-Otto da Mota
-202312276303
+Manuela Silveira
+202312279031
+Camila Cavalcanti
+202312274850
 Gustavo Fernandes
 202312275316
 Sra. Lunna Siqueira
 202312279497
-Davi Luiz Camargo
-202312276015
+Otto da Mota
+202312276303
 Mariah Santos
 202312279209
+Davi Luiz Camargo
+202312276015
 Fernando Nogueira
 202312273287
 Joao Miguel Ramos
@@ -760,34 +758,34 @@ Gael Henrique Pires
 202312271724
 Rebeca Garcia
 202312271203
-Isis Pereira
-202312274863
-Isis Montenegro
-202312273876
 Sra. Rafaela Camargo
 202312275850
+Isis Pereira
+202312274863
 Ravi Alves
 202312277070
+Isis Montenegro
+202312273876
 Stephany Guerra
 202312276083
 Gael da Conceicao
 202312277303
-Arthur Miguel Pacheco
-202312276549
-Erick Nascimento
-202312272368
-Luiz Felipe Marques
-202312274575
-Luara Montenegro
-202312278756
 Emanuelly Azevedo
 202312275562
+Erick Nascimento
+202312272368
+Arthur Miguel Pacheco
+202312276549
+Luara Montenegro
+202312278756
+Luiz Felipe Marques
+202312274575
 Alexia Borges
 202312275795
-Agatha das Neves
-202312279222
 Maria Vitoria Goncalves
 202312276028
+Agatha das Neves
+202312279222
 Ester Aragao
 202312278701
 Rebeca Araujo
@@ -796,10 +794,10 @@ Valentim da Costa
 202312274753
 Srta. Heloisa Lopes
 202312278180
-Leticia Mendes
-202312276206
 Luiz Miguel Abreu
 202312275219
+Leticia Mendes
+202312276206
 Sr. Luiz Miguel Barros
 202312272957
 Dra. Ana Sophia Abreu
@@ -808,18 +806,18 @@ Srta. Agatha Ramos
 202312279811
 Marcela Casa Grande
 202312277837
-Juliana Cavalcanti
-202312273135
 Vinicius Pereira
 202312276329
+Juliana Cavalcanti
+202312273135
 Clara da Paz
 202312277782
 Sr. Thiago Machado
 202312276795
-Srta. Mariana Camargo
-202312273313
 Ana Livia Albuquerque
 202312275287
+Srta. Mariana Camargo
+202312273313
 Pedro Henrique da Mata
 202312276507
 Nicolas Correia
@@ -830,20 +828,20 @@ Dra. Manuela Aragao
 202312273025
 Sr. Pedro Lucas Sampaio
 202312275232
-Dr. Davi Lucca Barbosa
-202312271284
 Sra. Maria Peixoto
 202312272271
+Dr. Davi Lucca Barbosa
+202312271284
 Pedro Azevedo
 202312275931
 Sra. Hellena Oliveira
 202312274944
 Leo Fernandes
 202312275643
-Bianca Moreira
-202312273902
 Maya Ferreira
 202312279070
+Bianca Moreira
+202312273902
 Yasmin Lopes
 202312275122
 Caleb Dias
@@ -856,10 +854,10 @@ Hadassa Pastor
 202312271640
 Kaique Teixeira
 202312271873
-Valentim Aragao
-202312278261
 Mariane Mendonca
 202312272106
+Valentim Aragao
+202312278261
 Alicia Castro
 202312273326
 Pedro Henrique Leao
@@ -872,46 +870,46 @@ Matheus Pastor
 202312274025
 Sra. Luisa Cirino
 202312271064
-Enzo da Mata
-202312277918
 Gael Henrique Camargo
 202312278905
-Benicio Porto
-202312274957
 Luna Correia
 202312276931
-Arthur Nascimento
-202312271242
+Enzo da Mata
+202312277918
+Benicio Porto
+202312274957
 Bruna Macedo
 202312275423
-Leonardo Montenegro
-202312274669
+Arthur Nascimento
+202312271242
 Vicente Souza
 202312278850
 Nicolas Montenegro
 202312277863
+Leonardo Montenegro
+202312274669
 Dom Pastor
 202312276122
 Yago Andrade
 202312275368
 Stephany Novaes
 202312272407
-Matteo Peixoto
-202312276821
-Eduardo Macedo
-202312274847
 Heloisa das Neves
 202312279028
+Eduardo Macedo
+202312274847
+Matteo Peixoto
+202312276821
 Joao Felipe da Paz
 202312272119
 Luiz Miguel da Mata
 202312271132
 Enzo Lopes
 202312277520
-Maria Luisa Pereira
-202312276766
 Stephany da Mota
 202312272585
+Maria Luisa Pereira
+202312276766
 Sofia Dias
 202312272818
 Ana Vitoria da Conceicao
@@ -924,46 +922,44 @@ Leandro Nascimento
 202312276711
 Arthur Cardoso
 202312277931
-Paulo Vargas
-202312276190
-Vitor Camara
-202312278397
 Caroline Sa
 202312275203
+Paulo Vargas
+202312276190
 Mariane Camara
 202312276423
+Vitor Camara
+202312278397
 Emanuelly Nascimento
 202312273462
 Luigi Fernandes
 202312274449
 Daniela Rezende
 202312276656
-Renan Goncalves
-202312276889
-Igor Correia
-202312278109
 Laura Silveira
 202312279096
+Renan Goncalves
+202312276889
 Isabela Cardoso
 202312271954
+Igor Correia
+202312278109
 Pedro Miguel Moura
 202312279795
-Heloisa Ramos
-202312278054
 Brenda Fonseca
 202312279041
-Calebe Melo
-202312275093
 Dra. Emanuelly Jesus
 202312277067
-Eliza
-1425
+Heloisa Ramos
+202312278054
 Srta. Maya Sousa
 202312274106
-Sr. Igor Rocha
-202312277766
+Calebe Melo
+202312275093
 Lara Pimenta
 202312275792
+Sr. Igor Rocha
+202312277766
 Joao Gabriel Sa
 202312277012
 Joao Felipe Cunha
@@ -976,14 +972,14 @@ Daniela Moraes
 202312273530
 Carolina Barros
 202312271556
-Josue Nunes
-202312271789
 Allana Freitas
 202312276957
-Henry Gabriel Casa Grande
-202312271035
+Josue Nunes
+202312271789
 Joaquim Cassiano
 202312276203
+Henry Gabriel Casa Grande
+202312271035
 Joao Marques
 202312273242
 Nina Lopes
@@ -1018,10 +1014,10 @@ Heloisa Teixeira
 202312272323
 Catarina Barbosa
 202312271569
-Alexia da Mata
-202312273776
 Thales Jesus
 202312271802
+Alexia da Mata
+202312273776
 Ana Cecilia Porto
 202312277203
 Ana Vitoria Costela
@@ -1032,10 +1028,10 @@ Rafaela Almeida
 202312273954
 Josue Moreira
 202312274886
-Noah Abreu
-202312278313
 Luiz Fernando Martins
 202312276339
+Noah Abreu
+202312278313
 Allana Sampaio
 202312271171
 Arthur Miguel Melo
@@ -1062,38 +1058,38 @@ Gael Vieira
 202312278902
 Miguel Freitas
 202312278148
-Maria Luisa Cirino
-202312271239
 Davi Cirino
 202312277394
-Brayan Ribeiro
-202312279834
+Maria Luisa Cirino
+202312271239
 Julia Pastor
 202312272459
-Vitor Hugo Cavalcanti
-202312278326
+Brayan Ribeiro
+202312279834
 Lais Almeida
 202312274145
+Vitor Hugo Cavalcanti
+202312278326
 Pedro Henrique Melo
 202312278559
 Antonio Moraes
 202312279779
-Joao Guilherme Pires
-202312273103
 Lucas Vieira
 202312278271
+Joao Guilherme Pires
+202312273103
 Eduarda da Mota
 202312275310
-Davi Lucca da Paz
-202312274323
 Pietro da Rosa
 202312279491
+Davi Lucca da Paz
+202312274323
 Agatha Souza
 202312273569
-Oliver Oliveira
-202312279957
 Maria Julia Jesus
 202312275776
+Oliver Oliveira
+202312279957
 Yan da Costa
 202312276475
 Clara Marques
@@ -1104,78 +1100,78 @@ Anthony Gabriel Silveira
 202312276941
 Zoe Guerra
 202312272760
-Ester da Rocha
-202312278161
 Rodrigo Ribeiro
 202312274967
 Liam da Luz
 202312276187
+Ester da Rocha
+202312278161
 Ana Liz Sa
 202312272239
 Rafaela Pinto
 202312277640
 Miguel Rios
 202312271718
-Mathias Gomes
-202312275899
 Jose Rocha
 202312279093
+Mathias Gomes
+202312275899
 Alicia Sales
 202312271951
 Dra. Daniela Pimenta
 202312278339
-Maya Porto
-202312277818
 Maria Vitoria Azevedo
 202312271663
 Srta. Maria Luisa Costela
 202312275844
+Maya Porto
+202312277818
 Dr. Vicente Martins
 202312278051
 Caroline Sousa
 202312271896
-Vinicius da Cunha
-202312273116
 Zoe Pimenta
 202312277297
-Dra. Emanuella Nunes
-202312271375
-Maria Liz Farias
-202312276543
+Vinicius da Cunha
+202312273116
 Bruno Casa Grande
 202312275556
+Maria Liz Farias
+202312276543
+Dra. Emanuella Nunes
+202312271375
 Maite Martins
 202312276776
 Natalia Araujo
 202312271841
-Sabrina Barbosa
-202312276255
 Juan Lopes
 202312272074
+Sabrina Barbosa
+202312276255
 Bento Lima
 202312275268
 Benjamim Moreira
 202312277475
-Bianca Carvalho
-202312274514
 Davi Lucas Mendes
 202312273527
-Bruno Novais
-202312272540
 Eduarda Rocha
 202312277708
+Bruno Novais
+202312272540
+Bianca Carvalho
+202312274514
 Pedro Henrique Barbosa
 202312272773
-Maria Martins
-202312273006
 Sr. Bernardo Nunes
 202312274980
 Marcos Vinicius Alves
 202312275213
-Milena Melo
-202312279394
+Maria Martins
+202312273006
 Maria Sophia Freitas
 202312277420
+Milena Melo
+202312279394
 Maria Luisa Casa Grande
 202312274226
 Sr. Ryan Pimenta
@@ -1198,44 +1194,44 @@ Sra. Milena Oliveira
 202312278297
 Sabrina Costa
 202312271155
-Guilherme Abreu
-202312278530
 Marcelo Fonseca
 202312279517
+Guilherme Abreu
+202312278530
 Heitor Almeida
 202312278763
-Mariana Aparecida
-202312272608
 Rafaela Camara
 202312277776
+Mariana Aparecida
+202312272608
 Kamilly Cassiano
 202312273828
-Lucca Macedo
-202312276501
 Luisa Ribeiro
 202312272320
 Matheus Camargo
 202312275514
+Lucca Macedo
+202312276501
 Guilherme Santos
 202312278941
 Mateus Rezende
 202312275980
 Ana Vitoria Azevedo
 202312272032
-Yuri da Conceicao
-202312274938
 Ester Mendes
 202312275925
+Yuri da Conceicao
+202312274938
 Sr. Samuel da Cruz
 202312279352
 Dra. Isabela da Rocha
 202312271689
 Bella Pires
 202312276103
-Mirella Fernandes
-202312277323
 Stella Viana
 202312274129
+Mirella Fernandes
+202312277323
 Antonella Caldeira
 202312272155
 Yago das Neves
@@ -1246,16 +1242,16 @@ Joao Guilherme Gomes
 202312275815
 Davi Lucas Jesus
 202312277035
-Dr. Thomas Pimenta
-202312276281
-Luisa Barbosa
-202312278488
-Ana Liz Sampaio
-202312271113
 Joao Souza
 202312279475
+Dr. Thomas Pimenta
+202312276281
+Ana Liz Sampaio
+202312271113
 Srta. Luisa Dias
 202312277501
+Luisa Barbosa
+202312278488
 Anthony Gabriel Barros
 202312278721
 Maria Flor Andrade
@@ -1278,10 +1274,10 @@ Yan Jesus
 202312278145
 Vicente Camargo
 202312278611
-Luiza Castro
-202312279831
 Bento da Cruz
 202312278844
+Luiza Castro
+202312279831
 Alice Santos
 202312272922
 Yasmin Moreira
@@ -1292,18 +1288,18 @@ Mirella Nunes
 202312276582
 Manuela Barros
 202312271647
-Maria Alice Campos
-202312273100
 Sra. Maria Luiza Teixeira
 202312277281
-Leonardo Macedo
-202312271359
+Maria Alice Campos
+202312273100
 Luiz Otavio Novaes
 202312279721
-Maria da Conceicao
-202312274553
+Leonardo Macedo
+202312271359
 Anthony Gabriel Moreira
 202312278734
+Maria da Conceicao
+202312274553
 Gael Viana
 202312272579
 Maria Cecilia Cardoso
@@ -1320,22 +1316,22 @@ Srta. Sabrina Ribeiro
 202312274731
 Dra. Clarice Pimenta
 202312272757
-Levi Souza
-202312272990
 Anthony Gabriel Cunha
 202312279145
-Maria Luiza Cardoso
-202312272003
+Levi Souza
+202312272990
 Joao Gabriel Moreira
 202312277171
+Maria Luiza Cardoso
+202312272003
 Ana Cecilia Rodrigues
 202312274210
 Anna Liz Rodrigues
 202312271482
-Levi Almeida
-202312275663
 Dr. Felipe Duarte
 202312273689
+Levi Almeida
+202312275663
 Thomas da Conceicao
 202312271948
 Anthony da Cruz
@@ -1346,20 +1342,20 @@ Srta. Maya Santos
 202312272880
 Dr. Anthony Guerra
 202312275087
-Francisco Jesus
-202312276307
 Noah das Neves
 202312275320
+Francisco Jesus
+202312276307
 Emilly Farias
 202312272359
 Arthur Gabriel Montenegro
 202312271838
 Lorenzo Mendes
 202312272071
-Dr. Pedro Miguel Monteiro
-202312278459
 Sra. Sophia Caldeira
 202312277472
+Dr. Pedro Miguel Monteiro
+202312278459
 Sarah Garcia
 202312279912
 Guilherme Cavalcanti
@@ -1402,32 +1398,32 @@ Igor Aparecida
 202312272317
 Isabela Jesus
 202312272783
-Nina Fogaca
-202312274990
 Daniela Pacheco
 202312275977
+Nina Fogaca
+202312274990
 Dr. Ravi Freitas
 202312273249
 Sabrina Macedo
 202312272495
-Giovanna Silveira
-202312278129
 Joaquim Cassiano
 202312271741
+Giovanna Silveira
+202312278129
 Marcos Vinicius Alves
 202312278362
-Emanuelly Vasconcelos
-202312271220
 Ana Vitoria Vieira
 202312279582
+Emanuelly Vasconcelos
+202312271220
 Olivia da Rosa
 202312278595
-Joao Miguel Ribeiro
-202312274647
-Maite Montenegro
-202312279815
 Emilly Borges
 202312275634
+Maite Montenegro
+202312279815
+Joao Miguel Ribeiro
+202312274647
 Sra. Maria Sophia Borges
 202312274880
 Dr. Isaque Andrade
@@ -1436,24 +1432,24 @@ Benicio Rodrigues
 202312277553
 Thiago Mendonca
 202312273605
+Rodrigo Sales
+202312272097
 Luna da Cunha
 202312276278
 Caua Fonseca
 202312273084
-Rodrigo Sales
-202312272097
 Levi Siqueira
 202312274304
-Sr. Joao Guilherme Pastor
-202312279705
 Davi Lucas Rios
 202312272330
-Paulo Mendonca
-202312279938
+Sr. Joao Guilherme Pastor
+202312279705
 Lavinia Vieira
 202312276744
 Vitor Hugo Teixeira
 202312275757
+Paulo Mendonca
+202312279938
 Joao Pedro Araujo
 202312273783
 Ana Camargo
@@ -1464,12 +1460,12 @@ Pedro Lucas Araujo
 202312274249
 Gustavo Silva
 202312272275
+Joao Vitor da Luz
+202312274482
 Joao Pedro Goncalves
 202312273495
 Kamilly Ramos
 202312278663
-Joao Vitor da Luz
-202312274482
 Sr. Joao Guilherme Fogaca
 202312278896
 Bianca Silva
@@ -1494,10 +1490,10 @@ Dr. Anthony Gabriel Peixoto
 202312274139
 Maria Sophia Lima
 202312278320
-Maria Alice Monteiro
-202312276579
 Vitor Gabriel Farias
 202312272398
+Maria Alice Monteiro
+202312276579
 Rael Novaes
 202312276812
 Bento Cassiano
@@ -1510,22 +1506,22 @@ Eloah Carvalho
 202312273097
 Barbara Ribeiro
 202312271356
-Maria Cecilia Monteiro
-202312274783
 Paulo Vargas
 202312271589
 Nina Sa
 202312273796
+Maria Cecilia Monteiro
+202312274783
 Benjamim Moreira
 202312278210
 Erick Sampaio
 202312271301
 Joao Guilherme Jesus
 202312273741
-Antony Siqueira
-202312271767
 Felipe Barbosa
 202312276935
+Antony Siqueira
+202312271767
 Igor Porto
 202312275948
 Clarice Araujo
@@ -1546,14 +1542,14 @@ Sabrina Garcia
 202312273398
 Maria Flor Fernandes
 202312277579
-Guilherme Abreu
-202312274618
 Mariah da Conceicao
 202312275605
-Ana Luiza Costa
-202312276825
+Guilherme Abreu
+202312274618
 Dante Garcia
 202312273631
+Ana Luiza Costa
+202312276825
 Allana Santos
 202312274097
 Caua Fonseca
@@ -1566,26 +1562,26 @@ Agatha Andrade
 202312277003
 Anna Liz Correia
 202312279210
-Apollo Cassiano
-202312278223
 Agatha Vieira
 202312272068
+Apollo Cassiano
+202312278223
 Sra. Livia Abreu
 202312272301
 Sr. Joao Gabriel Novais
 202312277702
 Luan Abreu
 202312275728
-Bella Camara
-202312274974
 Kamilly Melo
 202312275961
+Bella Camara
+202312274974
 Mathias Moura
 202312277181
-Marcela Silva
-202312271492
 Sr. Theo Pires
 202312279854
+Marcela Silva
+202312271492
 Luisa Castro
 202312277880
 Dr. Breno Nunes
@@ -1602,72 +1598,72 @@ Davi Luiz Nogueira
 202312279511
 Rodrigo Pastor
 202312276550
-Antony Ferreira
-202312274576
 Bella Macedo
 202312273589
+Antony Ferreira
+202312274576
 Maria Eduarda Moura
 202312278003
 Raquel Silva
 202312279223
-Antony Marques
-202312273068
-Ravi Lucca Melo
-202312277249
 Sra. Bianca da Conceicao
 202312274055
-Eloah Mendonca
-202312279689
+Ravi Lucca Melo
+202312277249
+Antony Marques
+202312273068
 Theodoro Silva
 202312273301
 Matteo Martins
 202312272314
+Eloah Mendonca
+202312279689
 Dra. Maria Helena Mendonca
 202312277715
 Joao Miguel Gomes
 202312278935
 Lucas Sa
 202312272780
-Maria Fernanda Cassiano
-202312273246
 Marcos Vinicius Sales
 202312277427
+Maria Fernanda Cassiano
+202312273246
 Caua Correia
 202312272725
-Vinicius Andrade
-202312279579
 Thomas Monteiro
 202312275398
+Vinicius Andrade
+202312279579
 Liam Aparecida
 202312278825
 Ana Liz da Cruz
 202312277084
 Leonardo Ferreira
 202312275343
-Yan Duarte
-202312274822
 Dr. Noah Pacheco
 202312271628
 Vinicius Macedo
 202312273835
+Yan Duarte
+202312274822
 Caroline Porto
 202312275288
 Dom da Mata
 202312272094
-Kamilly Fogaca
-202312275521
-Juliana da Cunha
-202312276741
 Murilo da Cunha
 202312278715
-Ana Cecilia Jesus
-202312277728
-Noah Moura
-202312279935
-Cecilia Sampaio
-202312278948
+Kamilly Fogaca
+202312275521
 Daniela Caldeira
 202312275754
+Ana Cecilia Jesus
+202312277728
+Juliana da Cunha
+202312276741
+Cecilia Sampaio
+202312278948
+Noah Moura
+202312279935
 Sabrina Sales
 202312278194
 Heloisa Sa
@@ -1680,36 +1676,36 @@ Yasmin Melo
 202312272272
 Ana Julia Guerra
 202312278660
-Esther Duarte
-202312273725
-Larissa Pinto
-202312278893
 Vitor Hugo Brito
 202312276919
+Larissa Pinto
+202312278893
+Esther Duarte
+202312273725
 Maria Liz Silva
 202312277152
-Sra. Mirella Correia
-202312273204
 Luana Camargo
 202312278372
 Larissa Cavalcante
 202312272217
+Sra. Mirella Correia
+202312273204
 Diego Ramos
 202312273670
 Maria Helena da Conceicao
 202312275877
 Gustavo Henrique Borges
 202312277097
-Aurora Nogueira
-202312273149
 Sr. Gael Sousa
 202312277330
+Aurora Nogueira
+202312273149
 Vitor Hugo Duarte
 202312273382
-Arthur Miguel Silva
-202312274369
 Breno Moura
 202312272395
+Arthur Miguel Silva
+202312274369
 Zoe Cirino
 202312276288
 Lucas Pinto
@@ -1728,12 +1724,12 @@ Milena Aragao
 202312276699
 Milena Monteiro
 202312273738
+Esther Teixeira
+202312277398
 Marina Vieira
 202312274204
 Olivia Fernandes
 202312275424
-Esther Teixeira
-202312277398
 Lunna Souza
 202312276644
 Daniela Sa
@@ -1742,10 +1738,10 @@ Rafael Andrade
 202312277110
 Lorenzo Camara
 202312278563
-Dra. Ester Gomes
-202312279783
 Sabrina Porto
 202312273628
+Dra. Ester Gomes
+202312279783
 Cecilia Araujo
 202312274848
 Liz Fonseca
@@ -1776,10 +1772,10 @@ Yan Viana
 202312271544
 Ana Vitoria Cassiano
 202312277932
-Dr. Fernando Duarte
-202312274971
 Cecilia Freitas
 202312273984
+Dr. Fernando Duarte
+202312274971
 Breno Barbosa
 202312276191
 Levi Nascimento
@@ -1788,10 +1784,10 @@ Gael Henrique Viana
 202312276424
 Sr. Luiz Miguel Vargas
 202312274450
-Srta. Maria Liz Silva
-202312278110
 Ana Cecilia Souza
 202312279097
+Srta. Maria Liz Silva
+202312278110
 Amanda Siqueira
 202312276136
 Manuella Fogaca
@@ -1800,12 +1796,12 @@ Nicolas Vasconcelos
 202312274107
 Lais Vasconcelos
 202312273120
-Valentina Pastor
-202312271379
-Maria Clara Ribeiro
-202312276547
 Ana Clara Camara
 202312277534
+Maria Clara Ribeiro
+202312276547
+Valentina Pastor
+202312271379
 Dra. Sophie Lopes
 202312278987
 Isabella Moraes
@@ -1836,66 +1832,66 @@ Milena Cunha
 202312274408
 Isabel Cardoso
 202312276615
-Sophie Borges
-202312272900
-Maria Alice Moreira
-202312271913
 Clarice Duarte
 202312273887
+Maria Alice Moreira
+202312271913
+Sophie Borges
+202312272900
 Maysa Viana
 202312275107
 Pedro Henrique Fernandes
 202312279288
 Antony Rocha
 202312273599
-Heitor Moura
-202312272612
 Gabriel da Mota
 202312275806
+Heitor Moura
+202312272612
 Jose Marques
 202312275052
 Vitoria Jesus
 202312277259
 Luiz Miguel Pereira
 202312275285
-Dr. Matteo Pinto
-202312279699
 Sr. Theodoro Cavalcante
 202312278712
-Maria Julia Campos
-202312271570
 Rebeca Garcia
 202312277725
-Srta. Isadora Costela
-202312274997
+Dr. Matteo Pinto
+202312279699
+Maria Julia Campos
+202312271570
 Stella da Cruz
 202312271803
+Srta. Isadora Costela
+202312274997
 Lucas Gabriel Cassiano
 202312275463
 Alice Castro
 202312277670
-Maria Alice Martins
-202312279877
 Clara Montenegro
 202312276683
+Maria Alice Martins
+202312279877
 Lucas Gabriel Farias
 202312276916
 Maria Pereira
 202312279123
 Milena Melo
 202312279356
-Srta. Jade Casa Grande
-202312271227
 Julia Albuquerque
 202312279589
+Srta. Jade Casa Grande
+202312271227
 Gael Henrique Barros
 202312273434
+Olivia Cavalcanti
+202312272447
 Ryan Fonseca
 202312276628
 Vitoria Ferreira
 202312278835
-Olivia Cavalcanti
-202312272447
 Vitor Gabriel Santos
 202312273667
 Maria Julia Oliveira
@@ -1904,10 +1900,10 @@ Mathias das Neves
 202312276107
 Asafe Silva
 202312275353
-Giovanna Siqueira
-202312277560
 Sr. Luiz Felipe Araujo
 202312274366
+Giovanna Siqueira
+202312277560
 Dra. Maria Clara Marques
 202312273612
 Sr. Breno Mendes
@@ -1922,10 +1918,10 @@ Sra. Sabrina Nascimento
 202312273324
 Dra. Vitoria da Cruz
 202312277971
-Jose Araujo
-202312275010
 Marcos Vinicius Rios
 202312279191
+Jose Araujo
+202312275010
 Sra. Isadora Caldeira
 202312271528
 Isadora Barbosa
@@ -1934,20 +1930,20 @@ Joaquim Fonseca
 202312271994
 Sra. Cecilia da Conceicao
 202312276175
-Ana Carolina Pinto
-202312278848
 Yuri Rocha
 202312275654
+Ana Carolina Pinto
+202312278848
 Kevin Vasconcelos
 202312277107
-Lorenzo Gomes
-202312272871
-Heloisa Alves
-202312273858
 Dr. Lucca Cassiano
 202312279026
+Heloisa Alves
+202312273858
 Francisco Martins
 202312271884
+Lorenzo Gomes
+202312272871
 Rafael Azevedo
 202312273337
 Isabelly Carvalho
@@ -1960,26 +1956,26 @@ Zoe Ramos
 202312278971
 Antonio Pereira
 202312272816
-Larissa Fogaca
-202312278450
 Sabrina Andrade
 202312274269
-Calebe Fogaca
-202312275489
+Larissa Fogaca
+202312278450
 Daniel Guerra
 202312273515
-Brayan Cirino
-202312272528
+Calebe Fogaca
+202312275489
 Theodoro Moreira
 202312277696
+Brayan Cirino
+202312272528
 Jade Dias
 202312276188
 Catarina Pires
 202312278395
-Elisa Lima
-202312279615
 Fernanda Cunha
 202312273460
+Elisa Lima
+202312279615
 Joao Vitor Costela
 202312279848
 Liam Pereira
@@ -1996,12 +1992,12 @@ Pietro Viana
 202312275091
 Davi Lucca Martins
 202312273350
-Ryan Costa
-202312279738
 Jade Santos
 202312276544
 Liam da Luz
 202312275557
+Ryan Costa
+202312279738
 Emanuella da Costa
 202312273816
 Luiz Felipe Vieira
@@ -2012,52 +2008,52 @@ Arthur Gabriel da Paz
 202312275502
 Cecilia Barbosa
 202312272541
-Henry Gabriel Mendes
-202312275214
 Lais Sales
 202312271033
+Henry Gabriel Mendes
+202312275214
 Dr. Daniel Rocha
 202312276434
 Sra. Sarah Pacheco
 202312271266
 Nicole Melo
 202312275159
-Joao Miguel Albuquerque
-202312273185
 Benjamim Marques
 202312277366
-Clara Aparecida
-202312274638
+Joao Miguel Albuquerque
+202312273185
 Dr. Guilherme Sa
 202312276612
-Sabrina Pereira
-202312276845
+Clara Aparecida
+202312274638
 Bernardo Almeida
 202312275858
+Sabrina Pereira
+202312276845
 Antonella Brito
 202312272143
-Lunna Andrade
-202312276557
-Henrique Vargas
-202312274583
 Kamilly Santos
 202312275570
+Lunna Andrade
+202312276557
 Antonio Pastor
 202312273596
+Henrique Vargas
+202312274583
 Maria Isis Vasconcelos
 202312271855
 Sr. Noah Rodrigues
 202312279230
-Benjamim Porto
-202312279463
 Manuella Pimenta
 202312277489
+Benjamim Porto
+202312279463
 Davi Lucas Pastor
 202312273541
-Sr. Lucas Pacheco
-202312271567
 Theodoro Gomes
 202312276735
+Sr. Lucas Pacheco
+202312271567
 Dr. Rael Sales
 202312278942
 Samuel Moraes
@@ -2066,14 +2062,14 @@ Srta. Eloa Abreu
 202312275981
 Sr. Leonardo da Paz
 202312277201
-Luiz Miguel Novais
-202312271279
 Dr. Nathan Sales
 202312273253
 Ana Clara Sampaio
 202312275460
 Liam Albuquerque
 202312274473
+Luiz Miguel Novais
+202312271279
 Jose Miguel Siqueira
 202312276913
 Davi Lucca Borges
@@ -2082,12 +2078,12 @@ Aylla da Conceicao
 202312276392
 Amanda Barbosa
 202312273664
-Lunna Aparecida
-202312278544
 Sr. Gustavo Henrique Vieira
 202312275350
 Sra. Maria Helena Brito
 202312271169
+Lunna Aparecida
+202312278544
 Yan Sousa
 202312275583
 Julia Pacheco
@@ -2104,32 +2100,32 @@ Murilo da Mata
 202312272334
 Sr. Lucas Gabriel Mendes
 202312272567
-Juliana Macedo
-202312274774
 Agatha Monteiro
 202312278955
-Arthur Borges
-202312275007
+Juliana Macedo
+202312274774
 Henry Gabriel Marques
 202312279188
-Caroline da Conceicao
-202312276227
+Arthur Borges
+202312275007
 Ravi Lucca Moura
 202312277214
-Dr. Levi Almeida
-202312273266
 Benicio Sa
 202312275240
+Caroline da Conceicao
+202312276227
+Dr. Levi Almeida
+202312273266
 Marcela Camara
 202312273499
-Rebeca Costa
-202312274719
 Lais Gomes
 202312279887
-Guilherme Ferreira
-202312272978
+Rebeca Costa
+202312274719
 Heitor das Neves
 202312273965
+Guilherme Ferreira
+202312272978
 Joao Vitor Moreira
 202312272224
 Matheus Gomes
@@ -2138,12 +2134,12 @@ Luiz Otavio Brito
 202312277104
 Maria Luisa Barros
 202312272169
-Ester Ribeiro
-202312279777
 Maria Julia Pastor
 202312277570
 Ana Julia Santos
 202312278790
+Ester Ribeiro
+202312279777
 Isabela Mendes
 202312277803
 Otto Melo
@@ -2152,32 +2148,32 @@ Isis Oliveira
 202312273101
 Maria Liz da Rosa
 202312273334
-Enzo da Mota
-202312274554
 Sr. Leandro da Mota
 202312275541
+Enzo da Mota
+202312274554
 Caio Pacheco
 202312277981
 Joao Vitor Borges
 202312272813
-Sabrina Monteiro
-202312272059
 Nicolas da Luz
 202312277227
+Sabrina Monteiro
+202312272059
 Alana Goncalves
 202312274266
-Heitor Sa
-202312271305
 Anthony Gabriel Oliveira
 202312279667
+Heitor Sa
+202312271305
 Asafe da Paz
 202312274499
+Maria Sophia Machado
+202312278913
 Yuri Mendonca
 202312275719
 Sra. Ana Laura Camara
 202312274732
-Maria Sophia Machado
-202312278913
 Clara Vargas
 202312271771
 Leonardo Lopes
@@ -2194,16 +2190,16 @@ Vitor Hugo Alves
 202312275609
 Lorena Camara
 202312276075
-Mariana Rodrigues
-202312274567
 Dra. Liz das Neves
 202312278748
+Matteo Mendonca
+202312272593
+Mariana Rodrigues
+202312274567
 Agatha Alves
 202312276774
 Marcos Vinicius Vieira
 202312275787
-Matteo Mendonca
-202312272593
 Valentim Cirino
 202312274800
 Alice Mendonca
@@ -2216,20 +2212,20 @@ Oliver Camara
 202312279680
 Benicio Abreu
 202312276719
+Juliana Ribeiro
+202312278926
+Ana Liz Castro
+202312273758
 Isis da Rosa
 202312274745
 Luan Abreu
 202312276952
-Ana Liz Castro
-202312273758
-Juliana Ribeiro
-202312278926
-Dra. Larissa Carvalho
-202312272017
 Henry Gabriel Ferreira
 202312277185
-Livia Cirino
-202312274690
+Dra. Larissa Carvalho
+202312272017
+cpt
+789
 Maria Luiza da Luz
 202312279858
 Nathan da Rosa
@@ -2238,34 +2234,36 @@ Sra. Maria Sophia Pacheco
 202312273703
 Benjamin Mendes
 202312272716
+Livia Cirino
+202312274690
 Enzo Gabriel Garcia
 202312272195
 Ravi Aparecida
 202312276609
 Igor Rezende
 202312276842
-Ester Caldeira
-202312278062
 Maria Laura Casa Grande
 202312273881
 Joao Gabriel Peixoto
 202312277075
+Ester Caldeira
+202312278062
 Leonardo Cavalcanti
 202312277308
-Bella Goncalves
-202312272373
 Levi da Paz
 202312277541
-Dra. Maria Liz Monteiro
-202312274580
+Bella Goncalves
+202312272373
 Sara Sousa
 202312278761
+Dra. Maria Liz Monteiro
+202312274580
+Lavinia Sampaio
+202312277253
 Alexandre Moreira
 202312278240
 Bento Aragao
 202312272085
-Lavinia Sampaio
-202312277253
 Arthur Gabriel Teixeira
 202312273305
 Luan Oliveira
@@ -2274,10 +2272,10 @@ Maria Laura Cirino
 202312273771
 Jade Sa
 202312272784
-Mariane Nogueira
-202312272030
 Manuela Fonseca
 202312277198
+Mariane Nogueira
+202312272030
 Sra. Agatha da Mota
 202312274237
 Benicio Sales
@@ -2286,14 +2284,14 @@ Maria Alice da Mata
 202312271509
 Maria Alice Campos
 202312272729
-Julia Gomes
-202312272962
 Lais Camara
 202312278130
-Arthur Miguel Nogueira
-202312271221
+Julia Gomes
+202312272962
 Srta. Mariana Pimenta
 202312275402
+Arthur Miguel Nogueira
+202312271221
 Srta. Cecilia Melo
 202312275635
 Benicio Pastor
@@ -2312,14 +2310,14 @@ Lucas Farias
 202312275004
 Julia das Neves
 202312275237
-Dra. Ana Vitoria das Neves
-202312276457
 Gael Freitas
 202312273263
-Dr. Henry Gabriel Mendes
-202312278664
+Dra. Ana Vitoria das Neves
+202312276457
 Dr. Benjamim Ramos
 202312272509
+Dr. Henry Gabriel Mendes
+202312278664
 Sofia da Conceicao
 202312279884
 Apollo Campos
@@ -2330,10 +2328,10 @@ Camila Guerra
 202312277156
 Eloah Siqueira
 202312271988
-Julia Melo
-202312271001
 Yago Montenegro
 202312279363
+Julia Melo
+202312271001
 Leo Borges
 202312278609
 Liz Teixeira
@@ -2342,18 +2340,18 @@ Juliana Novais
 202312279075
 Dra. Joana Abreu
 202312273907
-Sr. Jose Pedro Porto
-202312278321
 Joao Vitor Lima
 202312274140
-Olivia Pastor
-202312271412
+Sr. Jose Pedro Porto
+202312278321
+Henrique Casa Grande
+202312275593
 Otavio Sampaio
 202312279774
 Sophia Porto
 202312276580
-Henrique Casa Grande
-202312275593
+Olivia Pastor
+202312271412
 Daniel da Luz
 202312271645
 Jose da Cunha
@@ -2372,30 +2370,30 @@ Cecilia Cunha
 202312278211
 Sra. Alexia Brito
 202312271535
-Dra. Caroline Camara
-202312274729
 Dra. Carolina Souza
 202312273742
+Dra. Caroline Camara
+202312274729
 Emanuel Aragao
 202312272755
 Dr. Valentim Nunes
 202312274962
 Enzo Gabriel Abreu
 202312273975
-Zoe Cavalcante
-202312271247
 Agatha Caldeira
 202312279609
-Thomas das Neves
-202312274674
+Zoe Cavalcante
+202312271247
 Lais Moreira
 202312276648
 Luiz Gustavo Ribeiro
 202312278855
-Thomas Camargo
-202312278101
+Thomas das Neves
+202312274674
 Isis Garcia
 202312271713
+Thomas Camargo
+202312278101
 Ayla Nogueira
 202312271192
 Benjamin Montenegro
@@ -2404,18 +2402,18 @@ Vitor Hugo das Neves
 202312274619
 Fernando da Luz
 202312278800
-Antonella Rocha
-202312275085
 Natalia Vargas
 202312277292
+Antonella Rocha
+202312275085
 Milena Caldeira
 202312279732
 Henry Mendes
 202312272823
-Arthur Gabriel Rezende
-202312273056
 Isaac Azevedo
 202312278224
+Arthur Gabriel Rezende
+202312273056
 Enzo Sampaio
 202312273289
 Diogo Gomes
@@ -2424,46 +2422,46 @@ Srta. Olivia Abreu
 202312273755
 Kamilly Lopes
 202312279156
-Clara Cirino
-202312273234
 Julia Peixoto
 202312279389
 Renan Campos
 202312279622
 Mariana Nogueira
 202312276428
+Clara Cirino
+202312273234
 Ana Beatriz Camargo
 202312272480
 Otto Teixeira
 202312271493
 Isis Castro
 202312278114
+Lucas Garcia
+202312274166
 Ester Cavalcante
 202312273179
 Luiz Miguel Andrade
 202312272192
-Lucas Garcia
-202312274166
 Eloa Teixeira
 202312279567
-Francisco Silva
-202312271438
 Brayan da Rocha
 202312276606
+Francisco Silva
+202312271438
 Ana Cecilia Aragao
 202312276085
 Vinicius Fogaca
 202312273124
-Lorena Pacheco
-202312279745
 Andre Gomes
 202312278758
+Lorena Pacheco
+202312279745
+Sra. Sophia Albuquerque
+202312275797
 Ian Machado
 202312272603
 Caleb da Paz
 202312274810
-Sra. Sophia Albuquerque
-202312275797
 Ana Gomes
 202312278470
 Sra. Maria Cecilia Moreira
@@ -2474,42 +2472,42 @@ Maria Vitoria da Luz
 202312273535
 Cecilia Farias
 202312279169
-Sra. Bianca Martins
-202312272260
 Nicolas Ferreira
 202312277428
+Sra. Bianca Martins
+202312272260
 Manuella Carvalho
 202312272493
 Joao Felipe Lopes
 202312278881
-Nathan Castro
-202312272959
-Benicio Barros
-202312278127
-Josue Nogueira
-202312277140
 Rafaela Azevedo
 202312279114
+Benicio Barros
+202312278127
+Nathan Castro
+202312272959
+Josue Nogueira
+202312277140
 Davi Lucca Castro
 202312273192
 Vinicius da Luz
 202312278593
-Maria Alice Fogaca
-202312271451
 Arthur Gabriel Borges
 202312272438
-Dr. Rhavi Moreira
-202312276852
+Maria Alice Fogaca
+202312271451
 Lucas Pimenta
 202312275865
+Dr. Rhavi Moreira
+202312276852
 Josue Costela
 202312276098
 Bruna da Rosa
 202312278538
-Mariane Camargo
-202312276564
 Clara Ribeiro
 202312272383
+Mariane Camargo
+202312276564
 Emanuel Costela
 202312276797
 Julia Cavalcante
@@ -2518,22 +2516,22 @@ Dra. Larissa Albuquerque
 202312278250
 Dr. Davi Camara
 202312275289
+Maysa Cirino
+202312274302
 Stephany Rezende
 202312278483
 Sr. Pedro Henrique Mendonca
 202312272328
-Maysa Cirino
-202312274302
 Sr. Mathias Vargas
 202312275755
-Dr. Renan Leao
-202312271807
 Isaque Rocha
 202312276975
-Zoe da Mota
-202312276221
+Dr. Renan Leao
+202312271807
 Rebeca Rocha
 202312272040
+Zoe da Mota
+202312276221
 Jose Miguel Viana
 202312274247
 Ian Moreira
@@ -2548,12 +2546,10 @@ Camila Rocha
 202312276166
 Isabela Moura
 202312273438
-Bella Correia
-202312278606
 Benjamim Sales
 202312274425
-Luiz Fernando Vieira
-202312274658
+Bella Correia
+202312278606
 Igor Casa Grande
 202312275645
 Miguel Freitas
@@ -2562,50 +2558,52 @@ Dr. Bento da Cunha
 202312273671
 Gabriel Martins
 202312277852
+Luiz Fernando Vieira
+202312274658
 Srta. Antonella Leao
 202312275878
 Sr. Gabriel Almeida
 202312277331
-Sr. Erick da Luz
-202312278551
 Jade Novais
 202312272396
+Sr. Erick da Luz
+202312278551
 Sr. Danilo Cassiano
 202312279771
 Dr. Luiz Miguel Peixoto
 202312273616
-Theo Vargas
-202312275823
 Melissa da Cunha
 202312279017
+Theo Vargas
+202312275823
 Ravi Lucca Santos
 202312277276
 Leonardo Sales
 202312278496
 Joao Gabriel Machado
 202312275535
-Ana Clara Monteiro
-202312276755
 Asafe Aparecida
 202312272574
-Benjamim Casa Grande
-202312273040
+Ana Clara Monteiro
+202312276755
 Gabriela Sa
 202312272053
-Nathan Costa
-202312278441
+Benjamim Casa Grande
+202312273040
 Hellena Cassiano
 202312274260
-Bruna Aparecida
-202312276467
+Nathan Costa
+202312278441
 Isis Silveira
 202312275480
+Bruna Aparecida
+202312276467
 Stephany Silveira
 202312278674
-Esther Moreira
-202312272519
 Bruna Goncalves
 202312275713
+Esther Moreira
+202312272519
 Ryan Rodrigues
 202312277920
 Gael da Cunha
@@ -2620,10 +2618,10 @@ Isabel Aparecida
 202312278619
 Mirella da Paz
 202312273684
-Srta. Emanuelly Borges
-202312272930
 Otto Novaes
 202312279085
+Srta. Emanuelly Borges
+202312272930
 Larissa Martins
 202312279318
 Henrique Costela
@@ -2638,10 +2636,10 @@ Sr. Luiz Gustavo Novaes
 202312278742
 Helena Alves
 202312277755
-Dante Porto
-202312274794
 Ana Laura Vargas
 202312279962
+Dante Porto
+202312274794
 Emanuelly da Cruz
 202312271079
 Srta. Lorena Brito
@@ -2656,28 +2654,28 @@ Felipe Pacheco
 202312273231
 Rafael Novais
 202312276425
-Sra. Sophie da Mata
-202312271490
 Andre Dias
 202312273464
+Sra. Sophie da Mata
+202312271490
 Zoe Abreu
 202312278865
 Laura da Rocha
 202312279098
 Clarice Fonseca
 202312275150
-Dr. Bernardo da Paz
-202312273176
 Breno Melo
 202312278344
+Dr. Bernardo da Paz
+202312273176
 Apollo Aparecida
 202312272422
 Joao Miguel Nascimento
 202312275849
-Sra. Ana Luiza Sales
-202312275095
 Evelyn Castro
 202312274108
+Sra. Ana Luiza Sales
+202312275095
 Enzo Duarte
 202312275328
 Eloa Pimenta
@@ -2686,46 +2684,46 @@ Vicente Sales
 202312271613
 Luara Lima
 202312275794
+Luan Costela
+202312279454
 Marcos Vinicius Dias
 202312276260
 Sr. Enzo Andrade
 202312271092
-Luan Costela
-202312279454
-Liz Sampaio
-202312276493
-Dr. Thales Barros
-202312273299
 Olivia Goncalves
 202312272312
-Kamilly Almeida
-202312273765
+Dr. Thales Barros
+202312273299
+Liz Sampaio
+202312276493
 Nicolas Sousa
 202312278933
+Kamilly Almeida
+202312273765
 Josue Caldeira
 202312273244
 Felipe da Rosa
 202312271270
-Luiza Nogueira
-202312277891
 Srta. Nina Teixeira
 202312273710
+Luiza Nogueira
+202312277891
 Apollo Camara
 202312272723
 Brenda Cassiano
 202312273943
+Manuela Aragao
+202312272435
 Matteo Costa
 202312271448
 Eduarda Barbosa
 202312278823
-Manuela Aragao
-202312272435
-Joao Lucas Aparecida
-202312274875
 Isabella Cassiano
 202312279056
 Dra. Livia Montenegro
 202312275862
+Joao Lucas Aparecida
+202312274875
 Rafael Barbosa
 202312271914
 Lara Pereira
@@ -2738,26 +2736,26 @@ Ana Clara Albuquerque
 202312274354
 Otavio Lopes
 202312278768
-Sofia Melo
-202312274820
 Luna Azevedo
 202312279988
+Sofia Melo
+202312274820
 Henry Barros
 202312273079
 Zoe Sousa
 202312278480
 Joao Machado
 202312272558
-Melina Aparecida
-202312277959
 Leo da Rosa
 202312278946
+Melina Aparecida
+202312277959
 Bryan Aragao
 202312271804
-Evelyn Machado
-202312276218
 Dr. Valentim Nunes
 202312277205
+Evelyn Machado
+202312276218
 Sophia da Rosa
 202312271050
 Luiz Henrique Nunes
