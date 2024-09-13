@@ -18,11 +18,7 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 }
 
 //=================================================
-void construirListaDoZero(TLista *lista) {
-    lista->inicio = NULL;
-    lista->fim = NULL;
-    lista->total = 0;
-}
+
 //=================================================
 float aleatorio(int n){
     return (rand() % (n+1));
@@ -125,9 +121,9 @@ int pedirOpcao3() {
     int opcao;
     
     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
-    printf("1 - 100%% do número de matrículas\n");
-    printf("2 - 120%% do número de matrículas\n");
-    printf("3 - 150%% do número de matrículas\n");
+    printf("1 - 120%% do número de matrículas\n");
+    printf("2 - 150%% do número de matrículas\n");
+    printf("3 - 180%% do número de matrículas\n");
     printf("Digite sua opção (1, 2 ou 3): ");
     scanf("%d", &opcao);
     return opcao;
@@ -346,10 +342,10 @@ int acharProximoPrimo(int num) {
 //================================================
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
     tabela->tamanho = tamanho;
-    tabela->vetorListas = (TLista *)malloc((size_t)tamanho * sizeof(TLista));
+    tabela->vetorElementos = (TElemento *)malloc((size_t)tamanho * sizeof(TElemento));
     // Inicializar todas as listas encadeadas em cada posição do vetor
     for (int i = 0; i < tamanho; i++) {
-        construirListaDoZero(&tabela->vetorListas[i]);
+        construirListaDoZero(&tabela->vetorElementos[i]);
     }
 }
 //================================================
@@ -360,13 +356,13 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     
     switch (opcaoPorcentagem) {
         case 1:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.0));
-            break;
-        case 2:
             tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
             break;
-        case 3:
+        case 2:
             tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
+            break;
+        case 3:
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.8));
             break;
         default:
             printf("Opção inválida\n");

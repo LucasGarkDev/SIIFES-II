@@ -18,7 +18,7 @@ typedef struct tipoElemento{
 } TElemento;
 
 typedef struct tipoTabelaHash{
-    TElemento *vetorListas;
+    TElemento *vetorElementos;
     int tamanho;
 } TabelaHash;
 
@@ -38,15 +38,15 @@ void excluirTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHa
 void exibeTabelaHash(TabelaHash *tabela);
 void liberarTabelaHash(TabelaHash *tabela);
 FILE *abrirArquivo(char *nomeArq, char *modo);
-void construirListaDoZero(TLista *lista);
-void lerArquivo(TLista *lista, FILE *arquivoLista);
-void inicializa(TLista *lista, FILE *arquivoLista);
-int pesquisarMatricula2(TLista *lista, long long int matriculaBusca);
-int pesquisarMatricula(TLista *lista);
-void inserir(TLista *lista, long long int valor, char *nome);
+// void construirListaDoZero(TLista *lista);
+// void lerArquivo(TLista *lista, FILE *arquivoLista);
+// void inicializa(TLista *lista, FILE *arquivoLista);
+// int pesquisarMatricula2(TLista *lista, long long int matriculaBusca);
+// int pesquisarMatricula(TLista *lista);
+// void inserir(TLista *lista, long long int valor, char *nome);
 int pedirOpcao3();
-void exibeLista(TLista lista);
-void excluirLista(TLista *lista, long long int valor);
+// void exibeLista(TLista lista);
+// void excluirLista(TLista *lista, long long int valor);
 long long int pedirOpcao();
 long long int pedirNum(int caminhoASerEscolhido);
 void imprimirTabelaHash(TabelaHash *tabela);
