@@ -1,9 +1,5 @@
 //Feito por: Lucas Garcia E Luis Augusto
-#include "tabelaHash.h"
-
-void correct(){
-    SetConsoleOutputCP(65001);
-}
+#include "TabelaHashEndAberto.h"
 
 // inputs personalizados e modificados
 int FileReadInt(FILE *arquivo){
