@@ -1,9 +1,82 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "TabelaHash.h"
-
 //Feito por: Lucas Garcia E Luis Augusto
+#include "tabelaHash.h"
+
+void correct(){
+    SetConsoleOutputCP(65001);
+}
+
+// inputs personalizados e modificados
+int FileReadInt(FILE *arquivo){
+    int value;
+    fscanf(arquivo, "%d" , &value);
+    return value;
+}
+long long int FileReadLongLongInt(FILE *arquivo){
+    long long int value;
+    fscanf(arquivo, "%lld" , &value);
+    return value;
+}
+float input(){
+    float value;
+    scanf("%f", &value);
+    return value;
+}
+float inputBoleano(){
+	int value;
+	do{
+		fflush(stdin);
+		scanf("%d", &value);
+	}while(value != 1 && value != 0);
+	return value;
+}
+void FileReadString(FILE *arquivo,char destino[]){
+    int value;
+    fscanf(arquivo, "%s" , &destino);
+}
+void inputS(char destino[]){
+    scanf(" %100[^\n]s", destino);
+}
+
+// Gera um número aleatório entre 0 (inclusive) e 1 (exclusivo)
+double aleatorio_quebrado() {
+    // Inicializa a semente para gerar números aleatórios diferentes a cada execução
+    srand(time(NULL));
+
+    // RAND_MAX é o maior valor que rand() pode retornar
+    return (double)rand() / RAND_MAX;
+}
+
+// Gera um número aleatório entre min (inclusive) e max (exclusivo)
+double aleatorio_intervalo(double min, double max) {
+    return min + (max - min) * aleatorio_quebrado();
+}
+
+int mod(int x, int y){
+	return (x%y);
+}
+
+long long int hash(long long int k,int tamVetor){
+    // Para o primeiro cálculo:
+    // h(k) = k mod N
+    // N eh o tamanho do vetor
+    return mod(k,tamVetor);
+}
+
+long long int hash2(long long int k,int tamVetor){
+    // N eh o tamanho do vetor
+    // Caso haja colisão, inicialmente calculamos h2(K),
+    // que pode ser definida como:
+    // h2(k) = 1 + ( k mod (N-1) )
+    int h1 = hash(k,tamVetor-1);
+    return 1 + h1;
+}
+
+long long int reHash(long long int i,int k, int tamVetor){
+    // N eh o tamanho do vetor
+    // rh(i,k) = ( i + h2(k) ) mod N
+    int h2 = hash2(k,tamVetor);
+    return mod((i +  h2), tamVetor);
+}
 
 //=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
@@ -18,7 +91,17 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 }
 
 //=================================================
+void construirListaDoZero(TLista *lista) {
+    lista->inicio = NULL;
+    lista->fim = NULL;
+    lista->total = 0;
+}
 
+void calcularTempo(double ini,double fim){
+    double tempo_decorrido = (double)(fim - ini) / CLOCKS_PER_SEC;
+
+    printf("Tempo de execucao: %f segundos\n", tempo_decorrido);
+}
 //=================================================
 float aleatorio(int n){
     return (rand() % (n+1));
@@ -121,9 +204,9 @@ int pedirOpcao3() {
     int opcao;
     
     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
-    printf("1 - 120%% do número de matrículas\n");
-    printf("2 - 150%% do número de matrículas\n");
-    printf("3 - 180%% do número de matrículas\n");
+    printf("1 - 100%% do número de matrículas\n");
+    printf("2 - 120%% do número de matrículas\n");
+    printf("3 - 150%% do número de matrículas\n");
     printf("Digite sua opção (1, 2 ou 3): ");
     scanf("%d", &opcao);
     return opcao;
@@ -342,10 +425,10 @@ int acharProximoPrimo(int num) {
 //================================================
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
     tabela->tamanho = tamanho;
-    tabela->vetorElementos = (TElemento *)malloc((size_t)tamanho * sizeof(TElemento));
+    tabela->vetorListas = (TLista *)malloc((size_t)tamanho * sizeof(TLista));
     // Inicializar todas as listas encadeadas em cada posição do vetor
     for (int i = 0; i < tamanho; i++) {
-        construirListaDoZero(&tabela->vetorElementos[i]);
+        construirListaDoZero(&tabela->vetorListas[i]);
     }
 }
 //================================================
@@ -356,13 +439,13 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     
     switch (opcaoPorcentagem) {
         case 1:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.0));
             break;
         case 2:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
             break;
         case 3:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.8));
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
             break;
         default:
             printf("Opção inválida\n");
@@ -476,6 +559,7 @@ void liberarTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 int main() {
+    correct();
     FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
     // Contar o número de matrículas no arquivo
     int totalMatriculas = contarMatriculas(arquivoLista);
@@ -489,8 +573,11 @@ int main() {
     int funcaoHashEscolhida = escolherFuncaoHash();
     printf("Função Hash escolhida: %d\n", funcaoHashEscolhida);  // Depuração
 
+    processTime inicio = clock();
     lerEInserirMatriculas(&tabelaHash, arquivoLista, funcaoHashEscolhida);
 
+    processTime fim = clock();
+    calcularTempo(inicio,fim);
     executarMenu(&tabelaHash, funcaoHashEscolhida);
 
     salvarDadosNoArquivo(&tabelaHash, arquivoLista);
