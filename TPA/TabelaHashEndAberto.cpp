@@ -200,9 +200,9 @@ int pedirOpcao3() {
     int opcao;
     
     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
-    printf("1 - 100%% do número de matrículas\n");
-    printf("2 - 120%% do número de matrículas\n");
-    printf("3 - 150%% do número de matrículas\n");
+    printf("1 - 120%% do número de matrículas\n");
+    printf("2 - 150%% do número de matrículas\n");
+    printf("3 - 180%% do número de matrículas\n");
     printf("Digite sua opção (1, 2 ou 3): ");
     scanf("%d", &opcao);
     return opcao;
@@ -435,13 +435,13 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     
     switch (opcaoPorcentagem) {
         case 1:
-            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.0));
-            break;
-        case 2:
             tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.2));
             break;
-        case 3:
+        case 2:
             tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.5));
+            break;
+        case 3:
+            tamanhoTabela = acharProximoPrimo((int)(totalMatriculas * 1.8));
             break;
         default:
             printf("Opção inválida\n");

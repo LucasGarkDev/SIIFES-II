@@ -15,6 +15,7 @@ typedef clock_t processTime;
 typedef struct tipoElemento{
     long long int valor;
     string nome;
+    int flag;
     struct tipoElemento *prox;
 } TElemento;
 
