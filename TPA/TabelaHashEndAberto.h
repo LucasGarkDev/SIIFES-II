@@ -13,16 +13,12 @@ typedef char string[101];
 typedef struct tipoElemento{
     long long int valor;
     string nome;
+    int flag;
     struct tipoElemento *prox;
 } TElemento;
 
-typedef struct tipoLista{
-    TElemento *inicio, *fim;
-    int total;
-} TLista;
-
 typedef struct tipoTabelaHash{
-    TLista *vetorListas;
+    TElemento *vetorListas;
     int tamanho;
 } TabelaHash;
 
