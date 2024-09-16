@@ -1,0 +1,3 @@
+6 StoneGiant1 200 800
+6 StoneGiant2 220 850
+

@@ -4,7 +4,7 @@
  */
 package guerreiros.gregos;
 
-import guerreiros.Guerreiro;
+import campoDeBatalha.Guerreiro;
 
 /**
  *

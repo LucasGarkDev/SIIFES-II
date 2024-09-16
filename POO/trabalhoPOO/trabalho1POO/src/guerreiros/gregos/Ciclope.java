@@ -4,9 +4,9 @@
  */
 package guerreiros.gregos;
 
-import guerreiros.Guerreiro;
-import guerreiros.Guerreiro;
-import guerreiros.Guerreiro;
+import campoDeBatalha.Guerreiro;
+import campoDeBatalha.Guerreiro;
+import campoDeBatalha.Guerreiro;
 
 /**
  *

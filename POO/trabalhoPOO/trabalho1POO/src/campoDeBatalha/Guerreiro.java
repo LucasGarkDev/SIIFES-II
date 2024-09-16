@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package guerreiros;
+package campoDeBatalha;
 
 /**
  *
@@ -24,8 +24,10 @@ public class Guerreiro {
         return energia > 0;
     }
 
-    public void atacar(Guerreiro adversario){
-        
+    // Método de ataque padrão (concreto)
+    public void atacar(Guerreiro adversario) {
+        System.out.println(this.nome + " ataca " + adversario.nome + " com um ataque padrão!");
+        adversario.receberDano(20); // Dano padrão de 20 unidades
     }
 
     public void receberDano(int dano) {
