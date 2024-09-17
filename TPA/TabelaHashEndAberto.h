@@ -12,23 +12,19 @@ typedef clock_t processTime;
 #define INICIO "------------INICIO------------"
 #define RESULTADO "------------RESULTADO------------"
 #define CORTE "------------------------"
-typedef struct tipoElemento{
-    long long int valor;
-    string nome;
-    int flag;
-    struct tipoElemento *prox;
+
+typedef struct tipoElemento {
+    long long int valor; // Valor da matrícula
+    string nome;         // Nome associado à matrícula
+    int flag;            // Flag para indicar o estado do elemento (0: vazio, 1: ocupado, 2: removido)
 } TElemento;
 
-typedef struct tipoLista{
-    TElemento *inicio, *fim;
-    int total;
-} TLista;
-
-typedef struct tipoTabelaHash{
-    TLista *vetorListas;
-    int tamanho;
+typedef struct tipoTabelaHash {
+    TElemento *vetor; // Vetor que armazena os elementos da tabela hash
+    int tamanho;      // Tamanho da tabela hash
 } TabelaHash;
 
+// Funções relacionadas à tabela hash
 void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista);
 int funcaoHash(long long int matricula, int tamanho);
 int contarMatriculas(FILE *arquivoLista);
@@ -45,16 +41,5 @@ void excluirTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHa
 void exibeTabelaHash(TabelaHash *tabela);
 void liberarTabelaHash(TabelaHash *tabela);
 FILE *abrirArquivo(char *nomeArq, char *modo);
-void construirListaDoZero(TLista *lista);
-void lerArquivo(TLista *lista, FILE *arquivoLista);
-void inicializa(TLista *lista, FILE *arquivoLista);
-int pesquisarMatricula2(TLista *lista, long long int matriculaBusca);
-int pesquisarMatricula(TLista *lista);
-void inserir(TLista *lista, long long int valor, char *nome);
-int pedirOpcao3();
-void exibeLista(TLista lista);
-void excluirLista(TLista *lista, long long int valor);
 long long int pedirOpcao();
 long long int pedirNum(int caminhoASerEscolhido);
-void imprimirTabelaHash(TabelaHash *tabela);
-void menuPrincipal(TabelaHash *tabelaHash, int funcaoHashEscolhida);

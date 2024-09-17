@@ -1,78 +1,6 @@
 //Feito por: Lucas Garcia E Luis Augusto
 #include "TabelaHashEndAberto.h"
 
-// inputs personalizados e modificados
-int FileReadInt(FILE *arquivo){
-    int value;
-    fscanf(arquivo, "%d" , &value);
-    return value;
-}
-long long int FileReadLongLongInt(FILE *arquivo){
-    long long int value;
-    fscanf(arquivo, "%lld" , &value);
-    return value;
-}
-float input(){
-    float value;
-    scanf("%f", &value);
-    return value;
-}
-float inputBoleano(){
-	int value;
-	do{
-		fflush(stdin);
-		scanf("%d", &value);
-	}while(value != 1 && value != 0);
-	return value;
-}
-void FileReadString(FILE *arquivo,char destino[]){
-    int value;
-    fscanf(arquivo, "%s" , &destino);
-}
-void inputS(char destino[]){
-    scanf(" %100[^\n]s", destino);
-}
-
-// Gera um número aleatório entre 0 (inclusive) e 1 (exclusivo)
-double aleatorio_quebrado() {
-    // Inicializa a semente para gerar números aleatórios diferentes a cada execução
-    srand(time(NULL));
-
-    // RAND_MAX é o maior valor que rand() pode retornar
-    return (double)rand() / RAND_MAX;
-}
-
-// Gera um número aleatório entre min (inclusive) e max (exclusivo)
-double aleatorio_intervalo(double min, double max) {
-    return min + (max - min) * aleatorio_quebrado();
-}
-
-int mod(int x, int y){
-	return (x%y);
-}
-
-long long int hash(long long int k,int tamVetor){
-    // Para o primeiro cálculo:
-    // h(k) = k mod N
-    // N eh o tamanho do vetor
-    return mod(k,tamVetor);
-}
-
-long long int hash2(long long int k,int tamVetor){
-    // N eh o tamanho do vetor
-    // Caso haja colisão, inicialmente calculamos h2(K),
-    // que pode ser definida como:
-    // h2(k) = 1 + ( k mod (N-1) )
-    int h1 = hash(k,tamVetor-1);
-    return 1 + h1;
-}
-
-long long int reHash(long long int i,int k, int tamVetor){
-    // N eh o tamanho do vetor
-    // rh(i,k) = ( i + h2(k) ) mod N
-    int h2 = hash2(k,tamVetor);
-    return mod((i +  h2), tamVetor);
-}
 
 //=================================================
 FILE * abrirArquivo(char * nomeArq, char * modo) {
@@ -87,11 +15,6 @@ FILE * abrirArquivo(char * nomeArq, char * modo) {
 }
 
 //=================================================
-void construirListaDoZero(TLista *lista) {
-    lista->inicio = NULL;
-    lista->fim = NULL;
-    lista->total = 0;
-}
 
 void calcularTempo(double ini,double fim){
     double tempo_decorrido = (double)(fim - ini) / CLOCKS_PER_SEC;
@@ -209,48 +132,9 @@ int pedirOpcao3() {
     
 }
 //=================================================
-void exibeLista(TLista lista) {
-    TElemento *atual = lista.inicio;
-    int cont = 0;
-    while (atual != NULL) {
-        printf("  Número %d da lista: Matrícula (%lld), Nome: %s\n", ++cont, atual->valor, atual->nome);
-        atual = atual->prox;
-    }
-}
+
 //=================================================
-void excluirLista(TLista *lista, long long int valor){
-    TElemento *atual = lista->inicio;
-    TElemento *anterior = NULL;
-    while (atual != NULL) {
-        if (atual->valor == valor) {
-            // Encontra o elemento a ser excluído
-            if (atual == lista->inicio) {
-                // Exclusão do primeiro elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %lld ...\n", atual->valor);
-                lista->inicio = atual->prox;
-                if (lista->inicio == NULL) {
-                    // A lista tinha apenas um elemento
-                    lista->fim = NULL;
-                }
-            } else if (atual == lista->fim) {
-                // Exclusão do último elemento da lista
-                printf("\n\n\tExcluindo o ELEMENTO %lld ...\n", atual->valor);
-                lista->fim = anterior;
-                lista->fim->prox = NULL;
-            } else {
-                // Exclusão de um elemento do meio da lista
-                printf("\n\n\tExcluindo o ELEMENTO %lld ...\n", atual->valor);
-                anterior->prox = atual->prox;
-            }
-            free(atual);
-            lista->total--;
-            return; // Sai da função após excluir o elemento
-        }
-        anterior = atual;
-        atual = atual->prox; // move para o próximo elemento
-    }
-    printf("Elemento %lld não encontrado na lista.\n", valor);
-}
+
 //=================================================
 long long int pedirOpcao(){
     int op;
@@ -286,21 +170,15 @@ long long int pedirNum(int caminhoASerEscolhido) {
 void imprimirTabelaHash(TabelaHash *tabela) {
     printf("\n\n===| Exibição Completa da Tabela Hash |===\n\n");    
     for (int i = 0; i < tabela->tamanho; i++) {
-        printf("Índice %d:\n", i);
-        
-        TElemento *atual = tabela->vetorListas[i].inicio;
-        
-        if (atual == NULL) {
-            printf("  (vazio)\n");
+        if (tabela->vetor[i].flag == 1) { // Apenas elementos ocupados
+            printf("Índice %d: Matrícula: %lld, Nome: %s\n", i, tabela->vetor[i].valor, tabela->vetor[i].nome);
         } else {
-            while (atual != NULL) {
-                printf("  Matrícula: %lld, Nome: %s\n", atual->valor, atual->nome); // Adicione o nome aqui
-                atual = atual->prox;
-            }
+            printf("Índice %d: (vazio)\n", i);
         }
     }
     printf("\n========================================\n");
 }
+
 
 //================================================
 void menuPrincipal(TabelaHash *tabelaHash, int funcaoHashEscolhida) {
@@ -421,12 +299,14 @@ int acharProximoPrimo(int num) {
 //================================================
 void inicializarTabelaHash(TabelaHash *tabela, int tamanho) {
     tabela->tamanho = tamanho;
-    tabela->vetorListas = (TLista *)malloc((size_t)tamanho * sizeof(TLista));
-    // Inicializar todas as listas encadeadas em cada posição do vetor
+    tabela->vetor = (TElemento *)malloc(tamanho * sizeof(TElemento));
     for (int i = 0; i < tamanho; i++) {
-        construirListaDoZero(&tabela->vetorListas[i]);
+        tabela->vetor[i].valor = 0;  // Valor zero indica posição vazia
+        tabela->vetor[i].flag = 0;   // 0 para vazio, 1 para ocupado, 2 para removido
+        strcpy(tabela->vetor[i].nome, "");
     }
 }
+
 //================================================
 void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     int totalMatriculas = contarMatriculas(arquivoLista);
@@ -451,7 +331,7 @@ void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista) {
     inicializarTabelaHash(tabelaHash, tamanhoTabela);
 }
 //================================================
-void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista, int funcaoHashEscolhida) {
+void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
     rewind(arquivoLista);  // Reposicionar para o início do arquivo
     long long int matricula;
     char nome[100];
@@ -459,93 +339,82 @@ void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista, int funca
     while (fgets(nome, sizeof(nome), arquivoLista) != NULL) {  // Ler o nome
         nome[strcspn(nome, "\n")] = 0;  // Remover o '\n' do nome
         if (fscanf(arquivoLista, "%lld\n", &matricula) != EOF) {  // Ler a matrícula como long long int
-            inserirTabelaHash(tabelaHash, matricula, nome, funcaoHashEscolhida);  // Inserir na tabela hash
+            inserirTabelaHash(tabelaHash, matricula, nome);  // Inserir na tabela hash
         }
     }
 }
+
 
 //================================================
 void executarMenu(TabelaHash *tabelaHash, int funcaoHashEscolhida) {
     menuPrincipal(tabelaHash, funcaoHashEscolhida);
 }
 //================================================
-int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHashEscolhida) {
-    int indice;
-    if (funcaoHashEscolhida == 1) {
-        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
-    } else {
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
-    }
+int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula) {
+    int i = hash(matricula, tabela->tamanho);
+    int tentativas = 0;
 
-    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        printf("Matrícula %lld encontrada na tabela hash.\n", matricula);
-        return 1;  // Encontrado
-    } else {
-        printf("Erro: A matrícula %lld não foi encontrada na tabela.\n", matricula);
-        return 0;  // Não encontrado
-    }
-}
-
-//================================================
-void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome, int funcaoHashEscolhida) {
-    int indice;
-    if (funcaoHashEscolhida == 1) {
-        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
-    } else {
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
-    }
-    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        printf("Erro: A matrícula %lld já está presente na tabela.\n", matricula);
-        return;
-    }
-
-    // Inserir a nova matrícula na lista correspondente no índice da tabela hash
-    inserir(&tabela->vetorListas[indice], matricula, nome);
-    printf("Matrícula %lld inserida com sucesso.\n", matricula);
-}
-
-//================================================
-void excluirTabelaHash(TabelaHash *tabela, long long int matricula, int funcaoHashEscolhida) {
-    int indice;
-    if (funcaoHashEscolhida == 1) {
-        indice = funcaoHashRestoDivisao(matricula, tabela->tamanho);
-    } else {
-        indice = funcaoHashMultiplicacao(matricula, tabela->tamanho);
-    }
-    printf("Tentando remover matrícula %lld no índice %d...\n", matricula, indice);
-    if (pesquisarMatricula2(&tabela->vetorListas[indice], matricula)) {
-        excluirLista(&tabela->vetorListas[indice], matricula);
-        printf("Matrícula %lld removida com sucesso da tabela hash.\n", matricula);
-    } else {
-        printf("Erro: A matrícula %lld não foi encontrada para remoção.\n", matricula);
-    }
-}
-//================================================
-void exibeTabelaHash(TabelaHash *tabela) {
-    printf("\n\n===| Exibição Completa da Tabela Hash |===\n\n");    
-    for (int i = 0; i < tabela->tamanho; i++) {
-        TElemento *atual = tabela->vetorListas[i].inicio;
-        if (atual != NULL) {
-            printf("Índice %d:\n", i);
-            exibeLista(tabela->vetorListas[i]);
-            printf("\n");
+    while (tabela->vetor[i].flag != 0 && tentativas < tabela->tamanho) {
+        if (tabela->vetor[i].valor == matricula && tabela->vetor[i].flag == 1) {
+            printf("Matrícula %lld encontrada. Nome: %s\n", matricula, tabela->vetor[i].nome);
+            return 1; // Encontrado
         }
+        i = reHash(i, matricula, tabela->tamanho);
+        tentativas++;
     }
-    printf("\n========================================\n");
+
+    printf("Matrícula %lld não encontrada na tabela.\n", matricula);
+    return 0; // Não encontrado
 }
+
+
 //================================================
-void liberarLista(TLista *lista) {
-    TElemento *atual = lista->inicio;
-    TElemento *prox;
-    while (atual != NULL) {
-        prox = atual->prox;  
-        free(atual);         
-        atual = prox;        
+void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome) {
+    int i = hash(matricula, tabela->tamanho);
+    int tentativas = 0;
+
+    while (tabela->vetor[i].flag == 1 && tentativas < tabela->tamanho) {
+        if (tabela->vetor[i].valor == matricula) {
+            printf("Erro: A matrícula %lld já está presente na tabela.\n", matricula);
+            return;
+        }
+        i = reHash(i, matricula, tabela->tamanho);
+        tentativas++;
     }
-    lista->inicio = NULL;
-    lista->fim = NULL;
-    lista->total = 0;
+
+    if (tentativas < tabela->tamanho) {
+        tabela->vetor[i].valor = matricula;
+        strcpy(tabela->vetor[i].nome, nome);
+        tabela->vetor[i].flag = 1; // Marca como ocupado
+        printf("Matrícula %lld inserida com sucesso.\n", matricula);
+    } else {
+        printf("Erro: Tabela cheia, não foi possível inserir.\n");
+    }
 }
+
+
+//================================================
+void excluirTabelaHash(TabelaHash *tabela, long long int matricula) {
+    int i = hash(matricula, tabela->tamanho);
+    int tentativas = 0;
+
+    while (tabela->vetor[i].flag != 0 && tentativas < tabela->tamanho) {
+        if (tabela->vetor[i].valor == matricula && tabela->vetor[i].flag == 1) {
+            tabela->vetor[i].flag = 2; // Marca como removido
+            printf("Matrícula %lld removida com sucesso.\n", matricula);
+            return;
+        }
+        i = reHash(i, matricula, tabela->tamanho);
+        tentativas++;
+    }
+
+    printf("Erro: A matrícula %lld não foi encontrada para remoção.\n", matricula);
+}
+
+//================================================
+
+//================================================
+
 //================================================
 void liberarTabelaHash(TabelaHash *tabela) {
     for (int i = 0; i < tabela->tamanho; i++) {
