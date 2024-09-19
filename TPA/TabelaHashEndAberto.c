@@ -1,5 +1,6 @@
 //Feito por: Lucas Garcia E Luis Augusto
 #include "TabelaHashEndAberto.h"
+#include <math.h>
 
 // Funções hash e reHash necessárias
 long long int hash(long long int k, int tamVetor) {
