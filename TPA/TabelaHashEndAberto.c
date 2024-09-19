@@ -10,7 +10,7 @@ long long int hash2(long long int k, int tamVetor) {
     return 1 + (k % (tamVetor - 1));
 }
 
-long long int reHash(long long int i, int k, int tamVetor) {
+long long int reHash(long long int i,long long int k, int tamVetor) {
     return (i + hash2(k, tamVetor)) % tamVetor;
 }
 
@@ -251,11 +251,11 @@ void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
 
 //================================================
 int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula) {
-    int i = hash(matricula, tabela->tamanho);
+    long long int i = hash(matricula, tabela->tamanho);
     int tentativas = 0;
 
-    while (tabela->vetor[i].flag != 0 && tentativas < tabela->tamanho) {
-        if (tabela->vetor[i].valor == matricula && tabela->vetor[i].flag == 1) {
+    while ((tabela->vetor[i].flag != 0) && (tentativas < tabela->tamanho)) {
+        if ((tabela->vetor[i].valor == matricula) && (tabela->vetor[i].flag == 1)) {
             printf("Matrícula %lld encontrada. Nome: %s\n", matricula, tabela->vetor[i].nome);
             return 1; // Encontrado
         }
@@ -269,10 +269,10 @@ int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula) {
 
 //================================================
 void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome) {
-    int i = hash(matricula, tabela->tamanho);
+    long long int i = hash(matricula, tabela->tamanho);
     int tentativas = 0;
 
-    while (tabela->vetor[i].flag == 1 && tentativas < tabela->tamanho) {
+    while ((tabela->vetor[i].flag == 1) && (tentativas < tabela->tamanho)) {
         if (tabela->vetor[i].valor == matricula) {
             printf("Erro: A matrícula %lld já está presente na tabela.\n", matricula);
             return;
@@ -293,11 +293,11 @@ void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome) 
 
 //================================================
 void excluirTabelaHash(TabelaHash *tabela, long long int matricula) {
-    int i = hash(matricula, tabela->tamanho);
+    long long int i = hash(matricula, tabela->tamanho);
     int tentativas = 0;
 
-    while (tabela->vetor[i].flag != 0 && tentativas < tabela->tamanho) {
-        if (tabela->vetor[i].valor == matricula && tabela->vetor[i].flag == 1) {
+    while ((tabela->vetor[i].flag != 0) && (tentativas < tabela->tamanho)) {
+        if ((tabela->vetor[i].valor == matricula) && (tabela->vetor[i].flag == 1)) {
             tabela->vetor[i].flag = 2; // Marca como removido
             printf("Matrícula %lld removida com sucesso.\n", matricula);
             return;
