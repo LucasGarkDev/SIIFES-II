@@ -8,7 +8,7 @@ package campoDeBatalha;
  *
  * @author lucas
  */
-public class Guerreiro {
+public abstract class Guerreiro {
     private String nome;
     private int idade;
     private int peso;
@@ -24,11 +24,9 @@ public class Guerreiro {
         return energia > 0;
     }
 
-    // Método de ataque padrão (concreto)
-    public void atacar(Guerreiro adversario) {
-        System.out.println(this.nome + " ataca " + adversario.nome + " com um ataque padrão!");
-        adversario.receberDano(20); // Dano padrão de 20 unidades
-    }
+//    public void abstract atacar(Guerreiro adversario) {
+//       
+//    }
 
     public void receberDano(int dano) {
         this.energia -= dano;
