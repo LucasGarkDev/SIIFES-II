@@ -1,5 +1,5 @@
 //Feito por: Lucas Garcia E Luis Augusto
-#include "TabelaHashEndAberto.h"
+#include "ArvoreBinariaVetor.h"
 
 //=================================================
 // Função para ler o arquivo
@@ -40,16 +40,16 @@ void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista) {
 }
 //=================================================
 // Função menu para perguntar o tamanho do vetor
-int pedirOpcao3() {
-    int opcao;
-    printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
-    printf("1 - 120%% do número de matrículas\n");
-    printf("2 - 150%% do número de matrículas\n");
-    printf("3 - 180%% do número de matrículas\n");
-    printf("Digite sua opção (1, 2 ou 3): ");
-    scanf("%d", &opcao);
-    return opcao;
-}
+// int pedirOpcao3() {
+//     int opcao;
+//     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
+//     printf("1 - 120%% do número de matrículas\n");
+//     printf("2 - 150%% do número de matrículas\n");
+//     printf("3 - 180%% do número de matrículas\n");
+//     printf("Digite sua opção (1, 2 ou 3): ");
+//     scanf("%d", &opcao);
+//     return opcao;
+// }
 //=================================================
 // Menu de açoes para realizar com a tabela hash
 long long int pedirOpcao() {
