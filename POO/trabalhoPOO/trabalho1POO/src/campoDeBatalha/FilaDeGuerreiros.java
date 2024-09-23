@@ -21,7 +21,7 @@ public class FilaDeGuerreiros {
     public void adicionarGuerreiro(Guerreiro guerreiro) {
         guerreiros.addLast(guerreiro);
     }
-
+// ssdds
     // Retorna o primeiro guerreiro da fila
     public Guerreiro obterPrimeiroGuerreiro() {
         return guerreiros.peekFirst();
