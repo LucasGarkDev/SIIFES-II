@@ -17,5 +17,10 @@ public class Ciclope extends Guerreiro{
     public Ciclope(String nome, int idade, int peso) {
         super(nome, idade, peso);
     }
+
+    @Override
+    public void atacar(Guerreiro adversario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

@@ -12,7 +12,7 @@ import java.util.LinkedList;
  */
 public class FilaDeGuerreiros {
     private LinkedList<Guerreiro> guerreiros;
-
+    // usar excessao para pegar o ultimo a morrer e o ultimo a matar
     public FilaDeGuerreiros() {
         guerreiros = new LinkedList<>();
     }

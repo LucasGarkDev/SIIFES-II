@@ -24,9 +24,7 @@ public abstract class Guerreiro {
         return energia > 0;
     }
 
-//    public void abstract atacar(Guerreiro adversario) {
-//       
-//    }
+    public abstract void atacar(Guerreiro adversario);
 
     public void receberDano(int dano) {
         this.energia -= dano;
