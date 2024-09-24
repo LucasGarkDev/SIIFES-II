@@ -45,7 +45,7 @@ void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
         arvore->elementos[i].ocupado = 0; // Inicializa todos os nós como vazios
     }
 }
-
+//================================================
 void redimensionarArvore(ArvoreBinaria *arvore) {
     int novaCapacidade = arvore->capacidade * FATOR_SEGURANCA;
     NoArvore *novoArray = (NoArvore *)realloc(arvore->elementos, novaCapacidade * sizeof(NoArvore));
@@ -66,7 +66,7 @@ void redimensionarArvore(ArvoreBinaria *arvore) {
 
     printf("Arvore redimensionada para %d elementos.\n", arvore->capacidade);
 }
-
+//================================================
 void liberarArvore(ArvoreBinaria *arvore) {
     if (arvore->elementos != NULL) {
         free(arvore->elementos);
@@ -106,20 +106,6 @@ long long int pedirNum(int caminhoASerEscolhido) {
         scanf("%lld", &num);
     }
     return num;
-}
-
-//================================================
-// Função para exibir todos os elementos presentes na tabela
-void imprimirTabelaHash(TabelaHash *tabela) {
-    printf("\n\n===| Exibição Completa da Tabela Hash |===\n\n");
-    for (int i = 0; i < tabela->tamanho; i++) {
-        if (tabela->vetor[i].flag == 1) { // Apenas elementos ocupados
-            printf("Índice %d: Matrícula: %lld, Nome: %s\n", i, tabela->vetor[i].valor, tabela->vetor[i].nome);
-        } else {
-            printf("Índice %d: (vazio)\n", i);
-        }
-    }
-    printf("\n========================================\n");
 }
 //================================================
 // Funçao para sustentar o menu de ações do programa
@@ -184,17 +170,6 @@ int contarMatriculas(FILE *arquivoLista) {
     }
     // Como cada matrícula ocupa duas linhas (nome e matrícula), dividimos por 2
     return totalMatriculas / 2;
-}
-//================================================
-// Função para contar as matriculas quando elas ja estao na tabela
-int contarTotalMatriculas(TabelaHash *tabela) {
-    int total = 0;
-    for (int i = 0; i < tabela->tamanho; i++) {
-        if (tabela->vetor[i].flag == 1) {
-            total++;
-        }
-    }
-    return total;
 }
 //================================================
 void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome) {
@@ -262,27 +237,19 @@ void removerAluno(ArvoreBinaria *arvore, long long int matricula) {
 
 //================================================
 // Função que le as matriculas do arquivo e coloca na tabela
-void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
+void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista) {
     rewind(arquivoLista);  // Reposicionar para o início do arquivo
     long long int matricula;
     char nome[100];
 
-    // Loop que passa pelo arquivo, ele interrompe o loop quando o conteudo da leitura for NULL
+    // Loop que passa pelo arquivo, ele interrompe o loop quando o conteúdo da leitura for NULL
     while (fgets(nome, sizeof(nome), arquivoLista) != NULL) {  // Ler o nome
         nome[strcspn(nome, "\n")] = 0;  // Remover o '\n' do nome
         if (fscanf(arquivoLista, "%lld\n", &matricula) != EOF) {  // Ler a matrícula como long long int
-            inserirTabelaHash(tabelaHash, matricula, nome);  // Inserir na tabela hash
+            inserirAluno(arvore, matricula, nome);  // Inserir na árvore binária
         }
     }
 }
-//================================================
-
-//================================================
-
-//================================================
-
-//================================================
-
 //================================================
 int main() {
     FILE *arquivoLista = abrirArquivo("Lista_Aluno_Matricula_Atual.txt", "r");
