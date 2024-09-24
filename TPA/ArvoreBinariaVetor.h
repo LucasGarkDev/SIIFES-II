@@ -29,6 +29,7 @@ void calcularTempo(double ini, double fim);
 void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista);
 void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas);
 void redimensionarArvore(ArvoreBinaria *arvore);
+void imprimirEmOrdem(ArvoreBinaria *arvore, int indice);
 void liberarArvore(ArvoreBinaria *arvore);
 long long int pedirOpcao();
 long long int pedirNum(int caminhoASerEscolhido);

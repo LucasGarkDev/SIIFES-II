@@ -75,7 +75,22 @@ void liberarArvore(ArvoreBinaria *arvore) {
     arvore->tamanho = 0;
     arvore->capacidade = 0;
 }
+//=================================================
+// Função para imprimir a árvore em ordem
+void imprimirEmOrdem(ArvoreBinaria *arvore, int indice) {
+    if (indice >= arvore->capacidade || !arvore->elementos[indice].ocupado) {
+        return;
+    }
 
+    // Percorrer o filho esquerdo
+    imprimirEmOrdem(arvore, 2 * indice + 1);
+
+    // Imprimir o nó atual
+    printf("Matrícula: %lld, Nome: %s\n", arvore->elementos[indice].matricula, arvore->elementos[indice].nome);
+
+    // Percorrer o filho direito
+    imprimirEmOrdem(arvore, 2 * indice + 2);
+}
 //=================================================
 // Menu de açoes para realizar com a tabela hash
 long long int pedirOpcao() {
