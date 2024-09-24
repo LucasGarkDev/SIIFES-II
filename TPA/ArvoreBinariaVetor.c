@@ -252,7 +252,7 @@ void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista) {
 }
 //================================================
 int main() {
-    FILE *arquivoLista = abrirArquivo("Lista_Aluno_Matricula_Atual.txt", "r");
+    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
     int totalMatriculas = contarMatriculas(arquivoLista);
     printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
     rewind(arquivoLista); // Volta ao início do arquivo
@@ -268,7 +268,7 @@ int main() {
     menuPrincipal(&arvore);
 
     // Salvar os dados antes de encerrar
-    arquivoLista = abrirArquivo("Lista_Aluno_Matricula_Atual.txt", "w");
+    arquivoLista = abrirArquivo("nomes_matriculas.txt", "w");
     salvarDadosNoArquivo(&arvore, arquivoLista);
     fclose(arquivoLista);
 

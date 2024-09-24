@@ -24,13 +24,18 @@ typedef struct {
 } ArvoreBinaria;
 
 // Funções principais
-void inicializarArvore(ArvoreBinaria *arvore);
+FILE *abrirArquivo(char *nomeArq, char *modo);
+void calcularTempo(double ini, double fim);
+void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista);
+void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas);
+void redimensionarArvore(ArvoreBinaria *arvore);
+void liberarArvore(ArvoreBinaria *arvore);
+long long int pedirOpcao();
+long long int pedirNum(int caminhoASerEscolhido);
+void menuPrincipal(ArvoreBinaria *arvore);
+int contarMatriculas(FILE *arquivoLista);
 void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome);
 void buscarAluno(ArvoreBinaria *arvore, long long int matricula);
 void removerAluno(ArvoreBinaria *arvore, long long int matricula);
-void imprimirEmOrdem(ArvoreBinaria *arvore, int i);
-void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista);
 void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista);
-FILE *abrirArquivo(char *nomeArq, char *modo);
-void calcularTempo(double ini, double fim);
-void menuPrincipal(ArvoreBinaria *arvore);
+void imprimirEmOrdem(ArvoreBinaria *arvore, int indice);
