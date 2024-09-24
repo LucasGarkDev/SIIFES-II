@@ -9,34 +9,28 @@
 typedef char string[101];
 typedef clock_t processTime;
 
-#define INICIO "------------INICIO------------"
-#define RESULTADO "------------RESULTADO------------"
-#define CORTE "------------------------"
+#define FATOR_SEGURANCA 1.5 // Define um fator de segurança para a alocação dinâmica (150% do tamanho original)
 
-typedef struct tipoElemento {
-    long long int valor; // Valor da matrícula
-    string nome;         // Nome associado à matrícula
-    struct tipoNo *esq;
-    struct tipoNo *dir;
-} TElemento;
+typedef struct {
+    long long int matricula;
+    string nome;
+    int ocupado; // 0 para vazio, 1 para ocupado
+} NoArvore;
 
-// void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista);
-// int funcaoHash(long long int matricula, int tamanho);
-// int contarMatriculas(FILE *arquivoLista);
-// int contarTotalMatriculas(TabelaHash *tabela);
-// int ehPrimo(int num);
-// int acharProximoPrimo(int num);
-// void inicializarTabelaHash(TabelaHash *tabela, int tamanho);
-// void inicializarTabela(TabelaHash *tabelaHash, FILE *arquivoLista);
-// void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista);
-// void executarMenu(TabelaHash *tabelaHash);
-// int pesquisarTabelaHash(TabelaHash *tabela, long long int matricula);
-// void inserirTabelaHash(TabelaHash *tabela, long long int matricula, char *nome);
-// void excluirTabelaHash(TabelaHash *tabela, long long int matricula);
-// void exibeTabelaHash(TabelaHash *tabela);
-// void liberarTabelaHash(TabelaHash *tabela);
-// FILE *abrirArquivo(char *nomeArq, char *modo);
-// void calcularTempo(double ini, double fim);
-// long long int pedirOpcao();
-// long long int pedirNum(int caminhoASerEscolhido);
-// int pedirOpcao3();
+typedef struct {
+    NoArvore *elementos; // Agora é um ponteiro para permitir alocação dinâmica
+    int tamanho; // Número de elementos ocupados
+    int capacidade; // Capacidade atual do vetor
+} ArvoreBinaria;
+
+// Funções principais
+void inicializarArvore(ArvoreBinaria *arvore);
+void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome);
+void buscarAluno(ArvoreBinaria *arvore, long long int matricula);
+void removerAluno(ArvoreBinaria *arvore, long long int matricula);
+void imprimirEmOrdem(ArvoreBinaria *arvore, int i);
+void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista);
+void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista);
+FILE *abrirArquivo(char *nomeArq, char *modo);
+void calcularTempo(double ini, double fim);
+void menuPrincipal(ArvoreBinaria *arvore);

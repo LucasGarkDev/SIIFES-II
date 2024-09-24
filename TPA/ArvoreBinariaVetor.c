@@ -21,35 +21,61 @@ void calcularTempo(double ini, double fim) {
 }
 //=================================================
 // Função para salvar os dados no arquivo
-void salvarDadosNoArquivo(TabelaHash *tabela, FILE *arquivoLista) {
-    arquivoLista = fopen("nomes_matriculas.txt", "w");
-    if (arquivoLista == NULL) {
-        printf("ERRO ao abrir o arquivo para gravação.\n");
-        return;
-    }
-    int i;
-    // Percorre a tabela e pega os dados dentro dela e escreve os nomes e matriculas de volta no arquivo
-    for (i = 0; i < tabela->tamanho; i++) {
-        if (tabela->vetor[i].flag == 1) { // Apenas elementos ocupados
-            fprintf(arquivoLista, "%s\n%lld\n", tabela->vetor[i].nome, tabela->vetor[i].valor);
+void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista) {
+    for (int i = 0; i < arvore->capacidade; i++) {
+        if (arvore->elementos[i].ocupado) {
+            fprintf(arquivoLista, "%s\n%lld\n", arvore->elementos[i].nome, arvore->elementos[i].matricula);
         }
     }
-
-    fclose(arquivoLista);
     printf("INFO: Dados salvos com sucesso no arquivo.\n");
 }
+
 //=================================================
-// Função menu para perguntar o tamanho do vetor
-// int pedirOpcao3() {
-//     int opcao;
-//     printf("Escolha o tamanho da tabela hash em relação ao número total de matrículas:\n");
-//     printf("1 - 120%% do número de matrículas\n");
-//     printf("2 - 150%% do número de matrículas\n");
-//     printf("3 - 180%% do número de matrículas\n");
-//     printf("Digite sua opção (1, 2 ou 3): ");
-//     scanf("%d", &opcao);
-//     return opcao;
-// }
+void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
+    arvore->capacidade = (int)(quantidadeMatriculas * FATOR_SEGURANCA);
+    arvore->tamanho = 0;
+    arvore->elementos = (NoArvore *)malloc(arvore->capacidade * sizeof(NoArvore));
+
+    if (arvore->elementos == NULL) {
+        printf("Erro de alocação de memória.\n");
+        exit(1);
+    }
+
+    for (int i = 0; i < arvore->capacidade; i++) {
+        arvore->elementos[i].ocupado = 0; // Inicializa todos os nós como vazios
+    }
+}
+
+void redimensionarArvore(ArvoreBinaria *arvore) {
+    int novaCapacidade = arvore->capacidade * FATOR_SEGURANCA;
+    NoArvore *novoArray = (NoArvore *)realloc(arvore->elementos, novaCapacidade * sizeof(NoArvore));
+
+    if (novoArray == NULL) {
+        printf("Erro ao redimensionar a árvore.\n");
+        exit(1);
+    }
+
+    // Atualizar ponteiros e capacidade
+    arvore->elementos = novoArray;
+    arvore->capacidade = novaCapacidade;
+
+    // Inicializa os novos espaços alocados como vazios
+    for (int i = arvore->tamanho; i < arvore->capacidade; i++) {
+        arvore->elementos[i].ocupado = 0;
+    }
+
+    printf("Arvore redimensionada para %d elementos.\n", arvore->capacidade);
+}
+
+void liberarArvore(ArvoreBinaria *arvore) {
+    if (arvore->elementos != NULL) {
+        free(arvore->elementos);
+        arvore->elementos = NULL;
+    }
+    arvore->tamanho = 0;
+    arvore->capacidade = 0;
+}
+
 //=================================================
 // Menu de açoes para realizar com a tabela hash
 long long int pedirOpcao() {
@@ -97,7 +123,7 @@ void imprimirTabelaHash(TabelaHash *tabela) {
 }
 //================================================
 // Funçao para sustentar o menu de ações do programa
-void menuPrincipal(TabelaHash *tabelaHash) {
+void menuPrincipal(ArvoreBinaria *arvore) {
     long long int op;
     long long int numInseri;
     char nomeInseri[100];
@@ -106,35 +132,36 @@ void menuPrincipal(TabelaHash *tabelaHash) {
         op = pedirOpcao();
         switch (op) {
             case 1:
-                // Inserir na Tabela Hash
+                // Inserir na Árvore Binária
                 numInseri = pedirNum(0);
                 printf("Digite o nome associado à matrícula: ");
                 getchar();  // Para evitar problemas com a leitura do '\n' residual
                 fgets(nomeInseri, sizeof(nomeInseri), stdin);
                 nomeInseri[strcspn(nomeInseri, "\n")] = 0;  // Remover a quebra de linha
-                inserirTabelaHash(tabelaHash, numInseri, nomeInseri);
+                inserirAluno(arvore, numInseri, nomeInseri);
                 break;
             case 2:
-                // Exibir a Tabela Hash
-                imprimirTabelaHash(tabelaHash);
+                // Exibir a Árvore Binária em Ordem
+                printf("\n\n===| Exibição da Árvore Binária (Em Ordem) |===\n\n");
+                imprimirEmOrdem(arvore, 0);
                 break;
             case 3:
-                // Excluir da Tabela Hash
+                // Excluir da Árvore Binária
                 numInseri = pedirNum(1);
-                excluirTabelaHash(tabelaHash, numInseri);
+                removerAluno(arvore, numInseri);
                 break;
             case 4:
-                // Pesquisar uma matrícula na Tabela Hash
+                // Pesquisar uma matrícula na Árvore Binária
                 numInseri = pedirNum(0);
-                pesquisarTabelaHash(tabelaHash, numInseri);
+                buscarAluno(arvore, numInseri);
                 break;
             case 5:
-                // Exibir total de matrículas na Tabela Hash
-                printf("O total de matrículas na tabela é: %d\n", contarTotalMatriculas(tabelaHash));
+                // Exibir total de matrículas na Árvore Binária
+                printf("O total de matrículas na árvore é: %d\n", arvore->tamanho);
                 break;
             case 6:
-                // Imprimir toda a tabela hash
-                imprimirTabelaHash(tabelaHash);
+                // Imprimir toda a árvore em ordem
+                imprimirEmOrdem(arvore, 0);
                 break;
             case 7:
                 // Sair
@@ -170,10 +197,68 @@ int contarTotalMatriculas(TabelaHash *tabela) {
     return total;
 }
 //================================================
+void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome) {
+    if (arvore->tamanho >= arvore->capacidade) {
+        redimensionarArvore(arvore);
+    }
+
+    int i = 0;
+    while (i < arvore->capacidade && arvore->elementos[i].ocupado) {
+        if (matricula < arvore->elementos[i].matricula) {
+            i = 2 * i + 1; // Vai para o filho esquerdo
+        } else if (matricula > arvore->elementos[i].matricula) {
+            i = 2 * i + 2; // Vai para o filho direito
+        } else {
+            printf("Matrícula já existente.\n");
+            return;
+        }
+    }
+
+    if (i < arvore->capacidade) {
+        arvore->elementos[i].matricula = matricula;
+        strcpy(arvore->elementos[i].nome, nome);
+        arvore->elementos[i].ocupado = 1;
+        arvore->tamanho++;
+        printf("Aluno inserido com sucesso!\n");
+    } else {
+        printf("Erro ao inserir o aluno. Posição inválida.\n");
+    }
+}
 
 //================================================
+void buscarAluno(ArvoreBinaria *arvore, long long int matricula) {
+    int i = 0;
+    while (i < arvore->capacidade && arvore->elementos[i].ocupado) {
+        if (matricula < arvore->elementos[i].matricula) {
+            i = 2 * i + 1; // Filho esquerdo
+        } else if (matricula > arvore->elementos[i].matricula) {
+            i = 2 * i + 2; // Filho direito
+        } else {
+            printf("Aluno encontrado: %s (Matrícula: %lld)\n", arvore->elementos[i].nome, arvore->elementos[i].matricula);
+            return;
+        }
+    }
+    printf("Aluno não encontrado.\n");
+}
 
 //================================================
+void removerAluno(ArvoreBinaria *arvore, long long int matricula) {
+    int i = 0;
+    while (i < arvore->capacidade && arvore->elementos[i].ocupado) {
+        if (matricula < arvore->elementos[i].matricula) {
+            i = 2 * i + 1; // Filho esquerdo
+        } else if (matricula > arvore->elementos[i].matricula) {
+            i = 2 * i + 2; // Filho direito
+        } else {
+            // Encontrei o nó para remover
+            printf("Removendo aluno: %s (Matrícula: %lld)\n", arvore->elementos[i].nome, arvore->elementos[i].matricula);
+            arvore->elementos[i].ocupado = 0;
+            arvore->tamanho--;
+            return;
+        }
+    }
+    printf("Matrícula não encontrada para remoção.\n");
+}
 
 //================================================
 // Função que le as matriculas do arquivo e coloca na tabela
@@ -200,21 +285,29 @@ void lerEInserirMatriculas(TabelaHash *tabelaHash, FILE *arquivoLista) {
 
 //================================================
 int main() {
-    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
+    FILE *arquivoLista = abrirArquivo("Lista_Aluno_Matricula_Atual.txt", "r");
     int totalMatriculas = contarMatriculas(arquivoLista);
     printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
-    rewind(arquivoLista); // organiza o cursor do arquivo
+    rewind(arquivoLista); // Volta ao início do arquivo
 
-    //Inicializar a arvore;
+    ArvoreBinaria arvore;
+    inicializarArvore(&arvore, totalMatriculas);
 
-    double inicio = clock();
-    //lerEInserirMatriculas(&tabelaHash, arquivoLista);
-    double fim = clock();
-    calcularTempo(inicio, fim);
+    // Ler as matrículas e inseri-las na árvore
+    lerEInserirMatriculas(&arvore, arquivoLista);
+    fclose(arquivoLista);
 
-    //menuPrincipal(&tabelaHash);
-    //salvarDadosNoArquivo(&tabelaHash, arquivoLista);
+    // Menu para interação
+    menuPrincipal(&arvore);
 
+    // Salvar os dados antes de encerrar
+    arquivoLista = abrirArquivo("Lista_Aluno_Matricula_Atual.txt", "w");
+    salvarDadosNoArquivo(&arvore, arquivoLista);
+    fclose(arquivoLista);
+
+    // Liberar a memória
+    liberarArvore(&arvore);
 
     return 0;
 }
+
