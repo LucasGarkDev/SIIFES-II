@@ -9,7 +9,7 @@
 typedef char string[101];
 typedef clock_t processTime;
 
-#define FATOR_SEGURANCA 100// Define um fator de segurança para a alocação dinâmica (150% do tamanho original)
+#define FATOR_SEGURANCA 10// Define um fator de segurança para a alocação dinâmica (150% do tamanho original)
 
 typedef struct {
     long long int matricula;

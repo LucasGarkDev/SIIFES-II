@@ -32,7 +32,7 @@ void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista) {
 
 //=================================================
 void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
-    arvore->capacidade = (int)(quantidadeMatriculas * FATOR_SEGURANCA);
+    arvore->capacidade = (int)(quantidadeMatriculas * 100);
     arvore->tamanho = 0;
     arvore->elementos = (NoArvore *)malloc(arvore->capacidade * sizeof(NoArvore));
 
@@ -123,6 +123,29 @@ long long int pedirNum(int caminhoASerEscolhido) {
     return num;
 }
 //================================================
+// Função para imprimir o vetor completo da árvore
+void imprimirVetorCompleto(ArvoreBinaria *arvore) {
+    printf("\n===| Impressão Completa do Vetor da Árvore |===\n\n");
+    for (int i = 0; i < arvore->capacidade; i++) {
+        if (arvore->elementos[i].ocupado) {
+            // Determinar se é um filho esquerdo ou direito
+            if (i == 0) {
+                printf("Índice %d: Matrícula: %lld, Nome: %s (Raiz)\n", i, arvore->elementos[i].matricula, arvore->elementos[i].nome);
+            } else {
+                int parentIndex = (i - 1) / 2;
+                if (2 * parentIndex + 1 == i) {
+                    printf("Índice %d: Matrícula: %lld, Nome: %s (Filho Esquerdo de %lld)\n", i, arvore->elementos[i].matricula, arvore->elementos[i].nome, arvore->elementos[parentIndex].matricula);
+                } else {
+                    printf("Índice %d: Matrícula: %lld, Nome: %s (Filho Direito de %lld)\n", i, arvore->elementos[i].matricula, arvore->elementos[i].nome, arvore->elementos[parentIndex].matricula);
+                }
+            }
+        } else {
+            printf("Índice %d: (vazio)\n", i);
+        }
+    }
+    printf("\n==============================================\n");
+}
+//================================================
 // Funçao para sustentar o menu de ações do programa
 void menuPrincipal(ArvoreBinaria *arvore) {
     long long int op;
@@ -161,8 +184,8 @@ void menuPrincipal(ArvoreBinaria *arvore) {
                 printf("O total de matrículas na árvore é: %d\n", arvore->tamanho);
                 break;
             case 6:
-                // Imprimir toda a árvore em ordem
-                imprimirEmOrdem(arvore, 0);
+                // Imprimir Vetor completo
+                imprimirVetorCompleto(arvore);
                 break;
             case 7:
                 // Sair
