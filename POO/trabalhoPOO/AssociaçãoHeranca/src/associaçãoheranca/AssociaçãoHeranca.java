@@ -10,7 +10,9 @@ package associaçãoheranca;
  */
 public class AssociaçãoHeranca {
     public static void main(String[] args) {
-        
-    }
+        Prato p = new Prato("Bife", "Romeu");
+        Cliente c = new Cliente("Joao", p);
+        System.out.println("O nome do prato de " + c.getNome() + " é " + c.getPrato().getNome());
     
+    }
 }
