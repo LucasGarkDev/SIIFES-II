@@ -9,10 +9,10 @@ package campoDeBatalha;
  * @author lucas
  */
 public abstract class Guerreiro {
-    private String nome;
-    private int idade;
-    private int peso;
-    private int energia = 100;
+    protected String nome;
+    protected  int idade;
+    protected  int peso;
+    protected  int energia = 100;
 
     public Guerreiro(String nome, int idade, int peso) {
         this.nome = nome;
@@ -46,6 +46,11 @@ public abstract class Guerreiro {
         return energia;
     }
 
+    // Setter para energia
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+    
     @Override
     public String toString() {
         return String.format("%s: %s, %d anos, %d kilos, %d energia", this.getClass().getSimpleName(), nome, idade, peso, energia);

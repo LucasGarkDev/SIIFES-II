@@ -4,6 +4,8 @@
  */
 package campoDeBatalha;
 
+import guerreiros.gregos.Ciclope;
+import guerreiros.gregos.Manticora;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -88,7 +90,19 @@ public class Jogo {
             Guerreiro guerreiroDefensor = defensor[i].obterPrimeiroGuerreiro();
 
             if (guerreiroAtacante != null && guerreiroDefensor != null) {
-                guerreiroAtacante.atacar(guerreiroDefensor);
+                if (guerreiroAtacante instanceof Manticora) {
+                    ((Manticora) guerreiroAtacante).atacar(defensor, i);
+                } else if (guerreiroAtacante instanceof Ciclope) {
+                    ((Ciclope) guerreiroAtacante).atacar(guerreiroDefensor, defensor[i]);
+                } else {
+                    guerreiroAtacante.atacar(guerreiroDefensor);
+                }
+
+                // Verifica se o guerreiro defensor morreu e precisa ser removido
+                if (!guerreiroDefensor.estaVivo()) {
+                    defensor[i].removerPrimeiroGuerreiro();
+                    System.out.println(guerreiroDefensor.getNome() + " foi derrotado!");
+                }
             }
         }
     }

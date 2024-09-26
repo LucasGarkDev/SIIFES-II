@@ -12,7 +12,10 @@ import java.util.LinkedList;
  */
 public class FilaDeGuerreiros {
     private LinkedList<Guerreiro> guerreiros;
+    
     // usar excessao para pegar o ultimo a morrer e o ultimo a matar
+    
+    
     public FilaDeGuerreiros() {
         guerreiros = new LinkedList<>();
     }
@@ -21,7 +24,7 @@ public class FilaDeGuerreiros {
     public void adicionarGuerreiro(Guerreiro guerreiro) {
         guerreiros.addLast(guerreiro);
     }
-// ssdds
+
     // Retorna o primeiro guerreiro da fila
     public Guerreiro obterPrimeiroGuerreiro() {
         return guerreiros.peekFirst();
@@ -32,6 +35,12 @@ public class FilaDeGuerreiros {
         return guerreiros.pollFirst();
     }
 
+    // Mover um guerreiro para o final da fila
+    public void moverParaFinal(Guerreiro guerreiro) {
+        guerreiros.remove(guerreiro);
+        guerreiros.addLast(guerreiro);
+    }
+    
     // Move o primeiro guerreiro para o final da fila, se ainda estiver vivo
     public void moverParaFinalSeVivo() {
         Guerreiro primeiro = guerreiros.pollFirst();
