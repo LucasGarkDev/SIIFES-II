@@ -17,27 +17,13 @@ public class Manticora extends Guerreiro{
     }
 
     @Override
-    public void atacar(Guerreiro[] adversarios, int linhaAtual) {
-        System.out.println(this.getNome() + " ataca com os espinhos da Mantícora!");
+    public void atacar(Guerreiro adversario) {
+        // Dano padrão ao adversário
+        System.out.println(this.nome + " ataca " + adversario.getNome() + " na mesma fila com seus espinhos!");
+        adversario.receberDano(30);
 
-        // Ataca o inimigo da mesma linha
-        if (adversarios[linhaAtual] != null) {
-            adversarios[linhaAtual].receberDano(30);
-            System.out.println(adversarios[linhaAtual].getNome() + " recebeu 30 de dano!");
-        }
-
-        // Ataca os inimigos das filas adjacentes
-        if (linhaAtual > 0 && adversarios[linhaAtual - 1] != null) {
-            adversarios[linhaAtual - 1].receberDano(15);
-            System.out.println(adversarios[linhaAtual - 1].getNome() + " recebeu 15 de dano!");
-        }
-
-        if (linhaAtual < adversarios.length - 1 && adversarios[linhaAtual + 1] != null) {
-            adversarios[linhaAtual + 1].receberDano(15);
-            System.out.println(adversarios[linhaAtual + 1].getNome() + " recebeu 15 de dano!");
-        }
+        // Assumindo que o adversário está em uma estrutura que a Manticora pode acessar as filas adjacentes,
+        // aplicaremos o dano aos guerreiros adjacentes indiretamente. Isso será feito na classe que gerencia as filas.
     }
-
-    
     
 }

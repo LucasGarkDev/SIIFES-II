@@ -90,12 +90,25 @@ public class Jogo {
             Guerreiro guerreiroDefensor = defensor[i].obterPrimeiroGuerreiro();
 
             if (guerreiroAtacante != null && guerreiroDefensor != null) {
+                guerreiroAtacante.atacar(guerreiroDefensor);
+
+                // Tratando a lógica específica da Manticora
                 if (guerreiroAtacante instanceof Manticora) {
-                    ((Manticora) guerreiroAtacante).atacar(defensor, i);
-                } else if (guerreiroAtacante instanceof Ciclope) {
-                    ((Ciclope) guerreiroAtacante).atacar(guerreiroDefensor, defensor[i]);
-                } else {
-                    guerreiroAtacante.atacar(guerreiroDefensor);
+                    // A lógica de dano adicional nas filas adjacentes deve ser tratada aqui
+                    if (i > 0 && defensor[i - 1].obterPrimeiroGuerreiro() != null) {
+                        defensor[i - 1].obterPrimeiroGuerreiro().receberDano(15);
+                        System.out.println(defensor[i - 1].obterPrimeiroGuerreiro().getNome() + " recebeu 15 de dano da Manticora!");
+                    }
+                    if (i < 3 && defensor[i + 1].obterPrimeiroGuerreiro() != null) {
+                        defensor[i + 1].obterPrimeiroGuerreiro().receberDano(15);
+                        System.out.println(defensor[i + 1].obterPrimeiroGuerreiro().getNome() + " recebeu 15 de dano da Manticora!");
+                    }
+                }
+
+                // Tratando a lógica específica do Ciclope
+                if (guerreiroAtacante instanceof Ciclope && guerreiroDefensor.estaVivo()) {
+                    defensor[i].moverParaFinal(guerreiroDefensor);
+                    System.out.println(guerreiroDefensor.getNome() + " foi movido para o final da fila pelo Ciclope!");
                 }
 
                 // Verifica se o guerreiro defensor morreu e precisa ser removido
