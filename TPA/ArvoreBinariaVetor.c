@@ -274,11 +274,12 @@ int main() {
 
     ArvoreBinaria arvore;
     inicializarArvore(&arvore, totalMatriculas);
-
+    double inicio = clock();
     // Ler as matrículas e inseri-las na árvore
     lerEInserirMatriculas(&arvore, arquivoLista);
+    double fim = clock();
     fclose(arquivoLista);
-
+    calcularTempo(inicio,fim);
     // Menu para interação
     menuPrincipal(&arvore);
 
