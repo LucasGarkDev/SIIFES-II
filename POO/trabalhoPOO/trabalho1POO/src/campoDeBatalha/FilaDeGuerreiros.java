@@ -12,10 +12,7 @@ import java.util.LinkedList;
  */
 public class FilaDeGuerreiros {
     private LinkedList<Guerreiro> guerreiros;
-    
-    // usar excessao para pegar o ultimo a morrer e o ultimo a matar
-    
-    
+
     public FilaDeGuerreiros() {
         guerreiros = new LinkedList<>();
     }
@@ -25,33 +22,40 @@ public class FilaDeGuerreiros {
         guerreiros.addLast(guerreiro);
     }
 
-    // Retorna o primeiro guerreiro da fila
-    public Guerreiro obterPrimeiroGuerreiro() {
-        return guerreiros.peekFirst();
-    }
-
     // Remove e retorna o primeiro guerreiro da fila
     public Guerreiro removerPrimeiroGuerreiro() {
         return guerreiros.pollFirst();
     }
 
-    // Mover um guerreiro para o final da fila
-    public void moverParaFinal(Guerreiro guerreiro) {
-        guerreiros.remove(guerreiro);
-        guerreiros.addLast(guerreiro);
-    }
-    
-    // Move o primeiro guerreiro para o final da fila, se ainda estiver vivo
-    public void moverParaFinalSeVivo() {
-        Guerreiro primeiro = guerreiros.pollFirst();
-        if (primeiro != null && primeiro.estaVivo()) {
-            guerreiros.addLast(primeiro);
-        }
+    // Retorna o guerreiro na primeira posição sem removê-lo
+    public Guerreiro obterPrimeiroGuerreiro() {
+        return guerreiros.peekFirst();
     }
 
-    // Verifica se a fila ainda possui guerreiros vivos
+    // Verifica se a fila tem guerreiros
     public boolean temGuerreiros() {
         return !guerreiros.isEmpty();
+    }
+
+    // Retorna o número de guerreiros na fila
+    public int tamanho() {
+        return guerreiros.size();
+    }
+
+    // Obter um guerreiro em uma posição específica
+    public Guerreiro obterGuerreiroNaPosicao(int posicao) {
+        if (posicao >= 0 && posicao < guerreiros.size()) {
+            return guerreiros.get(posicao);
+        }
+        return null;
+    }
+
+    // Obter o último guerreiro da fila
+    public Guerreiro obterUltimoGuerreiro() {
+        if (!guerreiros.isEmpty()) {
+            return guerreiros.getLast();
+        }
+        return null;
     }
 
     // Exibe os guerreiros presentes na fila

@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Anubita extends Guerreiro{
+public class Anubita extends GuerreiroEgipcio{
     
     public Anubita(String nome, int idade, int peso) {
         super(nome, idade, peso);

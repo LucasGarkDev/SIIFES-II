@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Hidra extends Guerreiro{
+public class Hidra extends GuerreiroGrego{
     
     private int cabecas = 1; // A Hidra começa com 1 cabeça
     
@@ -18,20 +18,6 @@ public class Hidra extends Guerreiro{
         super(nome, idade, peso);
     }
 
-    @Override
-    public void atacar(Guerreiro adversario) {
-        int dano = 50 + (5 * (cabecas - 1)); // Dano aumenta 5 por cabeça extra
-        System.out.println(this.nome + " ataca " + adversario.getNome() + " com força de uma Hidra!");
-        adversario.receberDano(dano);
-
-        // Se a Hidra matar o adversário
-        if (!adversario.estaVivo()) {
-            cabecas++;
-            // Atualizando a energia da Hidra usando o método setter
-            int novaEnergia = Math.min(100, this.getEnergia() + 20);
-            this.setEnergia(novaEnergia); // Use o método setter para atualizar a energia
-            System.out.println(this.nome + " ganhou uma nova cabeça! Agora possui " + cabecas + " cabeças.");
-        }
-    }
+    
     
 }

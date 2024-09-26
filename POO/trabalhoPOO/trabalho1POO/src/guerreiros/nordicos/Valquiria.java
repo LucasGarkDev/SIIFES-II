@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Valquiria extends Guerreiro{
+public class Valquiria extends GuerreiroNordico{
     
     public Valquiria(String nome, int idade, int peso) {
         super(nome, idade, peso);

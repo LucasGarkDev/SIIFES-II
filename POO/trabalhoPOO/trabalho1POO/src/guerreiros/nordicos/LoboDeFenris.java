@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class LoboDeFenris extends Guerreiro{
+public class LoboDeFenris extends GuerreiroNordico{
     
     public LoboDeFenris(String nome, int idade, int peso) {
         super(nome, idade, peso);

@@ -13,19 +13,12 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Ciclope extends Guerreiro{
+public class Ciclope extends GuerreiroGrego{
     
     public Ciclope(String nome, int idade, int peso) {
         super(nome, idade, peso);
     }
     
-    @Override
-    public void atacar(Guerreiro adversario) {
-        System.out.println(this.nome + " ataca " + adversario.getNome() + " com força de um Ciclope!");
-        adversario.receberDano(35);
-
-        // A lógica para mover o adversário para o final da fila se ele ainda estiver vivo
-        // deve ser implementada na classe que gerencia a fila (Jogo ou FilaDeGuerreiros).
-    }
+    
     
 }

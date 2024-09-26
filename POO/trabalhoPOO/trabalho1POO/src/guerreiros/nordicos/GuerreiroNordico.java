@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package guerreiros.egipcios;
+package guerreiros.nordicos;
 
 import campoDeBatalha.Guerreiro;
 
@@ -10,9 +10,9 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class HomemEscorpiao extends GuerreiroEgipcio{
-    
-    public HomemEscorpiao(String nome, int idade, int peso) {
+public class GuerreiroNordico extends Guerreiro{
+
+    public GuerreiroNordico(String nome, int idade, int peso) {
         super(nome, idade, peso);
     }
 

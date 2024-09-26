@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Argus extends Guerreiro{
+public class Argus extends GuerreiroAtlante{
     
     public Argus(String nome, int idade, int peso) {
         super(nome, idade, peso);

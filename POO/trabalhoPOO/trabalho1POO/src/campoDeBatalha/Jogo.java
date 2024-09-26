@@ -3,10 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package campoDeBatalha;
-
-import guerreiros.gregos.Ciclope;
-import guerreiros.gregos.Manticora;
-import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -14,12 +10,12 @@ import java.util.Random;
  * @author lucas
  */
 public class Jogo {
-    private FilaDeGuerreiros[] lado1;
-    private FilaDeGuerreiros[] lado2;
+    private FilaDeGuerreiros[] lado1; // Gregos e Nórdicos
+    private FilaDeGuerreiros[] lado2; // Atlantes e Egípcios
     private Random random;
 
     public Jogo() {
-        // Inicializa as 4 filas para cada lado
+        // Inicializando as filas para cada lado
         lado1 = new FilaDeGuerreiros[4];
         lado2 = new FilaDeGuerreiros[4];
 
@@ -27,113 +23,58 @@ public class Jogo {
             lado1[i] = new FilaDeGuerreiros();
             lado2[i] = new FilaDeGuerreiros();
         }
+
+        random = new Random();
     }
 
-    // Método para carregar os guerreiros de todos os arquivos
-    public void carregarGuerreiros() {
-        String[] arquivosLado1 = {"fila11.txt", "fila12.txt", "fila13.txt", "fila14.txt"};
-        String[] arquivosLado2 = {"fila21.txt", "fila22.txt", "fila23.txt", "fila24.txt"};
-
-        // Carrega os guerreiros para o lado 1
-        for (int i = 0; i < 4; i++) {
-            LinkedList<Guerreiro> guerreiros = LeitorDeArquivo.carregarGuerreirosDeArquivo(arquivosLado1[i], 1);
-            for (Guerreiro guerreiro : guerreiros) {
-                lado1[i].adicionarGuerreiro(guerreiro);
-            }
-        }
-
-        // Carrega os guerreiros para o lado 2
-        for (int i = 0; i < 4; i++) {
-            LinkedList<Guerreiro> guerreiros = LeitorDeArquivo.carregarGuerreirosDeArquivo(arquivosLado2[i], 2);
-            for (Guerreiro guerreiro : guerreiros) {
-                lado2[i].adicionarGuerreiro(guerreiro);
-            }
-        }
-    }
-    
-    // Método para sortear qual lado inicia
-    private boolean sortearLadoInicia() {
-        return random.nextBoolean(); // true para lado1 começar, false para lado2
-    }
-
-    // Método para iniciar o combate
-    public void iniciarCombate() {
+    // Método para executar um turno completo de ataque
+    public void realizarTurno() {
         boolean lado1AtacaPrimeiro = sortearLadoInicia();
-        System.out.println(lado1AtacaPrimeiro ? "Lado 1 começa!" : "Lado 2 começa!");
 
-        while (temGuerreirosVivos(lado1) && temGuerreirosVivos(lado2)) {
-            if (lado1AtacaPrimeiro) {
-                realizarTurno(lado1, lado2);
-                realizarTurno(lado2, lado1);
-            } else {
-                realizarTurno(lado2, lado1);
-                realizarTurno(lado1, lado2);
-            }
-
-            // Move os guerreiros para o final das filas se ainda estiverem vivos
-            rodarFilas(lado1);
-            rodarFilas(lado2);
-        }
-
-        // Verifica quem venceu
-        if (temGuerreirosVivos(lado1)) {
-            System.out.println("Lado 1 venceu!");
+        if (lado1AtacaPrimeiro) {
+            executarAtaques(lado1, lado2);
+            executarAtaques(lado2, lado1);
         } else {
-            System.out.println("Lado 2 venceu!");
+            executarAtaques(lado2, lado1);
+            executarAtaques(lado1, lado2);
         }
     }
 
-    // Realiza o ataque de cada fila do lado atacante na respectiva fila do lado defensor
-    private void realizarTurno(FilaDeGuerreiros[] atacante, FilaDeGuerreiros[] defensor) {
+    // Método que define qual lado inicia
+    private boolean sortearLadoInicia() {
+        return random.nextBoolean();
+    }
+
+    // Executa os ataques de todas as filas de um lado
+    private void executarAtaques(FilaDeGuerreiros[] atacantes, FilaDeGuerreiros[] defensores) {
         for (int i = 0; i < 4; i++) {
-            Guerreiro guerreiroAtacante = atacante[i].obterPrimeiroGuerreiro();
-            Guerreiro guerreiroDefensor = defensor[i].obterPrimeiroGuerreiro();
+            Guerreiro atacante = atacantes[i].obterPrimeiroGuerreiro();
 
-            if (guerreiroAtacante != null && guerreiroDefensor != null) {
-                guerreiroAtacante.atacar(guerreiroDefensor);
-
-                // Tratando a lógica específica da Manticora
-                if (guerreiroAtacante instanceof Manticora) {
-                    // A lógica de dano adicional nas filas adjacentes deve ser tratada aqui
-                    if (i > 0 && defensor[i - 1].obterPrimeiroGuerreiro() != null) {
-                        defensor[i - 1].obterPrimeiroGuerreiro().receberDano(15);
-                        System.out.println(defensor[i - 1].obterPrimeiroGuerreiro().getNome() + " recebeu 15 de dano da Manticora!");
-                    }
-                    if (i < 3 && defensor[i + 1].obterPrimeiroGuerreiro() != null) {
-                        defensor[i + 1].obterPrimeiroGuerreiro().receberDano(15);
-                        System.out.println(defensor[i + 1].obterPrimeiroGuerreiro().getNome() + " recebeu 15 de dano da Manticora!");
-                    }
-                }
-
-                // Tratando a lógica específica do Ciclope
-                if (guerreiroAtacante instanceof Ciclope && guerreiroDefensor.estaVivo()) {
-                    defensor[i].moverParaFinal(guerreiroDefensor);
-                    System.out.println(guerreiroDefensor.getNome() + " foi movido para o final da fila pelo Ciclope!");
-                }
-
-                // Verifica se o guerreiro defensor morreu e precisa ser removido
-                if (!guerreiroDefensor.estaVivo()) {
-                    defensor[i].removerPrimeiroGuerreiro();
-                    System.out.println(guerreiroDefensor.getNome() + " foi derrotado!");
+            if (atacante != null) {
+                // Encontrar o alvo na mesma linha
+                Guerreiro alvo = obterAlvo(defensores, i);
+                if (alvo != null) {
+                    atacante.atacar(alvo);
                 }
             }
         }
     }
 
-    // Move os guerreiros das filas para o final, se ainda estiverem vivos
-    private void rodarFilas(FilaDeGuerreiros[] lado) {
-        for (FilaDeGuerreiros fila : lado) {
-            fila.moverParaFinalSeVivo();
+    // Método que encontra o alvo apropriado
+    private Guerreiro obterAlvo(FilaDeGuerreiros[] defensores, int linha) {
+        // Prioridade para a fila da mesma linha
+        if (defensores[linha].temGuerreiros()) {
+            return defensores[linha].obterPrimeiroGuerreiro();
         }
-    }
 
-    // Verifica se ainda há guerreiros vivos em todas as filas de um lado
-    private boolean temGuerreirosVivos(FilaDeGuerreiros[] lado) {
-        for (FilaDeGuerreiros fila : lado) {
-            if (fila.temGuerreiros()) {
-                return true;
+        // Caso a fila da mesma linha esteja vazia, procura nas filas adjacentes
+        for (int offset = 1; offset < 4; offset++) {
+            int proximaLinha = (linha + offset) % 4;
+            if (defensores[proximaLinha].temGuerreiros()) {
+                return defensores[proximaLinha].obterPrimeiroGuerreiro();
             }
         }
-        return false;
+
+        return null; // Nenhum alvo disponível
     }
 }

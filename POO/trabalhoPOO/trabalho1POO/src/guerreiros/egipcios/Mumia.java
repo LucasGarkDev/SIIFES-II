@@ -10,7 +10,7 @@ import campoDeBatalha.Guerreiro;
  *
  * @author lucas
  */
-public class Mumia extends Guerreiro{
+public class Mumia extends GuerreiroEgipcio{
     
     public Mumia(String nome, int idade, int peso) {
         super(nome, idade, peso);
