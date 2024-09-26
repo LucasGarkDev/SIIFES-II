@@ -32,7 +32,7 @@ void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista) {
 
 //=================================================
 void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
-    arvore->capacidade = (int)(quantidadeMatriculas * 100);
+    arvore->capacidade = (int)(quantidadeMatriculas * FATOR_SEGURANCA);
     arvore->tamanho = 0;
     arvore->elementos = (NoArvore *)malloc(arvore->capacidade * sizeof(NoArvore));
 
