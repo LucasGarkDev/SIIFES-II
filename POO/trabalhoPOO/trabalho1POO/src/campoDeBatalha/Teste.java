@@ -11,6 +11,8 @@ import java.util.LinkedList;
  * @author lucas
  */
 public class Teste {
+    
+    // fazer classe Arena que gerencia as filas
     public static void main(String[] args) {
         // Carregar e exibir guerreiros do Lado 1 (Gregos e Nórdicos)
         System.out.println("Guerreiros do Lado 1 (Gregos e Nórdicos):");
