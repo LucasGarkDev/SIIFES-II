@@ -657,7 +657,7 @@ SORT_BRIEF_DOCS        = NO
 # Note: If SORT_BRIEF_DOCS is set to NO this option is ignored for sorting brief
 # member documentation.
 # Note: If SORT_MEMBER_DOCS is set to NO this option is ignored for sorting
-# detailed member documentation.
+
 # The default value is: NO.
 
 SORT_MEMBERS_CTORS_1ST = NO
