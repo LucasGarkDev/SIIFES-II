@@ -9,12 +9,12 @@ import java.util.Random;
  *
  * @author lucas
  */
-public class Jogo {
+public class Arena {
     private FilaDeGuerreiros[] lado1; // Gregos e Nórdicos
     private FilaDeGuerreiros[] lado2; // Atlantes e Egípcios
     private Random random;
 
-    public Jogo() {
+    public Arena() {
         // Inicializando as filas para cada lado
         lado1 = new FilaDeGuerreiros[4];
         lado2 = new FilaDeGuerreiros[4];
