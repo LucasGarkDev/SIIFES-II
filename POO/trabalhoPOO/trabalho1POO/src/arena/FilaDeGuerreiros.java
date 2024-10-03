@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package campoDeBatalha;
+package arena;
 
 import java.util.LinkedList;
 
@@ -37,23 +37,18 @@ public class FilaDeGuerreiros {
         return !guerreiros.isEmpty();
     }
 
-    // Retorna o número de guerreiros na fila
-    public int tamanho() {
-        return guerreiros.size();
-    }
-
-    // Obter um guerreiro em uma posição específica
-    public Guerreiro obterGuerreiroNaPosicao(int posicao) {
-        if (posicao >= 0 && posicao < guerreiros.size()) {
-            return guerreiros.get(posicao);
-        }
-        return null;
-    }
-
     // Obter o último guerreiro da fila
     public Guerreiro obterUltimoGuerreiro() {
         if (!guerreiros.isEmpty()) {
             return guerreiros.getLast();
+        }
+        return null;
+    }
+
+    // Retorna o guerreiro em uma posição específica
+    public Guerreiro obterGuerreiroNaPosicao(int posicao) {
+        if (posicao >= 0 && posicao < guerreiros.size()) {
+            return guerreiros.get(posicao);
         }
         return null;
     }

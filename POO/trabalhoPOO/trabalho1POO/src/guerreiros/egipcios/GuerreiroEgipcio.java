@@ -4,7 +4,8 @@
  */
 package guerreiros.egipcios;
 
-import campoDeBatalha.Guerreiro;
+import arena.Arena;
+import arena.Guerreiro;
 
 /**
  *
@@ -17,8 +18,15 @@ public class GuerreiroEgipcio extends Guerreiro{
     }
 
     @Override
-    public void atacar(Guerreiro adversario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void atacar(Arena arena, int ladoAtacante) {
+        System.out.println(this.getNome() + " (Egípcio) ataca o guerreiro à frente!");
+        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
+        if (adversario != null) {
+            adversario.receberDano(20); // Dano genérico
+            System.out.println(adversario.getNome() + " foi atacado e recebeu 20 de dano!");
+        } else {
+            System.out.println("Nenhum adversário disponível para atacar.");
+        }
     }
     
 }

@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package campoDeBatalha;
+package arena;
 
 /**
  *
  * @author lucas
  */
-public class Guerreiro {
+public abstract class Guerreiro {
     private String nome;
     private  int idade;
     private  int peso;
@@ -24,10 +24,7 @@ public class Guerreiro {
         return energia > 0;
     }
 
-    public void atacar(Guerreiro adversario) {
-        System.out.println(this.nome + " ataca " + adversario.getNome());
-        adversario.receberDano(20); // Valor de dano genérico
-    }
+    public abstract void atacar(Arena arena, int ladoAtacante);
 
     public void receberDano(int dano) {
         this.energia -= dano;

@@ -4,7 +4,7 @@
  */
 package guerreiros.egipcios;
 
-import campoDeBatalha.Guerreiro;
+import arena.Guerreiro;
 
 /**
  *
@@ -16,9 +16,5 @@ public class Mumia extends GuerreiroEgipcio{
         super(nome, idade, peso);
     }
 
-    @Override
-    public void atacar(Guerreiro adversario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
 }

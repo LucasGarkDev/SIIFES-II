@@ -4,7 +4,8 @@
  */
 package guerreiros.atlantes;
 
-import campoDeBatalha.Guerreiro;
+import arena.Arena;
+import arena.Guerreiro;
 
 /**
  *
@@ -17,8 +18,15 @@ public class GuerreiroAtlante extends Guerreiro{
     }
 
     @Override
-    public void atacar(Guerreiro adversario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void atacar(Arena arena, int ladoAtacante) {
+        System.out.println(this.getNome() + " (Atlante) ataca o guerreiro à frente!");
+        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
+        if (adversario != null) {
+            adversario.receberDano(30); // Dano genérico
+            System.out.println(adversario.getNome() + " foi atacado e recebeu 30 de dano!");
+        } else {
+            System.out.println("Nenhum adversário disponível para atacar.");
+        }
     }
     
 }
