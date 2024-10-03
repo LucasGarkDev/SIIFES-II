@@ -22,7 +22,7 @@ public class GuerreiroGrego extends Guerreiro{
         System.out.println(this.getNome() + " (Grego) ataca o guerreiro à frente!");
         Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
         if (adversario != null) {
-            adversario.receberDano(15); // Dano genérico
+            adversario.receberDano(15); 
             System.out.println(adversario.getNome() + " foi atacado e recebeu 15 de dano!");
         } else {
             System.out.println("Nenhum adversário disponível para atacar.");
@@ -32,7 +32,7 @@ public class GuerreiroGrego extends Guerreiro{
     @Override
     public void receberDano(int dano) {
         super.receberDano(dano);
-        // Garantir que a energia nunca passe de 100
+        
         if (this.getEnergia() > 100) {
             this.setEnergia(100);
         }
