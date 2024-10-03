@@ -2,13 +2,6 @@
 #include "ArvoreBinariaVetor.h"
 
 //=================================================
-/**
- * @brief Abre um arquivo com o modo especificado.
- * 
- * @param nomeArq Nome do arquivo.
- * @param modo Modo de abertura do arquivo (ex: "r", "w").
- * @return FILE* Ponteiro para o arquivo aberto.
- */
 FILE *abrirArquivo(char *nomeArq, char *modo) {
     FILE *arq = fopen(nomeArq, modo);
     if (arq == NULL) {
@@ -19,23 +12,11 @@ FILE *abrirArquivo(char *nomeArq, char *modo) {
     return arq;
 }
 //=================================================
-/**
- * @brief Calcula e exibe o tempo de execução em segundos.
- * 
- * @param ini Tempo inicial.
- * @param fim Tempo final.
- */
 void calcularTempo(double ini, double fim) {
     double tempoDecorrido = (double)(fim - ini) / CLOCKS_PER_SEC;
     printf("Tempo de execucao: %f segundos\n", tempoDecorrido);
 }
 //=================================================
-/**
- * @brief Salva os dados da árvore binária no arquivo.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param arquivoLista Ponteiro para o arquivo onde os dados serão salvos.
- */
 void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista) {
     for (int i = 0; i < arvore->capacidade; i++) {
         if (arvore->elementos[i].ocupado) {
@@ -45,12 +26,6 @@ void salvarDadosNoArquivo(ArvoreBinaria *arvore, FILE *arquivoLista) {
     printf("INFO: Dados salvos com sucesso no arquivo.\n");
 }
 //=================================================
-/**
- * @brief Inicializa a árvore binária com uma capacidade baseada na quantidade de matrículas.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param quantidadeMatriculas Quantidade inicial de matrículas.
- */
 void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
     arvore->capacidade = (int)(quantidadeMatriculas * FATOR_SEGURANCA);
     arvore->tamanho = 0;
@@ -66,11 +41,6 @@ void inicializarArvore(ArvoreBinaria *arvore, int quantidadeMatriculas) {
     }
 }
 //=================================================
-/**
- * @brief Redimensiona a árvore binária quando sua capacidade é atingida.
- * 
- * @param arvore Ponteiro para a árvore binária.
- */
 void redimensionarArvore(ArvoreBinaria *arvore) {
     int novaCapacidade = arvore->capacidade * FATOR_SEGURANCA;
     NoArvore *novoArray = (NoArvore *)realloc(arvore->elementos, novaCapacidade * sizeof(NoArvore));
@@ -92,11 +62,6 @@ void redimensionarArvore(ArvoreBinaria *arvore) {
     printf("Arvore redimensionada para %d elementos.\n", arvore->capacidade);
 }
 //=================================================
-/**
- * @brief Libera a memória alocada para a árvore binária.
- * 
- * @param arvore Ponteiro para a árvore binária.
- */
 void liberarArvore(ArvoreBinaria *arvore) {
     if (arvore->elementos != NULL) {
         free(arvore->elementos);
@@ -106,12 +71,6 @@ void liberarArvore(ArvoreBinaria *arvore) {
     arvore->capacidade = 0;
 }
 //=================================================
-/**
- * @brief Imprime os elementos da árvore binária em ordem.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param indice Índice do nó atual.
- */
 void imprimirEmOrdem(ArvoreBinaria *arvore, int indice) {
     if (indice >= arvore->capacidade || !arvore->elementos[indice].ocupado) {
         return;
@@ -127,11 +86,6 @@ void imprimirEmOrdem(ArvoreBinaria *arvore, int indice) {
     imprimirEmOrdem(arvore, 2 * indice + 2);
 }
 //=================================================
-/**
- * @brief Exibe o menu de ações para a árvore binária e retorna a opção escolhida.
- * 
- * @return long long int A opção escolhida pelo usuário.
- */
 long long int pedirOpcao() {
     int op;
     printf("\n--- Menu Principal ---\n");
@@ -149,12 +103,6 @@ long long int pedirOpcao() {
     return op;
 }
 //=================================================
-/**
- * @brief Solicita ao usuário um número para inserção ou exclusão na árvore binária.
- * 
- * @param caminhoASerEscolhido Define o caminho escolhido (0 para inserir, 1 para excluir).
- * @return long long int O número solicitado ao usuário.
- */
 long long int pedirNum(int caminhoASerEscolhido) {
     long long int num;
     if (caminhoASerEscolhido == 0) {
@@ -167,11 +115,6 @@ long long int pedirNum(int caminhoASerEscolhido) {
     return num;
 }
 //=================================================
-/**
- * @brief Imprime todos os elementos da árvore binária, incluindo suas relações de parentesco.
- * 
- * @param arvore Ponteiro para a árvore binária.
- */
 void imprimirVetorCompleto(ArvoreBinaria *arvore) {
     printf("\n===| Impressão Completa do Vetor da Árvore |===\n\n");
     for (int i = 0; i < arvore->capacidade; i++) {
@@ -193,11 +136,6 @@ void imprimirVetorCompleto(ArvoreBinaria *arvore) {
     printf("\n==============================================\n");
 }
 //=================================================
-/**
- * @brief Menu principal do programa para interagir com a árvore binária.
- * 
- * @param arvore Ponteiro para a árvore binária.
- */
 void menuPrincipal(ArvoreBinaria *arvore) {
     long long int op;
     long long int numInseri;
@@ -249,12 +187,6 @@ void menuPrincipal(ArvoreBinaria *arvore) {
     } while (repete == 0);
 }
 //=================================================
-/**
- * @brief Conta o número de matrículas no arquivo.
- * 
- * @param arquivoLista Ponteiro para o arquivo de matrícula.
- * @return int O número de matrículas no arquivo.
- */
 int contarMatriculas(FILE *arquivoLista) {
     char linha[100];
     int totalMatriculas = 0;
@@ -264,13 +196,6 @@ int contarMatriculas(FILE *arquivoLista) {
     return totalMatriculas / 2;  // Cada matrícula ocupa duas linhas (nome e matrícula)
 }
 //=================================================
-/**
- * @brief Insere um aluno na árvore binária.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param matricula Matrícula do aluno.
- * @param nome Nome do aluno.
- */
 void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome) {
     if (arvore->tamanho >= arvore->capacidade) {
         redimensionarArvore(arvore);
@@ -299,12 +224,6 @@ void inserirAluno(ArvoreBinaria *arvore, long long int matricula, char *nome) {
     }
 }
 //=================================================
-/**
- * @brief Busca um aluno na árvore binária pela matrícula.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param matricula Matrícula do aluno a ser buscado.
- */
 void buscarAluno(ArvoreBinaria *arvore, long long int matricula) {
     int i = 0;
     while (i < arvore->capacidade && arvore->elementos[i].ocupado) {
@@ -320,12 +239,6 @@ void buscarAluno(ArvoreBinaria *arvore, long long int matricula) {
     printf("Aluno não encontrado.\n");
 }
 //=================================================
-/**
- * @brief Remove um aluno da árvore binária pela matrícula.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param matricula Matrícula do aluno a ser removido.
- */
 void removerAluno(ArvoreBinaria *arvore, long long int matricula) {
     int i = 0;
     while (i < arvore->capacidade && arvore->elementos[i].ocupado) {
@@ -344,12 +257,6 @@ void removerAluno(ArvoreBinaria *arvore, long long int matricula) {
     printf("Matrícula não encontrada para remoção.\n");
 }
 //=================================================
-/**
- * @brief Lê e insere matrículas da lista de alunos no arquivo.
- * 
- * @param arvore Ponteiro para a árvore binária.
- * @param arquivoLista Ponteiro para o arquivo com as matrículas.
- */
 void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista) {
     rewind(arquivoLista);  // Reposicionar para o início do arquivo
     long long int matricula;
@@ -363,18 +270,12 @@ void lerEInserirMatriculas(ArvoreBinaria *arvore, FILE *arquivoLista) {
     }
 }
 //=================================================
-/**
- * @brief Função principal do programa.
- * 
- * @return int Código de retorno do programa.
- */
-int main() {
-    FILE *arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
+void iniciarCodigo(FILE *arquivoLista,ArvoreBinaria arvore){
+    arquivoLista = abrirArquivo("nomes_matriculas.txt", "r");
     int totalMatriculas = contarMatriculas(arquivoLista);
     printf("Total de matrículas no arquivo: %d\n", totalMatriculas);
     rewind(arquivoLista); // Volta ao início do arquivo
 
-    ArvoreBinaria arvore;
     inicializarArvore(&arvore, totalMatriculas);
     double inicio = clock();
     // Ler as matrículas e inseri-las na árvore
@@ -393,5 +294,11 @@ int main() {
     // Liberar a memória
     liberarArvore(&arvore);
 
+}
+//=================================================
+int main() {
+    FILE *arquivoLista;
+    ArvoreBinaria arvore;
+    iniciarCodigo(arquivoLista,arvore);
     return 0;
 }
