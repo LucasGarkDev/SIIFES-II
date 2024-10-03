@@ -29,4 +29,13 @@ public class GuerreiroGrego extends Guerreiro{
         }
     }
     
+    @Override
+    public void receberDano(int dano) {
+        super.receberDano(dano);
+        // Garantir que a energia nunca passe de 100
+        if (this.getEnergia() > 100) {
+            this.setEnergia(100);
+        }
+    }
+    
 }

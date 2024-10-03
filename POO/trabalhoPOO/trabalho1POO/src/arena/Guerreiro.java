@@ -41,6 +41,10 @@ public abstract class Guerreiro {
         return energia;
     }
 
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+
     @Override
     public String toString() {
         return String.format("Guerreiro: %s, Idade: %d, Peso: %d, Energia: %d", nome, idade, peso, energia);
