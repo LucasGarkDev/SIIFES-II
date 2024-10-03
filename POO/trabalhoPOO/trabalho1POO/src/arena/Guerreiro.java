@@ -12,7 +12,7 @@ public abstract class Guerreiro {
     private String nome;
     private  int idade;
     private  int peso;
-    private  int energia = 100;
+    protected  int energia = 100;
 
     public Guerreiro(String nome, int idade, int peso) {
         this.nome = nome;

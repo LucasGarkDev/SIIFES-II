@@ -26,10 +26,10 @@ public class Ciclope extends GuerreiroGrego{
 
         Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
         if (adversario != null) {
-            adversario.receberDano(35); // Causa 35 de dano
+            adversario.receberDano(35); 
             System.out.println(adversario.getNome() + " recebeu 35 de dano!");
 
-            // Se for o primeiro da fila a atacar, move o adversário para o fim da fila
+            
             if (arena.obterPrimeiroGuerreiro(ladoAtacante, 0) == this) {
                 System.out.println(adversario.getNome() + " foi movido para o final da fila.");
                 //arena.moverGuerreiroParaFinal(2, 0); // Move o adversário para o final da fila inimiga
