@@ -18,6 +18,7 @@ public abstract class Guerreiro {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
+        this.energia = 100;
     }
 
     public boolean estaVivo() {

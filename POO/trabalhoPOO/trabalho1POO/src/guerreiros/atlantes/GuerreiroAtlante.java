@@ -15,6 +15,7 @@ public class GuerreiroAtlante extends Guerreiro{
 
     public GuerreiroAtlante(String nome, int idade, int peso) {
         super(nome, idade, peso);
+        this.energia = 100;
     }
 
     @Override

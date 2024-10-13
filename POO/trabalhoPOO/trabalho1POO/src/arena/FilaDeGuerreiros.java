@@ -11,10 +11,30 @@ import java.util.LinkedList;
  * @author lucas
  */
 public class FilaDeGuerreiros {
+
     private LinkedList<Guerreiro> guerreiros;
 
     public FilaDeGuerreiros() {
         guerreiros = new LinkedList<>();
+    }
+
+    private Guerreiro alvoForcado;
+
+    public void definirAlvoForcado(Guerreiro alvo) {
+        this.alvoForcado = alvo;
+    }
+
+    public Guerreiro obterAlvoForcado() {
+        return this.alvoForcado;
+    }
+
+    public void limparAlvoForcado() {
+        this.alvoForcado = null;
+    }
+
+    // Retorna a lista de guerreiros na fila
+    public LinkedList<Guerreiro> getGuerreiros() {
+        return guerreiros;
     }
 
     // Adiciona um guerreiro no final da fila
@@ -59,4 +79,19 @@ public class FilaDeGuerreiros {
             System.out.println(guerreiro);
         }
     }
+
+    public int obterPosicaoGuerreiro(Guerreiro guerreiro) {
+        return guerreiros.indexOf(guerreiro); // Retorna a posição do guerreiro na lista ou -1 se não encontrado
+    }
+
+    // Remove um guerreiro específico da fila
+    public void removerGuerreiro(Guerreiro guerreiro) {
+        if (guerreiros.contains(guerreiro)) {
+            guerreiros.remove(guerreiro);
+            System.out.println(guerreiro.getNome() + " foi removido da fila, pois sua energia chegou a 0.");
+        } else {
+            System.out.println("Guerreiro " + guerreiro.getNome() + " não encontrado na fila.");
+        }
+    }
+
 }
