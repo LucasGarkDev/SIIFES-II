@@ -94,4 +94,13 @@ public class FilaDeGuerreiros {
         }
     }
 
+    public int obterIndiceGuerreiro(Guerreiro guerreiro) {
+        for (int i = 0; i < guerreiros.size(); i++) {  // Assume que guerreiros é uma lista ou coleção
+            if (guerreiros.get(i).equals(guerreiro)) {
+                return i; // Retorna o índice do guerreiro na fila
+            }
+        }
+        return -1; // Se o guerreiro não estiver na fila, retorna -1
+    }
+
 }

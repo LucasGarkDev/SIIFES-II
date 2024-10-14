@@ -23,7 +23,7 @@ public class GuerreiroAtlante extends Guerreiro{
         System.out.println(this.getNome() + " (Atlante) ataca o guerreiro à frente!");
         Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
         if (adversario != null) {
-            adversario.receberDano(30); // Dano genérico
+            adversario.receberDano(10); // Dano genérico
             System.out.println(adversario.getNome() + " foi atacado e recebeu 30 de dano!");
         } else {
             System.out.println("Nenhum adversário disponível para atacar.");

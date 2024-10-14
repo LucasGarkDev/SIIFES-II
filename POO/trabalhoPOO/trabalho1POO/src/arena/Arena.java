@@ -28,6 +28,15 @@ public class Arena {
 
         random = new Random();
     }
+    
+    // Método para adicionar guerreiros à fila específica
+    public void adicionarGuerreiroNaFila(int lado, int indiceFila, Guerreiro guerreiro) {
+        if (lado == 1) {
+            lado1[indiceFila].adicionarGuerreiro(guerreiro);
+        } else if (lado == 2) {
+            lado2[indiceFila].adicionarGuerreiro(guerreiro);
+        }
+    }
 
     // Método para executar um turno completo de ataque
     public void realizarTurno() {
@@ -287,5 +296,18 @@ public class Arena {
             }
         }
     }
+ 
+    public int procurarFilaDoGuerreiro(int lado, Guerreiro guerreiro) {
+        FilaDeGuerreiros[] filas = lado == 1 ? lado1 : lado2; // Determina o lado (1 ou 2)
 
+        // Itera pelas filas do lado escolhido (lado1 ou lado2)
+        for (int i = 0; i < filas.length; i++) {
+            int indice = filas[i].obterIndiceGuerreiro(guerreiro); // Usa o método obterIndiceGuerreiro
+
+            if (indice != -1) {
+                return i; // Retorna o índice da fila se o guerreiro foi encontrado
+            }
+        }
+        return -1; // Retorna -1
+    }
 }
