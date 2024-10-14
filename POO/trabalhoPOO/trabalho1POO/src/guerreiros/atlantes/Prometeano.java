@@ -12,7 +12,7 @@ import arena.Guerreiro;
  * @author lucas
  */
 public class Prometeano extends GuerreiroAtlante {
-    
+
     private int indiceFila; // Variável para armazenar o índice da fila
 
     public Prometeano(String nome, int idade, int peso) {
@@ -23,9 +23,11 @@ public class Prometeano extends GuerreiroAtlante {
     @Override
     public void atacar(Arena arena, int ladoAtacante) {
         System.out.println(this.getNome() + " (Prometeano) ataca o guerreiro à frente!");
-        
-        // Antes de atacar, guarda o índice da fila onde está
-        this.indiceFila = arena.procurarFilaDoGuerreiro(ladoAtacante, this);
+
+        if (this.estaVivo()) {
+            // Antes de atacar, guarda o índice da fila onde está
+            this.indiceFila = arena.procurarFilaDoGuerreiro(ladoAtacante, this);
+        }
         
         Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
         if (adversario != null) {
@@ -55,10 +57,10 @@ public class Prometeano extends GuerreiroAtlante {
 
                 // Adicionar os descendentes ao final da fila
                 System.out.println(this.getNome() + " se divide em " + descendente1.getNome() + " e " + descendente2.getNome());
-                
+
                 // Adiciona os descendentes na fila correta (com base no índice armazenado)
-                arena.adicionarGuerreiroNaFila(ladoAtacante, this.indiceFila, descendente1);
-                arena.adicionarGuerreiroNaFila(ladoAtacante, this.indiceFila, descendente2);
+                arena.adicionarGuerreiroNaFila(2, this.indiceFila, descendente1);
+                arena.adicionarGuerreiroNaFila(2, this.indiceFila, descendente2);
             } else {
                 System.out.println(this.getNome() + " foi completamente eliminado.");
             }

@@ -65,12 +65,6 @@ public abstract class Guerreiro {
             this.energia = 0;
         }
     }
-    
-    // Sobrecarga do método receberDano com lógica adicional para o Prometeano
-    public void receberDano(int dano, Arena arena, int ladoAtacante) {
-        // Chama o método original para diminuir a energia
-        receberDano(dano);
-    }
 
     @Override
     public String toString() {

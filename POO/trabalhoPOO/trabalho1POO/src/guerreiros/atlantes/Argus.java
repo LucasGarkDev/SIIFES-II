@@ -14,6 +14,7 @@ public class Argus extends GuerreiroAtlante{
     
     public Argus(String nome, int idade, int peso) {
         super(nome, idade, peso);
+        this.energia = 60;
     }
 
     

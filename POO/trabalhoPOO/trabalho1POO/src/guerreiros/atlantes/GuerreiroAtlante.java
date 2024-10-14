@@ -15,7 +15,6 @@ public class GuerreiroAtlante extends Guerreiro{
 
     public GuerreiroAtlante(String nome, int idade, int peso) {
         super(nome, idade, peso);
-        this.energia = 100;
     }
 
     @Override
@@ -23,8 +22,8 @@ public class GuerreiroAtlante extends Guerreiro{
         System.out.println(this.getNome() + " (Atlante) ataca o guerreiro à frente!");
         Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
         if (adversario != null) {
-            adversario.receberDano(10); // Dano genérico
-            System.out.println(adversario.getNome() + " foi atacado e recebeu 30 de dano!");
+            adversario.receberDano(10); 
+            System.out.println(adversario.getNome() + " foi atacado e recebeu 10 de dano!");
         } else {
             System.out.println("Nenhum adversário disponível para atacar.");
         }
