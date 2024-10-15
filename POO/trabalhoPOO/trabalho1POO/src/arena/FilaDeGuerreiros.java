@@ -11,96 +11,154 @@ import java.util.LinkedList;
  * @author lucas
  */
 public class FilaDeGuerreiros {
-
     private LinkedList<Guerreiro> guerreiros;
 
+    // Construtor que inicializa a lista de guerreiros
     public FilaDeGuerreiros() {
         guerreiros = new LinkedList<>();
     }
 
-    private Guerreiro alvoForcado;
-
-    public void definirAlvoForcado(Guerreiro alvo) {
-        this.alvoForcado = alvo;
+    // Adicionar um guerreiro em qualquer posição da lista
+    public void adicionarGuerreiro(Guerreiro guerreiro, int posicao) {
+        if (posicao >= 0 && posicao <= guerreiros.size()) {
+            guerreiros.add(posicao, guerreiro);
+        } else {
+            System.out.println("Posição inválida!");
+        }
     }
 
-    public Guerreiro obterAlvoForcado() {
-        return this.alvoForcado;
-    }
-
-    public void limparAlvoForcado() {
-        this.alvoForcado = null;
-    }
-
-    // Retorna a lista de guerreiros na fila
-    public LinkedList<Guerreiro> getGuerreiros() {
-        return guerreiros;
-    }
-
-    // Adiciona um guerreiro no final da fila
-    public void adicionarGuerreiro(Guerreiro guerreiro) {
+    // Adicionar um guerreiro no final da lista
+    public void adicionarGuerreiroNoFinal(Guerreiro guerreiro) {
         guerreiros.addLast(guerreiro);
     }
 
-    // Remove e retorna o primeiro guerreiro da fila
-    public Guerreiro removerPrimeiroGuerreiro() {
-        return guerreiros.pollFirst();
+    // Remover um guerreiro de qualquer posição da lista
+    public void removerGuerreiro(int posicao) {
+        if (posicao >= 0 && posicao < guerreiros.size()) {
+            guerreiros.remove(posicao);
+        } else {
+            System.out.println("Posição inválida para remoção!");
+        }
     }
 
-    // Retorna o guerreiro na primeira posição sem removê-lo
-    public Guerreiro obterPrimeiroGuerreiro() {
+    // Encontrar o índice de um guerreiro na lista
+    public int encontrarGuerreiro(Guerreiro guerreiro) {
+        return guerreiros.indexOf(guerreiro);
+    }
+
+    // Verificar se a lista está vazia
+    public boolean estaVazia() {
+        return guerreiros.isEmpty();
+    }
+
+    // Retornar o primeiro guerreiro da lista
+    public Guerreiro getPrimeiroGuerreiro() {
         return guerreiros.peekFirst();
     }
 
-    // Verifica se a fila tem guerreiros
-    public boolean temGuerreiros() {
-        return !guerreiros.isEmpty();
+    // Retornar o último guerreiro da lista
+    public Guerreiro getUltimoGuerreiro() {
+        return guerreiros.peekLast();
     }
 
-    // Obter o último guerreiro da fila
-    public Guerreiro obterUltimoGuerreiro() {
-        if (!guerreiros.isEmpty()) {
-            return guerreiros.getLast();
-        }
-        return null;
-    }
-
-    // Retorna o guerreiro em uma posição específica
-    public Guerreiro obterGuerreiroNaPosicao(int posicao) {
+    // Retornar um guerreiro em uma posição específica
+    public Guerreiro getGuerreiro(int posicao) {
         if (posicao >= 0 && posicao < guerreiros.size()) {
             return guerreiros.get(posicao);
         }
+        System.out.println("Posição inválida!");
         return null;
     }
 
-    // Exibe os guerreiros presentes na fila
-    public void exibirGuerreiros() {
-        for (Guerreiro guerreiro : guerreiros) {
-            System.out.println(guerreiro);
-        }
-    }
-
-    public int obterPosicaoGuerreiro(Guerreiro guerreiro) {
-        return guerreiros.indexOf(guerreiro); // Retorna a posição do guerreiro na lista ou -1 se não encontrado
-    }
-
-    // Remove um guerreiro específico da fila
-    public void removerGuerreiro(Guerreiro guerreiro) {
-        if (guerreiros.contains(guerreiro)) {
-            guerreiros.remove(guerreiro);
-            System.out.println(guerreiro.getNome() + " foi removido da fila, pois sua energia chegou a 0.");
+    // Listar todos os guerreiros presentes na lista
+    public void listarGuerreiros() {
+        if (guerreiros.isEmpty()) {
+            System.out.println("A lista de guerreiros está vazia.");
         } else {
-            System.out.println("Guerreiro " + guerreiro.getNome() + " não encontrado na fila.");
-        }
-    }
-
-    public int obterIndiceGuerreiro(Guerreiro guerreiro) {
-        for (int i = 0; i < guerreiros.size(); i++) {  // Assume que guerreiros é uma lista ou coleção
-            if (guerreiros.get(i).equals(guerreiro)) {
-                return i; // Retorna o índice do guerreiro na fila
+            for (int i = 0; i < guerreiros.size(); i++) {
+                Guerreiro guerreiro = guerreiros.get(i);
+                System.out.println(i + " - " + guerreiro);
             }
         }
-        return -1; // Se o guerreiro não estiver na fila, retorna -1
     }
 
+    // Mover o primeiro guerreiro para o final da lista
+    public void moverPrimeiroParaUltimo() {
+        if (!guerreiros.isEmpty()) {
+            Guerreiro primeiro = guerreiros.removeFirst();
+            guerreiros.addLast(primeiro);
+        }
+    }
+
+    // Trocar de posição dois guerreiros da mesma fila
+    public void trocarGuerreiros(int posicao1, int posicao2) {
+        if (posicao1 >= 0 && posicao1 < guerreiros.size() && posicao2 >= 0 && posicao2 < guerreiros.size()) {
+            Guerreiro guerreiro1 = guerreiros.get(posicao1);
+            Guerreiro guerreiro2 = guerreiros.get(posicao2);
+            guerreiros.set(posicao1, guerreiro2);
+            guerreiros.set(posicao2, guerreiro1);
+            System.out.println(guerreiro1.getNome() + " trocou de lugar com " + guerreiro2.getNome());
+        } else {
+            System.out.println("Posições inválidas para troca.");
+        }
+    }
+
+    // Mover um guerreiro para uma nova posição e mover os guerreiros que estavam atrás dele para a frente
+    public void moverGuerreiroParaFrente(int posicaoAtual, int novaPosicao) {
+        if (posicaoAtual >= 0 && posicaoAtual < guerreiros.size() && novaPosicao >= 0 && novaPosicao <= guerreiros.size()) {
+            Guerreiro guerreiro = guerreiros.remove(posicaoAtual);
+            guerreiros.add(novaPosicao, guerreiro);
+            System.out.println(guerreiro.getNome() + " foi movido da posição " + posicaoAtual + " para a posição " + novaPosicao);
+        } else {
+            System.out.println("Posições inválidas para movimento.");
+        }
+    }
+
+    // Método para encontrar a posição de um guerreiro Y dado um guerreiro X na mesma fila
+    public void interagirComGuerreiros(int posicaoX, Guerreiro guerreiroY) {
+        if (posicaoX >= 0 && posicaoX < guerreiros.size()) {
+            Guerreiro guerreiroX = guerreiros.get(posicaoX);
+            int posicaoY = guerreiros.indexOf(guerreiroY);
+
+            if (posicaoY != -1) {
+                System.out.println(guerreiroX.getNome() + " (na posição " + posicaoX + ") está interagindo com " + guerreiroY.getNome() + " (na posição " + posicaoY + ").");
+            } else {
+                System.out.println(guerreiroY.getNome() + " não está na mesma fila.");
+            }
+        } else {
+            System.out.println("Posição inválida para o guerreiro X.");
+        }
+    }
+
+    // Sobrecarga para interação entre guerreiros de diferentes filas
+    public void interagirComGuerreiros(int posicaoX, FilaDeGuerreiros outraFila, Guerreiro guerreiroY) {
+        if (posicaoX >= 0 && posicaoX < guerreiros.size()) {
+            Guerreiro guerreiroX = guerreiros.get(posicaoX);
+            int posicaoY = outraFila.encontrarGuerreiro(guerreiroY);
+
+            if (posicaoY != -1) {
+                System.out.println(guerreiroX.getNome() + " (na posição " + posicaoX + ") está interagindo com " + guerreiroY.getNome() + " (na posição " + posicaoY + " da outra fila).");
+            } else {
+                System.out.println(guerreiroY.getNome() + " não está na fila passada como parâmetro.");
+            }
+        } else {
+            System.out.println("Posição inválida para o guerreiro X.");
+        }
+    }
+
+    // Retornar a lista de guerreiros
+    public LinkedList<Guerreiro> getLista() {
+        return guerreiros;
+    }
+
+    // Método para definir o alvo prioritário a ser atacado em uma fila adversária
+    public Guerreiro definirAlvoPrioritario(FilaDeGuerreiros filaAdversaria) {
+        if (!filaAdversaria.estaVazia()) {
+            // Aqui, estamos usando a regra padrão: atacar o primeiro guerreiro da fila adversária
+            return filaAdversaria.getPrimeiroGuerreiro();
+        }
+        // Se a fila adversária estiver vazia, retorna null (ou podemos buscar em outras filas)
+        return null;
+    }
+    
 }
