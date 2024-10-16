@@ -12,10 +12,11 @@ import arena.Guerreiro;
  */
 public class HomemEscorpiao extends GuerreiroEgipcio{
     
-    public HomemEscorpiao(String nome, int idade, int peso) {
+    public HomemEscorpiao(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
-
+    
+    
     
     
 }

@@ -13,28 +13,28 @@ import arena.Guerreiro;
  */
 public class GuerreiroGrego extends Guerreiro{
 
-    public GuerreiroGrego(String nome, int idade, int peso) {
+    // Construtor da classe GuerreiroGrego
+    public GuerreiroGrego(String nome, int idade, double peso) {
         super(nome, idade, peso);
+        this.dano = 15; // Definindo o dano de ataque do Guerreiro Grego
     }
 
+    // Sobrescrevendo o método de aumento de energia para garantir que não ultrapasse 100
     @Override
-    public void atacar(Arena arena, int ladoAtacante) {
-        System.out.println(this.getNome() + " (Grego) ataca o guerreiro à frente!");
-        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
-        if (adversario != null) {
-            adversario.receberDano(15); 
-            System.out.println(adversario.getNome() + " foi atacado e recebeu 15 de dano!");
+    public void setEnergia(int energia) {
+        if (energia > 100) {
+            this.energia = 100;
         } else {
-            System.out.println("Nenhum adversário disponível para atacar.");
+            this.energia = energia;
         }
     }
-    
+
+    // Implementação do método atacar
     @Override
-    public void receberDano(int dano) {
-        super.receberDano(dano);
-        
-        if (this.getEnergia() > 100) {
-            this.setEnergia(100);
+    public void atacar(Arena arena, Guerreiro adversario) {
+        if (adversario != null && !adversario.isEstaMorto()) {
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            adversario.sofrerDano(dano);
         }
     }
     

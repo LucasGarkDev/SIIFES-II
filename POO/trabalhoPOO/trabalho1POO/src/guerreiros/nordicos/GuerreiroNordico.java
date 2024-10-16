@@ -13,20 +13,18 @@ import arena.Guerreiro;
  */
 public class GuerreiroNordico extends Guerreiro {
 
-    public GuerreiroNordico(String nome, int idade, int peso) {
+    // Construtor da classe GuerreiroNordico
+    public GuerreiroNordico(String nome, int idade, double peso) {
         super(nome, idade, peso);
+        this.dano = 20; // Definindo o dano de ataque do Guerreiro Nórdico
     }
 
+    // Implementação do método atacar
     @Override
-    public void atacar(Arena arena, int ladoAtacante) {
-        System.out.println(this.getNome() + " (Nórdico) ataca o guerreiro à frente!");
-        // Lógica genérica de ataque: busca o adversário na frente
-        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
-        if (adversario != null) {
-            adversario.receberDano(25); // Dano genérico
-            System.out.println(adversario.getNome() + " foi atacado e recebeu 25 de dano!");
-        } else {
-            System.out.println("Nenhum adversário disponível para atacar.");
+    public void atacar(Arena arena, Guerreiro adversario) {
+        if (adversario != null && !adversario.isEstaMorto()) {
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            adversario.sofrerDano(dano);
         }
     }
 

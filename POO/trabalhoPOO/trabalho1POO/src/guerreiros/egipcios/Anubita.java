@@ -12,9 +12,11 @@ import arena.Guerreiro;
  */
 public class Anubita extends GuerreiroEgipcio{
     
-    public Anubita(String nome, int idade, int peso) {
+    public Anubita(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
+    
+    
 
    
     

@@ -116,17 +116,19 @@ public class Arena {
 
     // Método para exibir os guerreiros de cada lado
     public void exibirGuerreirosDeCadaLado() {
+        System.out.println("-------------------------------------");
         System.out.println("Lado 1: Gregos e Nórdicos");
         for (int i = 0; i < 4; i++) {
             System.out.println("Fila " + (i + 1) + ":");
             lado1[i].listarGuerreiros();
         }
-
+        System.out.println("-------------------------------------");
         System.out.println("Lado 2: Atlantes e Egípcios");
         for (int i = 0; i < 4; i++) {
             System.out.println("Fila " + (i + 1) + ":");
             lado2[i].listarGuerreiros();
         }
+        System.out.println("-------------------------------------");
     }
 
     // Método para verificar se todos os guerreiros de um lado estão mortos
@@ -144,19 +146,22 @@ public class Arena {
     public void iniciarCombate() {
         while (!todosGuerreirosMortos(1) && !todosGuerreirosMortos(2)) {
             int ladoSorteado = sortearLado();
+            System.out.println("-------------------------------------");
             System.out.println("Lado " + ladoSorteado + " começa o turno.");
-
+            System.out.println("-------------------------------------");
             // Executar o turno do lado sorteado
             executarTurno(ladoSorteado);
-
+            System.out.println("-------------------------------------");
             // Exibir estado atual das filas
             exibirGuerreirosDeCadaLado();
         }
 
         // Exibir o vencedor
         if (todosGuerreirosMortos(1)) {
+            System.out.println("-------------------------------------");
             System.out.println("Lado 2 (Atlantes e Egípcios) venceu!");
         } else {
+            System.out.println("-------------------------------------");
             System.out.println("Lado 1 (Gregos e Nórdicos) venceu!");
         }
 

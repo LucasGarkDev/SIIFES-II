@@ -12,9 +12,10 @@ import arena.Guerreiro;
  */
 public class Mumia extends GuerreiroEgipcio{
     
-    public Mumia(String nome, int idade, int peso) {
+    public Mumia(String nome, int idade, double peso) {
         super(nome, idade, peso);
     }
-
+    
+    
     
 }

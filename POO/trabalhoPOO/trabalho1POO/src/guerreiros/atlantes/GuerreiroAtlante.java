@@ -12,20 +12,19 @@ import arena.Guerreiro;
  * @author lucas
  */
 public class GuerreiroAtlante extends Guerreiro{
-
-    public GuerreiroAtlante(String nome, int idade, int peso) {
+    
+    // Construtor da classe GuerreiroAtlante
+    public GuerreiroAtlante(String nome, int idade, double peso) {
         super(nome, idade, peso);
+        this.dano = 10; // Ajustando o dano padrão para 10
     }
 
+    // Implementação do método atacar
     @Override
-    public void atacar(Arena arena, int ladoAtacante) {
-        System.out.println(this.getNome() + " (Atlante) ataca o guerreiro à frente!");
-        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
-        if (adversario != null) {
-            adversario.receberDano(10); 
-            System.out.println(adversario.getNome() + " foi atacado e recebeu 10 de dano!");
-        } else {
-            System.out.println("Nenhum adversário disponível para atacar.");
+    public void atacar(Arena arena, Guerreiro adversario) {
+        if (adversario != null && !adversario.isEstaMorto()) {
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            adversario.sofrerDano(dano);
         }
     }
     

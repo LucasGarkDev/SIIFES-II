@@ -12,11 +12,9 @@ import arena.Guerreiro;
  */
 public class Argus extends GuerreiroAtlante{
     
-    public Argus(String nome, int idade, int peso) {
+    public Argus(String nome, int idade, double peso) {
         super(nome, idade, peso);
-        this.energia = 60;
     }
-
     
     
 }

@@ -12,21 +12,19 @@ import arena.Guerreiro;
  * @author lucas
  */
 public class GuerreiroEgipcio extends Guerreiro{
-
-    public GuerreiroEgipcio(String nome, int idade, int peso) {
+    
+    // Construtor da classe GuerreiroEgipcio
+    public GuerreiroEgipcio(String nome, int idade, double peso) {
         super(nome, idade, peso);
+        this.dano = 12; // Definindo o dano de ataque do Guerreiro Egípcio
     }
 
+    // Implementação do método atacar
     @Override
-    public void atacar(Arena arena, int ladoAtacante) {
-        System.out.println(this.getNome() + " (Egípcio) ataca o guerreiro à frente!");
-        Guerreiro adversario = arena.obterAlvoDisponivel(arena.obterDefensores(ladoAtacante), 0);
-        if (adversario != null) {
-            adversario.receberDano(20); // Dano genérico
-            System.out.println(adversario.getNome() + " foi atacado e recebeu 20 de dano!");
-        } else {
-            System.out.println("Nenhum adversário disponível para atacar.");
+    public void atacar(Arena arena, Guerreiro adversario) {
+        if (adversario != null && !adversario.isEstaMorto()) {
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            adversario.sofrerDano(dano);
         }
     }
-    
 }
