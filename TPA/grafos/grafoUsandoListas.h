@@ -14,5 +14,10 @@ typedef struct tipoCidade{
     float pesoAresta;
 }Cidade;
 
+typedef struct tipoGrafo{
+    Cidade *cidades;
+}Grafo;
+
+
 
 
