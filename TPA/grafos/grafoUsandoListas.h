@@ -16,7 +16,7 @@ typedef clock_t processTime;
 // Estrutura que representa um vizinho de uma cidade
 typedef struct tipoVizinho {
     string nome;                 // Nome da cidade vizinha
-    float distancia;             // Distância (peso da aresta) entre as cidades
+    double distancia;             // Distância (peso da aresta) entre as cidades
     struct tipoVizinho *prox;    // Ponteiro para o próximo vizinho (lista encadeada)
 } TVizinho;
 
