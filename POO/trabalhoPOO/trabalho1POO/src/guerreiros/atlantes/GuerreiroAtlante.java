@@ -16,13 +16,13 @@ public class GuerreiroAtlante extends Guerreiro{
     // Construtor da classe GuerreiroAtlante
     public GuerreiroAtlante(String nome, int idade, double peso) {
         super(nome, idade, peso);
-        this.dano = 10; // Ajustando o dano padrão para 10
+        this.dano = 10; 
     }
 
     // Implementação do método atacar
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        if (adversario != null && !adversario.isEstaMorto()) {
+        if ((adversario != null) && (!adversario.isEstaMorto())) {
             System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano);
         }
