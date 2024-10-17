@@ -4,6 +4,7 @@
  */
 package arena;
 
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Random;
  * @author lucas
  */
 public class Arena {
+
     private FilaDeGuerreiros[] lado1; // Gregos e Nórdicos
     private FilaDeGuerreiros[] lado2; // Atlantes e Egípcios
     private Guerreiro ultimoMorto;
@@ -44,18 +46,33 @@ public class Arena {
 
     // Método para executar o turno de ataque de um lado
     public void executarTurno(int ladoAtacante) {
+        // Determina qual lado começa atacando
         FilaDeGuerreiros[] ladoAtacanteFilas = (ladoAtacante == 1) ? lado1 : lado2;
         FilaDeGuerreiros[] ladoDefensorFilas = (ladoAtacante == 1) ? lado2 : lado1;
 
+        // Primeiro, o lado sorteado ataca
+        realizarAtaques(ladoAtacanteFilas, ladoDefensorFilas);
+
+        // Em seguida, o lado defensor ataca
+        realizarAtaques(ladoDefensorFilas, ladoAtacanteFilas);
+
+        // Remover guerreiros mortos de ambos os lados
+        removerGuerreirosMortos(ladoAtacanteFilas);
+        removerGuerreirosMortos(ladoDefensorFilas);
+    }
+
+    // Novo método para realizar ataques de um lado no outro
+    private void realizarAtaques(FilaDeGuerreiros[] ladoAtacante, FilaDeGuerreiros[] ladoDefensor) {
         for (int i = 0; i < 4; i++) {
-            FilaDeGuerreiros filaAtacante = ladoAtacanteFilas[i];
+            FilaDeGuerreiros filaAtacante = ladoAtacante[i];
             Guerreiro atacante = filaAtacante.getPrimeiroGuerreiro();
 
-            if (atacante != null && !filaAtacante.estaVazia()) {
-                // Perguntar à fila qual é o alvo prioritário a ser atacado na fila adversária
+            // Verifica se o guerreiro atacante está vivo antes de atacar
+            if (atacante != null && !atacante.isEstaMorto()) {
+                // Pergunta à fila qual é o alvo prioritário a ser atacado na fila adversária
                 Guerreiro defensor = null;
                 for (int j = 0; j < 4; j++) {
-                    FilaDeGuerreiros filaDefensora = ladoDefensorFilas[(i + j) % 4];
+                    FilaDeGuerreiros filaDefensora = ladoDefensor[(i + j) % 4];
                     defensor = filaAtacante.definirAlvoPrioritario(filaDefensora);
                     if (defensor != null) {
                         break;
@@ -72,22 +89,24 @@ public class Arena {
                 }
             }
 
-            // Mover o primeiro guerreiro para o final da fila
-            filaAtacante.moverPrimeiroParaUltimo();
+            // Verificar novamente após o ataque se o atacante está morto e removê-lo
+            if (atacante != null && atacante.isEstaMorto()) {
+                filaAtacante.removerGuerreiro(0); // Remove o primeiro guerreiro morto
+            } else {
+                // Se o guerreiro não morreu, mover para o final da fila
+                filaAtacante.moverPrimeiroParaUltimo();
+            }
         }
-
-        // Remover guerreiros mortos após o turno
-        removerGuerreirosMortos(ladoAtacante == 1 ? ladoDefensorFilas : ladoAtacanteFilas);
     }
 
     // Método para remover guerreiros mortos de todas as filas de um lado
     private void removerGuerreirosMortos(FilaDeGuerreiros[] lado) {
         for (FilaDeGuerreiros fila : lado) {
-            for (int i = 0; i < fila.getLista().size(); i++) {
-                Guerreiro guerreiro = fila.getGuerreiro(i);
+            Iterator<Guerreiro> iterator = fila.getLista().iterator();
+            while (iterator.hasNext()) {
+                Guerreiro guerreiro = iterator.next();
                 if (guerreiro != null && guerreiro.isEstaMorto()) {
-                    fila.removerGuerreiro(i);
-                    i--; // Ajustar índice após a remoção
+                    iterator.remove(); // Remove guerreiros mortos da lista
                 }
             }
         }
@@ -136,10 +155,15 @@ public class Arena {
         FilaDeGuerreiros[] filas = (lado == 1) ? lado1 : lado2;
         for (FilaDeGuerreiros fila : filas) {
             if (!fila.estaVazia()) {
-                return false;
+                // Verificar se a fila está vazia, ou se restam guerreiros vivos
+                for (Guerreiro guerreiro : fila.getLista()) {
+                    if (!guerreiro.isEstaMorto()) {
+                        return false; // Ainda há guerreiros vivos neste lado
+                    }
+                }
             }
         }
-        return true;
+        return true; // Todos os guerreiros deste lado estão mortos
     }
 
     // Método para iniciar o combate até que um lado seja derrotado
@@ -149,22 +173,27 @@ public class Arena {
             System.out.println("-------------------------------------");
             System.out.println("Lado " + ladoSorteado + " começa o turno.");
             System.out.println("-------------------------------------");
+
             // Executar o turno do lado sorteado
             executarTurno(ladoSorteado);
+
+            // Exibir o estado atual das filas
             System.out.println("-------------------------------------");
-            // Exibir estado atual das filas
             exibirGuerreirosDeCadaLado();
+
+            // Verificar se um dos lados perdeu após o turno
+            if (todosGuerreirosMortos(1)) {
+                System.out.println("-------------------------------------");
+                System.out.println("Lado 2 (Atlantes e Egípcios) venceu!");
+                break;
+            } else if (todosGuerreirosMortos(2)) {
+                System.out.println("-------------------------------------");
+                System.out.println("Lado 1 (Gregos e Nórdicos) venceu!");
+                break;
+            }
         }
 
-        // Exibir o vencedor
-        if (todosGuerreirosMortos(1)) {
-            System.out.println("-------------------------------------");
-            System.out.println("Lado 2 (Atlantes e Egípcios) venceu!");
-        } else {
-            System.out.println("-------------------------------------");
-            System.out.println("Lado 1 (Gregos e Nórdicos) venceu!");
-        }
-
+        // Exibir o último guerreiro morto, se houver
         try {
             exibirUltimoGuerreiroMorto();
         } catch (Exception e) {
@@ -219,4 +248,23 @@ public class Arena {
             }
         }
     }
+
+    public int encontrarFilaDeGuerreiro(Guerreiro guerreiro) {
+        // Verificar se o guerreiro está no lado 1 (gregos e nórdicos)
+        for (int i = 0; i < lado1.length; i++) {
+            if (lado1[i].encontrarGuerreiro(guerreiro) != -1) {
+                return i; // Retorna o índice da fila no lado 1
+            }
+        }
+
+        // Verificar se o guerreiro está no lado 2 (atlantes e egípcios)
+        for (int i = 0; i < lado2.length; i++) {
+            if (lado2[i].encontrarGuerreiro(guerreiro) != -1) {
+                return i; // Retorna o índice da fila no lado 2
+            }
+        }
+
+        return -1; // Retorna -1 se o guerreiro não for encontrado em nenhuma fila
+    }
+
 }
