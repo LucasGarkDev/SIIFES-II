@@ -75,48 +75,43 @@ void destruirGrafo(TGrafo *grafo) {
     free(grafo->cidades);
 }
 //=================================================
-// 1ª etapa: Lê o arquivo e cria cada cidade no início de cada bloco
-void lerCidades(TGrafo *grafo, FILE *arquivo) {
-    char linha[101];  // Buffer para leitura de linha
+// Função auxiliar para separar as cidades e distâncias em uma linha
+void processarLinhaDeCidades(TGrafo *grafo, char *linha) {
+    char *token = strtok(linha, ",");  // Usa a vírgula como delimitador
+    char cidadeAtual[101];
+    strcpy(cidadeAtual, token);  // A primeira cidade é a cidade principal
 
-    while (fgets(linha, sizeof(linha), arquivo)) {
-        linha[strcspn(linha, "\n")] = '\0';  // Remove o '\n' no final da linha
+    inserirCidade(grafo, cidadeAtual);  // Insere a cidade principal
 
-        // Se encontramos ":", indica o fim de um bloco
-        if (strcmp(linha, ":") == 0) {
-            continue;  // Pula o delimitador de bloco ":"
+    // Continua processando os vizinhos e distâncias
+    while (token != NULL) {
+        token = strtok(NULL, ",");  // Pega a próxima cidade vizinha ou distância
+        if (token == NULL || strcmp(token, ":") == 0) {
+            break;  // Se chegamos ao fim do bloco
         }
 
-        // A primeira cidade em cada bloco é o nome da cidade a ser inserida
-        inserirCidade(grafo, linha);  // Cria e insere a cidade no grafo
+        char vizinhoAtual[101];
+        strcpy(vizinhoAtual, token);  // Vizinho
+
+        token = strtok(NULL, ",");  // Próximo token será a distância
+        if (token != NULL && strcmp(token, ":") != 0) {
+            float distancia = atof(token);  // Converte a string para float
+            inserirVizinho(grafo, cidadeAtual, vizinhoAtual, distancia);  // Insere o vizinho com a distância
+        }
     }
 }
 
-// 2ª etapa: Lê o arquivo novamente para associar vizinhos e distâncias
-void lerVizinhos(TGrafo *grafo, FILE *arquivo) {
-    char linha[101];  // Buffer para leitura de linha
-    char cidadeAtual[101];  // Nome da cidade principal
-    char vizinhoAtual[101];  // Nome da cidade vizinha
-    float distancia;
+// 1ª etapa: Lê o arquivo e cria todas as cidades e seus vizinhos
+void lerCidadesEVizinhos(TGrafo *grafo, FILE *arquivo) {
+    char linha[1024];  // Buffer para leitura de linha (ajustado para o formato linear com vírgulas)
 
     while (fgets(linha, sizeof(linha), arquivo)) {
-        linha[strcspn(linha, "\n")] = '\0';  // Remove o '\n'
-
-        if (strcmp(linha, ":") == 0) {
-            cidadeAtual[0] = '\0';  // Reseta a cidade atual para o próximo bloco
-            continue;  // Pula o delimitador de bloco ":"
+        linha[strcspn(linha, "\n")] = '\0';  // Remove o '\n' no final da linha
+        if (strcmp(linha, ":") == 0 || strlen(linha) == 0) {
+            continue;  // Pula linhas vazias ou com apenas ":"
         }
 
-        // Se não temos uma cidade atual, a linha lida é o nome da cidade principal do bloco
-        if (cidadeAtual[0] == '\0') {
-            strcpy(cidadeAtual, linha);  // Armazena o nome da cidade principal
-        } else if (sscanf(linha, "%f", &distancia) == 1) {
-            // Se a linha contém um número, ela é a distância para o vizinho
-            inserirVizinho(grafo, cidadeAtual, vizinhoAtual, distancia);  // Insere o vizinho com a distância
-        } else {
-            // Caso contrário, a linha contém o nome de um vizinho
-            strcpy(vizinhoAtual, linha);
-        }
+        processarLinhaDeCidades(grafo, linha);  // Processa a linha para criar as cidades e vizinhos
     }
 }
 
@@ -141,14 +136,8 @@ int main() {
     // Abre o arquivo "cidades.txt"
     FILE *arquivo = abrirArquivo("cidades.txt", "r");
 
-    // 1ª etapa: Ler todas as cidades e inseri-las no grafo
-    lerCidades(&grafo, arquivo);
-
-    // Volta ao início do arquivo para a 2ª etapa
-    rewind(arquivo);
-
-    // 2ª etapa: Ler novamente e associar os vizinhos
-    lerVizinhos(&grafo, arquivo);
+    // Ler todas as cidades, vizinhos e distâncias
+    lerCidadesEVizinhos(&grafo, arquivo);
 
     // Fecha o arquivo
     fclose(arquivo);
@@ -161,3 +150,4 @@ int main() {
 
     return 0;
 }
+
