@@ -53,12 +53,6 @@ TCidade* buscarCidade(TGrafo *grafo, string nomeCidade) {
     return NULL;
 }
 //=================================================
-
-//=================================================
-
-//=================================================
-
-//=================================================
 // Libera a memória alocada para o grafo
 void destruirGrafo(TGrafo *grafo) {
     for (int i = 0; i < grafo->numCidades; i++) {
@@ -100,7 +94,7 @@ void processarLinhaDeCidades(TGrafo *grafo, char *linha) {
         }
     }
 }
-
+//=================================================
 // 1ª etapa: Lê o arquivo e cria todas as cidades e seus vizinhos
 void lerCidadesEVizinhos(TGrafo *grafo, FILE *arquivo) {
     char linha[1024];  // Buffer para leitura de linha (ajustado para o formato linear com vírgulas)
@@ -114,7 +108,7 @@ void lerCidadesEVizinhos(TGrafo *grafo, FILE *arquivo) {
         processarLinhaDeCidades(grafo, linha);  // Processa a linha para criar as cidades e vizinhos
     }
 }
-
+//=================================================
 // Exibe o grafo (as cidades e seus vizinhos)
 void exibirGrafo(TGrafo *grafo) {
     for (int i = 0; i < grafo->numCidades; i++) {
@@ -127,27 +121,30 @@ void exibirGrafo(TGrafo *grafo) {
         printf("%s\n", CORTE);
     }
 }
-
-// Função principal (main)
-int main() {
-    TGrafo grafo;
-    inicializarGrafo(&grafo, 5);  // Inicializa com uma capacidade de 5 cidades
+//=================================================
+void mapeandoGrafo(TGrafo *grafo){
+    inicializarGrafo(grafo, 5);  // Inicializa com uma capacidade de 5 cidades
 
     // Abre o arquivo "cidades.txt"
     FILE *arquivo = abrirArquivo("cidades.txt", "r");
 
     // Ler todas as cidades, vizinhos e distâncias
-    lerCidadesEVizinhos(&grafo, arquivo);
+    lerCidadesEVizinhos(grafo, arquivo);
 
     // Fecha o arquivo
     fclose(arquivo);
 
     // Exibe o grafo
-    exibirGrafo(&grafo);
+    exibirGrafo(grafo);
 
     // Libera a memória
-    destruirGrafo(&grafo);
-
+    destruirGrafo(grafo);
+}
+//=================================================
+// Função principal (main)
+int main() {
+    TGrafo grafo;
+    mapeandoGrafo(&grafo);
     return 0;
 }
 
