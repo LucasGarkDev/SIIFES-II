@@ -79,13 +79,16 @@ public class Arena {
                     }
                 }
 
-                // Executar o ataque se houver um defensor prioritário
-                if (defensor != null) {
+                // Verificação adicional para garantir que o defensor não seja null
+                if (defensor != null && !defensor.isEstaMorto()) {
                     atacante.atacar(this, defensor);
                     if (defensor.isEstaMorto()) {
                         ultimoMorto = defensor;
                         ultimoAssassino = atacante;
                     }
+                } else {
+                    // Caso o defensor seja null ou já esteja morto, imprime uma mensagem
+                    System.out.println(atacante.getNome() + " não encontrou alvo válido para atacar.");
                 }
             }
 
@@ -157,7 +160,7 @@ public class Arena {
             if (!fila.estaVazia()) {
                 // Verificar se a fila está vazia, ou se restam guerreiros vivos
                 for (Guerreiro guerreiro : fila.getLista()) {
-                    if (!guerreiro.isEstaMorto()) {
+                    if (guerreiro != null && !guerreiro.isEstaMorto()) {
                         return false; // Ainda há guerreiros vivos neste lado
                     }
                 }

@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * @author lucas
  */
 public class FilaDeGuerreiros {
+
     private LinkedList<Guerreiro> guerreiros;
 
     // Construtor que inicializa a lista de guerreiros
@@ -160,5 +161,5 @@ public class FilaDeGuerreiros {
         // Se a fila adversária estiver vazia, retorna null (ou podemos buscar em outras filas)
         return null;
     }
-    
+
 }

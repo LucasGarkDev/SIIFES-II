@@ -40,6 +40,10 @@ public abstract class Guerreiro {
 
     // Verificar se o guerreiro está morto
     public boolean isEstaMorto() {
+        // Adiciona verificação de null antes de retornar o estado
+        if (this == null) {
+            return true; // Se o guerreiro for null, consideramos ele "morto"
+        }
         return estaMorto;
     }
 
