@@ -25,41 +25,39 @@ import guerreiros.egipcios.*;
 public class Teste {
 
     public static void main(String[] args) {
-         // Criar uma nova arena
+        // Criando a arena
         Arena arena = new Arena();
 
-        // Adicionar guerreiros Gregos e Nórdicos no lado 1
-        GuerreiroGrego guerreiroGregoB = new GuerreiroGrego("Guerreiro Grego B", 35, 80.0);
-        GuerreiroNordico guerreiroNordicoA = new GuerreiroNordico("Guerreiro Nórdico A", 40, 90.0);
-        GuerreiroNordico guerreiroNordicoB = new GuerreiroNordico("Guerreiro Nórdico B", 40, 90.0);
-        GuerreiroNordico guerreiroNordicoC = new GuerreiroNordico("Guerreiro Nórdico C", 40, 90.0);
+        // Criando o Argos
+        Argus argos = new Argus("Argos", 45, 120.0, 100);
+        GuerreiroAtlante atlante = new GuerreiroAtlante("Guerreiro Atlante 1", 30, 80.0);
 
-        // Adicionar guerreiros Atlantes e Egípcios no lado 2
-        GuerreiroAtlante satiro = new Satiro("Satiro", 30, 75.0);
-//        GuerreiroAtlante guerreiroAtlanteB = new GuerreiroAtlante("Guerreiro Atlante B", 32, 70.0);
-//        GuerreiroEgipcio guerreiroEgipcioA = new GuerreiroEgipcio("Guerreiro Egípcio A", 45, 85.0);
-//        GuerreiroEgipcio guerreiroEgipcioB = new GuerreiroEgipcio("Guerreiro Egípcio B", 40, 90.0);
+        // Criando guerreiros gregos
+        GuerreiroGrego grego1 = new GuerreiroGrego("Guerreiro Grego 1", 30, 80.0);
+        GuerreiroGrego grego2 = new GuerreiroGrego("Guerreiro Grego 2", 32, 85.0);
+        GuerreiroGrego grego3 = new GuerreiroGrego("Guerreiro Grego 3", 28, 78.0);
+        GuerreiroGrego grego4 = new GuerreiroGrego("Guerreiro Grego 4", 35, 90.0);
 
-        // Inserir os guerreiros nas filas da arena (lado 1: Gregos e Nórdicos, lado 2: Atlantes e Egípcios)
-        arena.getFila(1, 0).adicionarGuerreiroNoFinal(guerreiroGregoB);
-        arena.getFila(1, 1).adicionarGuerreiroNoFinal(guerreiroNordicoA);
-        arena.getFila(1, 1).adicionarGuerreiroNoFinal(guerreiroNordicoB);
-        arena.getFila(1, 2).adicionarGuerreiroNoFinal(guerreiroNordicoC);
+        // Adicionando Argos na primeira fila do lado 1
+        arena.getFila(2, 0).adicionarGuerreiroNoFinal(argos);
+        arena.getFila(2,0).adicionarGuerreiroNoFinal(atlante);
 
-        arena.getFila(2, 1).adicionarGuerreiroNoFinal(satiro);
-//        arena.getFila(2, 1).adicionarGuerreiroNoFinal(guerreiroAtlanteB);
-//        arena.getFila(2, 1).adicionarGuerreiroNoFinal(guerreiroEgipcioA);
-//        arena.getFila(2, 2).adicionarGuerreiroNoFinal(guerreiroEgipcioB);
+        // Adicionando os Guerreiros Gregos na primeira fila do lado 2
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(grego1);
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(grego2);
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(grego3);
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(grego4);
 
-        // Exibir o estado inicial da arena
+        // Exibindo o estado inicial da arena
         System.out.println("Estado inicial da Arena:");
         arena.exibirGuerreirosDeCadaLado();
 
-        // Iniciar o combate para testar a Manticora
+        // Iniciando o combate
+        System.out.println("\nIniciando o combate...");
         arena.iniciarCombate();
 
-        // Exibir o resultado final da arena após a batalha
-        System.out.println("Resultado final:");
+        // Exibindo o estado final da arena
+        System.out.println("\nResultado final da Arena:");
         arena.exibirGuerreirosDeCadaLado();
     }
 }

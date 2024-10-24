@@ -34,7 +34,7 @@ public class GuerreiroGrego extends Guerreiro{
     public void atacar(Arena arena, Guerreiro adversario) {
         if (adversario != null && !adversario.isEstaMorto()) {
             System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
-            adversario.sofrerDano(dano);
+            adversario.sofrerDano(dano,arena);
         }
     }
     

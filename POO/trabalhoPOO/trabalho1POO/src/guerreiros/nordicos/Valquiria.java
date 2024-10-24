@@ -22,7 +22,7 @@ public class Valquiria extends GuerreiroNordico {
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         // A Valquiria ataca o adversário com 20 de dano
-        adversario.sofrerDano(this.dano);
+        adversario.sofrerDano(this.dano,arena);
         System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
 
         // Agora interagir com o guerreiro logo atrás dela na fila

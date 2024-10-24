@@ -17,8 +17,9 @@ public class GuerreiroTeste extends Guerreiro{
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
+        this.arena = arena;
         System.out.println(this.nome + " ataca " + adversario.getNome() + " causando " + this.dano + " de dano.");
-        adversario.sofrerDano(this.dano);
+        adversario.sofrerDano(this.dano,arena);
     }
     
 }

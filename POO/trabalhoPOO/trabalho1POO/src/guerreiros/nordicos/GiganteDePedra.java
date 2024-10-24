@@ -34,8 +34,8 @@ public class GiganteDePedra extends GuerreiroNordico {
 
     // Método que será chamado sempre que o Gigante de Pedra for atacado
     @Override
-    public void sofrerDano(int dano) {
-        super.sofrerDano(dano); // Chama o método original para aplicar o dano
+    public void sofrerDano(int dano,Arena arena) {
+        super.sofrerDano(dano,arena); // Chama o método original para aplicar o dano
         contadorDeGolpes++; // Incrementa o contador de golpes recebidos
         System.out.println(this.getNome() + " foi atacado! Contador de golpes: " + contadorDeGolpes);
 
@@ -73,7 +73,7 @@ public class GiganteDePedra extends GuerreiroNordico {
         }
 
         // O Gigante ataca normalmente após camuflar os aliados
-        adversario.sofrerDano(this.dano);
+        adversario.sofrerDano(this.dano,arena);
         System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
     }
 

@@ -25,7 +25,7 @@ public class Hidra extends GuerreiroGrego{
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         // A Hidra ataca o adversário com o dano atual
-        adversario.sofrerDano(this.dano);
+        adversario.sofrerDano(this.dano,arena);
 
         // Verificar se o adversário morreu
         if (adversario.isEstaMorto()) {

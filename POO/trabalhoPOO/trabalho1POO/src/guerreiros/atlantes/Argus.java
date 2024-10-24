@@ -4,17 +4,35 @@
  */
 package guerreiros.atlantes;
 
+import arena.Arena;
 import arena.Guerreiro;
 
 /**
  *
  * @author lucas
  */
-public class Argus extends GuerreiroAtlante{
-    
-    public Argus(String nome, int idade, double peso) {
+public class Argus extends GuerreiroAtlante {
+
+    // Construtor
+    public Argus(String nome, int idade, double peso, int energia) {
         super(nome, idade, peso);
+        this.energia = energia;  // Define a energia inicial do Argos
+        this.dano = 0;  // Argos não precisa de dano tradicional, já que mata o adversário direto
     }
-    
-    
+
+    @Override
+    public void atacar(Arena arena, Guerreiro adversario) {
+        this.arena = arena;  // Armazena a arena em que o Argos está
+        if (adversario != null && !adversario.isEstaMorto()) {
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " e mata instantaneamente!");
+            adversario.sofrerDano(adversario.getEnergia(), arena);  // Reduz os pontos de vida a 0
+        }
+    }
+
+    @Override
+    public void sofrerDano(int quantidade, Arena arena) {
+        this.arena = arena;  // Armazena a arena em que o Argos está
+        super.sofrerDano(quantidade, arena);  // Chama o método da superclasse
+    }
 }
+

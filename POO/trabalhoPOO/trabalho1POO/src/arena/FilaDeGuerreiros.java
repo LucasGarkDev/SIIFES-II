@@ -147,6 +147,16 @@ public class FilaDeGuerreiros {
         }
     }
 
+    // Método para obter o próximo guerreiro vivo na fila (caso o primeiro esteja morto)
+    public Guerreiro getProximoGuerreiroVivo() {
+        for (Guerreiro guerreiro : guerreiros) {
+            if (!guerreiro.isEstaMorto()) {
+                return guerreiro;  // Retorna o primeiro guerreiro vivo encontrado
+            }
+        }
+        return null;  // Retorna null se todos estiverem mortos
+    }
+
     // Retornar a lista de guerreiros
     public LinkedList<Guerreiro> getLista() {
         return guerreiros;
@@ -154,12 +164,7 @@ public class FilaDeGuerreiros {
 
     // Método para definir o alvo prioritário a ser atacado em uma fila adversária
     public Guerreiro definirAlvoPrioritario(FilaDeGuerreiros filaAdversaria) {
-        if (!filaAdversaria.estaVazia()) {
-            // Aqui, estamos usando a regra padrão: atacar o primeiro guerreiro da fila adversária
-            return filaAdversaria.getPrimeiroGuerreiro();
-        }
-        // Se a fila adversária estiver vazia, retorna null (ou podemos buscar em outras filas)
-        return null;
+        return filaAdversaria.getProximoGuerreiroVivo();  // Retorna o próximo guerreiro vivo da fila adversária
     }
 
 }

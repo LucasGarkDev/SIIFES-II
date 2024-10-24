@@ -17,7 +17,7 @@ public class Satiro extends GuerreiroAtlante {
     // Construtor do Sátiro
     public Satiro(String nome, int idade, double peso) {
         super(nome, idade, peso);
-        this.dano = 10;  // Dano base do Sátiro
+        this.dano = 10;  
     }
 
     @Override
@@ -26,13 +26,13 @@ public class Satiro extends GuerreiroAtlante {
         int filaAdversario = arena.encontrarFilaDeGuerreiro(adversario);
 
         if (filaAdversario != -1) { // Verifica se encontrou a fila do adversário
-            FilaDeGuerreiros filaDefensora = arena.getFila(2, filaAdversario); // Lado 2 é o lado adversário (Atlantes e Egípcios)
+            FilaDeGuerreiros filaDefensora = arena.getFila(1, filaAdversario); // Lado 2 é o lado adversário (Atlantes e Egípcios)
 
             // Causa dano em toda a fila adversária
             System.out.println(this.getNome() + " está atacando toda a fila adversária " + (filaAdversario + 1) + ".");
             for (Guerreiro guerreiro : filaDefensora.getLista()) {
                 if (guerreiro != null && !guerreiro.isEstaMorto()) {
-                    guerreiro.sofrerDano(this.dano); // Aplica o dano base do Sátiro
+                    guerreiro.sofrerDano(this.dano,arena); // Aplica o dano base do Sátiro
                     System.out.println(this.getNome() + " causou " + this.dano + " de dano a " + guerreiro.getNome() + ".");
                 }
             }

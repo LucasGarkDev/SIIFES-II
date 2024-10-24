@@ -31,7 +31,7 @@ public class Ciclope extends GuerreiroGrego {
         if (this == primeiroNaFila) {
             // Se o Ciclope é o primeiro na fila e seu lado começou o turno
             System.out.println(this.getNome() + " ataca com força total!");
-            adversario.sofrerDano(this.dano); // Causar dano
+            adversario.sofrerDano(this.dano,arena); // Causar dano
 
             // Se o adversário ainda está vivo, movê-lo para o fim de sua própria fila
             if (!adversario.isEstaMorto()) {
@@ -44,7 +44,7 @@ public class Ciclope extends GuerreiroGrego {
         } else {
             // Caso o Ciclope não seja o primeiro, ele apenas realiza o ataque normalmente
             System.out.println(this.getNome() + " ataca normalmente.");
-            adversario.sofrerDano(this.dano);
+            adversario.sofrerDano(this.dano,arena);
         }
     }
 

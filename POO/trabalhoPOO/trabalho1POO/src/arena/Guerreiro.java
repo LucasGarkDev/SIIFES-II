@@ -15,6 +15,7 @@ public abstract class Guerreiro {
     protected int energia = 100;  // Vida inicial de 100 pontos
     protected int dano;  // Dano a ser definido pelas subclasses
     protected boolean estaMorto;  // Flag para indicar se o guerreiro está morto
+    protected Arena arena;
 
     // Construtor
     public Guerreiro(String nome, int idade, double peso) {
@@ -23,12 +24,12 @@ public abstract class Guerreiro {
         this.peso = peso;
         this.estaMorto = false;  // Todos os guerreiros começam vivos
     }
-
+    
     // Método abstrato para o ataque
     public abstract void atacar(Arena arena, Guerreiro adversario);
 
     // Método para sofrer dano
-    public void sofrerDano(int quantidade) {
+    public void sofrerDano(int quantidade, Arena arena){
         if (!estaMorto) {
             this.energia -= quantidade;
             if (this.energia <= 0) {
@@ -85,6 +86,16 @@ public abstract class Guerreiro {
             }
         }
     }
+
+    public Arena getArena() {
+        return arena;
+    }
+
+    public void setArena(Arena arena) {
+        this.arena = arena;
+    }
+    
+    
 
     // Método para exibir o estado do guerreiro
     @Override

@@ -22,7 +22,7 @@ public class Manticora extends GuerreiroGrego{
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         // A Manticora ataca o adversário principal com 30 de dano
-        adversario.sofrerDano(this.dano);
+        adversario.sofrerDano(this.dano,arena);
 
         // Vamos obter a fila onde o adversário está
         int filaAdversario = arena.encontrarFilaDeGuerreiro(adversario);
@@ -55,7 +55,7 @@ public class Manticora extends GuerreiroGrego{
         if (filaAcima != null) {
             Guerreiro guerreiroAcima = filaAcima.getPrimeiroGuerreiro();
             if (guerreiroAcima != null) {
-                guerreiroAcima.sofrerDano(15);
+                guerreiroAcima.sofrerDano(15,arena);
                 System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAcima.getNome() + " (fila acima).");
             }
         }
@@ -63,7 +63,7 @@ public class Manticora extends GuerreiroGrego{
         if (filaAbaixo != null) {
             Guerreiro guerreiroAbaixo = filaAbaixo.getPrimeiroGuerreiro();
             if (guerreiroAbaixo != null) {
-                guerreiroAbaixo.sofrerDano(15);
+                guerreiroAbaixo.sofrerDano(15,arena);
                 System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAbaixo.getNome() + " (fila abaixo).");
             }
         }
