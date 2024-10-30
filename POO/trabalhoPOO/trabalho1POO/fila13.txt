@@ -1,3 +1,2 @@
-3 Hydra1 100 500
-3 Hydra2 120 550
-
+1 Guerreiro1 29 112,64
+6 Guerreiro2 54 80,34

@@ -14,9 +14,9 @@ import arena.Guerreiro;
 public class Argus extends GuerreiroAtlante {
 
     // Construtor
-    public Argus(String nome, int idade, double peso, int energia) {
+    public Argus(String nome, int idade, double peso) {
         super(nome, idade, peso);
-        this.energia = energia;  // Define a energia inicial do Argos
+        this.energia = 100;  // Define a energia inicial do Argos
         this.dano = 0;  // Argos não precisa de dano tradicional, já que mata o adversário direto
     }
 

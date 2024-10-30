@@ -1,2 +1,1 @@
-1 Tark 60 50
-1 Lan 40 30
+5 Guerreiro1 34 73,72

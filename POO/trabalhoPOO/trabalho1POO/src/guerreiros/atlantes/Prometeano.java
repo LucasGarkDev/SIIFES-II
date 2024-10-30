@@ -15,7 +15,6 @@ import arena.Guerreiro;
 public class Prometeano extends GuerreiroAtlante {
 
     private int maxEnergia;  // Guarda a energia máxima do Prometeano
-    private Arena arena;     // Referência à Arena onde o Prometeano está
 
     // Construtor
     public Prometeano(String nome, int idade, double peso, int energia) {

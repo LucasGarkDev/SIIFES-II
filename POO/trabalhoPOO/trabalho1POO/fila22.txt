@@ -1,3 +1,5 @@
-2 Satir 25 60
-2 Satir2 27 62
-
+1 Guerreiro1 18 95,96
+4 Guerreiro2 50 89,70
+6 Guerreiro3 47 126,38
+3 Guerreiro4 18 92,14
+3 Guerreiro5 19 92,85

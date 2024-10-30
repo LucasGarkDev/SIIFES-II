@@ -16,6 +16,12 @@ public abstract class Guerreiro {
     protected int dano;  // Dano a ser definido pelas subclasses
     protected boolean estaMorto;  // Flag para indicar se o guerreiro está morto
     protected Arena arena;
+    protected boolean envenenado = false; // Indica se o guerreiro está envenenado
+
+    public void setEstaMorto(boolean estaMorto) {
+        this.estaMorto = estaMorto;
+    }
+
 
     // Construtor
     public Guerreiro(String nome, int idade, double peso) {
@@ -37,6 +43,16 @@ public abstract class Guerreiro {
                 this.estaMorto = true;  // Marca o guerreiro como morto
             }
         }
+    }
+    
+    // Método que aplica o veneno no guerreiro
+    public void envenenar() {
+        this.envenenado = true;
+    }
+
+    // Verifica se o guerreiro está envenenado
+    public boolean isEnvenenado() {
+        return envenenado;
     }
 
     // Verificar se o guerreiro está morto
@@ -94,9 +110,8 @@ public abstract class Guerreiro {
     public void setArena(Arena arena) {
         this.arena = arena;
     }
-    
-    
 
+   
     // Método para exibir o estado do guerreiro
     @Override
     public String toString() {

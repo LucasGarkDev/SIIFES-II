@@ -1,2 +1,2 @@
-6 StoneGiant1 200 800
-6 StoneGiant2 220 850
+2 Guerreiro1 31 95,33
+1 Guerreiro2 56 79,35
