@@ -4,6 +4,7 @@
  */
 package arena;
 
+import geradores.GeradorDeGuerreiros;
 import arena.Arena;
 
 // Importar todas as classes do pacote guerreiros.gregos
@@ -18,27 +19,35 @@ import guerreiros.atlantes.*;
 // Importar todas as classes do pacote guerreiros.egipcios
 import guerreiros.egipcios.*;
 
+import geradores.*;
+
 /**
  *
  * @author lucas
  */
 public class Jogatina {
     public static void main(String[] args) {
-        // Criação da Arena
+        // Criar uma instância da arena
         Arena arena = new Arena();
 
-        // Gerar guerreiros aleatórios e salvar nos arquivos
-        System.out.println("Gerando guerreiros aleatórios e salvando nos arquivos...");
-        GeradorDeGuerreirosAleatorios gerador = new GeradorDeGuerreirosAleatorios();
-        gerador.gerarGuerreirosParaArena();
+        // Criar uma instância do GeradorDeGuerreiros para gerar arquivos de guerreiros
+        GeradorDeGuerreiros gerador = new GeradorDeGuerreiros();
 
-        // Leitura dos arquivos e adição dos guerreiros na arena
-        System.out.println("Lendo guerreiros dos arquivos e adicionando à arena...");
+        // Gerar guerreiros aleatórios e salvar nos arquivos para os dois lados
+        gerador.gerarESalvarGuerreirosParaArena(1); // Gregos e Nórdicos (lado 1)
+        gerador.gerarESalvarGuerreirosParaArena(2); // Atlantes e Egípcios (lado 2)
+
+        // Criar uma instância do LeitorDeGuerreiros para ler os guerreiros dos arquivos e adicionar à arena
         LeitorDeGuerreiros leitor = new LeitorDeGuerreiros(arena);
-        leitor.montarArena();  // Lê todos os arquivos e insere os guerreiros na arena
+        leitor.montarArena(); // Lê todos os arquivos e monta as filas de cada lado na arena
 
-        // Exibir guerreiros de cada lado para verificar
+        // Exibir os guerreiros da arena para verificar a configuração
         System.out.println("Exibindo guerreiros da arena:");
-        arena.exibirGuerreirosDeCadaLado();  // Exibe todos os guerreiros de ambos os lados
+        arena.exibirGuerreirosDeCadaLado();
+
+        // Opcional: iniciar o combate
+        System.out.println("Iniciando o combate...");
+        arena.iniciarCombate();
+        
     }
 }

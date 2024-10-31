@@ -33,13 +33,13 @@ public class Hidra extends GuerreiroGrego{
             numeroDeCabecas++;
             // Incrementar o dano base em 5 por cabeça extra
             this.dano = 50 + (numeroDeCabecas - 1) * 5;
-            System.out.println(this.getNome() + " matou " + adversario.getNome() + " e agora tem " + numeroDeCabecas + " cabeças e " + this.dano + " de dano.");
+            System.out.println(this.getNome() + "(Hidra) matou " + adversario.getNome() + " e agora tem " + numeroDeCabecas + " cabeças e " + this.dano + " de dano.");
         } else {
-            System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
+            System.out.println(this.getNome() + "(Hidra) atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
         }
 
         // Recuperar 20 pontos de energia, mas a energia não pode ultrapassar 100
         this.energia = Math.min(this.energia + 20, 100);
-        System.out.println(this.getNome() + " recuperou 20 de energia e agora tem " + this.energia + " pontos de energia.");
+        System.out.println(this.getNome() + "(Hidra) recuperou 20 de energia e agora tem " + this.energia + " pontos de energia.");
     }
 }

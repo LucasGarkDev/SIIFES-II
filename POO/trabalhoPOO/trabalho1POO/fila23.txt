@@ -1,3 +1,1 @@
-6 Guerreiro1 34 68,55
-6 Guerreiro2 39 80,02
-4 Guerreiro3 50 103,63
+2 Zenkan 34 147.49

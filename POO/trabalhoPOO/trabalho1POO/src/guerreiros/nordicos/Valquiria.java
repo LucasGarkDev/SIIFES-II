@@ -23,7 +23,7 @@ public class Valquiria extends GuerreiroNordico {
     public void atacar(Arena arena, Guerreiro adversario) {
         // A Valquiria ataca o adversário com 20 de dano
         adversario.sofrerDano(this.dano,arena);
-        System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
+        System.out.println(this.getNome() + "(Valquiria) atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
 
         // Agora interagir com o guerreiro logo atrás dela na fila
         FilaDeGuerreiros filaDaValquiria = arena.getFila(1, arena.encontrarFilaDeGuerreiro(this));
@@ -35,7 +35,7 @@ public class Valquiria extends GuerreiroNordico {
             if (guerreiroAtras != null && !guerreiroAtras.isEstaMorto()) {
                 // Conceder 20 de energia ao guerreiro que está atrás dela
                 guerreiroAtras.setEnergia(guerreiroAtras.getEnergia() + 20);
-                System.out.println(this.getNome() + " concedeu 20 de energia a " + guerreiroAtras.getNome() + ".");
+                System.out.println(this.getNome() + "(Valquiria) concedeu 20 de energia a " + guerreiroAtras.getNome() + ".");
             }
         }
     }

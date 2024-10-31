@@ -27,7 +27,7 @@ public class Mumia extends GuerreiroEgipcio {
 
         // A Mumia ataca o adversário e verifica se o adversário morreu
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + "(Mumia) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
 
             // Se o adversário morrer, cria um MortoVivo e adiciona ao final da fila

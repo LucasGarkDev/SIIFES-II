@@ -11,7 +11,7 @@ import arena.Guerreiro;
  *
  * @author lucas
  */
-public class GuerreiroNordico extends Guerreiro {
+public abstract class GuerreiroNordico extends Guerreiro {
 
     // Construtor da classe GuerreiroNordico
     public GuerreiroNordico(String nome, int idade, double peso) {

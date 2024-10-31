@@ -30,7 +30,7 @@ public class GiganteDePedra extends GuerreiroNordico {
         this.arena = arena;  // Define a arena ao sofrer dano
         super.sofrerDano(dano, arena); // Chama o método original para aplicar o dano
         contadorDeGolpes++; // Incrementa o contador de golpes recebidos
-        System.out.println(this.getNome() + " foi atacado! Contador de golpes: " + contadorDeGolpes);
+        System.out.println(this.getNome() + "(Gigante de Pedra) foi atacado! Contador de golpes: " + contadorDeGolpes);
 
         // Verifica se ele já recebeu golpes de todos os guerreiros adversários
         int filasInimigasNaoVazias = contarFilasNaoVazias(this.arena, 2); // Conta as filas não vazias do lado inimigo
@@ -48,14 +48,14 @@ public class GiganteDePedra extends GuerreiroNordico {
         this.arena = arena;  // Define a arena ao atacar
         // Verifica se o lado do Gigante foi sorteado para começar atacando
         if (!habilidadeAtivada) {
-            System.out.println(this.getNome() + " ativou sua habilidade e deixou seus aliados 'mortos' temporariamente!");
+            System.out.println(this.getNome() + "(Gigante de Pedra) ativou sua habilidade e deixou seus aliados 'mortos' temporariamente!");
             camuflarAliados(this.arena); // Deixa os aliados mortos temporariamente
             habilidadeAtivada = true; // Marca que a habilidade foi ativada
         }
 
         // O Gigante ataca normalmente após "camuflar" os aliados
         adversario.sofrerDano(this.dano, arena);
-        System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
+        System.out.println(this.getNome() + "(Gigante de Pedra) atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
     }
 
     // Método para marcar os aliados como "mortos" temporariamente
@@ -72,7 +72,7 @@ public class GiganteDePedra extends GuerreiroNordico {
 
     // Método para reverter a morte dos aliados ao final do turno
     private void reverterCamuflagem(Arena arena) {
-        System.out.println(this.getNome() + " está reanimando seus aliados...");
+        System.out.println(this.getNome() + "(Gigante de Pedra) está reanimando seus aliados...");
         for (int i = 0; i < 4; i++) {
             FilaDeGuerreiros filaAliada = arena.getFila(1, i); // Lado 1 é o lado aliado
             if (filaAliada != null && filaAliada.getPrimeiroGuerreiro() != null) {

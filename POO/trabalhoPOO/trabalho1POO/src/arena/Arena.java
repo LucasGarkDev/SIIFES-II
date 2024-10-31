@@ -77,23 +77,25 @@ public class Arena {
         }
     }
 
-    // Método modificado para verificar null antes de chamar isEstaMorto
+    // Método modificado para realizar ataques, garantindo que o adversário não seja null
     private void realizarAtaques(FilaDeGuerreiros[] ladoAtacante, FilaDeGuerreiros[] ladoDefensor) {
         for (int i = 0; i < 4; i++) {
             FilaDeGuerreiros filaAtacante = ladoAtacante[i];
             Guerreiro atacante = filaAtacante.getPrimeiroGuerreiro();
-            Guerreiro defensor = null;  // Definir defensor aqui para o escopo maior
+            Guerreiro defensor = null; // Declaração de defensor fora do for
 
-            if (atacante != null && !atacante.isEstaMorto()) {  // Verifica se atacante não é null e está vivo
+            if (atacante != null && !atacante.isEstaMorto()) { // Verifica se o atacante não é null e está vivo
+                // Busca o próximo guerreiro vivo do lado defensor
                 for (int j = 0; j < 4; j++) {
                     FilaDeGuerreiros filaDefensora = ladoDefensor[(i + j) % 4];
                     defensor = filaDefensora.definirAlvoPrioritario(filaDefensora);
                     if (defensor != null && !defensor.isEstaMorto()) {
-                        break;  // Encontrou um defensor válido
+                        break; // Encontrou um defensor válido
                     }
                 }
 
-                if (defensor != null && !defensor.isEstaMorto()) {  // Verifica se defensor não é null e está vivo
+                // Verifica se o defensor encontrado é válido
+                if (defensor != null && !defensor.isEstaMorto()) {
                     atacante.atacar(this, defensor);
                     if (defensor.isEstaMorto()) {
                         ultimoMorto = defensor;
@@ -104,11 +106,12 @@ public class Arena {
                 }
             }
 
+            // Verifica se o atacante morreu após atacar
             if (atacante != null && atacante.isEstaMorto()) {
                 Guerreiro proximoAtacante = filaAtacante.getProximoGuerreiroVivo();
-                if (proximoAtacante != null) {
+                if (proximoAtacante != null && defensor != null && !defensor.isEstaMorto()) {
                     System.out.println(proximoAtacante.getNome() + " ataca no lugar de " + atacante.getNome() + ".");
-                    proximoAtacante.atacar(this, defensor);  // Usar o defensor do escopo maior
+                    proximoAtacante.atacar(this, defensor); // Use o defensor válido
                 }
             }
 
@@ -240,15 +243,15 @@ public class Arena {
         // Exibir o último guerreiro morto, se houver
         try {
             exibirUltimoGuerreiroMorto();
-        } catch (Exception e) {
+        } catch (UltimoGuerreiroNaoIdentificadoException e) {
             System.out.println("Erro ao exibir o último guerreiro morto: " + e.getMessage());
         }
     }
 
     // Método com exceções para exibir o último guerreiro morto e quem o matou
-    public void exibirUltimoGuerreiroMorto() throws Exception {
+    public void exibirUltimoGuerreiroMorto() throws UltimoGuerreiroNaoIdentificadoException {
         if (ultimoMorto == null || ultimoAssassino == null) {
-            throw new Exception("Não foi possível identificar o último guerreiro morto ou quem o matou.");
+            throw new UltimoGuerreiroNaoIdentificadoException("Não foi possível identificar o último guerreiro morto ou quem o matou.");
         }
         System.out.println("Último guerreiro morto: " + ultimoMorto.getNome());
         System.out.println("Guerreiro que o matou: " + ultimoAssassino.getNome());

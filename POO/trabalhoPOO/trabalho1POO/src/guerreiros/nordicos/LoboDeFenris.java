@@ -24,10 +24,12 @@ public class LoboDeFenris extends GuerreiroNordico {
         // Calcula o bônus de dano antes de atacar
         int bonusDeDano = calcularBonusDeDano(arena);
         int danoTotal = this.dano + bonusDeDano;
-
-        // O LoboDeFenris ataca o adversário com o dano calculado
-        adversario.sofrerDano(danoTotal,arena);
-        System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + danoTotal + " de dano.");
+        
+        if(adversario != null){
+            // O LoboDeFenris ataca o adversário com o dano calculado
+            adversario.sofrerDano(danoTotal,arena);
+            System.out.println(this.getNome() + "(Lobo de Fenris) atacou " + adversario.getNome() + " causando " + danoTotal + " de dano.");
+        }
     }
 
     // Método para calcular o bônus de dano com base nos LobosDeFenris atrás do atacante

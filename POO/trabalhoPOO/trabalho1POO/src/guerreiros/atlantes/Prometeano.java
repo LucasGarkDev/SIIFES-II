@@ -28,7 +28,7 @@ public class Prometeano extends GuerreiroAtlante {
     public void atacar(Arena arena, Guerreiro adversario) {
         // Ataque padrão do Prometeano
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + "(Prometeano) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
         }
     }

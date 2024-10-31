@@ -1,2 +1,5 @@
-1 Guerreiro1 29 112,64
-6 Guerreiro2 54 80,34
+4 Marron 51 147.27
+4 Fendor 52 166.82
+5 Bellos 41 133.89
+3 Lungar 37 143.51
+5 Zenlos 56 87.19

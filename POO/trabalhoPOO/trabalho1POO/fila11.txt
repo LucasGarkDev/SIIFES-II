@@ -1,1 +1,2 @@
-2 Guerreiro1 28 71,34
+4 Margar 52 132.55
+2 Thalros 52 102.59

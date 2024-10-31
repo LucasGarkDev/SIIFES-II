@@ -1,1 +1,4 @@
-4 Guerreiro1 51 104,13
+1 Zentis 30 120.38
+6 Kardor 49 117.10
+2 Zenlos 28 79.05
+6 Fenkan 51 129.41
