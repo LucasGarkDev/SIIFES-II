@@ -27,6 +27,52 @@ public class Arena {
             lado2[i] = new FilaDeGuerreiros();
         }
     }
+    
+     // Método para calcular a soma dos pesos dos guerreiros de ambos os lados
+    public void exibirSomaDosPesosDosGuerreiros() {
+        double somaPesosLado1 = calcularSomaPesos(lado1);
+        double somaPesosLado2 = calcularSomaPesos(lado2);
+
+        System.out.println("Soma dos pesos dos guerreiros do Lado 1 (Gregos e Nórdicos): " + somaPesosLado1 + " kg");
+        System.out.println("Soma dos pesos dos guerreiros do Lado 2 (Atlantes e Egípcios): " + somaPesosLado2 + " kg");
+    }
+
+    private double calcularSomaPesos(FilaDeGuerreiros[] lado) {
+        double soma = 0;
+        for (FilaDeGuerreiros fila : lado) {
+            for (Guerreiro guerreiro : fila.getLista()) {
+                if (!guerreiro.isEstaMorto()) { // Considera apenas guerreiros vivos
+                    soma += guerreiro.getPeso();
+                }
+            }
+        }
+        return soma;
+    }
+
+    // Método para exibir o guerreiro mais velho de um dos lados
+    public void exibirGuerreiroMaisVelho(int lado) {
+        FilaDeGuerreiros[] filas = (lado == 1) ? lado1 : lado2;
+        Guerreiro guerreiroMaisVelho = encontrarGuerreiroMaisVelho(filas);
+
+        if (guerreiroMaisVelho != null) {
+            System.out.println("Guerreiro mais velho do Lado " + lado + ": " + guerreiroMaisVelho.getNome() +
+                    " com " + guerreiroMaisVelho.getIdade() + " anos.");
+        } else {
+            System.out.println("Nenhum guerreiro encontrado no Lado " + lado + ".");
+        }
+    }
+
+    private Guerreiro encontrarGuerreiroMaisVelho(FilaDeGuerreiros[] lado) {
+        Guerreiro maisVelho = null;
+        for (FilaDeGuerreiros fila : lado) {
+            for (Guerreiro guerreiro : fila.getLista()) {
+                if (!guerreiro.isEstaMorto() && (maisVelho == null || guerreiro.getIdade() > maisVelho.getIdade())) {
+                    maisVelho = guerreiro;
+                }
+            }
+        }
+        return maisVelho;
+    }
 
     // Método para acessar uma fila específica de um lado específico
     public FilaDeGuerreiros getFila(int lado, int indice) {

@@ -1,4 +1,2 @@
-4 Lundor 51 104.91
-5 Belron 29 151.94
-2 Valnor 28 137.57
-4 Zentis 27 110.60
+2 Kartis 50 154.20
+2 Fenlos 33 168.46

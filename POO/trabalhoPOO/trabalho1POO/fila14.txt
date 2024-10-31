@@ -1,3 +1,2 @@
-1 Lungar 27 70.28
-2 Marmir 40 169.25
-5 Fendor 48 95.18
+2 Thalkan 44 86.53
+4 Fenthos 21 105.94

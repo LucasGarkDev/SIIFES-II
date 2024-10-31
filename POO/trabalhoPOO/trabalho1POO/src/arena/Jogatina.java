@@ -41,6 +41,15 @@ public class Jogatina {
         LeitorDeGuerreiros leitor = new LeitorDeGuerreiros(arena);
         leitor.montarArena(); // Lê todos os arquivos e monta as filas de cada lado na arena
 
+        // Exibir a soma dos pesos dos guerreiros de cada lado
+        System.out.println("Calculando a soma dos pesos dos guerreiros...");
+        arena.exibirSomaDosPesosDosGuerreiros();
+
+        // Exibir o guerreiro mais velho de cada lado
+        System.out.println("Identificando o guerreiro mais velho de cada lado...");
+        arena.exibirGuerreiroMaisVelho(1); // Lado 1 (Gregos e Nórdicos)
+        arena.exibirGuerreiroMaisVelho(2); // Lado 2 (Atlantes e Egípcios)
+
         // Exibir os guerreiros da arena para verificar a configuração
         System.out.println("Exibindo guerreiros da arena:");
         arena.exibirGuerreirosDeCadaLado();
@@ -48,6 +57,5 @@ public class Jogatina {
         // Opcional: iniciar o combate
         System.out.println("Iniciando o combate...");
         arena.iniciarCombate();
-        
     }
 }
