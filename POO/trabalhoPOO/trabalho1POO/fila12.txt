@@ -1,2 +1,3 @@
-2 Kartis 50 154.20
-2 Fenlos 33 168.46
+6 Drolos 35 168.59
+6 Lunron 42 132.81
+3 Valron 57 147.08

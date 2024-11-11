@@ -27,7 +27,7 @@ public class Mumia extends GuerreiroEgipcio {
 
         // A Mumia ataca o adversário e verifica se o adversário morreu
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + "(Mumia) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
 
             // Se o adversário morrer, cria um MortoVivo e adiciona ao final da fila
@@ -61,7 +61,7 @@ public class Mumia extends GuerreiroEgipcio {
         int indiceFila = arena.encontrarFilaDeGuerreiro(this);
         arena.getFila(2, indiceFila).adicionarGuerreiroNoFinal(mortoVivo);
 
-        System.out.println("Um MortoVivo surge com o nome " + adversarioMorto.getNome() + " no final da fila.");
+        System.out.println("Um Morto-Vivo surge com o nome " + adversarioMorto.getNome() + " no final da fila.");
     }
 
     private void criarAnubitas() {
@@ -76,5 +76,10 @@ public class Mumia extends GuerreiroEgipcio {
             Anubita anubita = new Anubita(this.getNome(), 0, 60.0);
             arena.getFila(2, indiceFila).adicionarGuerreiroNoFinal(anubita);
         }
+    }
+    
+    @Override
+    public String getNome() {
+        return nome + "(Mumia)";
     }
 }

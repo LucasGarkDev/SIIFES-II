@@ -23,7 +23,7 @@ public class HomemEscorpiao extends GuerreiroEgipcio {
     public void atacar(Arena arena, Guerreiro adversario) {
         if (adversario != null && !adversario.isEstaMorto()) {
             // Causa 20 pontos de dano
-            System.out.println(getNome() + "(Homem Escorpião) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
 
             // Aplica o veneno se o adversário ainda não estiver envenenado
@@ -32,5 +32,10 @@ public class HomemEscorpiao extends GuerreiroEgipcio {
                 System.out.println(adversario.getNome() + " foi envenenado e sofrerá 5 pontos de dano toda vez que atacar.");
             }
         }
+    }
+    
+    @Override
+    public String getNome() {
+        return nome + "(Homem Escorpião)";
     }
 }

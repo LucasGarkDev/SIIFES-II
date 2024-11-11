@@ -1,3 +1,4 @@
-2 Lungar 52 99.95
-4 Thalmir 24 159.09
-4 Zendor 27 166.73
+3 Beldor 45 71.58
+4 Drokan 50 141.34
+2 Kartis 36 120.81
+3 Belgar 20 142.18

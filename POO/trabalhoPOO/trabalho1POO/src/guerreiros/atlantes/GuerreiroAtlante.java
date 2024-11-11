@@ -28,4 +28,5 @@ public abstract class GuerreiroAtlante extends Guerreiro{
         }
     }
     
+    
 }

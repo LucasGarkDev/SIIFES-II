@@ -28,7 +28,7 @@ public class Prometeano extends GuerreiroAtlante {
     public void atacar(Arena arena, Guerreiro adversario) {
         // Ataque padrão do Prometeano
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + "(Prometeano) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
         }
     }
@@ -54,7 +54,7 @@ public class Prometeano extends GuerreiroAtlante {
 
         // Verifica se a nova energia é suficiente para a divisão (precisa ser >= 5)
         if (novaEnergia >= 5) {
-            System.out.println(this.getNome() + " se divide em dois!");
+            System.out.println(super.getNome() + " se divide em dois!");
 
             // Cria dois novos Prometeanos com metade da energia máxima
             Prometeano filho1 = new Prometeano(this.getNome() + "1", this.getIdade(), this.getPeso(), novaEnergia);
@@ -74,4 +74,14 @@ public class Prometeano extends GuerreiroAtlante {
             System.out.println(this.getNome() + " não tem energia suficiente para se dividir.");
         }
     }
+    
+    @Override
+    public String getNome() {
+        return nome;
+    }
+    
+//    @Override
+//    public String getNome() {
+//        return nome + "(Prometeano)";
+//    }
 }

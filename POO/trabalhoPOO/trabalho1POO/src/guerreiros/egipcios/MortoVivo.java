@@ -23,8 +23,13 @@ public class MortoVivo extends GuerreiroEgipcio{
     public void atacar(Arena arena, Guerreiro adversario) {
         // MortoVivo ataca com 5 de dano
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " (MortoVivo) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano,arena);
         }
+    }
+    
+    @Override
+    public String getNome() {
+        return nome + "(Morto-Vivo)";
     }
 }

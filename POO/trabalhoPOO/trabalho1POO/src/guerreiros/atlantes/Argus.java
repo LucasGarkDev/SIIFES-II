@@ -24,7 +24,7 @@ public class Argus extends GuerreiroAtlante {
     public void atacar(Arena arena, Guerreiro adversario) {
         this.arena = arena;  // Armazena a arena em que o Argos está
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + "(Argus) ataca " + adversario.getNome() + " e mata instantaneamente!");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " e mata instantaneamente!");
             adversario.sofrerDano(adversario.getEnergia(), arena);  // Reduz os pontos de vida a 0
         }
     }
@@ -33,6 +33,11 @@ public class Argus extends GuerreiroAtlante {
     public void sofrerDano(int quantidade, Arena arena) {
         this.arena = arena;  // Armazena a arena em que o Argos está
         super.sofrerDano(quantidade, arena);  // Chama o método da superclasse
+    }
+    
+    @Override
+    public String getNome() {
+        return nome + "(Argus)";
     }
 }
 

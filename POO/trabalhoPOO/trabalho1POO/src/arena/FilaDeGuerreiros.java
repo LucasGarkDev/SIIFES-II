@@ -12,6 +12,7 @@ import java.util.LinkedList;
  */
 public class FilaDeGuerreiros {
 
+    private boolean deveSerAtacada = false; // Flag para indicar se a fila deve ser atacada prioritariamente
     private LinkedList<Guerreiro> guerreiros;
 
     // Construtor que inicializa a lista de guerreiros
@@ -62,6 +63,14 @@ public class FilaDeGuerreiros {
         return guerreiros.peekLast();
     }
 
+    public boolean isDeveSerAtacada() {
+        return deveSerAtacada;
+    }
+
+    public void setDeveSerAtacada(boolean deveSerAtacada) {
+        this.deveSerAtacada = deveSerAtacada;
+    }
+    
     // Retornar um guerreiro em uma posição específica
     public Guerreiro getGuerreiro(int posicao) {
         if (posicao >= 0 && posicao < guerreiros.size()) {

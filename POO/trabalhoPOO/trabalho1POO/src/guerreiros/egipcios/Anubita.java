@@ -22,7 +22,7 @@ public class Anubita extends GuerreiroEgipcio{
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         if ((adversario != null) && (!adversario.isEstaMorto())) {
-            System.out.println(getNome() + "(Anubita) ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano,arena);
             FilaDeGuerreiros filaAdversaria = null;
             int indiceFilaAdversaria = arena.encontrarFilaDeGuerreiro(adversario);
@@ -32,7 +32,9 @@ public class Anubita extends GuerreiroEgipcio{
             ultimoFila.sofrerDano(dano, arena);
         }
     }
-    
    
-    
+    @Override
+    public String getNome() {
+        return nome + "(Anubita)";
+    }
 }

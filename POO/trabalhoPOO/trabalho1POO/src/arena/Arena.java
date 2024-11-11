@@ -27,8 +27,42 @@ public class Arena {
             lado2[i] = new FilaDeGuerreiros();
         }
     }
-    
-     // Método para calcular a soma dos pesos dos guerreiros de ambos os lados
+
+    // Reseta os flags de ataque de todas as filas em um lado específico
+    public void resetarFlagsDeAtaque(FilaDeGuerreiros[] lado) {
+        for (FilaDeGuerreiros fila : lado) {
+            fila.setDeveSerAtacada(false); // Desativa o flag de cada fila
+        }
+    }
+
+    // Métodos auxiliares para acesso aos lados
+    public FilaDeGuerreiros[] getLado1() {
+        return lado1;
+    }
+
+    public FilaDeGuerreiros[] getLado2() {
+        return lado2;
+    }
+
+    public int getLado(Guerreiro guerreiro) {
+        // Verifica se o guerreiro está no lado 1 (Gregos e Nórdicos)
+        for (int i = 0; i < 4; i++) {
+            if (lado1[i].encontrarGuerreiro(guerreiro) != -1) {
+                return 1; // Guerreiro está no lado 1
+            }
+        }
+
+        // Verifica se o guerreiro está no lado 2 (Atlantes e Egípcios)
+        for (int i = 0; i < 4; i++) {
+            if (lado2[i].encontrarGuerreiro(guerreiro) != -1) {
+                return 2; // Guerreiro está no lado 2
+            }
+        }
+
+        return -1; // Guerreiro não encontrado (o que não deveria acontecer)
+    }
+
+    // Método para calcular a soma dos pesos dos guerreiros de ambos os lados
     public void exibirSomaDosPesosDosGuerreiros() {
         double somaPesosLado1 = calcularSomaPesos(lado1);
         double somaPesosLado2 = calcularSomaPesos(lado2);
@@ -55,8 +89,8 @@ public class Arena {
         Guerreiro guerreiroMaisVelho = encontrarGuerreiroMaisVelho(filas);
 
         if (guerreiroMaisVelho != null) {
-            System.out.println("Guerreiro mais velho do Lado " + lado + ": " + guerreiroMaisVelho.getNome() +
-                    " com " + guerreiroMaisVelho.getIdade() + " anos.");
+            System.out.println("Guerreiro mais velho do Lado " + lado + ": " + guerreiroMaisVelho.getNome()
+                    + " com " + guerreiroMaisVelho.getIdade() + " anos.");
         } else {
             System.out.println("Nenhum guerreiro encontrado no Lado " + lado + ".");
         }
@@ -92,7 +126,6 @@ public class Arena {
 
     // Método para executar o turno de ataque de um lado
     public void executarTurno(int ladoAtacante) {
-        // Determina qual lado começa atacando
         FilaDeGuerreiros[] ladoAtacanteFilas;
         FilaDeGuerreiros[] ladoDefensorFilas;
 
@@ -110,9 +143,82 @@ public class Arena {
         // Em seguida, o lado defensor ataca
         realizarAtaques(ladoDefensorFilas, ladoAtacanteFilas);
 
-        // Remover guerreiros mortos de ambos os lados
+        // Remover guerreiros mortos de ambos os lados após cada turno
         removerGuerreirosMortos(ladoAtacanteFilas);
         removerGuerreirosMortos(ladoDefensorFilas);
+    }
+
+    private void realizarAtaques(FilaDeGuerreiros[] ladoAtacante, FilaDeGuerreiros[] ladoDefensor) {
+        for (int i = 0; i < 4; i++) {
+            FilaDeGuerreiros filaAtacante = ladoAtacante[i];
+            Guerreiro atacante = filaAtacante.getPrimeiroGuerreiro();
+
+            if (atacante != null && !atacante.isEstaMorto()) {
+                // Busca o próximo guerreiro vivo do lado defensor
+                Guerreiro defensor = buscarDefensor(ladoDefensor, i);
+
+                if (defensor != null && !defensor.isEstaMorto()) {
+                    atacante.atacar(this, defensor);
+
+                    if (defensor.isEstaMorto()) {
+                        ultimoMorto = defensor;
+                        ultimoAssassino = atacante;
+                        // Remover o defensor morto imediatamente
+                        removerGuerreiroMorto(defensor, ladoDefensor);
+                        System.out.println(defensor.getNome() + " foi morto por " + atacante.getNome() + " e removido da arena.");
+                    }
+                }
+            }
+        }
+    }
+
+    private Guerreiro buscarDefensor(FilaDeGuerreiros[] ladoDefensor, int indexInicial) {
+        // Verifica se alguma fila está marcada como deve ser atacada
+        for (FilaDeGuerreiros fila : ladoDefensor) {
+            if (fila.isDeveSerAtacada()) {
+                Guerreiro defensor = fila.getPrimeiroGuerreiro();
+                if (defensor != null && !defensor.isEstaMorto()) {
+                    return defensor;
+                }
+            }
+        }
+
+        // Se nenhuma fila tiver o flag ativo, segue a busca convencional
+        for (int j = 0; j < 4; j++) {
+            FilaDeGuerreiros filaDefensora = ladoDefensor[(indexInicial + j) % 4];
+            Guerreiro defensor = filaDefensora.getPrimeiroGuerreiro();
+            if (defensor != null && !defensor.isEstaMorto()) {
+                return defensor;
+            }
+        }
+        return null;
+    }
+
+    private void removerGuerreiroMorto(Guerreiro guerreiro, FilaDeGuerreiros[] lado) {
+        for (FilaDeGuerreiros fila : lado) {
+            Iterator<Guerreiro> iterator = fila.getLista().iterator();
+            while (iterator.hasNext()) {
+                Guerreiro g = iterator.next();
+                if (g.equals(guerreiro) && g.isEstaMorto()) {
+                    iterator.remove();
+                    break;
+                }
+            }
+        }
+    }
+
+    // Método para remover guerreiros mortos de todas as filas de um lado (após o turno)
+    private void removerGuerreirosMortos(FilaDeGuerreiros[] lado) {
+        for (FilaDeGuerreiros fila : lado) {
+            Iterator<Guerreiro> iterator = fila.getLista().iterator();
+            while (iterator.hasNext()) {
+                Guerreiro guerreiro = iterator.next();
+                if (guerreiro != null && guerreiro.isEstaMorto()) {
+                    iterator.remove();
+                    System.out.println(guerreiro.getNome() + " foi removido da arena.");
+                }
+            }
+        }
     }
 
     // Método para aplicar o veneno ao guerreiro que está envenenado
@@ -120,48 +226,6 @@ public class Arena {
         if (guerreiro.isEnvenenado()) {
             System.out.println(guerreiro.getNome() + " está envenenado e sofre 5 pontos de dano ao atacar.");
             guerreiro.sofrerDano(5, this); // Aplica o dano de veneno
-        }
-    }
-
-    // Método modificado para realizar ataques, garantindo que o adversário não seja null
-    private void realizarAtaques(FilaDeGuerreiros[] ladoAtacante, FilaDeGuerreiros[] ladoDefensor) {
-        for (int i = 0; i < 4; i++) {
-            FilaDeGuerreiros filaAtacante = ladoAtacante[i];
-            Guerreiro atacante = filaAtacante.getPrimeiroGuerreiro();
-            Guerreiro defensor = null; // Declaração de defensor fora do for
-
-            if (atacante != null && !atacante.isEstaMorto()) { // Verifica se o atacante não é null e está vivo
-                // Busca o próximo guerreiro vivo do lado defensor
-                for (int j = 0; j < 4; j++) {
-                    FilaDeGuerreiros filaDefensora = ladoDefensor[(i + j) % 4];
-                    defensor = filaDefensora.definirAlvoPrioritario(filaDefensora);
-                    if (defensor != null && !defensor.isEstaMorto()) {
-                        break; // Encontrou um defensor válido
-                    }
-                }
-
-                // Verifica se o defensor encontrado é válido
-                if (defensor != null && !defensor.isEstaMorto()) {
-                    atacante.atacar(this, defensor);
-                    if (defensor.isEstaMorto()) {
-                        ultimoMorto = defensor;
-                        ultimoAssassino = atacante;
-                    }
-                } else {
-                    System.out.println(atacante.getNome() + " não encontrou alvo válido para atacar.");
-                }
-            }
-
-            // Verifica se o atacante morreu após atacar
-            if (atacante != null && atacante.isEstaMorto()) {
-                Guerreiro proximoAtacante = filaAtacante.getProximoGuerreiroVivo();
-                if (proximoAtacante != null && defensor != null && !defensor.isEstaMorto()) {
-                    System.out.println(proximoAtacante.getNome() + " ataca no lugar de " + atacante.getNome() + ".");
-                    proximoAtacante.atacar(this, defensor); // Use o defensor válido
-                }
-            }
-
-            filaAtacante.moverPrimeiroParaUltimo();
         }
     }
 
@@ -182,21 +246,6 @@ public class Arena {
         }
 
         return null; // Se o guerreiro não está em nenhuma fila
-    }
-
-    // Método para remover guerreiros mortos de todas as filas de um lado
-    private void removerGuerreirosMortos(FilaDeGuerreiros[] lado) {
-        for (FilaDeGuerreiros fila : lado) {
-            Iterator<Guerreiro> iterator = fila.getLista().iterator();
-            while (iterator.hasNext()) {
-                Guerreiro guerreiro = iterator.next();
-                // Remove guerreiros apenas se estiverem "mortos" e com energia <= 0
-                if (guerreiro != null && guerreiro.isEstaMorto() && guerreiro.getEnergia() <= 0) {
-                    iterator.remove(); // Remove guerreiros mortos da lista
-                    System.out.println(guerreiro.getNome() + " foi removido da arena.");
-                }
-            }
-        }
     }
 
     // Método para buscar um guerreiro pelo nome em todos os lados

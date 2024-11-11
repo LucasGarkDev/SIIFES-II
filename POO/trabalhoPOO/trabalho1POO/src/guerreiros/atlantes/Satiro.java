@@ -29,7 +29,7 @@ public class Satiro extends GuerreiroAtlante {
             FilaDeGuerreiros filaDefensora = arena.getFila(1, filaAdversario); // Lado 2 é o lado adversário (Atlantes e Egípcios)
 
             // Causa dano em toda a fila adversária
-            System.out.println(this.getNome() + "(Satiro) está atacando toda a fila adversária " + (filaAdversario + 1) + ".");
+            System.out.println(this.getNome() + " está atacando toda a fila adversária " + (filaAdversario + 1) + ".");
             for (Guerreiro guerreiro : filaDefensora.getLista()) {
                 if (guerreiro != null && !guerreiro.isEstaMorto()) {
                     guerreiro.sofrerDano(this.dano,arena); // Aplica o dano base do Sátiro
@@ -39,5 +39,10 @@ public class Satiro extends GuerreiroAtlante {
         } else {
             System.out.println(this.getNome() + " não encontrou uma fila válida para atacar.");
         }
+    }
+    
+    @Override
+    public String getNome() {
+        return nome + "(Satiro)";
     }
 }
