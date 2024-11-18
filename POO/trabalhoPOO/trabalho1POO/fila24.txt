@@ -1,4 +1,3 @@
-3 Beldor 45 71.58
-4 Drokan 50 141.34
-2 Kartis 36 120.81
-3 Belgar 20 142.18
+2 Belthos 38 164.20
+4 Belnor 42 154.73
+3 Marnor 22 135.80

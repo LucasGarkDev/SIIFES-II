@@ -18,38 +18,36 @@ public class Ciclope extends GuerreiroGrego {
 
     public Ciclope(String nome, int idade, double peso) {
         super(nome, idade, peso);
-        this.dano = 35; // Definindo o dano padrão do Ciclope como 35
+        this.dano = 35; 
     }
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        // Verificar se o Ciclope é o primeiro na fila
         int minhaFilaIndice = arena.encontrarFilaDeGuerreiro(this); // Encontrar a fila do Ciclope
-        FilaDeGuerreiros minhaFila = arena.getFila(1, minhaFilaIndice); // O Ciclope está no lado 1 (gregos)
+        FilaDeGuerreiros minhaFila = arena.getFila(1, minhaFilaIndice); 
         Guerreiro primeiroNaFila = minhaFila.getPrimeiroGuerreiro();
 
-        if (this == primeiroNaFila) {
-            // Se o Ciclope é o primeiro na fila e seu lado começou o turno
-            System.out.println(this.getNome() + " ataca com força total!");
-            adversario.sofrerDano(this.dano,arena); // Causar dano
+        boolean ladoCiclopeSorteado = (arena.getLadoSorteado() == 1); // Verifica se o lado 1 foi sorteado
 
-            // Se o adversário ainda está vivo, movê-lo para o fim de sua própria fila
+        if ((this == primeiroNaFila) && (ladoCiclopeSorteado)) {
+            System.out.println(this.getNome() + " ataca com força total!");
+            adversario.sofrerDano(this.dano, arena); // Causar dano
+
             if (!adversario.isEstaMorto() && adversario != null) {
-                int filaAdversarioIndice = arena.encontrarFilaDeGuerreiro(adversario); // Encontrar a fila do adversário
-                FilaDeGuerreiros filaAdversaria = arena.getFila(2, filaAdversarioIndice); // O adversário está no lado 2 (atlantes e egípcios)
+                int filaAdversarioIndice = arena.encontrarFilaDeGuerreiro(adversario);
+                FilaDeGuerreiros filaAdversaria = arena.getFila(2, filaAdversarioIndice); 
                 filaAdversaria.moverGuerreiroParaFrente(filaAdversaria.encontrarGuerreiro(adversario), filaAdversaria.getLista().size() - 1);
 
                 System.out.println(adversario.getNome() + " foi movido para o fim da sua fila!");
             }
         } else {
-            // Caso o Ciclope não seja o primeiro, ele apenas realiza o ataque normalmente
             System.out.println(this.getNome() + " ataca normalmente.");
-            adversario.sofrerDano(this.dano,arena);
+            adversario.sofrerDano(this.dano, arena);
         }
     }
-    
+
     @Override
     public String getNome() {
-        return nome + "(Ciclope)";
+        return nome + " (Ciclope)";
     }
 }

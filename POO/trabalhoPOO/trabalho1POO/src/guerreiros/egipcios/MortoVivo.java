@@ -16,7 +16,7 @@ public class MortoVivo extends GuerreiroEgipcio{
     public MortoVivo(String nome, int idade, double peso) {
         super(nome, idade, peso);
         this.energia = 100;
-        this.dano = 5; // Dano padrão do MortoVivo
+        this.dano = 5; 
     }
 
     @Override

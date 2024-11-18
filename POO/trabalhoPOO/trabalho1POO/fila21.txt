@@ -1,2 +1,5 @@
-3 Fenthos 55 88.74
-3 Drothos 28 146.48
+1 Vallos 44 132.36
+6 Karmir 21 120.58
+4 Fennor 53 163.86
+1 Karthos 33 123.74
+2 Kartis 32 72.11

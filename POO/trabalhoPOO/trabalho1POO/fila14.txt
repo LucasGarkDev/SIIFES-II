@@ -1,5 +1,2 @@
-5 Thalron 48 72.88
-1 Zenmir 42 91.57
-5 Kardor 24 89.69
-3 Kardor 39 95.19
-5 Orthos 43 106.07
+1 Fendor 37 148.74
+3 Dronor 25 165.34

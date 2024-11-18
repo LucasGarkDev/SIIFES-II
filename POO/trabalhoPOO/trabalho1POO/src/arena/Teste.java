@@ -23,63 +23,49 @@ import geradores.*;
 public class Teste {
 
     public static void main(String[] args) {
-        // Inicializa a arena
+        // Criação da arena
         Arena arena = new Arena();
 
-        // Configura o Lado 1: Gigante de Pedra e outros aliados
-        GiganteDePedra gigante1 = new GiganteDePedra("Thor", 150, 500.0);
-        GiganteDePedra gigante2 = new GiganteDePedra("Odin", 200, 520.0);
-        Guerreiro aliado1 = new Valquiria("Valquiria", 30, 60);
-        Guerreiro aliado2 = new LoboDeFenris("Lobo de Fenris", 25, 70);
+        // Criação de guerreiros do lado 2 (Atlantes e Egípcios)
+        Prometeano prometeano = new Prometeano("Prometeano Guardião", 180, 300.0, 100);
+        HomemEscorpiao homemEscorpiao = new HomemEscorpiao("Escorpião Rei", 140, 110.0);
 
-        // Configura o Lado 1: Gigante de Pedra e outros aliados
-        arena.getFila(1, 0).adicionarGuerreiro(gigante1, 0); // Gigante de Pedra na primeira posição da Fila 1
-        arena.getFila(1, 1).adicionarGuerreiro(gigante2, 0); // Segundo Gigante na primeira posição da Fila 2
-        arena.getFila(1, 2).adicionarGuerreiro(aliado1, 0);  // Aliado na primeira posição da Fila 3
-        arena.getFila(1, 3).adicionarGuerreiro(aliado2, 0);  // Aliado na primeira posição da Fila 4
+        // Adição ao lado 2
+        arena.getFila(2, 0).adicionarGuerreiroNoFinal(prometeano);
+        arena.getFila(2, 0).adicionarGuerreiroNoFinal(homemEscorpiao);
 
-        // Configura o Lado 2: Adiciona guerreiros para o combate
-        Guerreiro adversario1 = new HomemEscorpiao("Homem Escorpiao", 40, 80);
-        Guerreiro adversario2 = new Mumia("Mumia", 60, 100);
-        Guerreiro adversario3 = new Anubita("Anubita", 50, 90);
-        Guerreiro adversario4 = new Prometeano("Prometeano", 70, 85, 100);
+        // Criação de guerreiros do lado 1 (Gregos e Nórdicos)
+        Ciclope ciclope = new Ciclope("Polifemo", 200, 500.0);
+        Hidra hidra = new Hidra("Hidra de Lerna", 100, 350.0);
+        Valquiria valquiria = new Valquiria("Valquíria Branca", 150, 90.0);
 
-        // Configura o Lado 2: Adiciona guerreiros para o combate
-        arena.getFila(2, 0).adicionarGuerreiro(adversario1, 0); // Inimigo na primeira posição da Fila 1
-        arena.getFila(2, 1).adicionarGuerreiro(adversario2, 0); // Inimigo na primeira posição da Fila 2
-        arena.getFila(2, 2).adicionarGuerreiro(adversario3, 0); // Inimigo na primeira posição da Fila 3
-        arena.getFila(2, 3).adicionarGuerreiro(adversario4, 0); // Inimigo na primeira posição da Fila 4
+        // Adição ao lado 1
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(ciclope);
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(hidra);
+        arena.getFila(1, 0).adicionarGuerreiroNoFinal(valquiria);
 
-        // Exibe estado inicial da arena
-        System.out.println("Estado inicial da Arena:");
+        // Exibir estado inicial da arena
+        System.out.println("Estado inicial da arena:");
         arena.exibirGuerreirosDeCadaLado();
 
-        // Executa combate controlado para analisar o comportamento do Gigante de Pedra
-        for (int i = 0; i < 5; i++) {
-            System.out.println("-------------------------------------------------");
-            System.out.println("Turno " + (i + 1) + ":");
-            int ladoSorteado = arena.sortearLado();
-            System.out.println("Lado " + ladoSorteado + " começa o turno.");
-            arena.executarTurno(ladoSorteado);
+        // Sortear o lado que inicia o turno
+        int ladoSorteado = arena.sortearLado();
+        System.out.println("\nLado sorteado para começar o turno: Lado " + ladoSorteado);
 
-            // Exibe o estado da arena após o turno
+        // Executar múltiplos turnos para garantir a morte do Prometeano
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nTurno " + (i + 1) + ":");
+            arena.executarTurno(ladoSorteado);
             arena.exibirGuerreirosDeCadaLado();
 
-            // Verifica se um dos lados foi eliminado e encerra o combate
-            if (arena.todosGuerreirosMortos(1)) {
-                System.out.println("Lado 2 (Atlantes e Egípcios) venceu!");
-                break;
-            } else if (arena.todosGuerreirosMortos(2)) {
-                System.out.println("Lado 1 (Gregos e Nórdicos) venceu!");
+            // Verificar se o Prometeano morreu
+            if (prometeano.isEstaMorto()) {
                 break;
             }
         }
 
-        // Exibe o último guerreiro morto e o guerreiro que causou sua morte, se houver
-        try {
-            arena.exibirUltimoGuerreiroMorto();
-        } catch (UltimoGuerreiroNaoIdentificadoException e) {
-            System.out.println("Erro ao exibir o último guerreiro morto: " + e.getMessage());
-        }
+        // Exibir estado final da arena
+        System.out.println("\nEstado final da arena após os turnos:");
+        arena.exibirGuerreirosDeCadaLado();
     }
 }

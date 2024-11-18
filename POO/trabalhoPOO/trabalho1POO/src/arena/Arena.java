@@ -17,6 +17,7 @@ public class Arena {
     private FilaDeGuerreiros[] lado2; // Atlantes e Egípcios
     private Guerreiro ultimoMorto;
     private Guerreiro ultimoAssassino;
+    private int ladoSorteado; // Armazena o lado sorteado para iniciar o turno
 
     public Arena() {
         lado1 = new FilaDeGuerreiros[4];
@@ -60,6 +61,10 @@ public class Arena {
         }
 
         return -1; // Guerreiro não encontrado (o que não deveria acontecer)
+    }
+
+    public int getLadoSorteado() {
+        return ladoSorteado;
     }
 
     // Método para calcular a soma dos pesos dos guerreiros de ambos os lados
@@ -121,7 +126,8 @@ public class Arena {
     // Método para sortear qual lado vai começar o turno
     public int sortearLado() {
         Random random = new Random();
-        return random.nextInt(2) + 1; // Retorna 1 para lado1 e 2 para lado2
+        ladoSorteado = random.nextInt(2) + 1; // Sorteia 1 para lado1 e 2 para lado2
+        return ladoSorteado;
     }
 
     // Método para executar o turno de ataque de um lado

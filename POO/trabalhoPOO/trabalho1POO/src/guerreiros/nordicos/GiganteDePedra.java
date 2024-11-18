@@ -24,13 +24,16 @@ public class GiganteDePedra extends GuerreiroNordico {
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        int lado = arena.getLado(this);
-        FilaDeGuerreiros[] ladoAliado = (lado == 1) ? arena.getLado1() : arena.getLado2();
+        int lado = arena.getLado(this); 
+        int ladoSorteado = arena.getLadoSorteado(); 
 
-        if (!habilidadeAtivada) {
+        if (!habilidadeAtivada && lado == ladoSorteado) {
+            FilaDeGuerreiros[] ladoAliado = (lado == 1) ? arena.getLado1() : arena.getLado2();
             arena.resetarFlagsDeAtaque(ladoAliado);
+
             FilaDeGuerreiros minhaFila = arena.getFila(lado, arena.encontrarFilaDeGuerreiro(this));
             minhaFila.setDeveSerAtacada(true); // Ativa o flag para que apenas esta fila seja atacada
+
             habilidadeAtivada = true;
             System.out.println(this.getNome() + " ativou sua habilidade para atrair todos os ataques para sua fila.");
         }
@@ -45,6 +48,6 @@ public class GiganteDePedra extends GuerreiroNordico {
 
     @Override
     public String getNome() {
-        return nome + "(Gigante de Pedra)";
+        return nome + " (Gigante de Pedra)";
     }
 }

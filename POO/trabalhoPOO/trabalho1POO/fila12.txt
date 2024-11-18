@@ -1,3 +1,2 @@
-6 Drolos 35 168.59
-6 Lunron 42 132.81
-3 Valron 57 147.08
+2 Droros 31 102.24
+3 Fenros 53 119.47

@@ -24,21 +24,17 @@ public class Hidra extends GuerreiroGrego{
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        // A Hidra ataca o adversário com o dano atual
         adversario.sofrerDano(this.dano,arena);
 
         // Verificar se o adversário morreu
         if (adversario.isEstaMorto()) {
-            // A Hidra ganha uma cabeça a mais
             numeroDeCabecas++;
-            // Incrementar o dano base em 5 por cabeça extra
             this.dano = 50 + (numeroDeCabecas - 1) * 5;
             System.out.println(this.getNome() + " matou " + adversario.getNome() + " e agora tem " + numeroDeCabecas + " cabeças e " + this.dano + " de dano.");
         } else {
             System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
         }
 
-        // Recuperar 20 pontos de energia, mas a energia não pode ultrapassar 100
         this.energia = Math.min(this.energia + 20, 100);
         System.out.println(this.getNome() + " recuperou 20 de energia e agora tem " + this.energia + " pontos de energia.");
     }
