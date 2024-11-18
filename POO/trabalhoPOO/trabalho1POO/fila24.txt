@@ -1,3 +1,2 @@
-2 Belthos 38 164.20
-4 Belnor 42 154.73
-3 Marnor 22 135.80
+5 Zenmir 49 148.17
+5 Zengar 53 154.30

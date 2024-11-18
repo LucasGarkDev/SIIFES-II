@@ -27,12 +27,11 @@ public class GeradorDeGuerreiros {
                 int idade = random.nextInt(40) + 18; // Idade entre 18 e 58 anos
                 double peso = 70 + (random.nextDouble() * 100); // Peso entre 70kg e 170kg
 
-                // Salvar no arquivo
                 bw.write(tipo + " " + nome + " " + idade + " " + String.format(Locale.US, "%.2f", peso));
                 bw.newLine();
             }
 
-            System.out.println("Guerreiros gerados e salvos no arquivo: " + caminhoArquivo);
+//            System.out.println("Guerreiros gerados e salvos no arquivo: " + caminhoArquivo);
         } catch (IOException e) {
             System.out.println("Erro ao salvar os guerreiros: " + e.getMessage());
         }
@@ -43,8 +42,8 @@ public class GeradorDeGuerreiros {
         String[] arquivos = new String[4];
         for (int i = 0; i < 4; i++) {
             arquivos[i] = "fila" + lado + (i + 1) + ".txt";
-            gerarESalvarGuerreiros(arquivos[i], lado); // Chama o método para cada arquivo correspondente à fila
-            System.out.println("Guerreiros gerados e salvos no arquivo: " + arquivos[i]);
+            gerarESalvarGuerreiros(arquivos[i], lado); 
+//            System.out.println("Guerreiros gerados e salvos no arquivo: " + arquivos[i]);
         }
     }
 }

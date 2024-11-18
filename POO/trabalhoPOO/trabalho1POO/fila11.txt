@@ -1,4 +1,2 @@
-2 Fentis 38 99.28
-4 Dromir 41 138.40
-1 Belkan 25 115.73
-5 Luntis 53 109.27
+3 Kartis 42 133.93
+3 Orros 35 91.58

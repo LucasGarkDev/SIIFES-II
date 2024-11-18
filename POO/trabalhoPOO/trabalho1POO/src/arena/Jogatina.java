@@ -50,7 +50,6 @@ public class Jogatina {
         System.out.println("====================================================================");
         System.out.println("Exibindo guerreiros da arena:");
         arena.exibirGuerreirosDeCadaLado();
-        System.out.println("Digite a sua aposta: ");
 
         System.out.println("Iniciando o combate...");
         arena.iniciarCombate();

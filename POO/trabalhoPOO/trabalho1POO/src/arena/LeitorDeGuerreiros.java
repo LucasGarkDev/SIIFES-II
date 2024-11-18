@@ -34,16 +34,13 @@ public class LeitorDeGuerreiros {
                 String[] dados = linha.split(" ");
                 int tipo = Integer.parseInt(dados[0]);
                 String nome = dados[1];
-                int idade = Integer.parseInt(dados[2]);
-                // Substitui vírgulas por pontos antes de converter para double
+                int idade = Integer.parseInt(dados[2]); 
                 double peso = Double.parseDouble(dados[3].replace(",", "."));
 
-                // Cria o guerreiro baseado no tipo e adiciona na fila correta
                 Guerreiro guerreiro = criarGuerreiro(tipo, nome, idade, peso, lado);
                 if (guerreiro != null) {
-                    // Use o método correto para adicionar o guerreiro no final da fila
                     arena.getFila(lado, fila).adicionarGuerreiroNoFinal(guerreiro);
-                    System.out.println("Guerreiro " + guerreiro.getNome() + " adicionado à fila " + (fila + 1) + " do lado " + lado);
+//                    System.out.println("Guerreiro " + guerreiro.getNome() + " adicionado à fila " + (fila + 1) + " do lado " + lado);
                 }
             }
         } catch (IOException e) {
@@ -73,7 +70,7 @@ public class LeitorDeGuerreiros {
                     throw new IllegalArgumentException("Tipo de guerreiro inválido: " + tipo);
             }
         } else if (lado == 2) {
-            // Lado 2: Criando guerreiros do lado 2 (Atlantes e Egípcios)
+            
             switch (tipo) {
                 case 1:
                     return new Prometeano(nome, idade, peso, 100);

@@ -1,2 +1,3 @@
-4 Belgar 22 125.74
-5 Karros 37 133.02
+3 Belnor 28 89.96
+6 Ortis 18 87.18
+6 Kardor 40 113.93

@@ -1,3 +1,4 @@
-2 Fentis 54 137.03
-6 Thalros 35 144.12
-2 Karmir 55 96.12
+3 Drolos 52 98.22
+2 Valmir 35 93.53
+2 Thaldor 40 70.01
+6 Orlos 33 90.51
