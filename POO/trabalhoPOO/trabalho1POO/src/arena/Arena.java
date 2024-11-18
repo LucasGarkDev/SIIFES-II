@@ -19,6 +19,7 @@ public class Arena {
     private Guerreiro ultimoAssassino;
     private int ladoSorteado; // Armazena o lado sorteado para iniciar o turno
 
+    // Construtor
     public Arena() {
         lado1 = new FilaDeGuerreiros[4];
         lado2 = new FilaDeGuerreiros[4];
@@ -32,7 +33,7 @@ public class Arena {
     // Reseta os flags de ataque de todas as filas em um lado específico
     public void resetarFlagsDeAtaque(FilaDeGuerreiros[] lado) {
         for (FilaDeGuerreiros fila : lado) {
-            fila.setDeveSerAtacada(false); // Desativa o flag de cada fila
+            fila.setDeveSerAtacada(false);
         }
     }
 
@@ -46,14 +47,12 @@ public class Arena {
     }
 
     public int getLado(Guerreiro guerreiro) {
-        // Verifica se o guerreiro está no lado 1 (Gregos e Nórdicos)
         for (int i = 0; i < 4; i++) {
             if (lado1[i].encontrarGuerreiro(guerreiro) != -1) {
                 return 1; // Guerreiro está no lado 1
             }
         }
 
-        // Verifica se o guerreiro está no lado 2 (Atlantes e Egípcios)
         for (int i = 0; i < 4; i++) {
             if (lado2[i].encontrarGuerreiro(guerreiro) != -1) {
                 return 2; // Guerreiro está no lado 2
@@ -80,7 +79,7 @@ public class Arena {
         double soma = 0;
         for (FilaDeGuerreiros fila : lado) {
             for (Guerreiro guerreiro : fila.getLista()) {
-                if (!guerreiro.isEstaMorto()) { // Considera apenas guerreiros vivos
+                if (!guerreiro.isEstaMorto()) { 
                     soma += guerreiro.getPeso();
                 }
             }
@@ -105,7 +104,7 @@ public class Arena {
         Guerreiro maisVelho = null;
         for (FilaDeGuerreiros fila : lado) {
             for (Guerreiro guerreiro : fila.getLista()) {
-                if (!guerreiro.isEstaMorto() && (maisVelho == null || guerreiro.getIdade() > maisVelho.getIdade())) {
+                if (!guerreiro.isEstaMorto() && ((maisVelho == null) || (guerreiro.getIdade() > maisVelho.getIdade()))) {
                     maisVelho = guerreiro;
                 }
             }
@@ -160,7 +159,6 @@ public class Arena {
             Guerreiro atacante = filaAtacante.getPrimeiroGuerreiro();
 
             if (atacante != null && !atacante.isEstaMorto()) {
-                // Busca o próximo guerreiro vivo do lado defensor
                 Guerreiro defensor = buscarDefensor(ladoDefensor, i);
 
                 if (defensor != null && !defensor.isEstaMorto()) {
@@ -169,7 +167,6 @@ public class Arena {
                     if (defensor.isEstaMorto()) {
                         ultimoMorto = defensor;
                         ultimoAssassino = atacante;
-                        // Remover o defensor morto imediatamente
                         removerGuerreiroMorto(defensor, ladoDefensor);
                         System.out.println(defensor.getNome() + " foi morto por " + atacante.getNome() + " e removido da arena.");
                     }
@@ -224,14 +221,6 @@ public class Arena {
                     System.out.println(guerreiro.getNome() + " foi removido da arena.");
                 }
             }
-        }
-    }
-
-    // Método para aplicar o veneno ao guerreiro que está envenenado
-    private void aplicarVenenoSeNecessario(Guerreiro guerreiro) {
-        if (guerreiro.isEnvenenado()) {
-            System.out.println(guerreiro.getNome() + " está envenenado e sofre 5 pontos de dano ao atacar.");
-            guerreiro.sofrerDano(5, this); // Aplica o dano de veneno
         }
     }
 
@@ -295,7 +284,6 @@ public class Arena {
     // Método para verificar se todos os guerreiros de um lado estão mortos
     public boolean todosGuerreirosMortos(int lado) {
         FilaDeGuerreiros[] filas;
-
         if (lado == 1) {
             filas = lado1;
         } else {
@@ -303,7 +291,6 @@ public class Arena {
         }
         for (FilaDeGuerreiros fila : filas) {
             if (!fila.estaVazia()) {
-                // Verificar se a fila está vazia, ou se restam guerreiros vivos
                 for (Guerreiro guerreiro : fila.getLista()) {
                     if (guerreiro != null && !guerreiro.isEstaMorto()) {
                         return false; // Ainda há guerreiros vivos neste lado

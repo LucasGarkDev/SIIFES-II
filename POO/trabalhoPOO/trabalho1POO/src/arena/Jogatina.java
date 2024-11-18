@@ -44,8 +44,8 @@ public class Jogatina {
 
  
         System.out.println("Identificando o guerreiro mais velho de cada lado...");
-        arena.exibirGuerreiroMaisVelho(1); // Lado 1 (Gregos e Nórdicos)
-        arena.exibirGuerreiroMaisVelho(2); // Lado 2 (Atlantes e Egípcios)
+        arena.exibirGuerreiroMaisVelho(1); 
+        arena.exibirGuerreiroMaisVelho(2); 
 
         System.out.println("====================================================================");
         System.out.println("Exibindo guerreiros da arena:");

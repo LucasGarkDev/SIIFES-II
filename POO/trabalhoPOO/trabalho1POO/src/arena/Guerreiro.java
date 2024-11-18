@@ -10,56 +10,44 @@ package arena;
  */
 public abstract class Guerreiro {
     protected String nome;
-    private int idade;  // Atributo idade privado
+    private int idade;  
     protected double peso;
-    protected int energia = 100;  // Vida inicial de 100 pontos
-    protected int dano;  // Dano a ser definido pelas subclasses
-    protected boolean estaMorto;  // Flag para indicar se o guerreiro está morto
+    protected int energia = 100;  
+    protected int dano;  
+    protected boolean estaMorto; 
     protected Arena arena;
-    protected boolean envenenado = false; // Indica se o guerreiro está envenenado
-
-    public void setEstaMorto(boolean estaMorto) {
-        this.estaMorto = estaMorto;
-    }
-
-
-    // Construtor
+    protected boolean envenenado = false; 
+    
     public Guerreiro(String nome, int idade, double peso) {
         this.nome = nome;
         this.idade = idade;
         this.peso = peso;
-        this.estaMorto = false;  // Todos os guerreiros começam vivos
+        this.estaMorto = false;  
     }
     
-    // Método abstrato para o ataque
     public abstract void atacar(Arena arena, Guerreiro adversario);
 
-    // Método para sofrer dano
     public void sofrerDano(int quantidade, Arena arena){
         if (!estaMorto) {
             this.energia -= quantidade;
             if (this.energia <= 0) {
-                this.energia = 0;  // Energia não pode ser negativa
-                this.estaMorto = true;  // Marca o guerreiro como morto
+                this.energia = 0;  
+                this.estaMorto = true;  
             }
         }
     }
     
-    // Método que aplica o veneno no guerreiro
     public void envenenar() {
         this.envenenado = true;
     }
 
-    // Verifica se o guerreiro está envenenado
     public boolean isEnvenenado() {
         return envenenado;
     }
 
-    // Verificar se o guerreiro está morto
     public boolean isEstaMorto() {
-        // Adiciona verificação de null antes de retornar o estado
         if (this == null) {
-            return true; // Se o guerreiro for null, consideramos ele "morto"
+            return true; 
         }
         return estaMorto;
     }
@@ -96,9 +84,9 @@ public abstract class Guerreiro {
 
     public void setEnergia(int energia) {
         if (!estaMorto) {
-            this.energia = Math.max(0, energia);  // Garante que energia não seja negativa
+            this.energia = Math.max(0, energia);  
             if (this.energia == 0) {
-                this.estaMorto = true;  // Se a energia for zero, o guerreiro está morto
+                this.estaMorto = true;  
             }
         }
     }
@@ -111,8 +99,6 @@ public abstract class Guerreiro {
         this.arena = arena;
     }
 
-   
-    // Método para exibir o estado do guerreiro
     @Override
     public String toString() {
         return String.format("%s: %d anos, %.2f kg, %d pontos de energia %s", 
