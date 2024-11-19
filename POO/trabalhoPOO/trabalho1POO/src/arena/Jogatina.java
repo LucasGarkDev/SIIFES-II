@@ -39,19 +39,19 @@ public class Jogatina {
         leitor.montarArena(); // Lê todos os arquivos e monta as filas de cada lado na arena
 
         System.out.println("====================================================================");
-        System.out.println("Calculando a soma dos pesos dos guerreiros...");
+        System.out.println("a) Exibindo guerreiros da arena:");
+        arena.exibirGuerreirosDeCadaLado();
+        
+        System.out.println("b) Calculando a soma dos pesos dos guerreiros...");
         arena.exibirSomaDosPesosDosGuerreiros();
 
  
-        System.out.println("Identificando o guerreiro mais velho de cada lado...");
+        System.out.println("c) Identificando o guerreiro mais velho...");
         arena.exibirGuerreiroMaisVelho(1); 
         arena.exibirGuerreiroMaisVelho(2); 
 
-        System.out.println("====================================================================");
-        System.out.println("Exibindo guerreiros da arena:");
-        arena.exibirGuerreirosDeCadaLado();
-
         System.out.println("Iniciando o combate...");
         arena.iniciarCombate();
+        System.out.println("====================================================================");
     }
 }

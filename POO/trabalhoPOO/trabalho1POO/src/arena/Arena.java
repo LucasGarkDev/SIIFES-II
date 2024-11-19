@@ -319,11 +319,11 @@ public class Arena {
             // Verificar se um dos lados perdeu após o turno
             if (todosGuerreirosMortos(1)) {
                 System.out.println("-------------------------------------");
-                System.out.println("Lado 2 (Atlantes e Egípcios) venceu!");
+                System.out.println("d) Lado 2 (Atlantes e Egípcios) venceu!");
                 break;
             } else if (todosGuerreirosMortos(2)) {
                 System.out.println("-------------------------------------");
-                System.out.println("Lado 1 (Gregos e Nórdicos) venceu!");
+                System.out.println("d) Lado 1 (Gregos e Nórdicos) venceu!");
                 break;
             }
         }
@@ -341,8 +341,8 @@ public class Arena {
         if (ultimoMorto == null || ultimoAssassino == null) {
             throw new UltimoGuerreiroNaoIdentificadoException("Não foi possível identificar o último guerreiro morto ou quem o matou.");
         }
-        System.out.println("Último guerreiro morto: " + ultimoMorto.getNome());
-        System.out.println("Guerreiro que o matou: " + ultimoAssassino.getNome());
+        System.out.println("e) Último guerreiro morto: " + ultimoMorto.getNome() + " por " + ultimoAssassino.getNome());
+        System.out.println("f) Guerreiro que o matou foi: " + ultimoAssassino.getNome() + " o guerreiro " + ultimoMorto.getNome());
     }
 
     // Método para permitir a interação entre guerreiros de diferentes filas do mesmo lado

@@ -1,5 +1,1 @@
-3 Zendor 33 157.72
-6 Marlos 32 80.99
-6 Thalnor 33 132.14
-3 Karron 44 133.39
-1 Valkan 31 104.23
+6 Fenmir 19 153.03
