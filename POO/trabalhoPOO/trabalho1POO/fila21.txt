@@ -1,2 +1,5 @@
-6 Drodor 44 91.49
-5 Zenlos 23 71.49
+1 Zenthos 28 125.52
+1 Karnor 45 137.39
+6 Zennor 38 153.22
+1 Orkan 33 129.85
+3 Lunlos 56 72.03

@@ -1,2 +1,5 @@
-2 Dromir 48 169.76
-1 Drokan 31 148.62
+2 Kardor 32 110.50
+4 Valgar 40 83.74
+5 Marthos 34 95.88
+5 Karlos 30 81.33
+5 Orthos 30 98.56
