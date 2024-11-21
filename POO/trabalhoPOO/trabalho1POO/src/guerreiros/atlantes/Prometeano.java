@@ -43,7 +43,7 @@ public class Prometeano extends GuerreiroAtlante {
 
     private void dividirAntesDeMorrer() {
         int novaEnergia = this.maxEnergia / 2;
-        if (novaEnergia >= 5) {
+        if (novaEnergia >= 1) {
             System.out.println(super.getNome() + " se divide em dois!");
 
             Prometeano filho1 = new Prometeano(this.getNome() + "1", this.getIdade(), this.getPeso(), novaEnergia);
