@@ -1,2 +1,5 @@
-2 Zenron 45 166.08
-4 Thalgar 18 159.58
+3 Valron 45 151.58
+4 Belthos 30 78.74
+2 Drokan 26 165.72
+3 Orkan 48 108.83
+5 Belthos 25 100.43
