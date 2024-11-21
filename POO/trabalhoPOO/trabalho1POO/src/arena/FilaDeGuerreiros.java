@@ -96,7 +96,7 @@ public class FilaDeGuerreiros {
             Guerreiro guerreiro2 = guerreiros.get(posicao2);
             guerreiros.set(posicao1, guerreiro2);
             guerreiros.set(posicao2, guerreiro1);
-            System.out.println(guerreiro1.getNome() + " trocou de lugar com " + guerreiro2.getNome());
+            //System.out.println(guerreiro1.getNome() + " trocou de lugar com " + guerreiro2.getNome());
         } else {
             System.out.println("Posições inválidas para troca.");
         }
@@ -106,7 +106,7 @@ public class FilaDeGuerreiros {
         if ((posicaoAtual >= 0) && (posicaoAtual < guerreiros.size()) && (novaPosicao >= 0) && (novaPosicao <= guerreiros.size())) {
             Guerreiro guerreiro = guerreiros.remove(posicaoAtual);
             guerreiros.add(novaPosicao, guerreiro);
-            System.out.println(guerreiro.getNome() + " foi movido da posição " + posicaoAtual + " para a posição " + novaPosicao);
+            //System.out.println(guerreiro.getNome() + " foi movido da posição " + posicaoAtual + " para a posição " + novaPosicao);
         } else {
             System.out.println("Posições inválidas para movimento.");
         }

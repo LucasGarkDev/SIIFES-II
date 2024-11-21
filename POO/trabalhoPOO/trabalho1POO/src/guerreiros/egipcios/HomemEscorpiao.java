@@ -22,12 +22,12 @@ public class HomemEscorpiao extends GuerreiroEgipcio {
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            //System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
 
             if (!adversario.isEnvenenado()) {
                 adversario.envenenar();
-                System.out.println(adversario.getNome() + " foi envenenado e sofrerá 5 pontos de dano toda vez que atacar.");
+                //System.out.println(adversario.getNome() + " foi envenenado e sofrerá 5 pontos de dano toda vez que atacar.");
             }
         }
     }

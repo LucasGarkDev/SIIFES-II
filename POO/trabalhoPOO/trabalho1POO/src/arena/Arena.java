@@ -203,7 +203,7 @@ public class Arena {
                 Guerreiro guerreiro = iterator.next();
                 if ((guerreiro != null) && (guerreiro.isEstaMorto())) {
                     iterator.remove();
-                    System.out.println(guerreiro.getNome() + " foi removido da arena.");
+                    //System.out.println(guerreiro.getNome() + " foi removido da arena.");
                 }
             }
         }
@@ -290,21 +290,21 @@ public class Arena {
     public void iniciarCombate() {
         while (!todosGuerreirosMortos(1) && !todosGuerreirosMortos(2)) { 
             int ladoSorteado = sortearLado();
-            System.out.println("-------------------------------------");
-            System.out.println("Lado " + ladoSorteado + " começa o turno.");
-            System.out.println("-------------------------------------");
+//            System.out.println("-------------------------------------");
+//            System.out.println("Lado " + ladoSorteado + " começa o turno.");
+//            System.out.println("-------------------------------------");
 
             try {
                 executarTurno(ladoSorteado); 
             } catch (UltimoGuerreiroMortoException e) {
                 // Captura o evento de morte
-                System.out.println(e.getMessage()); // Mensagem formatada pela exceção
+                //System.out.println(e.getMessage()); // Mensagem formatada pela exceção
                 this.ultimoMorto = e.getUltimoMorto();
                 this.ultimoAssassino = e.getAssassino();
             }
 
-            System.out.println("-------------------------------------");
-            exibirGuerreirosDeCadaLado();
+//            System.out.println("-------------------------------------");
+//            exibirGuerreirosDeCadaLado();
 
             if (todosGuerreirosMortos(1)) {
                 System.out.println("-------------------------------------");

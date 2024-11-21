@@ -1,4 +1,3 @@
-2 Valgar 56 167.63
-4 Valros 27 158.54
-4 Fenmir 32 164.24
-2 Thalthos 45 109.39
+2 Thaltis 44 127.90
+3 Lungar 42 133.22
+2 Lunnor 43 112.73

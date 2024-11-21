@@ -30,7 +30,7 @@ public class Ciclope extends GuerreiroGrego {
         boolean ladoCiclopeSorteado = (arena.getLadoSorteado() == 1); // Verifica se o lado 1 foi sorteado
 
         if ((this == primeiroNaFila) && (ladoCiclopeSorteado)) {
-            System.out.println(this.getNome() + " ataca com força total!");
+            //System.out.println(this.getNome() + " ataca com força total!");
             adversario.sofrerDano(this.dano, arena); // Causar dano
 
             if (!adversario.isEstaMorto() && adversario != null) {
@@ -38,10 +38,10 @@ public class Ciclope extends GuerreiroGrego {
                 FilaDeGuerreiros filaAdversaria = arena.getFila(2, filaAdversarioIndice); 
                 filaAdversaria.moverGuerreiroParaFrente(filaAdversaria.encontrarGuerreiro(adversario), filaAdversaria.getLista().size() - 1);
 
-                System.out.println(adversario.getNome() + " foi movido para o fim da sua fila!");
+                //System.out.println(adversario.getNome() + " foi movido para o fim da sua fila!");
             }
         } else {
-            System.out.println(this.getNome() + " ataca normalmente.");
+            //System.out.println(this.getNome() + " ataca normalmente.");
             adversario.sofrerDano(this.dano, arena);
         }
     }

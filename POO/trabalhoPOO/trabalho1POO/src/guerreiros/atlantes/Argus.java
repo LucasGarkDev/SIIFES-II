@@ -24,7 +24,7 @@ public class Argus extends GuerreiroAtlante {
     public void atacar(Arena arena, Guerreiro adversario) {
         this.arena = arena;  
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " e mata instantaneamente!");
+            //System.out.println(getNome() + " ataca " + adversario.getNome() + " e mata instantaneamente!");
             adversario.sofrerDano(adversario.getEnergia(), arena);  
         }
     }

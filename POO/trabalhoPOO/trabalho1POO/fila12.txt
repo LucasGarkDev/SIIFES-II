@@ -1,4 +1,3 @@
-5 Valnor 24 156.22
-2 Ordor 52 78.89
-5 Orron 54 70.76
-6 Drogar 54 117.46
+5 Ortis 31 88.13
+5 Marlos 42 72.15
+1 Valthos 40 153.47

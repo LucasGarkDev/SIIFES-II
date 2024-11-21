@@ -35,11 +35,11 @@ public class GiganteDePedra extends GuerreiroNordico {
             minhaFila.setDeveSerAtacada(true); // Ativa o flag para que apenas esta fila seja atacada
 
             habilidadeAtivada = true;
-            System.out.println(this.getNome() + " ativou sua habilidade para atrair todos os ataques para sua fila.");
+            //System.out.println(this.getNome() + " ativou sua habilidade para atrair todos os ataques para sua fila.");
         }
 
         adversario.sofrerDano(this.dano, arena);
-        System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
+        //System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando " + this.dano + " de dano.");
     }
 
     public void resetarHabilidade() {

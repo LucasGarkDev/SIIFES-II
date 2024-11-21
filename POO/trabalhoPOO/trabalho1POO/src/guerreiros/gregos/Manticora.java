@@ -48,7 +48,7 @@ public class Manticora extends GuerreiroGrego{
             Guerreiro guerreiroAcima = filaAcima.getPrimeiroGuerreiro();
             if (guerreiroAcima != null) {
                 guerreiroAcima.sofrerDano(15,arena);
-                System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAcima.getNome() + " (fila acima).");
+                //System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAcima.getNome() + " (fila acima).");
             }
         }
 
@@ -56,11 +56,11 @@ public class Manticora extends GuerreiroGrego{
             Guerreiro guerreiroAbaixo = filaAbaixo.getPrimeiroGuerreiro();
             if (guerreiroAbaixo != null) {
                 guerreiroAbaixo.sofrerDano(15,arena);
-                System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAbaixo.getNome() + " (fila abaixo).");
+                //System.out.println(this.getNome() + " também causou 15 de dano a " + guerreiroAbaixo.getNome() + " (fila abaixo).");
             }
         }
 
-        System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando 30 de dano.");
+        //System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando 30 de dano.");
     }
     
     @Override

@@ -24,11 +24,11 @@ public class Mumia extends GuerreiroEgipcio {
     public void atacar(Arena arena, Guerreiro adversario) {
         this.arena = arena;
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            //System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
 
             if (adversario.isEstaMorto()) {
-                System.out.println(getNome() + " matou " + adversario.getNome() + ".");
+                //System.out.println(getNome() + " matou " + adversario.getNome() + ".");
                 criarMortoVivo(arena, adversario);
             }
         }
@@ -50,11 +50,11 @@ public class Mumia extends GuerreiroEgipcio {
         int indiceFila = arena.encontrarFilaDeGuerreiro(this);
         arena.getFila(2, indiceFila).adicionarGuerreiroNoFinal(mortoVivo);
 
-        System.out.println("Um Morto-Vivo surge com o nome " + adversarioMorto.getNome() + " no final da fila.");
+        //System.out.println("Um Morto-Vivo surge com o nome " + adversarioMorto.getNome() + " no final da fila.");
     }
 
     private void criarAnubitas() {
-        System.out.println(this.getNome() + " morreu, mas 4 Anubitas surgem em seu lugar!");
+        //System.out.println(this.getNome() + " morreu, mas 4 Anubitas surgem em seu lugar!");
 
         int indiceFila = arena.encontrarFilaDeGuerreiro(this);
         for (int i = 0; i < 4; i++) {

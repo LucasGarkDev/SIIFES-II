@@ -13,7 +13,7 @@ public class UltimoGuerreiroMortoException extends Exception {
     private final Guerreiro assassino;
 
     public UltimoGuerreiroMortoException(Guerreiro ultimoMorto, Guerreiro assassino) {
-        super("");
+        super("...");
         this.ultimoMorto = ultimoMorto;
         this.assassino = assassino;
     }

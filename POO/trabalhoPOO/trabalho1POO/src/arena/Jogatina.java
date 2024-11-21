@@ -5,21 +5,6 @@
 package arena;
 
 import geradores.GeradorDeGuerreiros;
-import arena.Arena;
-
-// Importar todas as classes do pacote guerreiros.gregos
-import guerreiros.gregos.*;
-
-// Importar todas as classes do pacote guerreiros.nordicos
-import guerreiros.nordicos.*;
-
-// Importar todas as classes do pacote guerreiros.atlantes
-import guerreiros.atlantes.*;
-
-// Importar todas as classes do pacote guerreiros.egipcios
-import guerreiros.egipcios.*;
-
-import geradores.*;
 
 /**
  *
@@ -43,12 +28,11 @@ public class Jogatina {
         
         System.out.println("b) Calculando a soma dos pesos dos guerreiros...");
         arena.exibirSomaDosPesosDosGuerreiros();
-
  
         System.out.println("c) Identificando o guerreiro mais velho...");
         arena.exibirGuerreiroMaisVelhoDaArena();
 
-        System.out.println("Iniciando o combate...");
+//        System.out.println("Iniciando o combate...");
         arena.iniciarCombate();
         System.out.println("====================================================================");
     }

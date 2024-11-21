@@ -26,7 +26,7 @@ public class LoboDeFenris extends GuerreiroNordico {
         
         if(adversario != null){
             adversario.sofrerDano(danoTotal,arena);
-            System.out.println(this.getNome() + "atacou " + adversario.getNome() + " causando " + danoTotal + " de dano.");
+            //System.out.println(this.getNome() + "atacou " + adversario.getNome() + " causando " + danoTotal + " de dano.");
         }
     }
 

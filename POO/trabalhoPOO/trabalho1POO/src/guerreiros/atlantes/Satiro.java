@@ -26,15 +26,15 @@ public class Satiro extends GuerreiroAtlante {
         if (filaAdversario != -1) { 
             FilaDeGuerreiros filaDefensora = arena.getFila(1, filaAdversario); 
 
-            System.out.println(this.getNome() + " está atacando toda a fila adversária " + (filaAdversario + 1) + ".");
+            //System.out.println(this.getNome() + " está atacando toda a fila adversária " + (filaAdversario + 1) + ".");
             for (Guerreiro guerreiro : filaDefensora.getLista()) {
                 if (guerreiro != null && !guerreiro.isEstaMorto()) {
                     guerreiro.sofrerDano(this.dano,arena); 
-                    System.out.println(this.getNome() + " causou " + this.dano + " de dano a " + guerreiro.getNome() + ".");
+                    //System.out.println(this.getNome() + " causou " + this.dano + " de dano a " + guerreiro.getNome() + ".");
                 }
             }
         } else {
-            System.out.println(this.getNome() + " não encontrou uma fila válida para atacar.");
+            //System.out.println(this.getNome() + " não encontrou uma fila válida para atacar.");
         }
     }
     

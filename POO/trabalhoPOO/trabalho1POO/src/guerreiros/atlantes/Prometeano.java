@@ -27,7 +27,7 @@ public class Prometeano extends GuerreiroAtlante {
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
         if (adversario != null && !adversario.isEstaMorto()) {
-            System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
+            //System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
         }
     }
@@ -44,7 +44,7 @@ public class Prometeano extends GuerreiroAtlante {
     private void dividirAntesDeMorrer() {
         int novaEnergia = this.maxEnergia / 2;
         if (novaEnergia >= 1) {
-            System.out.println(super.getNome() + " se divide em dois!");
+            //System.out.println(super.getNome() + " se divide em dois!");
 
             Prometeano filho1 = new Prometeano(this.getNome() + "1", this.getIdade(), this.getPeso(), novaEnergia);
             Prometeano filho2 = new Prometeano(this.getNome() + "2", this.getIdade(), this.getPeso(), novaEnergia);
@@ -55,9 +55,9 @@ public class Prometeano extends GuerreiroAtlante {
             minhaFila.adicionarGuerreiroNoFinal(filho2);
 
             this.estaMorto = true;
-            System.out.println(this.getNome() + " morreu, mas deixou " + filho1.getNome() + " e " + filho2.getNome() + ".");
+            //System.out.println(this.getNome() + " morreu, mas deixou " + filho1.getNome() + " e " + filho2.getNome() + ".");
         } else {
-            System.out.println(this.getNome() + " não tem energia suficiente para se dividir.");
+           // System.out.println(this.getNome() + " não tem energia suficiente para se dividir.");
         }
     }
     
