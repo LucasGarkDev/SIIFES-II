@@ -300,14 +300,14 @@ public class Arena {
 
     // Método para iniciar o combate até que um lado seja derrotado
     public void iniciarCombate() {
-        while (!todosGuerreirosMortos(1) && !todosGuerreirosMortos(2)) { // Ambos os lados devem ter guerreiros vivos
+        while (!todosGuerreirosMortos(1) && !todosGuerreirosMortos(2)) { 
             int ladoSorteado = sortearLado();
             System.out.println("-------------------------------------");
             System.out.println("Lado " + ladoSorteado + " começa o turno.");
             System.out.println("-------------------------------------");
 
             try {
-                executarTurno(ladoSorteado); // O turno pode lançar a exceção UltimoGuerreiroMortoException
+                executarTurno(ladoSorteado); 
             } catch (UltimoGuerreiroMortoException e) {
                 // Captura o evento de morte
                 System.out.println(e.getMessage()); // Mensagem formatada pela exceção
@@ -318,7 +318,6 @@ public class Arena {
             System.out.println("-------------------------------------");
             exibirGuerreirosDeCadaLado();
 
-            // Verifica se algum lado foi completamente derrotado
             if (todosGuerreirosMortos(1)) {
                 System.out.println("-------------------------------------");
                 System.out.println("d) Lado 2 (Atlantes e Egípcios) venceu!");
@@ -330,7 +329,6 @@ public class Arena {
             }
         }
 
-        // Exibir o último guerreiro morto ao final do combate
         if (ultimoMorto != null && ultimoAssassino != null) {
             System.out.println("e) O último guerreiro morto foi: " + ultimoMorto.getNome() + ", morto por: " + ultimoAssassino.getNome() + ".");
             System.out.println("f) O Guerreiro que matou o ultimo oponente foi: " + ultimoAssassino.getNome() + ", responsavel por matar: " + ultimoMorto.getNome() + ".");
