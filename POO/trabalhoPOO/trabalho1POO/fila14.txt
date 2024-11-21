@@ -1,2 +1,5 @@
-2 Marlos 33 96.69
-5 Droron 33 97.94
+3 Markan 36 144.86
+6 Drotis 44 141.22
+1 Zenros 44 91.46
+4 Thaldor 33 129.51
+2 Valdor 36 103.94

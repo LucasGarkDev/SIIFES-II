@@ -47,8 +47,7 @@ public class Jogatina {
 
  
         System.out.println("c) Identificando o guerreiro mais velho...");
-        arena.exibirGuerreiroMaisVelho(1); 
-        arena.exibirGuerreiroMaisVelho(2); 
+        arena.exibirGuerreiroMaisVelhoDaArena();
 
         System.out.println("Iniciando o combate...");
         arena.iniciarCombate();

@@ -1,1 +1,4 @@
-2 Zendor 34 147.14
+1 Zenthos 29 84.69
+6 Drodor 21 137.40
+5 Zengar 21 121.46
+6 Zennor 32 99.27
