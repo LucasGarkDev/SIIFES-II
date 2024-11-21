@@ -1,5 +1,2 @@
-6 Lunthos 40 143.85
-1 Karkan 40 86.38
-4 Belros 42 169.44
-1 Ortis 47 84.45
-4 Thalkan 51 166.92
+6 Drodor 44 91.49
+5 Zenlos 23 71.49

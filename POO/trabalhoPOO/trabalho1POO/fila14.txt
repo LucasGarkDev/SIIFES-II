@@ -1,4 +1,2 @@
-5 Thalkan 25 132.67
-3 Marros 54 155.11
-5 Belnor 29 81.03
-6 Lunthos 42 89.02
+4 Droron 30 169.83
+6 Orron 28 115.14

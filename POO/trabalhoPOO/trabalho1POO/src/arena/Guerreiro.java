@@ -101,7 +101,7 @@ public abstract class Guerreiro {
 
     @Override
     public String toString() {
-        return String.format("%s: %d anos, %.2f kg, %d pontos de energia %s", 
+        return String.format("("+getClass().getSimpleName() +") " + "nome: %s, %d anos, %.2f kg, %d pontos de energia %s", 
             nome, idade, peso, energia, estaMorto ? "(Morto)" : "(Vivo)");
     }
 }

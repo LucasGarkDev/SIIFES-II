@@ -1,5 +1,1 @@
-5 Zenron 49 100.64
-4 Kardor 27 73.72
-5 Fenlos 32 169.97
-1 Drokan 43 132.85
-1 Fenthos 26 85.62
+4 Zengar 32 86.83
