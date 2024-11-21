@@ -1,1 +1,4 @@
-5 Belmir 38 159.34
+2 Valgar 56 167.63
+4 Valros 27 158.54
+4 Fenmir 32 164.24
+2 Thalthos 45 109.39

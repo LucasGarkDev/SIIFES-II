@@ -1,2 +1,3 @@
-5 Valthos 42 113.88
-1 Marmir 50 76.35
+4 Fenthos 51 106.18
+6 Belron 32 138.35
+6 Orthos 24 152.72

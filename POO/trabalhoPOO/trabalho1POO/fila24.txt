@@ -1,1 +1,3 @@
-4 Lunros 48 146.50
+6 Karros 19 149.88
+2 Thalnor 38 100.70
+2 Vallos 27 110.19

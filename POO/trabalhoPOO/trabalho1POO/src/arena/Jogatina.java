@@ -34,7 +34,6 @@ public class Jogatina {
         gerador.gerarESalvarGuerreirosParaArena(1); // Gregos e Nórdicos (lado 1)
         gerador.gerarESalvarGuerreirosParaArena(2); // Atlantes e Egípcios (lado 2)
 
-
         LeitorDeGuerreiros leitor = new LeitorDeGuerreiros(arena);
         leitor.montarArena(); // Lê todos os arquivos e monta as filas de cada lado na arena
 

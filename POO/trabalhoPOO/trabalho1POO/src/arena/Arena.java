@@ -194,18 +194,6 @@ public class Arena {
         return null;
     }
 
-    private void removerGuerreiroMorto(Guerreiro guerreiro, FilaDeGuerreiros[] lado) {
-        for (FilaDeGuerreiros fila : lado) {
-            Iterator<Guerreiro> iterator = fila.getLista().iterator();
-            while (iterator.hasNext()) {
-                Guerreiro g = iterator.next();
-                if ((g.equals(guerreiro)) && (g.isEstaMorto())) {
-                    iterator.remove();
-                    break;
-                }
-            }
-        }
-    }
 
     // Método para remover guerreiros mortos de todas as filas de um lado (após o turno)
     private void removerGuerreirosMortos(FilaDeGuerreiros[] lado) {

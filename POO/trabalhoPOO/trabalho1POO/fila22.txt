@@ -1,4 +1,2 @@
-3 Belthos 25 81.13
-1 Zenmir 55 96.04
-4 Karlos 52 138.11
-5 Orgar 50 160.95
+6 Lundor 46 167.36
+1 Drotis 42 126.78

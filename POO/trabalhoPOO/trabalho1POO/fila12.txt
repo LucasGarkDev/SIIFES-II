@@ -1,3 +1,4 @@
-2 Orthos 18 85.93
-2 Valron 41 135.83
-1 Karkan 35 99.79
+5 Valnor 24 156.22
+2 Ordor 52 78.89
+5 Orron 54 70.76
+6 Drogar 54 117.46
