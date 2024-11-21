@@ -38,8 +38,5 @@ public class Satiro extends GuerreiroAtlante {
         }
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Satiro)";
-    }
+
 }

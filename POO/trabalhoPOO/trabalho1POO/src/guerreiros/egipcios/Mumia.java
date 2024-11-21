@@ -63,8 +63,5 @@ public class Mumia extends GuerreiroEgipcio {
         }
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Mumia)";
-    }
+
 }

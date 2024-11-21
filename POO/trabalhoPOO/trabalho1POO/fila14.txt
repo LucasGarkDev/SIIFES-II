@@ -1,4 +1,2 @@
-5 Ormir 31 118.85
-2 Thalron 38 168.02
-4 Belgar 28 157.88
-3 Marlos 57 119.37
+3 Droron 54 94.96
+5 Valthos 57 132.49

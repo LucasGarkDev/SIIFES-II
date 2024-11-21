@@ -63,8 +63,5 @@ public class Manticora extends GuerreiroGrego{
         //System.out.println(this.getNome() + " atacou " + adversario.getNome() + " causando 30 de dano.");
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Manticora)";
-    }
+
 }

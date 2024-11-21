@@ -71,8 +71,8 @@ public class Arena {
         double somaPesosLado1 = calcularSomaPesos(lado1);
         double somaPesosLado2 = calcularSomaPesos(lado2);
 
-        System.out.println("Soma dos pesos dos guerreiros do Lado 1 (Gregos e Nórdicos): " + somaPesosLado1 + " kg");
-        System.out.println("Soma dos pesos dos guerreiros do Lado 2 (Atlantes e Egípcios): " + somaPesosLado2 + " kg");
+        System.out.println("Gregos e Nórdicos pesam " + somaPesosLado1 + " kilos");
+        System.out.println("Atlantes e Egípcios pesam " + somaPesosLado2 + " kilos");
     }
 
     private double calcularSomaPesos(FilaDeGuerreiros[] lado) {
@@ -92,8 +92,8 @@ public class Arena {
         Guerreiro guerreiroMaisVelho = encontrarGuerreiroMaisVelhoDaArena();
 
         if (guerreiroMaisVelho != null) {
-            System.out.println("Guerreiro mais velho da arena: " + guerreiroMaisVelho.getNome()
-                    + " com " + guerreiroMaisVelho.getIdade() + " anos.");
+            System.out.println("O " + guerreiroMaisVelho.getClass().getSimpleName() +" "+ guerreiroMaisVelho.getNome()
+                    + "e o mais velho e tem " + guerreiroMaisVelho.getIdade() + " anos.");
         } else {
             System.out.println("Nenhum guerreiro encontrado na arena.");
         }
@@ -308,18 +308,21 @@ public class Arena {
 
             if (todosGuerreirosMortos(1)) {
                 System.out.println("-------------------------------------");
-                System.out.println("d) Lado 2 (Atlantes e Egípcios) venceu!");
+                System.out.println("d) Atlantes e Egípcios venceram!");
                 break;
             } else if (todosGuerreirosMortos(2)) {
                 System.out.println("-------------------------------------");
-                System.out.println("d) Lado 1 (Gregos e Nórdicos) venceu!");
+                System.out.println("d) Gregos e Nórdicos venceram!");
                 break;
             }
         }
 
         if (ultimoMorto != null && ultimoAssassino != null) {
-            System.out.println("e) O último guerreiro morto foi: " + ultimoMorto.getNome() + ", morto por: " + ultimoAssassino.getNome() + ".");
-            System.out.println("f) O Guerreiro que matou o ultimo oponente foi: " + ultimoAssassino.getNome() + ", responsavel por matar: " + ultimoMorto.getNome() + ".");
+            System.out.println("e) O(a) " + ultimoMorto.getClass().getSimpleName() + " " + ultimoMorto.getNome() + " de " + ultimoMorto.getIdade() + " anos e "
+            + ultimoMorto.getPeso() + " kilos foi o ultimo a ser derrotado.");
+            System.out.println("f) O(a) " + ultimoAssassino.getClass().getSimpleName() + " " + ultimoAssassino.getNome() + " de " + ultimoAssassino.getIdade() + " anos e "
+            + ultimoAssassino.getPeso() + " transferiou o ultimo ataque no " + ultimoMorto.getClass().getSimpleName() + " " + ultimoMorto.getNome() + " de " + ultimoMorto.getIdade() + " anos e "
+            + ultimoMorto.getPeso() + " kilos." );
         } else {
             System.out.println("Nenhum guerreiro morreu durante o combate.");
         }

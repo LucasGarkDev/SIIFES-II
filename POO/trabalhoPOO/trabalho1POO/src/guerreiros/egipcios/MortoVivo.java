@@ -28,8 +28,5 @@ public class MortoVivo extends GuerreiroEgipcio{
         }
     }
     
-    @Override
-    public String getNome() {
-        return this.nome + "(Morto-Vivo)";
-    }
+
 }

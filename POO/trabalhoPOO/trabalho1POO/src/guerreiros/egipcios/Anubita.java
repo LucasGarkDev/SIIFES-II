@@ -33,8 +33,5 @@ public class Anubita extends GuerreiroEgipcio{
         }
     }
    
-    @Override
-    public String getNome() {
-        return nome + "(Anubita)";
-    }
+
 }

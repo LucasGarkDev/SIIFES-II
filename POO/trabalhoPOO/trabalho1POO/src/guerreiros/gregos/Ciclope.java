@@ -46,8 +46,5 @@ public class Ciclope extends GuerreiroGrego {
         }
     }
 
-    @Override
-    public String getNome() {
-        return nome + " (Ciclope)";
-    }
+
 }

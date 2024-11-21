@@ -1,3 +1,3 @@
-5 Ortis 31 88.13
-5 Marlos 42 72.15
-1 Valthos 40 153.47
+5 Lunros 30 127.07
+3 Zenron 48 121.87
+6 Orlos 18 88.89

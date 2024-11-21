@@ -31,9 +31,5 @@ public class HomemEscorpiao extends GuerreiroEgipcio {
             }
         }
     }
-    
-    @Override
-    public String getNome() {
-        return nome + "(Homem Escorpião)";
-    }
+
 }

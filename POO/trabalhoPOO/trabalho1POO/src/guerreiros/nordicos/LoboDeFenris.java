@@ -49,9 +49,6 @@ public class LoboDeFenris extends GuerreiroNordico {
         return bonusDeDano;
     }
    
-    @Override
-    public String getNome() {
-        return nome + "(Lobo de Fenris)";
-    }
+
 }
 

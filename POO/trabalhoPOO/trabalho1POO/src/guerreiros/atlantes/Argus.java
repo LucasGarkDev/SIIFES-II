@@ -35,9 +35,6 @@ public class Argus extends GuerreiroAtlante {
         super.sofrerDano(quantidade, arena);  
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Argus)";
-    }
+    
 }
 

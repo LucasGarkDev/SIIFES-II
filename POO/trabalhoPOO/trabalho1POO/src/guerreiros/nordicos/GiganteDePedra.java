@@ -46,8 +46,5 @@ public class GiganteDePedra extends GuerreiroNordico {
         habilidadeAtivada = false;
     }
 
-    @Override
-    public String getNome() {
-        return nome + " (Gigante de Pedra)";
-    }
+
 }

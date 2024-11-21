@@ -36,8 +36,5 @@ public class Valquiria extends GuerreiroNordico {
         }
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Valquiria)";
-    }
+
 }

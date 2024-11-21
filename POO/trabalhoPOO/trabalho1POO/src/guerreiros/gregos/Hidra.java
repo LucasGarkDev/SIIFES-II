@@ -38,8 +38,5 @@ public class Hidra extends GuerreiroGrego{
         }    
     }
     
-    @Override
-    public String getNome() {
-        return nome + "(Hidra)";
-    }
+
 }
