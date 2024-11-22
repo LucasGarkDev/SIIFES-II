@@ -34,7 +34,6 @@ public class Prometeano extends GuerreiroAtlante {
 
     @Override
     public void sofrerDano(int quantidade, Arena arena) {
-//        this.arena = arena;
         if (this.energia - quantidade <= 0) {
             dividirAntesDeMorrer(arena);
         }
@@ -60,14 +59,4 @@ public class Prometeano extends GuerreiroAtlante {
            // System.out.println(this.getNome() + " não tem energia suficiente para se dividir.");
         }
     }
-    
-    @Override
-    public String getNome() {
-        return nome;
-    }
-    
-//    @Override
-//    public String getNome() {
-//        return nome + "(Prometeano)";
-//    }
 }

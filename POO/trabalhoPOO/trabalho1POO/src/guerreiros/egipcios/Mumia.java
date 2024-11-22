@@ -22,7 +22,6 @@ public class Mumia extends GuerreiroEgipcio {
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-//        this.arena = arena;
         if (adversario != null && !adversario.isEstaMorto()) {
             //System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
@@ -36,7 +35,6 @@ public class Mumia extends GuerreiroEgipcio {
 
     @Override
     public void sofrerDano(int quantidade, Arena arena) {
-//        this.arena = arena;
         if (this.energia - quantidade <= 0) {
             criarAnubitas(arena);
         }
