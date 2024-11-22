@@ -22,7 +22,7 @@ public class Mumia extends GuerreiroEgipcio {
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        this.arena = arena;
+//        this.arena = arena;
         if (adversario != null && !adversario.isEstaMorto()) {
             //System.out.println(getNome() + " ataca " + adversario.getNome() + " causando " + dano + " de dano.");
             adversario.sofrerDano(dano, arena);
@@ -36,9 +36,9 @@ public class Mumia extends GuerreiroEgipcio {
 
     @Override
     public void sofrerDano(int quantidade, Arena arena) {
-        this.arena = arena;
+//        this.arena = arena;
         if (this.energia - quantidade <= 0) {
-            criarAnubitas();
+            criarAnubitas(arena);
         }
 
         super.sofrerDano(quantidade, arena);
@@ -53,7 +53,7 @@ public class Mumia extends GuerreiroEgipcio {
         //System.out.println("Um Morto-Vivo surge com o nome " + adversarioMorto.getNome() + " no final da fila.");
     }
 
-    private void criarAnubitas() {
+    private void criarAnubitas(Arena arena) {
         //System.out.println(this.getNome() + " morreu, mas 4 Anubitas surgem em seu lugar!");
 
         int indiceFila = arena.encontrarFilaDeGuerreiro(this);

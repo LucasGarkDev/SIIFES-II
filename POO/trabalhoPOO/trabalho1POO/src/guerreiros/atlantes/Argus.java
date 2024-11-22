@@ -22,7 +22,7 @@ public class Argus extends GuerreiroAtlante {
 
     @Override
     public void atacar(Arena arena, Guerreiro adversario) {
-        this.arena = arena;  
+//        this.arena = arena;  
         if (adversario != null && !adversario.isEstaMorto()) {
             //System.out.println(getNome() + " ataca " + adversario.getNome() + " e mata instantaneamente!");
             adversario.sofrerDano(adversario.getEnergia(), arena);  
@@ -31,7 +31,7 @@ public class Argus extends GuerreiroAtlante {
 
     @Override
     public void sofrerDano(int quantidade, Arena arena) {
-        this.arena = arena; 
+//        this.arena = arena; 
         super.sofrerDano(quantidade, arena);  
     }
     

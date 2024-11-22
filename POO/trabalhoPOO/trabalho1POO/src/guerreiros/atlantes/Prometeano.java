@@ -34,14 +34,14 @@ public class Prometeano extends GuerreiroAtlante {
 
     @Override
     public void sofrerDano(int quantidade, Arena arena) {
-        this.arena = arena;
+//        this.arena = arena;
         if (this.energia - quantidade <= 0) {
-            dividirAntesDeMorrer();
+            dividirAntesDeMorrer(arena);
         }
         super.sofrerDano(quantidade,arena);
     }
 
-    private void dividirAntesDeMorrer() {
+    private void dividirAntesDeMorrer(Arena arena) {
         int novaEnergia = this.maxEnergia / 2;
         if (novaEnergia >= 1) {
             //System.out.println(super.getNome() + " se divide em dois!");

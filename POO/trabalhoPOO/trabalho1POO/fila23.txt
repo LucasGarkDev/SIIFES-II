@@ -1,1 +1,5 @@
-3 Fendor 21 126.13
+4 Marros 53 110.73
+6 Ordor 25 119.75
+6 Belros 19 130.44
+3 Thalkan 38 77.33
+1 Droron 20 128.99

@@ -90,7 +90,6 @@ public class Arena {
     // Método para exibir o guerreiro mais velho de toda a arena
     public void exibirGuerreiroMaisVelhoDaArena() {
         Guerreiro guerreiroMaisVelho = encontrarGuerreiroMaisVelhoDaArena();
-
         if (guerreiroMaisVelho != null) {
             System.out.println("O " + guerreiroMaisVelho.getClass().getSimpleName() +" "+ guerreiroMaisVelho.getNome()
                     + "e o mais velho e tem " + guerreiroMaisVelho.getIdade() + " anos.");

@@ -1,3 +1,4 @@
-5 Marmir 40 104.11
-5 Bellos 45 124.79
-6 Orgar 48 129.92
+2 Thaltis 56 130.73
+2 Fenlos 43 160.43
+3 Vallos 30 103.18
+2 Lunthos 36 112.51

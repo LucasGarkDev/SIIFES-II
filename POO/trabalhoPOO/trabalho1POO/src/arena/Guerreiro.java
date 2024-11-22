@@ -15,7 +15,6 @@ public abstract class Guerreiro {
     protected int energia = 100;  
     protected int dano;  
     protected boolean estaMorto; 
-    protected Arena arena;
     protected boolean envenenado = false; 
     
     public Guerreiro(String nome, int idade, double peso) {
@@ -89,14 +88,6 @@ public abstract class Guerreiro {
                 this.estaMorto = true;  
             }
         }
-    }
-
-    public Arena getArena() {
-        return arena;
-    }
-
-    public void setArena(Arena arena) {
-        this.arena = arena;
     }
 
     @Override
