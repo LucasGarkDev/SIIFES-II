@@ -1,2 +1,5 @@
-2 Beltis 37 112.64
-6 Drodor 28 78.91
+5 Kargar 43 108.19
+2 Fengar 48 159.82
+2 Lundor 41 154.08
+5 Thalgar 53 73.07
+1 Drolos 30 164.85

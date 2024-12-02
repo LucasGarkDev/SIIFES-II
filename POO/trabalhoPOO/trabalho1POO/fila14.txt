@@ -1,4 +1,3 @@
-2 Thaltis 56 130.73
-2 Fenlos 43 160.43
-3 Vallos 30 103.18
-2 Lunthos 36 112.51
+4 Thalros 28 168.64
+2 Fenkan 35 104.47
+3 Lunros 19 116.38

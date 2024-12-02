@@ -38,7 +38,6 @@ public class Mumia extends GuerreiroEgipcio {
         if (this.energia - quantidade <= 0) {
             criarAnubitas(arena);
         }
-
         super.sofrerDano(quantidade, arena);
     }
 

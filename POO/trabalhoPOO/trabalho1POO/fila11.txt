@@ -1,2 +1,4 @@
-6 Dromir 33 108.44
-6 Belthos 45 116.00
+2 Lungar 25 107.79
+1 Valnor 45 129.68
+5 Ordor 48 114.13
+4 Zengar 23 109.18

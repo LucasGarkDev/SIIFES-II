@@ -27,12 +27,6 @@ public class Argus extends GuerreiroAtlante {
             adversario.sofrerDano(adversario.getEnergia(), arena);  
         }
     }
-
-    @Override
-    public void sofrerDano(int quantidade, Arena arena) {
-        super.sofrerDano(quantidade, arena);  
-    }
-    
     
 }
 
