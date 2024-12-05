@@ -1,2 +1,3 @@
-5 Valnor 49 89.24
-1 Fenlos 18 74.32
+4 Fenlos 40 133.16
+1 Karlos 51 157.39
+3 Droron 52 151.86
